@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-09-10">
+<meta name="date" content="2018-09-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="index.html">
-<link rel="next" href="references.html">
+<link rel="next" href="dataset.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -125,11 +125,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="2.3.1" data-path="bases.html"><a href="bases.html#installation-dun-package"><i class="fa fa-check"></i><b>2.3.1</b> Installation d’un package</a></li>
 <li class="chapter" data-level="2.3.2" data-path="bases.html"><a href="bases.html#charger-un-package-en-memoire"><i class="fa fa-check"></i><b>2.3.2</b> Charger un package en mémoire</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="bases.html"><a href="bases.html#dataset"><i class="fa fa-check"></i><b>2.4</b> Explorez votre premier jeu de données</a></li>
-<li class="chapter" data-level="2.5" data-path="bases.html"><a href="bases.html#viz"><i class="fa fa-check"></i><b>2.5</b> Visualiser des données avec <code>ggplot2</code></a></li>
-<li class="chapter" data-level="2.6" data-path="bases.html"><a href="bases.html#tidyr"><i class="fa fa-check"></i><b>2.6</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
-<li class="chapter" data-level="2.7" data-path="bases.html"><a href="bases.html#wrangling"><i class="fa fa-check"></i><b>2.7</b> Tripatouiller les données avec <code>dplyr</code></a></li>
+<li class="chapter" data-level="2.4" data-path="bases.html"><a href="bases.html#exercices"><i class="fa fa-check"></i><b>2.4</b> Exercices</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="dataset.html"><a href="dataset.html"><i class="fa fa-check"></i><b>3</b> Explorez votre premier jeu de données</a></li>
+<li class="chapter" data-level="4" data-path="viz.html"><a href="viz.html"><i class="fa fa-check"></i><b>4</b> Visualiser des données avec <code>ggplot2</code></a></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
+<li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -158,7 +159,8 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li>Comment s’y prend-on pour coder dans R ?</li>
 <li>Que sont les “packages” ?</li>
 </ol>
-<p>Si vous êtes déjà à l’aise avec ces concepts, n’hésitez pas à passer directement à la section <a href="bases.html#dataset">2.4</a> ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP. La plupart de ce chapitre est basé sur les 3 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :</p>
+<p>Si vous pensez être déjà à l’aise avec ces concepts, lisez attentivement ce chapitre et faites les exercices demandés. Cela vous rafraîchira probablement la mémoire, et il n’est pas impossible que vous appreniez une chose ou deux au passage. Une bonne maîtrise des éléments présentés dans ce chapitre est un effet nécessaire pour aborder sereinement la section <a href="dataset.html#dataset">3</a> ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP qui viennent.</p>
+<p>Ce chapitre est en grande partie basé sur les 3 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :</p>
 <ol style="list-style-type: decimal">
 <li>L’ouvrage intitulé <a href="https://moderndive.com/index.html">ModernDive</a>, de Chester Ismay et Albert Y. Kim. Une bonne partie de cet ouvrage est très largement inspirée de cet ouvrage. C’est en anglais, mais c’est un très bon texte d’introduction aux statistiques sous R et RStudio.</li>
 <li>L’ouvrage intitulé <a href="https://ismayc.github.io/rbasics-book/">Getting used to R, RStudio, and R Markdown</a> de Chester Ismay, comprend des podcasts (en anglais toujours) que vous pouvez suivre en apprenant.</li>
@@ -255,6 +257,72 @@ code > span. { color: #1f1c1b; } /* Normal */
 </div>
 <div id="les-scripts" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> Les scripts</h3>
+<p>Taper du code directement dans la console est probablement la pire façon de travailler dans RStudio. Cela est parfois utile pour faire un rapide calcul, ou pour vérifier qu’une commande fonctionne correctement. Mais la plupart du temps, vous devriez taper vos commandes dans un script.</p>
+<p>Un script est un fichier au format “texte brut” (cela signifie qu’il n’y a pas de mise en forme et que ce fichier peut-être ouvert par n’importe quel éditeur de texte, y compris les plus simples comme le bloc notes de Windows), dans lequel vous pouvez taper :</p>
+<ol style="list-style-type: decimal">
+<li>des instructions qui seront comprises par R comme si vous les tapiez directement dans la console</li>
+<li>des lignes de commentaires, qui doivent obligatoirement commencer par le symbole <code>#</code>.</li>
+</ol>
+<p>Les avantages de travailler dans un script sont nombreux :</p>
+<ol style="list-style-type: decimal">
+<li>Vous pouvez sauvegarder votre script à tout moment (vous devriez prendre l’habitude de le sauvegarder très régulièrement). Vous gardez ainsi la trace de toutes les commandes que vous avez tapées.</li>
+<li>Vous pouvez aisément partager votre script pour collaborer avec vos collègues de promo et enseignants.</li>
+<li>Vous pouvez documenter votre démarche et les différentes étapes de vos analyses. Vous devez ajouter autant de commentaires que possible. Cela permettra à vos collaborateurs de comprendre ce que vous avez fait. Et cela vous permettra de comprendre ce que vous avez fait il y a 6 mois quand vous vous re-plongerez dans vos analyses dans quelques temps. Si votre démarche vous paraît cohérente maintenant, il n’est en effet pas garanti que vous rappellerez de chaque détail dans 6 mois ou 6 ans.</li>
+<li>Un script bien structuré et clair permet de rendre vos analyses répétables. Si vous passer 15 heures à analyser un tableau de données précis, il vous suffira de quelques secondes pour analyser un nouveau jeu de données similaires : vous n’aurez que quelques lignes à modifier dans votre script original pour l’appliquer à de nouvelles données.</li>
+</ol>
+<p>Vous pouvez créer un script en cliquant dans le menu “File &gt; New File &gt; R Script”. Un nouveau panneau s’ouvre dans l’application. Pensez à sauvegarder immédiatement votre nouveau script. Il faut pour cela lui donner un nom. Vous noterez que par défaut, RStudio propose d’enregistrer votre script dans votre répertoire de travail.</p>
+<p>À partir de maintenant, vous ne devriez plus taper de commande directement dans la console. Tapez systématiquement vos commandes dans un script et sauvegardez-le régulièrement.</p>
+<p>Pour exécuter les commandes du script dans la console, il suffit de placer le curseur sur la ligne contenant la commande et de presser les touches <code>ctrl + enter</code> (ou <code>command + enter</code> sous macOS). Si un message d’erreur s’affiche dans la console, c’est que votre instruction était erronée. Modifiez la directement dans votre script et pressez à nouveau les touches <code>ctrl + enter</code> (ou <code>command + enter</code> sous macOS) pour tenter à nouveau votre chance. Idéalement, votre script ne devrait contenir que des commandes qui fonctionnent et des commentaires expliquant à quoi servent ces commandes.</p>
+<p>À la fin de chaque séance de TEA, vous devrez déposer sur l’ENT le script que vous avez créé durant la séance. Ce script devra porter votre nom de famille et se terminer par l’extension <code>.R</code>. Ainsi, si Jean-Claude Van Damme faisait des statistiques, il devrait déposer sur l’ENT un fichier intitulé <code>VanDamme.R</code> à la fin de chaque séance de TEA.</p>
+<p>Ci-dessous, un exemple de script</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Penser à installer le package ggplot2 si besoin</span>
+<span class="co"># install.packages(&#39;ggplot2&#39;)</span>
+
+<span class="co"># Chargement du package</span>
+<span class="kw">library</span>(ggplot2)
+
+<span class="co"># Mise en méoire des données de qualité de l&#39;air à New-York</span>
+<span class="co"># de mai à septembre 1973</span>
+<span class="kw">data</span>(airquality)
+
+<span class="co"># Affichage des premières lignes du tableau de données</span>
+<span class="kw">head</span>(airquality)
+
+<span class="co"># Quelle est la structure de ce tableau ?</span>
+<span class="kw">str</span>(airquality)
+
+<span class="co"># Réalisation d&#39;un graphique présentant la relation entre la</span>
+<span class="co"># concentration en ozone atmosphérique en ppb et la</span>
+<span class="co"># température en degrés Farenheit</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> airquality, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Temp, <span class="dt">y =</span> Ozone)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>)
+
+<span class="co"># On constate une augmentation importante de la concentration</span>
+<span class="co"># d&#39;ozone pour des températures supérieures à 75ºF</span></code></pre></div>
+<p>Même si vous ne comprenez pas encore les commandes qui figurent dans ce script (ça viendra !), voici ce que vous devez en retenir :</p>
+<ol style="list-style-type: decimal">
+<li>Le script contient plus de lignes de commentaires que de commandes R</li>
+<li>Chaque étape de l’analyse est décrite en détail</li>
+<li>On peut ajouter des commentaires afin de décrire les résultats</li>
+<li>Seules les commandes pertinentes et qui fonctionnent ont été conservées dans ce script</li>
+<li>Chaque ligne de commentaire commence par <code>#</code>. Il est ainsi possible de conserver certaines commandes R dans le script, “pour mémoire”, sans pour autant qu’elle ne soient exécutées. C’est le cas pour la ligne <code># install.packages(&quot;ggplot2&quot;)</code>.</li>
+</ol>
+<p>Si j’éxécute ce script dans la console de RStudio (en sélectionnant toutes les lignes et en pressant les touches <code>ctrl+enter</code> ou <code>command+enter</code> sous macOS), voilà ce qui est produit :</p>
+<pre><code>  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6</code></pre>
+<pre><code>&#39;data.frame&#39;:   153 obs. of  6 variables:
+ $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
+ $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
+ $ Wind   : num  7.4 8 12.6 11.5 14.3 14.9 8.6 13.8 20.1 8.6 ...
+ $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
+ $ Month  : int  5 5 5 5 5 5 5 5 5 5 ...
+ $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre>
+<p><img src="figure/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="concepts-de-base-en-programmation-et-terminologie" class="section level3">
 <h3><span class="header-section-number">2.2.4</span> Concepts de base en programmation et terminologie</h3>
@@ -280,7 +348,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li><a href="https://campus.datacamp.com/courses/introduction-a-r/chapitre-5-les-jeux-de-donnees?ex=1">Chapitre 5 : les jeux de données ou <code>data.frame</code></a>
 <ul>
-<li>Les <code>data.frame</code>s sont similaires aux feuilles de calcul rectangulaires que l’on peut produire dans un tableur. Dans R, ce sont des objets rectangulaires (des tableaux !) contenant des jeux de jeux de données : les lignes correspondent aux observations et les colonnes aux variables décrivant les observations. La plupart du temps, c’es le format de données que nous utiliserons. Plus de détails dans la partie <a href="bases.html#dataset">2.4</a>.</li>
+<li>Les <code>data.frame</code>s sont similaires aux feuilles de calcul rectangulaires que l’on peut produire dans un tableur. Dans R, ce sont des objets rectangulaires (des tableaux !) contenant des jeux de jeux de données : les lignes correspondent aux observations et les colonnes aux variables décrivant les observations. La plupart du temps, c’es le format de données que nous utiliserons. Plus de détails dans la partie <a href="dataset.html#dataset">3</a>.</li>
 </ul></li>
 </ul>
 <p>Avant de passer à la suite, il nous reste 2 grandes notions à découvrir dans le domaine du code et de la syntaxe afin de pouvoir travailler efficacement dans R : les opérateurs de comparaison d’une part, et les fonctions d’autre part.</p>
@@ -363,6 +431,94 @@ age_Pierre <span class="op">==</span><span class="st"> </span>age_Marie</code></
 </div>
 <div id="lutilisation-des-fonctions" class="section level4">
 <h4><span class="header-section-number">2.2.4.3</span> L’utilisation des fonctions</h4>
+<p>Dans R, les fonctions sont des objets particuliers qui permettent d’effectuer des tâches très variées. Du calcul d’une moyenne à la création d’un graphique, en passant par la réalisation d’analyses statistiques complexes ou simplement l’affichage du chemin du répertoire de travail, tout, dans R, repose sur l’utilisation de fonctions. Vous en avez déjà vu un certain nombre :</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Fonction</th>
+<th align="left">Pour quoi faire ?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right"><code>c()</code></td>
+<td align="left">Créer des vecteurs</td>
+</tr>
+<tr class="even">
+<td align="right"><code>class()</code></td>
+<td align="left">Afficher ou modifier la classe d’un objet</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>factor()</code></td>
+<td align="left">Créer des facteurs</td>
+</tr>
+<tr class="even">
+<td align="right"><code>getwd()</code></td>
+<td align="left">Afficher le chemin du répertoire de travail</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>head()</code></td>
+<td align="left">Afficher les premiers éléments d’un objet</td>
+</tr>
+<tr class="even">
+<td align="right"><code>is.na()</code></td>
+<td align="left">Tester si un objet contient des valeurs manquantes</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>mean()</code></td>
+<td align="left">Calculer une moyenne</td>
+</tr>
+<tr class="even">
+<td align="right"><code>names()</code></td>
+<td align="left">Afficher ou modifier le nom des éléments d’un vecteur</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>order()</code></td>
+<td align="left">Ordonner les éléments d’un objet</td>
+</tr>
+<tr class="even">
+<td align="right"><code>setwd()</code></td>
+<td align="left">Modifier le chemin du répertoire de travail</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>subset()</code></td>
+<td align="left">Extraire une partie des éléments d’un objet</td>
+</tr>
+<tr class="even">
+<td align="right"><code>sum()</code></td>
+<td align="left">Calculer une somme</td>
+</tr>
+<tr class="odd">
+<td align="right"><code>tail()</code></td>
+<td align="left">Afficher les derniers éléments d’un objet</td>
+</tr>
+</tbody>
+</table>
+<p>Cette liste va très rapidement s’allonger au fil des séances. Je vous conseille donc vivement de tenir à jour une liste des fonctions décrites, avec une explication de leur fonctionnement et éventuellement un exemple de syntaxe.</p>
+<p>Certaines fonction ont besoin d’arguments (par exemple, la fonction <code>factor()</code>), d’autres peuvent s’en passer (par exemple, la fonction <code>getwd()</code>). Pour apprendre comment utiliser une fonction particulière, pour découvrir quels sont ses arguments possibles, quelle est leur rôle et leur intérêt, la meilleure solution est de consulter l’aide de cette fonction. Il suffit pour cela de taper un <code>?</code> suivi du nom de la fonction :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="kw">factor</span>()</code></pre></div>
+<p>Toutes les fonctions et jeux de données disponibles dans R disposent d’un fichier d’aide similaire. Cela peut faire un peu peur au premier abord (tout est en anglais !), mais ces fichiers d’aide ont l’avantage d’être très complets, de fournir des exemples d’utilisation, et ils sont tous construits sur le même modèle. Vous avez donc tout intérêt à vous familiariser avec eux. vous devriez d’ailleurs prendre l’habitude de consulter l’aide de chaque fonction qui vous pose un problème. Par exemple, le logarithme (en base 10) de 100 devrait faire 2, car 100 est égal à 10^2. Pourtant :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">100</span>)</code></pre></div>
+<pre><code>[1] 4.60517</code></pre>
+<p>Que se passe-t’il ? Pour le savoir, il faut consulter l’aide de la fonction log :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="kw">log</span>()</code></pre></div>
+<p>Ce fichier d’aide nous apprend que par défaut, la syntaxe de la fonction <code>log()</code> est la suivante :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(x, <span class="dt">base =</span> <span class="kw">exp</span>(<span class="dv">1</span>))</code></pre></div>
+<p>Par défaut, la base du logarithme est fixée à <code>exp(1)</code>. Nous avons donc calculé un logarithme népérien (en base <em>e</em>). Cette fonction prend donc 2 arguments : 1. <code>x</code> ne possède pas de valeur par défaut : il nous faut obligatoirement fournir quelque chose (la rubrique “Argument” du fichier d’aide nous indique que <code>x</code> doit être un vecteur numérique ou complexe) afin que la fonction puisse calculer un logarithme 2. <code>base</code> possède un argument par défaut. Si nous ne spécifions pas nous même la valeur de <code>base</code>, elle sera fixée à sa valeur par défaut, c’est à dire <code>exp(1)</code>.</p>
+<p>Pour calculer le logarithme en base 10 de 100, il faut donc taper, au choix, l’une de ces 3 expressions :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">100</span>, <span class="dt">base =</span> <span class="dv">10</span>)</code></pre></div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">100</span>, <span class="dt">base =</span> <span class="dv">10</span>)</code></pre></div>
+<pre><code>[1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">100</span>, <span class="dv">10</span>)</code></pre></div>
+<pre><code>[1] 2</code></pre>
+<p>Le nom des arguments d’une fonction peut être omis tant que ces arguments sont indiqués dans l’ordre attendu par la fonction (cet ordre est celui qui est précisé à la rubrique “Usage” du fichier d’aide de la fonction). Il est possible de modifier l’ordre des arguments d’une fonction, mais il faut alors être parfaitement explicite et utiliser les noms des arguments tels que définis dans le fichier d’aide.</p>
+<p>Ainsi, pour calculer le logarithme en base 10 de 100, on ne peut pas taper :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre></div>
+<pre><code>[1] 0.5</code></pre>
+<p>car cela revient à calculer le logarithme en base 100 de 10. On peut en revanche taper :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">base =</span> <span class="dv">10</span>, <span class="dt">x =</span> <span class="dv">100</span>)</code></pre></div>
+<pre><code>[1] 2</code></pre>
 <hr />
 </div>
 </div>
@@ -371,8 +527,8 @@ age_Pierre <span class="op">==</span><span class="st"> </span>age_Marie</code></
 <h2><span class="header-section-number">2.3</span> Les packages additionels</h2>
 <p>Une source de confusion importante pour les nouveaux utilisateurs de R est la notion de package. Les packages étendent les fonctionnalités de R en fournissant des fonctions, des données et de la documentation supplémentaires et peuvent être téléchargés gratuitement sur Internet. Ils sont écrits par une communauté mondiale d’utilisateurs R. Par exemple, parmi plus de 13000 packages disponibles à l’heure actuelle, nous utiliseront fréquemment :</p>
 <ul>
-<li>Le package <code>ggplot2</code> pour la visualisation des données dans le chapitre <a href="bases.html#viz">2.5</a></li>
-<li>Le package <code>dplyr</code> pour les manipuler des tableaux données dans le chapitre <a href="bases.html#wrangling">2.7</a></li>
+<li>Le package <code>ggplot2</code> pour la visualisation des données dans le chapitre <a href="viz.html#viz">4</a></li>
+<li>Le package <code>dplyr</code> pour les manipuler des tableaux données dans le chapitre <a href="wrangling.html#wrangling">6</a></li>
 </ul>
 <p>Il y a deux choses importantes à retenir à propos des packages R :</p>
 <ol style="list-style-type: decimal">
@@ -424,23 +580,10 @@ age_Pierre <span class="op">==</span><span class="st"> </span>age_Marie</code></
 <p><strong>Note</strong> : Vous devez charger à nouveau chaque package que vous souhaitez utiliser à chaque fois que vous ouvrez une nouvelle session de travail dans RStudio. Ça peut être un peu pénible et c’est une source d’erreur fréquente pour les débutants. Quand vous vouyez un message d’erreur commençant par :</p>
 <pre><code>Error: could not find function...</code></pre>
 <p>rappelez-vous que c’est probablement parce que vous tentez d’utiliser une fonction qui fait partie d’un package que vous n’avez pas chargé. Pour corriger l’erreur, il suffit donc de charger le package approprié avec la commande <code>library()</code>.</p>
-
 </div>
 </div>
-<div id="dataset" class="section level2">
-<h2><span class="header-section-number">2.4</span> Explorez votre premier jeu de données</h2>
-
-</div>
-<div id="viz" class="section level2">
-<h2><span class="header-section-number">2.5</span> Visualiser des données avec <code>ggplot2</code></h2>
-
-</div>
-<div id="tidyr" class="section level2">
-<h2><span class="header-section-number">2.6</span> (Ar)ranger des données avec <code>tidyr</code></h2>
-
-</div>
-<div id="wrangling" class="section level2">
-<h2><span class="header-section-number">2.7</span> Tripatouiller les données avec <code>dplyr</code></h2>
+<div id="exercices" class="section level2">
+<h2><span class="header-section-number">2.4</span> Exercices</h2>
 
 </div>
 </div>
@@ -450,7 +593,7 @@ age_Pierre <span class="op">==</span><span class="st"> </span>age_Marie</code></
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

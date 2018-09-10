@@ -6,7 +6,9 @@ Avant de commencer à explorer des données dans R, il y a plusieurs concepts de
 2. Comment s'y prend-on pour coder dans R ?
 3. Que sont les "packages" ?
 
-Si vous êtes déjà à l'aise avec ces concepts, n'hésitez pas à passer directement à la section \@ref(dataset) ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP. La plupart de ce chapitre est basé sur les 3 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :
+Si vous pensez être déjà à l'aise avec ces concepts, lisez attentivement ce chapitre et faites les exercices demandés. Cela vous rafraîchira probablement la mémoire, et il n'est pas impossible que vous appreniez une chose ou deux au passage. Une bonne maîtrise des éléments présentés dans ce chapitre est un effet nécessaire pour aborder sereinement la section \@ref(dataset) ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP qui viennent. 
+
+Ce chapitre est en grande partie basé sur les 3 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :
 
 1. L'ouvrage intitulé [ModernDive](https://moderndive.com/index.html), de Chester Ismay et Albert Y. Kim. Une bonne partie de cet ouvrage est très largement inspirée de cet ouvrage. C'est en anglais, mais c'est un très bon texte d'introduction aux statistiques sous R et RStudio.
 2. L'ouvrage intitulé [Getting used to R, RStudio, and R Markdown](https://ismayc.github.io/rbasics-book/) de Chester Ismay, comprend des podcasts (en anglais toujours) que vous pouvez suivre en apprenant.
@@ -112,6 +114,87 @@ Il ne vous reste plus qu'à vérifier que le changement a bien été pris en com
 
 ### Les scripts
 
+Taper du code directement dans la console est probablement la pire façon de travailler dans RStudio. Cela est parfois utile pour faire un rapide calcul, ou pour vérifier qu'une commande fonctionne correctement. Mais la plupart du temps, vous devriez taper vos commandes dans un script.
+
+Un script est un fichier au format "texte brut" (cela signifie qu'il n'y a pas de mise en forme et que ce fichier peut-être ouvert par n'importe quel éditeur de texte, y compris les plus simples comme le bloc notes de Windows), dans lequel vous pouvez taper :
+
+1. des instructions qui seront comprises par R comme si vous les tapiez directement dans la console
+2. des lignes de commentaires, qui doivent obligatoirement commencer par le symbole `#`.
+
+Les avantages de travailler dans un script sont nombreux :
+
+1. Vous pouvez sauvegarder votre script à tout moment (vous devriez prendre l'habitude de le sauvegarder très régulièrement). Vous gardez ainsi la trace de toutes les commandes que vous avez tapées.
+2. Vous pouvez aisément partager votre script pour collaborer avec vos collègues de promo et enseignants.
+3. Vous pouvez documenter votre démarche et les différentes étapes de vos analyses. Vous devez ajouter autant de commentaires que possible. Cela permettra à vos collaborateurs de comprendre ce que vous avez fait. Et cela vous permettra de comprendre ce que vous avez fait il y a 6 mois quand vous vous re-plongerez dans vos analyses dans quelques temps. Si votre démarche vous paraît cohérente maintenant, il n'est en effet pas garanti que vous rappellerez de chaque détail dans 6 mois ou 6 ans.
+4. Un script bien structuré et clair permet de rendre vos analyses répétables. Si vous passer 15 heures à analyser un tableau de données précis, il vous suffira de quelques secondes pour analyser un nouveau jeu de données similaires : vous n'aurez que quelques lignes à modifier dans votre script original pour l'appliquer à de nouvelles données.
+
+Vous pouvez créer un script en cliquant dans le menu "File > New File > R Script". Un nouveau panneau s'ouvre dans l'application. Pensez à sauvegarder immédiatement votre nouveau script. Il faut pour cela lui donner un nom. Vous noterez que par défaut, RStudio propose d'enregistrer votre script dans votre répertoire de travail.
+
+À partir de maintenant, vous ne devriez plus taper de commande directement dans la console. Tapez systématiquement vos commandes dans un script et sauvegardez-le régulièrement.
+
+Pour exécuter les commandes du script dans la console, il suffit de placer le curseur sur la ligne contenant la commande et de presser les touches `ctrl + enter` (ou `command + enter` sous macOS). Si un message d'erreur s'affiche dans la console, c'est que votre instruction était erronée. Modifiez la directement dans votre script et pressez à nouveau les touches `ctrl + enter` (ou `command + enter` sous macOS) pour tenter à nouveau votre chance. Idéalement, votre script ne devrait contenir que des commandes qui fonctionnent et des commentaires expliquant à quoi servent ces commandes.
+
+À la fin de chaque séance de TEA, vous devrez déposer sur l'ENT le script que vous avez créé durant la séance. Ce script devra porter votre nom de famille et se terminer par l'extension `.R`. Ainsi, si Jean-Claude Van Damme faisait des statistiques, il devrait déposer sur l'ENT un fichier intitulé `VanDamme.R` à la fin de chaque séance de TEA.
+
+Ci-dessous, un exemple de script
+
+```{r eval=FALSE}
+# Penser à installer le package ggplot2 si besoin
+# install.packages("ggplot2")
+
+# Chargement du package
+library(ggplot2)
+
+# Mise en méoire des données de qualité de l'air à New-York de mai à septembre 1973
+data(airquality)
+
+# Affichage des premières lignes du tableau de données
+head(airquality)
+
+# Quelle est la structure de ce tableau ?
+str(airquality)
+
+# Réalisation d'un graphique présentant la relation entre la concentration en ozone atmosphérique en ppb et la température en degrés Farenheit
+ggplot(data = airquality, mapping = aes(x = Temp, y = Ozone)) +
+  geom_point() +
+  geom_smooth(method = "loess")
+
+# On constate une augmentation importante de la concentration d'ozone pour des températures supérieures à 75ºF
+```
+
+Même si vous ne comprenez pas encore les commandes qui figurent dans ce script (ça viendra !), voici ce que vous devez en retenir :
+
+1. Le script contient plus de lignes de commentaires que de commandes R
+2. Chaque étape de l'analyse est décrite en détail
+3. On peut ajouter des commentaires afin de décrire les résultats
+4. Seules les commandes pertinentes et qui fonctionnent ont été conservées dans ce script
+5. Chaque ligne de commentaire commence par `#`. Il est ainsi possible de conserver certaines commandes R dans le script, "pour mémoire", sans pour autant qu'elle ne soient exécutées. C'est le cas pour la ligne `# install.packages("ggplot2")`.
+
+Si j'éxécute ce script dans la console de RStudio (en sélectionnant toutes les lignes et en pressant les touches `ctrl+enter` ou `command+enter` sous macOS), voilà ce qui est produit :
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Penser à installer le package ggplot2 si besoin
+# install.packages("ggplot2")
+
+# Chargement du package
+library(ggplot2)
+
+# Mise en méoire des données de qualité de l'air à New-York de mai à septembre 1973
+data(airquality)
+
+# Affichage des premières lignes du tableau de données
+head(airquality)
+
+# Quelle est la structure de ce tableau ?
+str(airquality)
+
+# Réalisation d'un graphique présentant la relation entre la concentration en ozone atmosphérique en ppb et la température en degrés Farenheit
+ggplot(data = airquality, mapping = aes(x = Temp, y = Ozone)) +
+  geom_point() +
+  geom_smooth(method = "loess")
+
+# On constate une augmentation importante de la concentration d'ozone pour des températures supérieures à 75ºF
+```
 
 
 
@@ -239,6 +322,65 @@ Cette fonction nous sera très utile plus tard pour éliminer toutes les lignes 
 
 #### L'utilisation des fonctions
 
+Dans R, les fonctions sont des objets particuliers qui permettent d'effectuer des tâches très variées. Du calcul d'une moyenne à la création d'un graphique, en passant par la réalisation d'analyses statistiques complexes ou simplement l'affichage du chemin du répertoire de travail, tout, dans R, repose sur l'utilisation de fonctions. Vous en avez déjà vu un certain nombre :
+
+Fonction             | Pour quoi faire ?
+--------------------:|:-----------------------------------------------------
+`c()`                | Créer des vecteurs
+`class()`            | Afficher ou modifier la classe d'un objet
+`factor()`           | Créer des facteurs
+`getwd()`            | Afficher le chemin du répertoire de travail
+`head()`             | Afficher les premiers éléments d'un objet
+`is.na()`            | Tester si un objet contient des valeurs manquantes
+`mean()`             | Calculer une moyenne
+`names()`            | Afficher ou modifier le nom des éléments d'un vecteur
+`order()`            | Ordonner les éléments d'un objet
+`setwd()`            | Modifier le chemin du répertoire de travail
+`subset()`           | Extraire une partie des éléments d'un objet
+`sum()`              | Calculer une somme
+`tail()`             | Afficher les derniers éléments d'un objet
+
+Cette liste va très rapidement s'allonger au fil des séances. Je vous conseille donc vivement de tenir à jour une liste des fonctions décrites, avec une explication de leur fonctionnement et éventuellement un exemple de syntaxe.
+
+Certaines fonction ont besoin d'arguments (par exemple, la fonction `factor()`), d'autres peuvent s'en passer (par exemple, la fonction `getwd()`). Pour apprendre comment utiliser une fonction particulière, pour découvrir quels sont ses arguments possibles, quelle est leur rôle et leur intérêt, la meilleure solution est de consulter l'aide de cette fonction. Il suffit pour cela de taper un `?` suivi du nom de la fonction :
+
+```{r eval=FALSE, tidy=FALSE}
+?factor()
+```
+
+Toutes les fonctions et jeux de données disponibles dans R disposent d'un fichier d'aide similaire. Cela peut faire un peu peur au premier abord (tout est en anglais !), mais ces fichiers d'aide ont l'avantage d'être très complets, de fournir des exemples d'utilisation, et ils sont tous construits sur le même modèle. Vous avez donc tout intérêt à vous familiariser avec eux. vous devriez d'ailleurs prendre l'habitude de consulter l'aide de chaque fonction qui vous pose un problème. Par exemple, le logarithme (en base 10) de 100 devrait faire 2, car 100 est égal à 10^2. Pourtant :
+```{r}
+log(100)
+```
+Que se passe-t'il ? Pour le savoir, il faut consulter l'aide de la fonction log :
+```{r eval=FALSE, tidy=FALSE}
+?log()
+```
+
+Ce fichier d'aide nous apprend que par défaut, la syntaxe de la fonction `log()` est la suivante :
+```{r eval=FALSE}
+log(x, base = exp(1))
+```
+Par défaut, la base du logarithme est fixée à `exp(1)`. Nous avons donc calculé un logarithme népérien (en base *e*). Cette fonction prend donc 2 arguments :
+1. `x` ne possède pas de valeur par défaut : il nous faut obligatoirement fournir quelque chose (la rubrique "Argument" du fichier d'aide nous indique que `x` doit être un vecteur numérique ou complexe) afin que la fonction puisse calculer un logarithme
+2. `base` possède un argument par défaut. Si nous ne spécifions pas nous même la valeur de `base`, elle sera fixée à sa valeur par défaut, c'est à dire `exp(1)`.
+
+Pour calculer le logarithme en base 10 de 100, il faut donc taper, au choix, l'une de ces 3 expressions :
+```{r}
+log(x = 100, base = 10)
+log(100, base = 10)
+log(100, 10)
+```
+Le nom des arguments d'une fonction peut être omis tant que ces arguments sont indiqués dans l'ordre attendu par la fonction (cet ordre est celui qui est précisé à la rubrique "Usage" du fichier d'aide de la fonction). Il est possible de modifier l'ordre des arguments d'une fonction, mais il faut alors être parfaitement explicite et utiliser les noms des arguments tels que définis dans le fichier d'aide.
+
+Ainsi, pour calculer le logarithme en base 10 de 100, on ne peut pas taper :
+```{r}
+log(10, 100)
+```
+car cela revient à calculer le logarithme en base 100 de 10. On peut en revanche taper :
+```{r}
+log(base = 10, x = 100)
+```
 
 
 
@@ -307,6 +449,9 @@ Error: could not find function...
 rappelez-vous que c'est probablement parce que vous tentez d'utiliser une fonction qui fait partie d'un package que vous n'avez pas chargé. Pour corriger l'erreur, il suffit donc de charger le package approprié avec la commande `library()`.
 
 
+
+
+## Exercices
 
 
 

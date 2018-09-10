@@ -1,3 +1,3 @@
-## Tripatouiller les données avec `dplyr` {#wrangling}
+# Tripatouiller les données avec `dplyr` {#wrangling}
 
 

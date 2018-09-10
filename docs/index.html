@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-09-10">
+<meta name="date" content="2018-09-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -125,11 +125,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="2.3.1" data-path="bases.html"><a href="bases.html#installation-dun-package"><i class="fa fa-check"></i><b>2.3.1</b> Installation d’un package</a></li>
 <li class="chapter" data-level="2.3.2" data-path="bases.html"><a href="bases.html#charger-un-package-en-memoire"><i class="fa fa-check"></i><b>2.3.2</b> Charger un package en mémoire</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="bases.html"><a href="bases.html#dataset"><i class="fa fa-check"></i><b>2.4</b> Explorez votre premier jeu de données</a></li>
-<li class="chapter" data-level="2.5" data-path="bases.html"><a href="bases.html#viz"><i class="fa fa-check"></i><b>2.5</b> Visualiser des données avec <code>ggplot2</code></a></li>
-<li class="chapter" data-level="2.6" data-path="bases.html"><a href="bases.html#tidyr"><i class="fa fa-check"></i><b>2.6</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
-<li class="chapter" data-level="2.7" data-path="bases.html"><a href="bases.html#wrangling"><i class="fa fa-check"></i><b>2.7</b> Tripatouiller les données avec <code>dplyr</code></a></li>
+<li class="chapter" data-level="2.4" data-path="bases.html"><a href="bases.html#exercices"><i class="fa fa-check"></i><b>2.4</b> Exercices</a></li>
 </ul></li>
+<li class="chapter" data-level="3" data-path="dataset.html"><a href="dataset.html"><i class="fa fa-check"></i><b>3</b> Explorez votre premier jeu de données</a></li>
+<li class="chapter" data-level="4" data-path="viz.html"><a href="viz.html"><i class="fa fa-check"></i><b>4</b> Visualiser des données avec <code>ggplot2</code></a></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
+<li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -153,7 +154,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="header">
 <h1 class="title">Travaux Pratiques de Biométrie 2</h1>
 <h4 class="author"><em>Benoît Simon-Bouhet</em></h4>
-<h4 class="date"><em>2018-09-10</em></h4>
+<h4 class="date"><em>2018-09-11</em></h4>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
@@ -179,8 +180,9 @@ Les données que vous serez amenés à traiter lors de vos stages, ou plus tard,
 <h2><span class="header-section-number">1.2</span> Organisation</h2>
 <p>Les séances de travaux pratiques de biométrie 2 durent 1h30 et ont lieu en salle informatique du Pôle Communication Multimédia Réseaux (PCM). Seules 6 heures de TP sont prévues dans la maquette, soit 4 séances de TP. C’est <em>très peu</em> ! En fait, c’est très insuffisant pour couvrir correctement la totalité du contenu de cet enseignement. C’est la raison pour laquelle chacune des 3 premières séances de TP est suivie d’<strong>une séance de TEA de 90 minutes</strong>.</p>
 <p>Au début de chaque séance de TP, j’indiquerai un objectif que vous devriez être en mesure d’atteindre en l’espace de 3 heures. Certains iront probablement plus vite et d’autres plus lentement. Lors des séances de TP, je serai disponible pour répondre à chacune de vos questions. À l’issue des 90 minutes de TP, vous changerez de salle (toujours au PCM) et les 90 minutes de TEA commenceront.</p>
-<p>Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l’ENT à l’issue de chaque séance de TEA. Une correction rapide sera faite lors de la séance de travaux pratique suivante. Je m’efforcerai de passer régulièrement auprès de vous au cours des séances de TEA afin de vous débloquer en cas de problème majeur. Vous pouvez aussi <a href="mailto:bsimonbo@univ-lr.fr">me contacter par email</a>. Toutefois, ce document est fait pour vous permettre d’avancer en autonomie. L’expérience montre que la plupart du temps, il suffit de lire correctement pour obtenir la réponse à ses questions. Je vous encourage également à vous <strong>entraider</strong> : c’est très formateur pour celui qui explique, et celui qui rencontre une difficulté a plus de chance de comprendre si c’est quelqu’un d’autre qui lui explique plutôt que la personne qui a rédigé le texte ou les instructions mal comprises.</p>
-<p>Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyons en TP doit être acquis le jour de l’examen. Utilisez donc le temps du TEA pour vous préparer au mieux.</p>
+<p>Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l’ENT à l’issue de chaque séance de TEA, qu’ils soient terminés ou non. S’ils ne sont pas terminés à l’issue des TEA, vous êtes vivement encourragés à les terminer en dehors des heures de cours. En effet, une correction rapide sera faite lors de la séance de travaux pratiques suivante et nous n’auront que très peu de temps à consacrer à ces corrections. Si vous n’y avez pas sérieusement réfléchi en amont, cela ne vous servira absolument à rien. Pour apprendre à utiliser un logiciel comme R, il faut en effet faire les choses soi-même, “mettre les mains dans le cambouis”, se confronter à la difficulté, ne pas avoir peur des messages d’erreurs (il faut d’ailleurs apprendre à les déchiffrer pour comprendre d’où viennent les problèmes), essayer maintes fois, se tromper beaucoup, recommencer, et surtout, ne pas se décourager. Même si ce livre est conçu pour vous faciliter la tâche, l’apprentissage de R est souvent perçu comme une lutte. Mais quand ça fonctionne enfin, c’est extrêmement gratifiant et il n’existe pas à l’heure actuelle de meilleur logiciel pour analyser des données et produire des graphiques de qualité. Vous pouvez me croire sur parôle : j’utilise ce logiciel presque quotidiennement depuis près de 15 ans.</p>
+<p>Je m’efforcerai de passer 1 ou 2 fois auprès de vous lors des séances de TEA afin de vous débloquer en cas de problème majeur. Vous pouvez aussi <a href="mailto:bsimonbo@univ-lr.fr">me contacter par email</a>. Toutefois, ce document est fait pour vous permettre d’avancer en autonomie. L’expérience montre que la plupart du temps, il suffit de lire correctement pour obtenir la réponse à ses questions. Je vous encourage également à vous <strong>entraider</strong> : c’est très formateur pour celui qui explique, et celui qui rencontre une difficulté a plus de chance de comprendre si c’est quelqu’un d’autre qui lui explique plutôt que la personne qui a rédigé les instructions mal comprises.</p>
+<p>Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyons en TP devra être acquis le jour de l’examen. Utilisez donc le temps du TEA pour vous préparer au mieux. L’apprentissage prend du temps, donc autant s’y mettre sérieusement dès maintenant.</p>
 <!-- Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab). -->
 <!-- You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015]. -->
 
