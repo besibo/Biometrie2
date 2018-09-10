@@ -1,5 +1,194 @@
 # Les données dans R {#data}
 
+Avant de commencer à explorer des données dans R, il y a plusieurs concepts de clé qu'il faut comprendre premier lieu :
+
+1. Que sont R et RStudio ?
+2. Comment s'y prend-on pour coder dans R ?
+3. Que sont les "packages" ?
+
+Si vous êtes déjà à l'aise avec ces concepts, n'hésitez pas à passer directement à la section \@ref(dataset) ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP. La plupart de ce chapitre est basé sur les 2 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :
+
+1. L'ouvrage intitulé [ModernDive](https://moderndive.com/index.html), de Chester Ismay et Albert Y. Kim. Une bonne partie de cet ouvrage est très largement inspirée de cet ouvrage. C'est en anglais, mais c'est un très bon texte d'introduction aux statistiques sous R et RStudio.
+2. L'ouvrage intitulé [Getting used to R, RStudio, and R Markdown](https://ismayc.github.io/rbasics-book/) de Chester Ismay, comprend des podcasts (en anglais toujours) que vous pouvez suivre en apprenant.
+
+## Que sont R et RStudio
+
+Pour l'ensemble des TP de biométrie 2, j'attends de vous que vous utilisez R *via* RStudio. Les utilisateurs novices confondent souvent les deux. Pour tenter une analogie simple :
+
+- R est le moteur d'une voiture
+- RStudio est l'habitacle, le tableau de bord, les pédales
+
+Si vous n'avez pas de moteur, vous n'irez nulle part. En revanche, un moteur sans tableau de bord est difficile à manœuvrer. Il est en effet beaucoup plus simple de faire avancer une voiture depuis l'habitacle, plutôt qu'en actionnant à la main les cables et leviers du moteur.
+
+En l'occurence, R est un langage de programmation capable de produire des graphiques et de réaliser des analyses statistiques, des plus simples au plus complexes. RStudio est un "emballage" qui rend l'utilisation de R plus aisée. RStudio est ce qu'on appelle un IDE : Itegrated Development Environment. On peut utiliser R sans RStudio, mais c'est nettement plus compliqué, nettement moins pratique.
+
+
+### Installation de R et RStudio
+
+*Si vous travaillez exclusivement sur les ordinateurs de l'Université, vous pouvez passer cette section. Si vous souhaitez utiliser R et RStudio sur votre ordinateur personnel, alors suivez le guide !*
+
+Avant tout, vous devez télécharger et installer R et RStudio, dans cet ordre :
+
+1. [Téléchargez et installez R](https://cran.r-project.org)
+ - Note : vous devez installer ce logiciel en premier
+ - Cliquez sur le lien de telechargement qui correspond à votre système d'exploitation, puis, sur "base", et suivez les instructions
+2. [Téléchargez et installez R](https://www.rstudio.com/products/RStudio/#Desktop)
+ - Cliquez sur "Download RStudio Desktop"
+ - Choisissez la version gratuite et cliquez sur le lien de télechargement qui correspond à votre système d'exploitation.
+ 
+Pour plus de détails sur la façon de procéder, vous pouvez consulter [cette vidéo](https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=3) sur le site de DataCamp. Il est possible que vous deviez créer un compte (gratuit) pour accéder à la vidéo.
+
+
+### Utiliser R depuis RStudio
+
+Puisqu'il est beaucoup plus facile d'utiliser Rstudio pour interagir avec R, nous utiliserons exclusivement l'interface de RStudio. Après l'installation des 2 logiciels, vous disposez de 2 nouveaux logiciels sur votre ordinateur. RStudio ne peut fonctionner sans R, mais nous travaillerons exclusivement dans RStudio :
+
+R: Ne pas ouvrir ceci          |  RStudio: ouvrir ça !
+:-------------------------:|:-------------------------:
+<img src="https://cran.r-project.org/Rlogo.svg" alt="Drawing" style="height: 100px;"/>  |  <img src="https://www.rstudio.com/wp-content/uploads/2014/06/RStudio-Ball.png" alt="Drawing" style="height: 100px;"/>
+
+À l'université, vous trouverez RStudio dans le menu Windows. Quand vous ouvrez RStudio pour la première fois, vous devriez obtenir une fenêtre qui ressemble à ceci :
+
+![](images/rstudio.png)
+
+Regardez [cette vidéo DataCamp](https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=5) pour découvrir les différents panneaux de l'application, en particulier la Console dans laquelle nous executerons très bientôt du code R
+
+
+
+
+---
+
+## Comment exécuter du code R ?
+
+Maintenant que vous avez configuré R et RStudio, vous vous demandez probablement "OK. Maintenant, comment utiliser R ?" La première chose à noter est que, contrairement à d'autres logiciels comme Excel, STATA ou SAS qui fournissent des interfaces où tout se fait en cliquant avec sa souris, R est un langage interprété, ce qui signifie que vous devez entrer des commandes R écrites en code R. C'est-à-dire que vous devez **programmer** en R (j'utilise les termes "coder" et "programmer" de manière interchangeable dans ce livre). 
+
+Il ne soit pas nécessaire d'être un programmeur pour utiliser R. Néamnoins il existe un ensemble de concepts de programmation de base que les utilisateurs R doivent comprendre. Par conséquent, bien que ce livre ne soit pas un livre sur la programmation, vous en apprendrez juste assez sur ces concepts de programmation de base nécessaires pour explorer et analyser efficacement des données.
+
+### La console
+
+La façon la plus simle d'interagir avec RStudio (mais pas du tout la meilleure !) consiste à taper directement des commandes que R pourra comprendre dans la Console.
+
+Cliquez dans la console (après le symbole `>`) et tapez ceci, sans oublier de valider en tapant sur la touche `Entrée` :
+
+```{r}
+3 + 8
+```
+
+Félicitations, vous venez de taper votre première instruction R : vous savez maintenant faire une addition !
+
+### Le répertoire de travail
+
+La première commande que vous devriez connaître quand vous travaillez dans R ou RStudio est la suivante :
+
+```{r, eval=FALSE}
+getwd()
+```
+
+Si vous tapez cette commande dans la console, RStudio doit vous afficher un emplacement sur votre ordinateur. Cet emplacement est appelé "Répertoire de travail", ou "Working Directory" en anglais (`getwd()` est l'abbréviation de "Get Working Directory").  
+
+Ce répertoire de travail est important : c'est là que seront stockés les tableaux et graphiques que vous déciderez de sauvegarder. C'est là aussi que vous sauvegarderez vos scripts (voir plus bas) qui vous permettront de garder la trace de votre travail et de le reprendre là où vous l'aviez laissé la dernière fois. Enfin, lorsque vous souhaiterez importer des tableaux de données contenus dans des fichiers externes (par exemple, des fichiers Excel), c'est également dans ce répertoire que R tentera de trouver vos données.
+
+Avant d'aller plus loin je vous conseille donc vivement de : 
+
+1. Créer un nouveau dossier intitulé "Biometrie" sur votre espace personnel (généralement, sur le disque "W:" des ordinateurs de l'Université)
+2. Indiquez à RStudio que vous souhaitez travailler dans ce nouveau répertoire de travail. Pour cela vous avez 3 solutions au choix :
+    1. Dans RStudio, cliquez dans le menu "Session > Set Working Directory > Choose Directory..." puis naviguez jusqu'au dossier que vous venez de créer
+    2. Dans le panneau "Files", naviguez jusqu'au dossier "Biometrie" que vous venez de créer, puis cliquez sur le bouton "More > Set As Working Directory"
+    3. En ligne de commande, dans la console, utilisez la fonction `setwd()` pour spécifier le chemin de votre nouveau dossier, par exemple :
+  
+```{r eval=FALSE}
+# Attention à bien respecter les majuscules et à utiliser les guillemets.
+setwd("W:/Biometrie")
+```
+  
+Il ne vous reste plus qu'à vérifier que le changement a bien été pris en compte en tapant à nouveau `getwd()` dans la console. Attention, vous devez vous assurer d'être dans le bon répertoire de travil **à chaque nouvelle session** !
+
+
+### Concepts de base en programmation et terminologie
+
+Pour vous présenter les concepts de base et la terminologie de la programmation dont nous aurons besoin dans R, vous allez suivre les tutoriels en ligne suivants, sur le site de DataCamp. Pour chacun des tutoriels, j'indique une liste des concepts de programmation couverts. Notez que dans ce livre, nous utiliserons une police différente pour distinguer le texte normal et les `commandes-informatiques`.
+
+Il est important de noter que, bien que ces tutoriels sont d’excellentes introductions, une seule lecture est insuffisante pour un apprentissage en profondeur et une rétention à long terme. Les outils ultimes pour l'apprentissage et la rétention à long terme sont "l'apprentissage par la pratique" et "la répétition". Outre les exercices demandés dans DataCamp, que vous devez effectuer directement dans votre navigateur, je vous encourage donc à multiplier les essais, directement dans la console de RStudio pour vous assurer que vous avez bien compris chaque partie.
+
+
+
+
+---
+
+## Les packages additionels {#packages}
+
+Une source de confusion importante pour les nouveaux utilisateurs de R est la notion de package. Les packages étendent les fonctionnalités de R en fournissant des fonctions, des données et de la documentation supplémentaires et peuvent être téléchargés gratuitement sur Internet. Ils sont écrits par une communauté mondiale d'utilisateurs R. Par exemple, parmi plus de 13000 packages disponibles à l'heure actuelle, nous utiliseront fréquemment :
+
+* Le package `ggplot2` pour la visualisation des données dans le chapitre \@ref(viz)
+* Le package `dplyr` pour les manipuler des tableaux données dans le chapitre \@ref(wrangling)
+
+Il y a deux choses importantes à retenir à propos des packages R :
+
+1. *Installation* : la plupart des packages ne sont pas installés par défaut lorsque vous installez R et RStudio. Vous devez installer un package avant de pouvoir l'utiliser. Une fois que vous l'avez installé, vous n'avez probablement pas besoin de l'installer à nouveau, sauf si vous souhaitez le mettre à jour vers une version plus récente du package. 
+1. *Chargement* : les packages ne sont pas chargés automatiquement lorsque vous ouvrez RStudio. Vous devez les charger chaque fois que vous ouvrez RStudio en utilisant la commande `library ()`.
+
+Une bonne analogie pour les packages R : ils sont comme les apps que vous téléchargez sur un téléphone portable :
+
+R : Un nouveau téléphone   |  Packages: Apps qu'on peut telécharger
+:-------------------------:|:-------------------------:
+<img src="images/iphone.jpg" alt="Drawing" style="height: 200px;"/>  |  <img src="images/apps.jpg" alt="Drawing" style="height: 200px;"/>
+
+
+1. R est comme un nouveau téléphone mobile. Il est capable de faire certaines choses lorsque vous l'utilisez pour la première fois, mais il ne sait pas tout faire.
+2. Les packages R sont comme les apps que vous pouvez télécharger dans l'App Store et Google Play.
+1. Pour utiliser un package, comme pour utiliser Instagram, vous devez :
+     1. Le télécharger et l'installer. Vous ne le faites qu'une fois.
+     1. Le charger (en d'autres termes, l'ouvrir) en utilisant la commande `library ()`.
+
+Donc, tout comme vous ne pouvez commencer à partager des photos avec vos amis sur Instagram que si vous installez d'abord l'application et que vous l'ouvrez, vous ne pouvez accéder aux données et fonctions d'un package R que si vous installez d'abord le package et le chargez avec la fonction `library()`. Passons en revue ces 2 étapes.
+
+
+### Installation d'un package
+
+Il y a deux façons d'installer un package. Par example, pour installer le package `ggplot2` :
+
+1. **Le plus simple** : Dans le panneau "File" de Rstudio :
+    a) Cliquez sur l'onglet "Packages"
+    a) Cliquez sur "Install"
+    a) Tapez le nom du package dans le champ "Packages (separate multiple with space or comma):" Pour notre exemple, tapez `ggplot2`
+    a) Cliquez "Install"
+1. **Métode alternative** : Dans la console, tapez `install.packages("ggplot2")` (vous devez inclure les guillemets).
+
+En procédant de l'une ou l'autre façon, installez également les packages suivants : `tidyverse` et `nycfilghts13`.
+
+**Note** : un package doit être installé une fois seulement, sauf si une version plus récente est disponible et que vous souhaitez mettre à jour ce package.
+
+### Charger un package en mémoire
+
+Après avoir installé un package, vous pouvez le charger en utilisant la fonction `library()`. Par exemple, pour charger `ggplot2` et `dplyr` tapez ceci dans la console :
+
+```{r, eval=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+
+**Note** : Vous devez charger à nouveau chaque package que vous souhaitez utiliser à chaque fois que vous ouvrez une nouvelle session de travail dans RStudio. Ça peut être un peu pénible et c'est une source d'erreur fréquente pour les débutants. Quand vous vouyez un message d'erreur commençant par :
+
+```
+Error: could not find function...
+```
+
+rappelez-vous que c'est probablement parce que vous tentez d'utiliser une fonction qui fait partie d'un package que vous n'avez pas chargé. Pour corriger l'erreur, il suffit donc de charger le package approprié avec la commande `library()`.
+
+
+
+
+
+
+
+
+
+---
+
+
+## Explorez votre premier jeu de données {#dataset}
+
 You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(data). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
 
 Figures and tables with captions will be placed in `figure` and `table` environments, respectively.

@@ -110,7 +110,22 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#objectifs"><i class="fa fa-check"></i><b>1.1</b> Objectifs</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#organisation"><i class="fa fa-check"></i><b>1.2</b> Organisation</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Les données dans R</a></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Les données dans R</a><ul>
+<li class="chapter" data-level="2.1" data-path="data.html"><a href="data.html#que-sont-r-et-rstudio"><i class="fa fa-check"></i><b>2.1</b> Que sont R et RStudio</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="data.html"><a href="data.html#installation-de-r-et-rstudio"><i class="fa fa-check"></i><b>2.1.1</b> Installation de R et RStudio</a></li>
+<li class="chapter" data-level="2.1.2" data-path="data.html"><a href="data.html#utiliser-r-depuis-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Utiliser R depuis RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data.html"><a href="data.html#comment-executer-du-code-r"><i class="fa fa-check"></i><b>2.2</b> Comment exécuter du code R ?</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data.html"><a href="data.html#la-console"><i class="fa fa-check"></i><b>2.2.1</b> La console</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data.html"><a href="data.html#le-repertoire-de-travail"><i class="fa fa-check"></i><b>2.2.2</b> Le répertoire de travail</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data.html"><a href="data.html#concepts-de-base-en-programmation-et-terminologie"><i class="fa fa-check"></i><b>2.2.3</b> Concepts de base en programmation et terminologie</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data.html"><a href="data.html#packages"><i class="fa fa-check"></i><b>2.3</b> Les packages additionels</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data.html"><a href="data.html#installation-dun-package"><i class="fa fa-check"></i><b>2.3.1</b> Installation d’un package</a></li>
+<li class="chapter" data-level="2.3.2" data-path="data.html"><a href="data.html#charger-un-package-en-memoire"><i class="fa fa-check"></i><b>2.3.2</b> Charger un package en mémoire</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="data.html"><a href="data.html#dataset"><i class="fa fa-check"></i><b>2.4</b> Explorez votre premier jeu de données</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -133,6 +148,174 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="data" class="section level1">
 <h1><span class="header-section-number">2</span> Les données dans R</h1>
+<p>Avant de commencer à explorer des données dans R, il y a plusieurs concepts de clé qu’il faut comprendre premier lieu :</p>
+<ol style="list-style-type: decimal">
+<li>Que sont R et RStudio ?</li>
+<li>Comment s’y prend-on pour coder dans R ?</li>
+<li>Que sont les “packages” ?</li>
+</ol>
+<p>Si vous êtes déjà à l’aise avec ces concepts, n’hésitez pas à passer directement à la section <a href="data.html#dataset">2.4</a> ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP. La plupart de ce chapitre est basé sur les 2 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :</p>
+<ol style="list-style-type: decimal">
+<li>L’ouvrage intitulé <a href="https://moderndive.com/index.html">ModernDive</a>, de Chester Ismay et Albert Y. Kim. Une bonne partie de cet ouvrage est très largement inspirée de cet ouvrage. C’est en anglais, mais c’est un très bon texte d’introduction aux statistiques sous R et RStudio.</li>
+<li>L’ouvrage intitulé <a href="https://ismayc.github.io/rbasics-book/">Getting used to R, RStudio, and R Markdown</a> de Chester Ismay, comprend des podcasts (en anglais toujours) que vous pouvez suivre en apprenant.</li>
+</ol>
+<div id="que-sont-r-et-rstudio" class="section level2">
+<h2><span class="header-section-number">2.1</span> Que sont R et RStudio</h2>
+<p>Pour l’ensemble des TP de biométrie 2, j’attends de vous que vous utilisez R <em>via</em> RStudio. Les utilisateurs novices confondent souvent les deux. Pour tenter une analogie simple :</p>
+<ul>
+<li>R est le moteur d’une voiture</li>
+<li>RStudio est l’habitacle, le tableau de bord, les pédales</li>
+</ul>
+<p>Si vous n’avez pas de moteur, vous n’irez nulle part. En revanche, un moteur sans tableau de bord est difficile à manœuvrer. Il est en effet beaucoup plus simple de faire avancer une voiture depuis l’habitacle, plutôt qu’en actionnant à la main les cables et leviers du moteur.</p>
+<p>En l’occurence, R est un langage de programmation capable de produire des graphiques et de réaliser des analyses statistiques, des plus simples au plus complexes. RStudio est un “emballage” qui rend l’utilisation de R plus aisée. RStudio est ce qu’on appelle un IDE : Itegrated Development Environment. On peut utiliser R sans RStudio, mais c’est nettement plus compliqué, nettement moins pratique.</p>
+<div id="installation-de-r-et-rstudio" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Installation de R et RStudio</h3>
+<p><em>Si vous travaillez exclusivement sur les ordinateurs de l’Université, vous pouvez passer cette section. Si vous souhaitez utiliser R et RStudio sur votre ordinateur personnel, alors suivez le guide !</em></p>
+<p>Avant tout, vous devez télécharger et installer R et RStudio, dans cet ordre :</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://cran.r-project.org">Téléchargez et installez R</a></li>
+</ol>
+<ul>
+<li>Note : vous devez installer ce logiciel en premier</li>
+<li>Cliquez sur le lien de telechargement qui correspond à votre système d’exploitation, puis, sur “base”, et suivez les instructions</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><a href="https://www.rstudio.com/products/RStudio/#Desktop">Téléchargez et installez R</a></li>
+</ol>
+<ul>
+<li>Cliquez sur “Download RStudio Desktop”</li>
+<li>Choisissez la version gratuite et cliquez sur le lien de télechargement qui correspond à votre système d’exploitation.</li>
+</ul>
+<p>Pour plus de détails sur la façon de procéder, vous pouvez consulter <a href="https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=3">cette vidéo</a> sur le site de DataCamp. Il est possible que vous deviez créer un compte (gratuit) pour accéder à la vidéo.</p>
+</div>
+<div id="utiliser-r-depuis-rstudio" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Utiliser R depuis RStudio</h3>
+<p>Puisqu’il est beaucoup plus facile d’utiliser Rstudio pour interagir avec R, nous utiliserons exclusivement l’interface de RStudio. Après l’installation des 2 logiciels, vous disposez de 2 nouveaux logiciels sur votre ordinateur. RStudio ne peut fonctionner sans R, mais nous travaillerons exclusivement dans RStudio :</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">R: Ne pas ouvrir ceci</th>
+<th align="center">RStudio: ouvrir ça !</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="https://cran.r-project.org/Rlogo.svg" alt="Drawing" style="height: 100px;"/></td>
+<td align="center"><img src="https://www.rstudio.com/wp-content/uploads/2014/06/RStudio-Ball.png" alt="Drawing" style="height: 100px;"/></td>
+</tr>
+</tbody>
+</table>
+<p>À l’université, vous trouverez RStudio dans le menu Windows. Quand vous ouvrez RStudio pour la première fois, vous devriez obtenir une fenêtre qui ressemble à ceci :</p>
+<div class="figure">
+<img src="images/rstudio.png" />
+
+</div>
+<p>Regardez <a href="https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=5">cette vidéo DataCamp</a> pour découvrir les différents panneaux de l’application, en particulier la Console dans laquelle nous executerons très bientôt du code R</p>
+<hr />
+</div>
+</div>
+<div id="comment-executer-du-code-r" class="section level2">
+<h2><span class="header-section-number">2.2</span> Comment exécuter du code R ?</h2>
+<p>Maintenant que vous avez configuré R et RStudio, vous vous demandez probablement “OK. Maintenant, comment utiliser R ?” La première chose à noter est que, contrairement à d’autres logiciels comme Excel, STATA ou SAS qui fournissent des interfaces où tout se fait en cliquant avec sa souris, R est un langage interprété, ce qui signifie que vous devez entrer des commandes R écrites en code R. C’est-à-dire que vous devez <strong>programmer</strong> en R (j’utilise les termes “coder” et “programmer” de manière interchangeable dans ce livre).</p>
+<p>Il ne soit pas nécessaire d’être un programmeur pour utiliser R. Néamnoins il existe un ensemble de concepts de programmation de base que les utilisateurs R doivent comprendre. Par conséquent, bien que ce livre ne soit pas un livre sur la programmation, vous en apprendrez juste assez sur ces concepts de programmation de base nécessaires pour explorer et analyser efficacement des données.</p>
+<div id="la-console" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> La console</h3>
+<p>La façon la plus simle d’interagir avec RStudio (mais pas du tout la meilleure !) consiste à taper directement des commandes que R pourra comprendre dans la Console.</p>
+<p>Cliquez dans la console (après le symbole <code>&gt;</code>) et tapez ceci, sans oublier de valider en tapant sur la touche <code>Entrée</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span></code></pre></div>
+<pre><code>[1] 11</code></pre>
+<p>Félicitations, vous venez de taper votre première instruction R : vous savez maintenant faire une addition !</p>
+</div>
+<div id="le-repertoire-de-travail" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Le répertoire de travail</h3>
+<p>La première commande que vous devriez connaître quand vous travaillez dans R ou RStudio est la suivante :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
+<p>Si vous tapez cette commande dans la console, RStudio doit vous afficher un emplacement sur votre ordinateur. Cet emplacement est appelé “Répertoire de travail”, ou “Working Directory” en anglais (<code>getwd()</code> est l’abbréviation de “Get Working Directory”).</p>
+<p>Ce répertoire de travail est important : c’est là que seront stockés les tableaux et graphiques que vous déciderez de sauvegarder. C’est là aussi que vous sauvegarderez vos scripts (voir plus bas) qui vous permettront de garder la trace de votre travail et de le reprendre là où vous l’aviez laissé la dernière fois. Enfin, lorsque vous souhaiterez importer des tableaux de données contenus dans des fichiers externes (par exemple, des fichiers Excel), c’est également dans ce répertoire que R tentera de trouver vos données.</p>
+<p>Avant d’aller plus loin je vous conseille donc vivement de :</p>
+<ol style="list-style-type: decimal">
+<li>Créer un nouveau dossier intitulé “Biometrie” sur votre espace personnel (généralement, sur le disque “W:” des ordinateurs de l’Université)</li>
+<li>Indiquez à RStudio que vous souhaitez travailler dans ce nouveau répertoire de travail. Pour cela vous avez 3 solutions au choix :
+<ol style="list-style-type: decimal">
+<li>Dans RStudio, cliquez dans le menu “Session &gt; Set Working Directory &gt; Choose Directory…” puis naviguez jusqu’au dossier que vous venez de créer</li>
+<li>Dans le panneau “Files”, naviguez jusqu’au dossier “Biometrie” que vous venez de créer, puis cliquez sur le bouton “More &gt; Set As Working Directory”</li>
+<li>En ligne de commande, dans la console, utilisez la fonction <code>setwd()</code> pour spécifier le chemin de votre nouveau dossier, par exemple :</li>
+</ol></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attention à bien respecter les majuscules et à utiliser les</span>
+<span class="co"># guillemets.</span>
+<span class="kw">setwd</span>(<span class="st">&quot;W:/Biometrie&quot;</span>)</code></pre></div>
+<p>Il ne vous reste plus qu’à vérifier que le changement a bien été pris en compte en tapant à nouveau <code>getwd()</code> dans la console. Attention, vous devez vous assurer d’être dans le bon répertoire de travil <strong>à chaque nouvelle session</strong> !</p>
+</div>
+<div id="concepts-de-base-en-programmation-et-terminologie" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Concepts de base en programmation et terminologie</h3>
+<p>Pour vous présenter les concepts de base et la terminologie de la programmation dont nous aurons besoin dans R, vous allez suivre les tutoriels en ligne suivants, sur le site de DataCamp. Pour chacun des tutoriels, j’indique une liste des concepts de programmation couverts. Notez que dans ce livre, nous utiliserons une police différente pour distinguer le texte normal et les <code>commandes-informatiques</code>.</p>
+<p>Il est important de noter que, bien que ces tutoriels sont d’excellentes introductions, une seule lecture est insuffisante pour un apprentissage en profondeur et une rétention à long terme. Les outils ultimes pour l’apprentissage et la rétention à long terme sont “l’apprentissage par la pratique” et “la répétition”. Outre les exercices demandés dans DataCamp, que vous devez effectuer directement dans votre navigateur, je vous encourage donc à multiplier les essais, directement dans la console de RStudio pour vous assurer que vous avez bien compris chaque partie.</p>
+<hr />
+</div>
+</div>
+<div id="packages" class="section level2">
+<h2><span class="header-section-number">2.3</span> Les packages additionels</h2>
+<p>Une source de confusion importante pour les nouveaux utilisateurs de R est la notion de package. Les packages étendent les fonctionnalités de R en fournissant des fonctions, des données et de la documentation supplémentaires et peuvent être téléchargés gratuitement sur Internet. Ils sont écrits par une communauté mondiale d’utilisateurs R. Par exemple, parmi plus de 13000 packages disponibles à l’heure actuelle, nous utiliseront fréquemment :</p>
+<ul>
+<li>Le package <code>ggplot2</code> pour la visualisation des données dans le chapitre <a href="#viz"><strong>??</strong></a></li>
+<li>Le package <code>dplyr</code> pour les manipuler des tableaux données dans le chapitre <a href="#wrangling"><strong>??</strong></a></li>
+</ul>
+<p>Il y a deux choses importantes à retenir à propos des packages R :</p>
+<ol style="list-style-type: decimal">
+<li><em>Installation</em> : la plupart des packages ne sont pas installés par défaut lorsque vous installez R et RStudio. Vous devez installer un package avant de pouvoir l’utiliser. Une fois que vous l’avez installé, vous n’avez probablement pas besoin de l’installer à nouveau, sauf si vous souhaitez le mettre à jour vers une version plus récente du package.</li>
+<li><em>Chargement</em> : les packages ne sont pas chargés automatiquement lorsque vous ouvrez RStudio. Vous devez les charger chaque fois que vous ouvrez RStudio en utilisant la commande <code>library ()</code>.</li>
+</ol>
+<p>Une bonne analogie pour les packages R : ils sont comme les apps que vous téléchargez sur un téléphone portable :</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">R : Un nouveau téléphone</th>
+<th align="center">Packages: Apps qu’on peut telécharger</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="images/iphone.jpg" alt="Drawing" style="height: 200px;"/></td>
+<td align="center"><img src="images/apps.jpg" alt="Drawing" style="height: 200px;"/></td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: decimal">
+<li>R est comme un nouveau téléphone mobile. Il est capable de faire certaines choses lorsque vous l’utilisez pour la première fois, mais il ne sait pas tout faire.</li>
+<li>Les packages R sont comme les apps que vous pouvez télécharger dans l’App Store et Google Play.</li>
+<li>Pour utiliser un package, comme pour utiliser Instagram, vous devez :      1. Le télécharger et l’installer. Vous ne le faites qu’une fois.      1. Le charger (en d’autres termes, l’ouvrir) en utilisant la commande <code>library ()</code>.</li>
+</ol>
+<p>Donc, tout comme vous ne pouvez commencer à partager des photos avec vos amis sur Instagram que si vous installez d’abord l’application et que vous l’ouvrez, vous ne pouvez accéder aux données et fonctions d’un package R que si vous installez d’abord le package et le chargez avec la fonction <code>library()</code>. Passons en revue ces 2 étapes.</p>
+<div id="installation-dun-package" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Installation d’un package</h3>
+<p>Il y a deux façons d’installer un package. Par example, pour installer le package <code>ggplot2</code> :</p>
+<ol style="list-style-type: decimal">
+<li><strong>Le plus simple</strong> : Dans le panneau “File” de Rstudio :
+<ol style="list-style-type: lower-alpha">
+<li>Cliquez sur l’onglet “Packages”</li>
+<li>Cliquez sur “Install”</li>
+<li>Tapez le nom du package dans le champ “Packages (separate multiple with space or comma):” Pour notre exemple, tapez <code>ggplot2</code></li>
+<li>Cliquez “Install”</li>
+</ol></li>
+<li><strong>Métode alternative</strong> : Dans la console, tapez <code>install.packages(&quot;ggplot2&quot;)</code> (vous devez inclure les guillemets).</li>
+</ol>
+<p>En procédant de l’une ou l’autre façon, installez également les packages suivants : <code>tidyverse</code> et <code>nycfilghts13</code>.</p>
+<p><strong>Note</strong> : un package doit être installé une fois seulement, sauf si une version plus récente est disponible et que vous souhaitez mettre à jour ce package.</p>
+</div>
+<div id="charger-un-package-en-memoire" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Charger un package en mémoire</h3>
+<p>Après avoir installé un package, vous pouvez le charger en utilisant la fonction <code>library()</code>. Par exemple, pour charger <code>ggplot2</code> et <code>dplyr</code> tapez ceci dans la console :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)</code></pre></div>
+<p><strong>Note</strong> : Vous devez charger à nouveau chaque package que vous souhaitez utiliser à chaque fois que vous ouvrez une nouvelle session de travail dans RStudio. Ça peut être un peu pénible et c’est une source d’erreur fréquente pour les débutants. Quand vous vouyez un message d’erreur commençant par :</p>
+<pre><code>Error: could not find function...</code></pre>
+<p>rappelez-vous que c’est probablement parce que vous tentez d’utiliser une fonction qui fait partie d’un package que vous n’avez pas chargé. Pour corriger l’erreur, il suffit donc de charger le package approprié avec la commande <code>library()</code>.</p>
+<hr />
+</div>
+</div>
+<div id="dataset" class="section level2">
+<h2><span class="header-section-number">2.4</span> Explorez votre premier jeu de données</h2>
 <p>You can label chapter and section titles using <code>{#label}</code> after them, e.g., we can reference Chapter <a href="data.html#data">2</a>. If you do not manually label them, there will be automatic labels anyway, e.g., Chapter <a href="#methods"><strong>??</strong></a>.</p>
 <p>Figures and tables with captions will be placed in <code>figure</code> and <code>table</code> environments, respectively.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bla &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">a =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>), <span class="dt">b =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>))
@@ -304,6 +487,7 @@ Figure 2.1: Here is a nice figure!
 </table>
 <p>You can write citations, too. For example, we are using the <strong>bookdown</strong> package <span class="citation">(Xie <a href="#ref-R-bookdown">2018</a>)</span> in this sample book, which was built on top of R Markdown and <strong>knitr</strong> <span class="citation">(Xie <a href="#ref-xie2015">2015</a>)</span>.</p>
 
+</div>
 </div>
 <h3>Références</h3>
 <div id="refs" class="references">
