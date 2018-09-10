@@ -1,5 +1,5 @@
 Package: Biometrie2
-Title: Biométrie 2.
+Title: Biométrie 2
 Version: 0.0.1
-Imports: bookdown, tidyverse
+Imports: bookdown, tidyverse, knitr
 Remotes: rstudio/bookdown

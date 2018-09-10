@@ -5,10 +5,10 @@ You can label chapter and section titles using `{#label}` after them, e.g., we c
 Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
 
 ```{r nice-fig, fig.cap='Here is a nice figure!'}
-library(tidyverse)
-bla <- tibble(a=rnorm(100), b=rnorm(100))
+bla <- tibble(a = rnorm(100), b = rnorm(100))
 bla %>% 
-  ggplot(aes(a, b)) + geom_point()
+  ggplot(aes(a, b)) + 
+  geom_point()
 ```
 
 Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).

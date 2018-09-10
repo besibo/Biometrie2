@@ -3,13 +3,23 @@ title: "Travaux Pratiques de Biométrie 2"
 author: "Benoît Simon-Bouhet"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-documentclass: book
+output: 
+  bookdown::gitbook:
+    highlight: kate
+    config:
+      edit: null
+      download: no
+      sharing:
+        twitter: no
+        facebook: no
+        github: yes
+        all: no
+url: 'https\://besibo.github.io/Biometrie2/'
+github-repo: "besibo/Biometrie2"
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2."
-monofont: "Source Code Pro"
-monofontoptions: "Scale=0.7"
 ---
 
 # Préambule
@@ -28,18 +38,11 @@ knitr::write_bib(c(
 ```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
 options(replace.assign = TRUE, width = 60)
 options(repos = "http://cran.r-project.org/")
+
 library(knitr)
+library(tidyverse)
 
 opts_chunk$set(fig.path = 'figure/', cache.path = 'cache/', tidy = TRUE,
                fig.align = 'center', out.width = '70%', fig.asp = 0.618,
                fig.show = 'hold', fig.pos = 'htpb', par = TRUE, comment = NA)
-
-library(tidyverse)
-library(ggplot2)
-library(gridExtra)
-library(extrafont)
-
-# loadfonts()
-# source("ggplot_theme.R")
-# theme_set(theme_benoit())
 ```
