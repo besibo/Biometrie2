@@ -449,9 +449,18 @@ Error: could not find function...
 rappelez-vous que c'est probablement parce que vous tentez d'utiliser une fonction qui fait partie d'un package que vous n'avez pas chargé. Pour corriger l'erreur, il suffit donc de charger le package approprié avec la commande `library()`.
 
 
-
+---
 
 ## Exercices
 
+Créez un nouveau script que vous nommerez `VotreNomDeFamille.R`. Vous prendrez soin d'ajouter autant de commentaires que nécessaire dans votre script afin de le structurer correctement.
 
+1. Téléchargez (si besoin) et chagez le package `ggplot2`
+2. Chargez le jeu de données `diamonds` grâce à la commande `data(diamonds)`
+3. Déterminer le nombre de lignes et de colonnes de ce tableau nommé `diamonds`
+4. Créez un nouveau tableau que vous nommerez `diamonds_chers` qui contiendra uniquement les informations des diamands dont le prix est supérieur ou égal à $15000
+5. Combien de diamands coûtent $15000 ou plus ?
+6. Cela représente quelle proportion du jeu de données de départ ?
+7. Triez ce tableau par ordre de prix décroissant et affichez les informations des 20 diamands les plus chers
 
+Déposez votre script sur l'ENT au moins une heure avant votre prochaine séance de travaux pratiques. 
