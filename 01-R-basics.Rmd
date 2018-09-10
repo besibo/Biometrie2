@@ -1,4 +1,4 @@
-# Les données dans R {#data}
+# R et RStudio : les bases {#bases}
 
 Avant de commencer à explorer des données dans R, il y a plusieurs concepts de clé qu'il faut comprendre premier lieu :
 
@@ -11,6 +11,11 @@ Si vous êtes déjà à l'aise avec ces concepts, n'hésitez pas à passer direc
 1. L'ouvrage intitulé [ModernDive](https://moderndive.com/index.html), de Chester Ismay et Albert Y. Kim. Une bonne partie de cet ouvrage est très largement inspirée de cet ouvrage. C'est en anglais, mais c'est un très bon texte d'introduction aux statistiques sous R et RStudio.
 2. L'ouvrage intitulé [Getting used to R, RStudio, and R Markdown](https://ismayc.github.io/rbasics-book/) de Chester Ismay, comprend des podcasts (en anglais toujours) que vous pouvez suivre en apprenant.
 3. Les tutoriels en ligne de DataCamp. DataCamp est une plateforme de e-learning accessible depuis n'importe quel navigateur internet dont la priorité est l'enseignement des "data sciences". Leurs tutoriels vous aideront à apprendre certains des concepts de développés dans ce livre. Avant d'aller plus loin, rendez-vous sur [le site de DataCamp](https://www.datacamp.com/) et créez vous un compte gratuit.
+
+
+
+
+---
 
 ## Que sont R et RStudio
 
@@ -105,11 +110,135 @@ setwd("W:/Biometrie")
 Il ne vous reste plus qu'à vérifier que le changement a bien été pris en compte en tapant à nouveau `getwd()` dans la console. Attention, vous devez vous assurer d'être dans le bon répertoire de travil **à chaque nouvelle session** !
 
 
+### Les scripts
+
+
+
+
 ### Concepts de base en programmation et terminologie
 
 Pour vous présenter les concepts de base et la terminologie de la programmation dont nous aurons besoin dans R, vous allez suivre les tutoriels en ligne suivants, sur le site de DataCamp. Pour chacun des tutoriels, j'indique une liste des concepts de programmation couverts. Notez que dans ce livre, nous utiliserons une police différente pour distinguer le texte normal et les `commandes-informatiques`.
 
 Il est important de noter que, bien que ces tutoriels sont d’excellentes introductions, une seule lecture est insuffisante pour un apprentissage en profondeur et une rétention à long terme. Les outils ultimes pour l'apprentissage et la rétention à long terme sont "l'apprentissage par la pratique" et "la répétition". Outre les exercices demandés dans DataCamp, que vous devez effectuer directement dans votre navigateur, je vous encourage donc à multiplier les essais, directement dans la console de RStudio pour vous assurer que vous avez bien compris chaque partie.
+
+#### Objets, types, vecteurs, facteurs et tableaux de données
+
+Dans [le cours d'introduction à R](https://www.datacamp.com/community/open-courses/introduction-a-r) sur DataCamp, suivez les chapitres suivants. Au fur et à mesure de votre travail, notez les termes importants et ce à quoi ils font référence.
+
+- [Chapitre 1 : introduction](https://campus.datacamp.com/courses/introduction-a-r/chapitre-1-introduction?ex=1)
+    - La console : l'endroit où vous tapez des commandes
+    - Les objets : où les valeurs sont stockées, comment assigner des valeurs à des objets
+    - Les types de données : entiers, doubles/numériques, charactères et logiques
+- [Chapitre 2 : vecteurs](https://campus.datacamp.com/courses/introduction-a-r/chapitre-2-les-vecteurs?ex=1)
+    - Les vecteurs : des collections de valeurs du même type.
+- [Chapitre 4 : les facteurs](https://campus.datacamp.com/courses/introduction-a-r/chapitre-4-facteurs?ex=1)
+    - Des données catégorielles (et non pas *numériques*) représentés dans R sous forme de `factor`s.
+- [Chapitre 5 : les jeux de données ou `data.frame`](https://campus.datacamp.com/courses/introduction-a-r/chapitre-5-les-jeux-de-donnees?ex=1)
+    - Les `data.frame`s sont similaires aux feuilles de calcul rectangulaires que l'on peut produire dans un tableur. Dans R, ce sont des objets rectangulaires (des tableaux !) contenant des jeux de jeux de données : les lignes correspondent aux observations et les colonnes aux variables décrivant les observations. La plupart du temps, c'es le format de données que nous utiliserons. Plus de détails dans la partie \@ref(dataset).
+    
+
+Avant de passer à la suite, il nous reste 2 grandes notions à découvrir dans le domaine du code et de la syntaxe afin de pouvoir travailler efficacement dans R : les opérateurs de comparaison d'une part, et les fonctions d'autre part.
+
+#### Opérateurs de comparaison
+
+Comme leur nom l'indique, ils permettent de comparer des valeurs ou des objets. Les principaux opérateurs de comparaison sont :
+
+* `==` : égale à
+* `!=` : différent de
+* `>` : supérieur à
+* `<` : inférieur à
+* `>=` : supérieur ou égal à
+* `<=` : inférieur ou égal à
+
+Ainsi, on peut tester si 3 est égal à 5 :
+```{r}
+3 == 5
+```
+La réponse est bien entendu `FALSE`. Est-ce que 3 est inférieur à 5 ?
+```{r}
+3 < 5
+```
+La réponse est maintenant `TRUE`. Lorsque l'on utilise un opérateur de comparaison, la réponse est toujours soit vrai (`TRUE`), soit faux (`FALSE`).
+
+Il est aussi possible de comparer des chaînes de charactères :
+```{r}
+"Bonjour" == "Au revoir"
+"Bonjour" >= "Au revoir"
+```
+
+Manifestement, "Bonjour" est supérieur ou égal à "Au revoir". En fait, R utilise l'ordre alphabétique pour comparer les chaînes de caractères. Puisque dans l'alphabet, le "B" de "Bonjour" arrive après le "A" de "Au revoir", pour R, "Bonjour" est bien supérieur à "Au revoir".
+
+Il est également possible d'utiliser ces opérateurs pour comparer un chiffre et un vecteur :
+
+```{r}
+tailles_pop1 <- c(112, 28, 86, 14, 154, 73, 63, 48)
+tailles_pop1 > 80
+```
+Ici, l'opérateur nous permet d'identifier quels éléments du vecteur `taille_pop1` sont supérieurs à 80. Il s'agit des éléments placés en première, troisième et cinquième position.
+
+Il est aussi possible de comparer 2 vecteurs qui contiennent le même nombre d'éléments :
+```{r}
+tailles_pop2 <- c(114, 27, 38, 91, 54, 83, 33, 68)
+tailles_pop1 > tailles_pop2
+```
+
+Les comparaisons sont ici faites élément par élément. Ainsi, les observations 2, 3, 5 et 7 du vecteur `tailles_pop1` sont supérieures aux observations 2, 3, 5 et 7 du vecteur ` tailles_pop2` respectivement.
+
+Ces vecteurs de vrais/faux sont très utiles car ils peuvent permettre de compter le nombre d'éléments répondant à une certains condition :
+```{r}
+sum(tailles_pop1 > tailles_pop2)
+```
+Lorsque l'on effectue une opération arithmétique (comme le calcul d'une somme ou d'une moyenne) sur un vecteur de vrais/faux, les `TRUE` sont remplacés par `1` et les `FALSE` par `0`. La somme nous indique donc le nombre de vrais dans un vecteur de vrais/faux, et la moyenne nous indique la proportion de vrais :
+
+```{r}
+mean(tailles_pop1 > tailles_pop2)
+```
+
+**Note** : Attention, si les vecteurs comparés n'ont pas la même taille, un message d'avertissement est affiché :
+
+```{r}
+tailles_pop3 <- c(43, 56, 92)
+tailles_pop1
+tailles_pop3
+tailles_pop3 > tailles_pop1
+```
+
+Dans un cas comme celui là, R va *recycler* l'objet le plus court, ici `tailles_pop3` pour qu'une comparaison puisse être faite avec chaque élément de l'objet le plus long (ici, `tailles_pop1`). Ainsi, 43 est comparé à 112, 56 est comparé à 28 et 92 est comparé à 86. Puisque `tailles_pop3` ne contient plus d'éléments, ils sont recyclés, dans le même ordre : 43 est comparé à 14, 56 est comparé à 154, et ainsi de suite jusqu'à ce que tous les éléments de `tailles_pop1` aient été passés en revue.
+
+Ce type de recyclage est très risqué car il est difficile de savoir ce qui a été comparé avec quoi. En travaillant avec des tableaux plutôt qu'avec des vecteurs, le problème est généralement évité puisque toutes les colonnes d'un `data.frame` contiennent le même nombre d'éléments.
+
+Dernière chose concernant les opérateurs de comparaison : la question des données manquantes. Dans R les données manquantes sont symbolisées par cette notation : `NA`, abréviation de "Not Available". Le symbole `NaN` est parfois aussi observé lorsque des opérations ont conduit à des indéterminations. Mais c'est plus rare et la plupart du temps, les `NaN`s peuvent être traités comme les `NA`s. L'un des problèmes des données manquantes, est qu'il est nécessaire de prendre des précautions pour réaliser des comparaison les impliquants :
+```{r}
+3 == NA
+```
+On s'attend logiquement à ce que 3 ne soit pas considéré comme égal à `NA`, et donc, on s'attend à obtenir `FALSE`. Pourtant, le résultat est `NA`. La comparaison d'un élément quelconque à une donnée manquante fournit toujours une donnée manquante : la comparaison ne peut pas se faire, R n'a donc rien à retourner. C'est également le cas aussi lorsque l'on compare deux valeurs manquantes :
+```{r}
+NA == NA
+```
+C'est pourtant assez logique. Imaginons que j'ignore l'âge de Pierre et l'âge de Marie. Il n'y a aucune raison pour que leur âge soit le même, mais il est tout à fait possible qu'il le soit. C'est impossible à déterminer :
+```{r}
+age_Pierre <- NA
+age_Marie <- NA
+age_Pierre == age_Marie
+```
+Mais alors comment faire pour savoir si une valeur est manquante puisqu'on ne peut pas utiliser les opérateurs de comparaison ? On utilise la fonction `is.na()` :
+```{r}
+is.na(age_Pierre)
+is.na(tailles_pop3)
+```
+
+D'une façon générale, le point d'exclamation permet de signifier à R que nous souhaitons obtenir le contraire d'une expression :
+
+```{r}
+!is.na(age_Pierre)
+!is.na(tailles_pop3)
+```
+
+Cette fonction nous sera très utile plus tard pour éliminer toutes les lignes d'un tableau contenant des valeurs manquantes.
+
+
+#### L'utilisation des fonctions
+
 
 
 
@@ -181,33 +310,3 @@ rappelez-vous que c'est probablement parce que vous tentez d'utiliser une foncti
 
 
 
-
-
-
-
----
-
-
-## Explorez votre premier jeu de données {#dataset}
-
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(data). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
-
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
-
-```{r nice-fig, fig.cap='Here is a nice figure!'}
-bla <- tibble(a = rnorm(100), b = rnorm(100))
-bla %>% 
-  ggplot(aes(a, b)) + 
-  geom_point()
-```
-
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
-```
-
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
