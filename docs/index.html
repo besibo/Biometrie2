@@ -33,7 +33,7 @@
   
   
 
-<link rel="next" href="intro.html">
+<link rel="next" href="data.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -106,8 +106,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><a href="./">TP de Biométrie 2</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Préambule</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#objectifs"><i class="fa fa-check"></i><b>1.1</b> Objectifs</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#organisation"><i class="fa fa-check"></i><b>1.2</b> Organisation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>2</b> Les données dans R</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
@@ -133,10 +136,33 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h4 class="author"><em>Benoît Simon-Bouhet</em></h4>
 <h4 class="date"><em>2018-09-10</em></h4>
 </div>
-<div id="preambule" class="section level1">
-<h1><span class="header-section-number">Chapitre 1</span> Préambule</h1>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<div id="objectifs" class="section level2">
+<h2><span class="header-section-number">1.1</span> Objectifs</h2>
 <p>Ce livre contient l’ensemble du matériel (contenus, exemples, exercices…) nécessaire à la réalisation des travaux pratiques de biométrie 2.</p>
+<p>Ces travaux pratiques ont essentiellement 3 objectifs :</p>
+<ol style="list-style-type: decimal">
+<li>Vous faire (re)découvrir les logiciels <a href="https://cran.r-project.org">R</a> et <a href="https://www.rstudio.com">Rstudio</a> dans lesquels vous allez passer beaucoup de temps en L3 puis en master. Si vous choisissez une spécialité de master qui implique de traiter des données (c’est-à-dire à peu près toutes les spécialités !) et /ou de communiquer des résultats d’analyses statistiques, alors R et RStudio devraient être les logiciels vers lesquels vous vous tournerez naturellement.</li>
+<li>Vous faire prendre conscience de l’importance des visualisations graphiques :</li>
+</ol>
+<ul>
+<li>d’une part, pour comprendre à quoi ressemblent les données en votre possession,</li>
+<li>d’autre part, pour vous permettre de formuler des hypothèses pertinentes et intéressantes concernant les systèmes que vous étudiez,</li>
+<li>et enfin, pour communiquer efficacement vos trouvailles à un public qui ne connait pas vos données aussi bien que vous (cela inclut évidemment vos enseignants à l’issue de vos stages).<br />
+Les données que vous serez amenés à traiter lors de vos stages, ou plus tard, lorsque vous serez en poste, ont souvent été acquises à grands frais, et au prix d’efforts importants. Il est donc de votre responsabilité d’en tirer le maximum. Et ça commence toujours (ou presque), par la réalisation de visualisations graphiques parlantes.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Vous apprendre comment calculer des statistiques descriptives simples, sur plusieurs types de variables, afin de vous mettre dans les meilleures conditions possible pour aborder d’une part les cours de biométrie 3 du second semestre, et d’autre part les comptes-rendus de TP que vous aurez à produire dans d’autres EC. Vos enseigants attendent de vous la plus grande rigueur lorsque vous analysez et présentez des résultats d’analyses statistiques. Ces TP ont pour objectifs de vous fournir les bases nécessaires pour satisfaire ce niveau d’exigence.</li>
+</ol>
+</div>
+<div id="organisation" class="section level2">
+<h2><span class="header-section-number">1.2</span> Organisation</h2>
+<p>Les séances de travaux pratiques de biométrie 2 durent 1h30 et ont lieu en salle informatique du Pôle Communication Multimédia Réseaux (PCM). Seules 6 heures de TP sont prévues dans la maquette, soit 4 séances de TP. C’est <em>très peu</em> ! En fait, c’est très insuffisant pour couvrir correctement la totalité du contenu de cet enseignement. C’est la raison pour laquelle chacune des 3 premières séances de TP est suivie d’<strong>une séance de TEA de 90 minutes</strong>.</p>
+<p>Au début de chaque séance de TP, j’indiquerai un objectif que vous devriez être en mesure d’atteindre en l’espace de 3 heures. Certains iront probablement plus vite et d’autres plus lentement. Lors des séances de TP, je serai disponible pour répondre à chacune de vos questions. À l’issue des 90 minutes de TP, vous changerez de salle (mais resterez toujours eu PCM) et les 90 minutes de TEA commenceront. Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l’ENT à l’issue de chaque séance de TEA. Une correction rapide sera faite lors de la séance de travaux pratique suivante. Je m’efforcerai de passer régulièrement auprès de vous au cours des séances de TEA afin de vous débloquer en cas de problème majeur. Vous pouvez aussi <a href="mailto:bsimonbo@univ-lr.fr">me contacter par email</a>. Toutefois, ce document est fait pour vous permettre d’avancer en autonomie. L’expérience montre que la plupart du temps, il suffit de lire correctement pour obtenir la réponse à ses questions. Je vous encourage également à vous entraider : c’est très formateur pour celui qui explique, et celui qui n’a rencontre une difficulté a plus de chance de comprendre si c’est quelqu’un d’autre qui lui explique.</p>
+<p>Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyons en TP doit être acquis le jour de l’examen. Utilisez donc le temps de TEA pour vous préparer au mieux.</p>
 
+</div>
 </div>
             </section>
 
@@ -144,7 +170,7 @@ code > span. { color: #1f1c1b; } /* Normal */
         </div>
       </div>
 
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
