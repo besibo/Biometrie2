@@ -6,10 +6,11 @@ Avant de commencer à explorer des données dans R, il y a plusieurs concepts de
 2. Comment s'y prend-on pour coder dans R ?
 3. Que sont les "packages" ?
 
-Si vous êtes déjà à l'aise avec ces concepts, n'hésitez pas à passer directement à la section \@ref(dataset) ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP. La plupart de ce chapitre est basé sur les 2 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :
+Si vous êtes déjà à l'aise avec ces concepts, n'hésitez pas à passer directement à la section \@ref(dataset) ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP. La plupart de ce chapitre est basé sur les 3 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :
 
 1. L'ouvrage intitulé [ModernDive](https://moderndive.com/index.html), de Chester Ismay et Albert Y. Kim. Une bonne partie de cet ouvrage est très largement inspirée de cet ouvrage. C'est en anglais, mais c'est un très bon texte d'introduction aux statistiques sous R et RStudio.
 2. L'ouvrage intitulé [Getting used to R, RStudio, and R Markdown](https://ismayc.github.io/rbasics-book/) de Chester Ismay, comprend des podcasts (en anglais toujours) que vous pouvez suivre en apprenant.
+3. Les tutoriels en ligne de DataCamp. DataCamp est une plateforme de e-learning accessible depuis n'importe quel navigateur internet dont la priorité est l'enseignement des "data sciences". Leurs tutoriels vous aideront à apprendre certains des concepts de développés dans ce livre. Avant d'aller plus loin, rendez-vous sur [le site de DataCamp](https://www.datacamp.com/) et créez vous un compte gratuit.
 
 ## Que sont R et RStudio
 
