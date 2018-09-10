@@ -4,3 +4,5 @@ output_dir: docs
 language:
   ui:
     chapter_name: "Chapitre "
+url: 'https\://besibo.github.io/Biometrie2/'
+github-repo: "besibo/Biometrie2"
