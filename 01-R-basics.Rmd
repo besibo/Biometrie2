@@ -426,7 +426,7 @@ Il y a deux façons d'installer un package. Par example, pour installer le packa
     a) Cliquez "Install"
 1. **Métode alternative** : Dans la console, tapez `install.packages("ggplot2")` (vous devez inclure les guillemets).
 
-En procédant de l'une ou l'autre façon, installez également les packages suivants : `tidyverse` et `nycfilghts13`.
+En procédant de l'une ou l'autre façon, installez également les packages suivants : `tidyverse` et `nycflights13`.
 
 **Note** : un package doit être installé une fois seulement, sauf si une version plus récente est disponible et que vous souhaitez mettre à jour ce package.
 
