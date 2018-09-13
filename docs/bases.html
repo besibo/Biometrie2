@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-09-11">
+<meta name="date" content="2018-09-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -127,7 +127,17 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="bases.html"><a href="bases.html#exercices"><i class="fa fa-check"></i><b>2.4</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="dataset.html"><a href="dataset.html"><i class="fa fa-check"></i><b>3</b> Explorez votre premier jeu de données</a></li>
+<li class="chapter" data-level="3" data-path="dataset.html"><a href="dataset.html"><i class="fa fa-check"></i><b>3</b> Explorez votre premier jeu de données</a><ul>
+<li class="chapter" data-level="3.1" data-path="dataset.html"><a href="dataset.html#le-package-nycflights13"><i class="fa fa-check"></i><b>3.1</b> Le package <code>nycflights13</code></a></li>
+<li class="chapter" data-level="3.2" data-path="dataset.html"><a href="dataset.html#le-data-frame-flights"><i class="fa fa-check"></i><b>3.2</b> Le data frame <code>flights</code></a></li>
+<li class="chapter" data-level="3.3" data-path="dataset.html"><a href="dataset.html#explorer-un-data.frame"><i class="fa fa-check"></i><b>3.3</b> Explorer un <code>data.frame</code></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="dataset.html"><a href="dataset.html#view"><i class="fa fa-check"></i><b>3.3.1</b> <code>View()</code></a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataset.html"><a href="dataset.html#glimpse"><i class="fa fa-check"></i><b>3.3.2</b> <code>glimpse()</code></a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataset.html"><a href="dataset.html#loperateur"><i class="fa fa-check"></i><b>3.3.3</b> L’opérateur <code>$</code></a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataset.html"><a href="dataset.html#les-fichiers-daide"><i class="fa fa-check"></i><b>3.3.4</b> Les fichiers d’aide</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataset.html"><a href="dataset.html#exercices-1"><i class="fa fa-check"></i><b>3.4</b> Exercices</a></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="viz.html"><a href="viz.html"><i class="fa fa-check"></i><b>4</b> Visualiser des données avec <code>ggplot2</code></a></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
 <li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a></li>
@@ -250,8 +260,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li>En ligne de commande, dans la console, utilisez la fonction <code>setwd()</code> pour spécifier le chemin de votre nouveau dossier, par exemple :</li>
 </ol></li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attention à bien respecter les majuscules et à utiliser les</span>
-<span class="co"># guillemets.</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attention à bien respecter les majuscules et à utiliser les guillemets.</span>
 <span class="kw">setwd</span>(<span class="st">&quot;W:/Biometrie&quot;</span>)</code></pre></div>
 <p>Il ne vous reste plus qu’à vérifier que le changement a bien été pris en compte en tapant à nouveau <code>getwd()</code> dans la console. Attention, vous devez vous assurer d’être dans le bon répertoire de travil <strong>à chaque nouvelle session</strong> !</p>
 </div>
@@ -275,14 +284,13 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>Pour exécuter les commandes du script dans la console, il suffit de placer le curseur sur la ligne contenant la commande et de presser les touches <code>ctrl + enter</code> (ou <code>command + enter</code> sous macOS). Si un message d’erreur s’affiche dans la console, c’est que votre instruction était erronée. Modifiez la directement dans votre script et pressez à nouveau les touches <code>ctrl + enter</code> (ou <code>command + enter</code> sous macOS) pour tenter à nouveau votre chance. Idéalement, votre script ne devrait contenir que des commandes qui fonctionnent et des commentaires expliquant à quoi servent ces commandes.</p>
 <p>À la fin de chaque séance de TEA, vous devrez déposer sur l’ENT le script que vous avez créé durant la séance. Ce script devra porter votre nom de famille et se terminer par l’extension <code>.R</code>. Ainsi, si Jean-Claude Van Damme faisait des statistiques, il devrait déposer sur l’ENT un fichier intitulé <code>VanDamme.R</code> à la fin de chaque séance de TEA.</p>
 <p>Ci-dessous, un exemple de script</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Penser à installer le package ggplot2 si besoin</span>
-<span class="co"># install.packages(&#39;ggplot2&#39;)</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Penser à installer le package ggplot2 si besoin install.packages(&#39;ggplot2&#39;)</span>
 
 <span class="co"># Chargement du package</span>
 <span class="kw">library</span>(ggplot2)
 
-<span class="co"># Mise en méoire des données de qualité de l&#39;air à New-York</span>
-<span class="co"># de mai à septembre 1973</span>
+<span class="co"># Mise en méoire des données de qualité de l&#39;air à New-York de mai à septembre</span>
+<span class="co"># 1973</span>
 <span class="kw">data</span>(airquality)
 
 <span class="co"># Affichage des premières lignes du tableau de données</span>
@@ -291,14 +299,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="co"># Quelle est la structure de ce tableau ?</span>
 <span class="kw">str</span>(airquality)
 
-<span class="co"># Réalisation d&#39;un graphique présentant la relation entre la</span>
-<span class="co"># concentration en ozone atmosphérique en ppb et la</span>
-<span class="co"># température en degrés Farenheit</span>
-<span class="kw">ggplot</span>(<span class="dt">data =</span> airquality, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Temp, <span class="dt">y =</span> Ozone)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>)
+<span class="co"># Réalisation d&#39;un graphique présentant la relation entre la concentration en</span>
+<span class="co"># ozone atmosphérique en ppb et la température en degrés Farenheit</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> airquality, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Temp, <span class="dt">y =</span> Ozone)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>)
 
-<span class="co"># On constate une augmentation importante de la concentration</span>
-<span class="co"># d&#39;ozone pour des températures supérieures à 75ºF</span></code></pre></div>
+<span class="co"># On constate une augmentation importante de la concentration d&#39;ozone pour des</span>
+<span class="co"># températures supérieures à 75ºF</span></code></pre></div>
 <p>Même si vous ne comprenez pas encore les commandes qui figurent dans ce script (ça viendra !), voici ce que vous devez en retenir :</p>
 <ol style="list-style-type: decimal">
 <li>Le script contient plus de lignes de commentaires que de commandes R</li>
@@ -328,7 +334,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <h3><span class="header-section-number">2.2.4</span> Concepts de base en programmation et terminologie</h3>
 <p>Pour vous présenter les concepts de base et la terminologie de la programmation dont nous aurons besoin dans R, vous allez suivre les tutoriels en ligne suivants, sur le site de DataCamp. Pour chacun des tutoriels, j’indique une liste des concepts de programmation couverts. Notez que dans ce livre, nous utiliserons une police différente pour distinguer le texte normal et les <code>commandes-informatiques</code>.</p>
 <p>Il est important de noter que, bien que ces tutoriels sont d’excellentes introductions, une seule lecture est insuffisante pour un apprentissage en profondeur et une rétention à long terme. Les outils ultimes pour l’apprentissage et la rétention à long terme sont “l’apprentissage par la pratique” et “la répétition”. Outre les exercices demandés dans DataCamp, que vous devez effectuer directement dans votre navigateur, je vous encourage donc à multiplier les essais, directement dans la console de RStudio, ou, de préférence, dans un script que vous annoterez, pour vous assurer que vous avez bien compris chaque partie.</p>
-<div id="objets-types-vecteurs-facteurs-et-tableaux-de-donnees" class="section level4">
+<div id="objects" class="section level4">
 <h4><span class="header-section-number">2.2.4.1</span> Objets, types, vecteurs, facteurs et tableaux de données</h4>
 <p>Dans <a href="https://www.datacamp.com/community/open-courses/introduction-a-r">le cours d’introduction à R</a> sur DataCamp, suivez les chapitres suivants. Au fur et à mesure de votre travail, notez les termes importants et ce à quoi ils font référence.</p>
 <ul>
@@ -400,9 +406,8 @@ tailles_pop1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tailles_pop3</code></pre></div>
 <pre><code>[1] 43 56 92</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tailles_pop3 <span class="op">&gt;</span><span class="st"> </span>tailles_pop1</code></pre></div>
-<pre><code>Warning in tailles_pop3 &gt; tailles_pop1: la taille d&#39;un objet
-plus long n&#39;est pas multiple de la taille d&#39;un objet plus
-court</code></pre>
+<pre><code>Warning in tailles_pop3 &gt; tailles_pop1: la taille d&#39;un objet plus long n&#39;est pas
+multiple de la taille d&#39;un objet plus court</code></pre>
 <pre><code>[1] FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE</code></pre>
 <p>Dans un cas comme celui là, R va <em>recycler</em> l’objet le plus court, ici <code>tailles_pop3</code> pour qu’une comparaison puisse être faite avec chaque élément de l’objet le plus long (ici, <code>tailles_pop1</code>). Ainsi, 43 est comparé à 112, 56 est comparé à 28 et 92 est comparé à 86. Puisque <code>tailles_pop3</code> ne contient plus d’éléments, ils sont recyclés, dans le même ordre : 43 est comparé à 14, 56 est comparé à 154, et ainsi de suite jusqu’à ce que tous les éléments de <code>tailles_pop1</code> aient été passés en revue.</p>
 <p>Ce type de recyclage est très risqué car il est difficile de savoir ce qui a été comparé avec quoi. En travaillant avec des tableaux plutôt qu’avec des vecteurs, le problème est généralement évité puisque toutes les colonnes d’un <code>data.frame</code> contiennent le même nombre d’éléments.</p>

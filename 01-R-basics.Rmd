@@ -204,7 +204,7 @@ Pour vous présenter les concepts de base et la terminologie de la programmation
 
 Il est important de noter que, bien que ces tutoriels sont d’excellentes introductions, une seule lecture est insuffisante pour un apprentissage en profondeur et une rétention à long terme. Les outils ultimes pour l'apprentissage et la rétention à long terme sont "l'apprentissage par la pratique" et "la répétition". Outre les exercices demandés dans DataCamp, que vous devez effectuer directement dans votre navigateur, je vous encourage donc à multiplier les essais, directement dans la console de RStudio, ou, de préférence, dans un script que vous annoterez, pour vous assurer que vous avez bien compris chaque partie.
 
-#### Objets, types, vecteurs, facteurs et tableaux de données
+#### Objets, types, vecteurs, facteurs et tableaux de données {#objects}
 
 Dans [le cours d'introduction à R](https://www.datacamp.com/community/open-courses/introduction-a-r) sur DataCamp, suivez les chapitres suivants. Au fur et à mesure de votre travail, notez les termes importants et ce à quoi ils font référence.
 

@@ -59,7 +59,7 @@ knitr::write_bib(c(
 
 
 ```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
-options(replace.assign = TRUE, width = 60)
+options(replace.assign = TRUE, width = 80)
 options(repos = "http://cran.r-project.org/")
 
 library(knitr)
