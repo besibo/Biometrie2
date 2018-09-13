@@ -115,7 +115,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="2.1.1" data-path="bases.html"><a href="bases.html#installation-de-r-et-rstudio"><i class="fa fa-check"></i><b>2.1.1</b> Installation de R et RStudio</a></li>
 <li class="chapter" data-level="2.1.2" data-path="bases.html"><a href="bases.html#utiliser-r-depuis-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Utiliser R depuis RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="bases.html"><a href="bases.html#comment-executer-du-code-r"><i class="fa fa-check"></i><b>2.2</b> Comment exécuter du code R ?</a><ul>
+<li class="chapter" data-level="2.2" data-path="bases.html"><a href="bases.html#code"><i class="fa fa-check"></i><b>2.2</b> Comment exécuter du code R ?</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="bases.html"><a href="bases.html#la-console"><i class="fa fa-check"></i><b>2.2.1</b> La console</a></li>
 <li class="chapter" data-level="2.2.2" data-path="bases.html"><a href="bases.html#le-repertoire-de-travail"><i class="fa fa-check"></i><b>2.2.2</b> Le répertoire de travail</a></li>
 <li class="chapter" data-level="2.2.3" data-path="bases.html"><a href="bases.html#les-scripts"><i class="fa fa-check"></i><b>2.2.3</b> Les scripts</a></li>
@@ -138,7 +138,15 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="dataset.html"><a href="dataset.html#exercices-1"><i class="fa fa-check"></i><b>3.4</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="viz.html"><a href="viz.html"><i class="fa fa-check"></i><b>4</b> Visualiser des données avec <code>ggplot2</code></a></li>
+<li class="chapter" data-level="4" data-path="viz.html"><a href="viz.html"><i class="fa fa-check"></i><b>4</b> Visualiser des données avec <code>ggplot2</code></a><ul>
+<li class="chapter" data-level="4.1" data-path="viz.html"><a href="viz.html#prerequis"><i class="fa fa-check"></i><b>4.1</b> Prérequis</a></li>
+<li class="chapter" data-level="4.2" data-path="viz.html"><a href="viz.html#gggraph"><i class="fa fa-check"></i><b>4.2</b> La grammaire des graphiques</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="viz.html"><a href="viz.html#elements-de-la-grammaire"><i class="fa fa-check"></i><b>4.2.1</b> Éléments de la grammaire</a></li>
+<li class="chapter" data-level="4.2.2" data-path="viz.html"><a href="viz.html#gapminder"><i class="fa fa-check"></i><b>4.2.2</b> Gapminder</a></li>
+<li class="chapter" data-level="4.2.3" data-path="viz.html"><a href="viz.html#autres-elements-de-la-grammaire-des-graphiques"><i class="fa fa-check"></i><b>4.2.3</b> Autres éléments de la grammaire des graphiques</a></li>
+<li class="chapter" data-level="4.2.4" data-path="viz.html"><a href="viz.html#le-package-ggplot2"><i class="fa fa-check"></i><b>4.2.4</b> Le package <code>ggplot2</code></a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
 <li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>Références</a></li>
@@ -163,7 +171,161 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="viz" class="section level1">
 <h1><span class="header-section-number">4</span> Visualiser des données avec <code>ggplot2</code></h1>
+<p>Dans les chapitres <a href="bases.html#bases">2</a> et <a href="dataset.html#dataset">3</a>, nous avons vu ce qui me semble être les concepts essentiels avant de commencer à explorer en détail des données dans R. Les éléments de syntaxe abordés dans la section <a href="bases.html#code">2.2</a> sont nombreux et vous n’avez probablement pas tout retenu. C’est pourquoi je vous conseille de garder les tutoriels de DataCamp à portée de main afin de pouvoir refaire les parties que vous maîtrisez le moins. Ce n’est qu’en répétant plusieurs fois ces tutoriels que les choses seront vraiment comprises et que vous les retiendrez. Ainsi, si des éléments de code présentés ci-dessous vous semblent obscures, revenez en arrière : toutes les réponses à vos questions se trouvent probablement dans les chapitres précédents.</p>
+<p>Après la découverte des bases du langage R, nous abordons maintenant les parties de ce livre qui concernent la “science des données” (ou “Data Science” pour nos amis anglo-saxons). Nous allons voir dans ce chapitre qu’outre les fonctions <code>View()</code> et <code>glimpse()</code>, l’exploration visuelle <em>via</em> la représentation graphique des données est un moyen indispensable et très puissant pour comprendre ce qui se passe dans un jeu de données. <strong>La visualisation de vos données devrait toujours être un préambule à toute analyse statistique.</strong></p>
+<p>La visualisation des données est en outre un excellent point de départ quand on découvre la programmation sous R, car ses bénéfices sont clairs et immédiats : vous pouvez créer des graphiques élégants et informatifs qui vous aident à comprendre les données. Dans ce chapitre, vous allez donc plonger dans l’art de la visualisation de données, en apprenant la structure de base des graphiques réalisés avec <code>ggplot2</code> qui permettent de transformer des données numériques et catégorielles en graphiques.</p>
+<p>Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet souvent nécessaire de transformer les données pour produire des représentations plus parlantes. Ainsi, dans les chapitres <a href="tidyr.html#tidyr">5</a> et <a href="wrangling.html#wrangling">6</a>, vous découvrirez les verbes clés qui vous permettront de sélectionner des variables importantes, de filtrer les observations clés, de créer de nouvelles variables, de calculer des résumés, d’associer des tableaus ou de les remettre en forme.</p>
+<p>C’est en combinant la transformation des données et les représentations graphiques avec votre curiosité et votre esprit critique, vous serez véritablement en mesure de réaliser l’analyse exploratoire de données, seul procédé permettant de poser des questions intéressantes et pertinentes sur les données et afin d’y répondre.</p>
+<div id="prerequis" class="section level2">
+<h2><span class="header-section-number">4.1</span> Prérequis</h2>
+<p>Dans ce chapitre, nous aurons besoin des packages suivants :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(nycflights13)
+<span class="kw">library</span>(dplyr)</code></pre></div>
+<p>Si ce n’est pas déjà fait pensez à les installer avant de les charger en mémoire.</p>
+<p>Au niveau le plus élémentaire, les graphiques permettent de comprendre comment les variables se comparent en termes de tendance centrale (à quel endroit les valeurs ont tendance à être localisées, regroupées) et leur dispersion (comment les données varient autour du centre). La chose la plus importante à savoir sur les graphiques est qu’ils doivent être créés pour que votre public (le prof qui vous évalue, le collègue avec qui vous collaborez, votre futur patron, etc.) comprenne bien les résultats et les informations que vous souhaitez transmettre. Il s’agit d’un exercice d’équilibriste : d’une part, vous voulez mettre en évidence autant de relations significatives et de résultats intéressants que possible, mais de l’autre, vous ne voulez pas en inclure trop, afin d’éviter de rendre votre graphique illisible ou de submerger votre public. Tout comme n’importe quel paragraphe de document écrit, un graphique doit permettre de <strong>communiquer un message</strong> (une idée forte, un résultat marquant, une hypothèse nouvelle, etc).</p>
+<p>Comme nous le verrons, les graphiques nous aident également à repérer les tendances extrêmes et les valeurs aberrantes dans nos données. Nous verrons qu’une façon de faire assez classique consiste à comparer la distribution d’une variable quantitative pour les différents niveaux d’une variable catégorielle.</p>
+</div>
+<div id="gggraph" class="section level2">
+<h2><span class="header-section-number">4.2</span> La grammaire des graphiques</h2>
+<p>Les lettres <code>gg</code> du package <code>ggplot</code> sont l’abbréviation de “grammar of graphics” : la grammaire des graphiques. De la même manière que nous construisons des phrases en respectant des règles grammaticales précises (usage des noms, des verbes, des sujets et adjectifs…), la grammaire des graphiques établit un certain nombre de règles permettant de construire des graphiques : elle précise les composants d’un graphique en suivant le cadre théorique défini par <span class="citation">Wilkinson (<a href="#ref-wilkinson2005">2005</a>)</span>.</p>
+<div id="elements-de-la-grammaire" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Éléments de la grammaire</h3>
+<p>En bref, la grammaire des graphiques nous dit que :</p>
+<blockquote>
+<p>Un graphique est l’association (<code>mapping</code>) de données/variables (<code>data</code>) à des attributs esthétiques (<code>aes</code>thetics) d’objets géométriques (<code>geom</code>etric objects).</p>
+</blockquote>
+<p>Pour clarifier, on peut disséquer un graphique en 3 éléments esentiels :</p>
+<ol style="list-style-type: decimal">
+<li><code>data</code> : le jeu de données contenant les variables que l’on va associer à des objets géométriques</li>
+<li><code>geom</code> : les objets géométriques en question. Cela fait référence aux types d’objets que l’on peut observer sur le graphiques (des points, des lignes, des barres, etc)</li>
+<li><code>aes</code> : les attributs esthétiques des objets géométriques présents sur le graphique. Par exemple, la position sur les axes <code>x</code> et <code>y</code>, la couleur, la taille, la transparence, la forme, etc. Chacun de ces attributs esthétiques peut-être associé à une variable de notre jeu de données.</li>
+</ol>
+<p>Examinons un exemple pour bien comprendre.</p>
+</div>
+<div id="gapminder" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Gapminder</h3>
+<p>En février 2006, un statisticien du nom de Hans Rosling a donné un TED Talk intitulé “<a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">The best stats you’we ever seen</a>”. Au cours de cette conférence, Hans Rosling présente des données sur l’économie mondiale, la santé et le développement des pays du monde. Les données sont disponibles <a href="https://www.gapminder.org/tools/#$chart-type=bubbles">sur ce site</a> et dans <a href="https://cran.r-project.org/web/packages/gapminder/index.html">le package <code>gapminder</code></a>.</p>
+<p>Pour l’année 2007, le jeu de données contient des informations pour 142 pays. Examinons les premières lignes de ce jeu de données :</p>
+<table>
+<caption><span id="tab:unnamed-chunk-35">Table 4.1: </span>Les 6 premières lignes du jeu de données <code>gapminder</code> pour l’année 2007</caption>
+<thead>
+<tr class="header">
+<th align="left">Country</th>
+<th align="left">Continent</th>
+<th align="right">Life Expectancy</th>
+<th align="right">Population</th>
+<th align="right">GDP per Capita</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Afghanistan</td>
+<td align="left">Asia</td>
+<td align="right">43.828</td>
+<td align="right">31889923</td>
+<td align="right">974.5803</td>
+</tr>
+<tr class="even">
+<td align="left">Albania</td>
+<td align="left">Europe</td>
+<td align="right">76.423</td>
+<td align="right">3600523</td>
+<td align="right">5937.0295</td>
+</tr>
+<tr class="odd">
+<td align="left">Algeria</td>
+<td align="left">Africa</td>
+<td align="right">72.301</td>
+<td align="right">33333216</td>
+<td align="right">6223.3675</td>
+</tr>
+<tr class="even">
+<td align="left">Angola</td>
+<td align="left">Africa</td>
+<td align="right">42.731</td>
+<td align="right">12420476</td>
+<td align="right">4797.2313</td>
+</tr>
+<tr class="odd">
+<td align="left">Argentina</td>
+<td align="left">Americas</td>
+<td align="right">75.320</td>
+<td align="right">40301927</td>
+<td align="right">12779.3796</td>
+</tr>
+<tr class="even">
+<td align="left">Australia</td>
+<td align="left">Oceania</td>
+<td align="right">81.235</td>
+<td align="right">20434176</td>
+<td align="right">34435.3674</td>
+</tr>
+</tbody>
+</table>
+<p>Pour chaque ligne, les variables suivantes sont décrites :</p>
+<ul>
+<li><code>Country</code> : le pays</li>
+<li><code>Continent</code> : le continent</li>
+<li><code>Life Expectancy</code> : espérance de vie à la naissance</li>
+<li><code>Population</code> : nombre de personnes vivant dans le pays</li>
+<li><code>GDP per Capita</code> : produit intérieur brut (PIB) par habitant en dollars américains. GDP est l’abréviation de “Growth Domestic Product”. C’est un indicateur de l’activité économique d’un pays, parfois utilisé comme une approximation du revenu moyen par habitant.</li>
+</ul>
+<p>Examinons maintenant la figure @ref(fig:gapminder_fig) qui représente ces variables pour chacun des 142 pays de ce jeu de données (notez l’utilisation de la notation scientifique dans la légende).</p>
+<div class="figure" style="text-align: center">
+<img src="figure/gapminder_fig-1.png" alt="Espérance de vie en fonction du PIB par habitant en 2007" width="70%" />
+<p class="caption">
+(#fig:gapminder_fig)Espérance de vie en fonction du PIB par habitant en 2007
+</p>
+</div>
+<p>Si on décrypte ce graphique du point de vue de la grammaire des graphiques, on voit que :</p>
+<ul>
+<li>la variable <code>GDP per Capita</code> est associée à l’<code>aes</code>thetic <code>x</code> de la position des points</li>
+<li>la variable <code>Life Expectancy</code> est associée à l’<code>aes</code>thetic <code>y</code> de la position des points</li>
+<li>la variable <code>Population</code> est associée à l’<code>aes</code>thetic <code>size</code> (taille) des points</li>
+<li>la variable <code>Continent</code> est associée à l’<code>aes</code>thetic <code>color</code> (couleur) des points</li>
+</ul>
+<p>Ici, l’objet géométrique (ou <code>geom</code>) qui représente les données est le point. Les données (ou <code>data</code>) sont contenues dans le tableau <code>gapminder</code> et chaune de ces variables est associée (<code>mapping</code>) aux caractéristiques esthétiques des points.</p>
+</div>
+<div id="autres-elements-de-la-grammaire-des-graphiques" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Autres éléments de la grammaire des graphiques</h3>
+<p>Outre les éléments indispensables évoqués ici (<code>data</code>, <code>mapping</code>, <code>aes</code>, et <code>geom</code>), il existe d’autres aspects de la grammaire des graphiques qui permettent de contrôler l’aspect des graphiques. Ils ne sont pas toujours indispensables. Nous en verrons néanmoins quelque-uns particulièrement utiles :</p>
+<ul>
+<li><code>facet</code> : c’est un moyen très pratique de scinder le jeu de données en plusieurs sous-groupe et de produire automatiquement un graphique pour chacun d’entre eux.</li>
+<li><code>position</code> : permet notamment de modifier la position des barres d’un barplot.</li>
+<li><code>labs</code> : permet de définir les titres, sous-titres et légendes des axes d’un graphique</li>
+<li>l’ajustement du système de coordonnées.</li>
+<li><code>theme</code> : permet de modifier l’apect général des graphiques en appliquant des thèmes prédéfinis ou en modifiant certains aspects de thèmes existants</li>
+</ul>
+</div>
+<div id="le-package-ggplot2" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> Le package <code>ggplot2</code></h3>
+<p>Comme indiqué plus haut, le package <code>ggplot2</code> <span class="citation">(Wickham et al. <a href="#ref-R-ggplot2">2018</a>)</span> permet de réaliser des graphiques dans R en respectant les principes de la grammaire des graphiques. Vous avez probablement remarqué que depuis le début de la section <a href="viz.html#gggraph">4.2</a>, beaucoup de termes sont écrits dans la police réservée au <code>code</code> informatique. C’est parce que les éléments de la grammaire des graphiques sont tous précisés dans la fonction <code>ggplot()</code> qui demande, au grand minimum, que les éléments suivants soient spécifiés :</p>
+<ul>
+<li>le nom du <code>data.frame</code> contenant les variables qui seront utilisées pour le graphique. Ce nom correspond à l’argument <code>data</code> de la fonction <code>ggplot()</code>.</li>
+<li>l’association des variables à des attributs esthétiques. Cela se fait grâce à l’argument <code>mapping</code> et la fonction <code>aes()</code></li>
+</ul>
+<p>Après avoir spécifié ces éléments, on ajoute des couches supplémentaires au graphique grâce au signe <code>+</code>. La couche la plus essentielle à ajouter à un graphique, est une couche contenant un élément géométrique, ou <code>geom</code> (par exemple des points, des lignes ou des barres). D’autres couches peuvent s’ajouter pour spécifier des titres, des <code>facet</code>s ou des modifications des axes et des thèmes du graphique.</p>
+<p>Dans le cadre de ce cours, nous nous limiterons aux 5 types de graphiques suivants :</p>
+<ol style="list-style-type: decimal">
+<li>les nuages de points</li>
+<li>les graphiques en lignes</li>
+<li>les boîtes à moustaches ou boxplots</li>
+<li>les histogrammes</li>
+<li>les diagrammes bâtons</li>
+</ol>
 
+</div>
+</div>
+</div>
+<h3>Références</h3>
+<div id="refs" class="references">
+<div id="ref-wilkinson2005">
+<p>Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>. 2nd ed. New-York: Springer-Verlag. <a href="https://www.springer.com/us/book/9780387245447" class="uri">https://www.springer.com/us/book/9780387245447</a>.</p>
+</div>
+<div id="ref-R-ggplot2">
+<p>Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, and Kara Woo. 2018. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>.</p>
+</div>
 </div>
             </section>
 

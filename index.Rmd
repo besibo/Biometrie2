@@ -53,7 +53,7 @@ Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyon
 ```{r package_bibliography, include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2'
 ), 'packages.bib')
 ```
 

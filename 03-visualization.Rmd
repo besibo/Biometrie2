@@ -1,3 +1,127 @@
 # Visualiser des données avec `ggplot2` {#viz}
 
+Dans les chapitres \@ref(bases) et \@ref(dataset), nous avons vu ce qui me semble être les concepts essentiels avant de commencer à explorer en détail des données dans R. Les éléments de syntaxe abordés dans la section \@ref(code) sont nombreux et vous n'avez probablement pas tout retenu. C'est pourquoi je vous conseille de garder les tutoriels de DataCamp à portée de main afin de pouvoir refaire les parties que vous maîtrisez le moins. Ce n'est qu'en répétant plusieurs fois ces tutoriels que les choses seront vraiment comprises et que vous les retiendrez. Ainsi, si des éléments de code présentés ci-dessous vous semblent obscures, revenez en arrière : toutes les réponses à vos questions se trouvent probablement dans les chapitres précédents.
+
+Après la découverte des bases du langage R, nous abordons maintenant les parties de ce livre qui concernent la "science des données" (ou "Data Science" pour nos amis anglo-saxons). Nous allons voir dans ce chapitre qu'outre les fonctions `View()` et `glimpse()`, l'exploration visuelle *via* la représentation graphique des données est un moyen indispensable et très puissant pour comprendre ce qui se passe dans un jeu de données. **La visualisation de vos données devrait toujours être un préambule à toute analyse statistique.**
+
+La visualisation des données est en outre un excellent point de départ quand on découvre la programmation sous R, car ses bénéfices sont clairs et immédiats : vous pouvez créer des graphiques élégants et informatifs qui vous aident à comprendre les données. Dans ce chapitre, vous allez donc plonger dans l'art de la visualisation de données, en apprenant la structure de base des graphiques réalisés avec `ggplot2` qui permettent de transformer des données numériques et catégorielles en graphiques.
+
+Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet souvent nécessaire de transformer les données pour produire des représentations plus parlantes. Ainsi, dans les chapitres \@ref(tidyr) et \@ref(wrangling), vous découvrirez les verbes clés qui vous permettront de sélectionner des variables importantes, de filtrer les observations clés, de créer de nouvelles variables, de calculer des résumés, d'associer des tableaus ou de les remettre en forme.
+
+C'est en combinant la transformation des données et les représentations graphiques avec votre curiosité et votre esprit critique, vous serez véritablement en mesure de réaliser l'analyse exploratoire de données, seul procédé permettant de poser des questions intéressantes et pertinentes sur les données et afin d'y répondre.
+
+
+## Prérequis
+
+Dans ce chapitre, nous aurons besoin des packages suivants :
+
+```{r}
+library(ggplot2)
+library(nycflights13)
+library(dplyr)
+```
+
+Si ce n'est pas déjà fait pensez à les installer avant de les charger en mémoire.
+
+Au niveau le plus élémentaire, les graphiques permettent de comprendre comment les variables se comparent en termes de tendance centrale (à quel endroit les valeurs ont tendance à être localisées, regroupées) et leur dispersion (comment les données varient autour du centre). La chose la plus importante à savoir sur les graphiques est qu'ils doivent être créés pour que votre public (le prof qui vous évalue, le collègue avec qui vous collaborez, votre futur patron, etc.) comprenne bien les résultats et les informations que vous souhaitez transmettre. Il s'agit d'un exercice d'équilibriste : d'une part, vous voulez mettre en évidence autant de relations significatives et de résultats intéressants que possible, mais de l'autre, vous ne voulez pas en inclure trop, afin d'éviter de rendre votre graphique illisible ou de submerger votre public. Tout comme n'importe quel paragraphe de document écrit, un graphique doit permettre de **communiquer un message** (une idée forte, un résultat marquant, une hypothèse nouvelle, etc).
+
+Comme nous le verrons, les graphiques nous aident également à repérer les tendances extrêmes et les valeurs aberrantes dans nos données. Nous verrons qu'une façon de faire assez classique consiste à comparer la distribution d'une variable quantitative pour les différents niveaux d'une variable catégorielle.
+
+
+## La grammaire des graphiques {#gggraph}
+
+Les lettres `gg` du package `ggplot` sont l'abbréviation de "grammar of graphics" : la grammaire des graphiques. De la même manière que nous construisons des phrases en respectant des règles grammaticales précises (usage des noms, des verbes, des sujets et adjectifs...), la grammaire des graphiques établit un certain nombre de règles permettant de construire des graphiques : elle précise les composants d'un graphique en suivant le cadre théorique défini par @wilkinson2005.
+
+
+### Éléments de la grammaire
+
+En bref, la grammaire des graphiques nous dit que : 
+
+> Un graphique est l'association (`mapping`) de données/variables (`data`) à des attributs esthétiques (`aes`thetics) d'objets géométriques (`geom`etric objects).
+
+Pour clarifier, on peut disséquer un graphique en 3 éléments esentiels :
+
+1. `data` : le jeu de données contenant les variables que l'on va associer à des objets géométriques
+2. `geom` : les objets géométriques en question. Cela fait référence aux types d'objets que l'on peut observer sur le graphiques (des points, des lignes, des barres, etc)
+3. `aes` : les attributs esthétiques des objets géométriques présents sur le graphique. Par exemple, la position sur les axes `x` et `y`, la couleur, la taille, la transparence, la forme, etc. Chacun de ces attributs esthétiques peut-être associé à une variable de notre jeu de données.
+
+Examinons un exemple pour bien comprendre.
+
+### Gapminder
+
+En février 2006, un statisticien du nom de Hans Rosling a donné un TED Talk intitulé "[The best stats you'we ever seen](https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen)". Au cours de cette conférence, Hans Rosling présente des données sur l'économie mondiale, la santé et le développement des pays du monde. Les données sont disponibles [sur ce site](https://www.gapminder.org/tools/#$chart-type=bubbles) et dans [le package `gapminder`](https://cran.r-project.org/web/packages/gapminder/index.html).
+
+Pour l'année 2007, le jeu de données contient des informations pour 142 pays. Examinons les premières lignes de ce jeu de données :
+
+```{r echo=FALSE}
+library(gapminder)
+gapminder_2007 <- gapminder %>% 
+  filter(year == 2007) %>% 
+  select(-year) %>% 
+  rename_all(str_to_title) %>% 
+  rename(`Life Expectancy` = Lifeexp,
+         `GDP per Capita` = Gdppercap,
+         Population = Pop)
+
+gapminder_2007 %>% 
+  head() %>% 
+  knitr::kable(caption = "Les 6 premières lignes du jeu de données `gapminder` pour l'année 2007")
+```
+
+Pour chaque ligne, les variables suivantes sont décrites : 
+
+- `Country` : le pays
+- `Continent` : le continent
+- `Life Expectancy` : espérance de vie à la naissance
+- `Population` : nombre de personnes vivant dans le pays
+- `GDP per Capita` : produit intérieur brut (PIB) par habitant en dollars américains. GDP est l'abréviation de "Growth Domestic Product". C'est un indicateur de l'activité économique d'un pays, parfois utilisé comme une approximation du revenu moyen par habitant.
+
+Examinons maintenant la figure \@ref(fig:gapminder_fig) qui représente ces variables pour chacun des 142 pays de ce jeu de données (notez l'utilisation de la notation scientifique dans la légende).
+
+```{r gapminder_fig, echo=FALSE, fig.cap="Espérance de vie en fonction du PIB par habitant en 2007"}
+gapminder_2007 %>% 
+  ggplot(aes(x = `GDP per Capita`, y = `Life Expectancy`, color = Continent, size = Population)) + 
+    geom_point()
+```
+
+Si on décrypte ce graphique du point de vue de la grammaire des graphiques, on voit que :
+
+- la variable `GDP per Capita` est associée à l'`aes`thetic `x` de la position des points
+- la variable `Life Expectancy` est associée à l'`aes`thetic `y` de la position des points
+- la variable `Population` est associée à l'`aes`thetic `size` (taille) des points
+- la variable `Continent` est associée à l'`aes`thetic `color` (couleur) des points
+
+Ici, l'objet géométrique (ou `geom`) qui représente les données est le point. Les données (ou `data`) sont contenues dans le tableau `gapminder` et chaune de ces variables est associée (`mapping`) aux caractéristiques esthétiques des points.
+
+
+### Autres éléments de la grammaire des graphiques
+
+Outre les éléments indispensables évoqués ici (`data`, `mapping`, `aes`, et `geom`), il existe d'autres aspects de la grammaire des graphiques qui permettent de contrôler l'aspect des graphiques. Ils ne sont pas toujours indispensables. Nous en verrons néanmoins quelque-uns particulièrement utiles : 
+
+- `facet` : c'est un moyen très pratique de scinder le jeu de données en plusieurs sous-groupe et de produire automatiquement un graphique pour chacun d'entre eux.
+- `position` : permet notamment de modifier la position des barres d'un barplot.
+- `labs` : permet de définir les titres, sous-titres et légendes des axes d'un graphique
+- l'ajustement du système de coordonnées.
+- `theme` : permet de modifier l'apect général des graphiques en appliquant des thèmes prédéfinis ou en modifiant certains aspects de thèmes existants
+
+
+### Le package `ggplot2`
+
+Comme indiqué plus haut, le package `ggplot2` [@R-ggplot2] permet de réaliser des graphiques dans R en respectant les principes de la grammaire des graphiques. Vous avez probablement remarqué que depuis le début de la section \@ref(gggraph), beaucoup de termes sont écrits dans la police réservée au `code` informatique. C'est parce que les éléments de la grammaire des graphiques sont tous précisés dans la fonction `ggplot()` qui demande, au grand minimum, que les éléments suivants soient spécifiés :
+
+- le nom du `data.frame` contenant les variables qui seront utilisées pour le graphique. Ce nom correspond à l'argument `data` de la fonction `ggplot()`.
+- l'association des variables à des attributs esthétiques. Cela se fait grâce à l'argument `mapping` et la fonction `aes()`
+
+Après avoir spécifié ces éléments, on ajoute des couches supplémentaires au graphique grâce au signe `+`. La couche la plus essentielle à ajouter à un graphique, est une couche contenant un élément géométrique, ou `geom` (par exemple des points, des lignes ou des barres). D'autres couches peuvent s'ajouter pour spécifier des titres, des `facet`s ou des modifications des axes et des thèmes du graphique.
+
+Dans le cadre de ce cours, nous nous limiterons aux 5 types de graphiques suivants : 
+
+1. les nuages de points
+2. les graphiques en lignes
+3. les boîtes à moustaches ou boxplots
+4. les histogrammes
+5. les diagrammes bâtons
+
+
+
 

@@ -66,7 +66,7 @@ Regardez [cette vidéo DataCamp](https://campus.datacamp.com/courses/working-wit
 
 ---
 
-## Comment exécuter du code R ?
+## Comment exécuter du code R ? {#code}
 
 Maintenant que vous avez configuré R et RStudio, vous vous demandez probablement "OK. Maintenant, comment utiliser R ?" La première chose à noter est que, contrairement à d'autres logiciels comme Excel, STATA ou SAS qui fournissent des interfaces où tout se fait en cliquant avec sa souris, R est un langage interprété, ce qui signifie que vous devez entrer des commandes R écrites en code R. C'est-à-dire que vous devez **programmer** en R (j'utilise les termes "coder" et "programmer" de manière interchangeable dans ce livre). 
 
