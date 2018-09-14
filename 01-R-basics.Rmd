@@ -320,7 +320,7 @@ D'une façon générale, le point d'exclamation permet de signifier à R que nou
 Cette fonction nous sera très utile plus tard pour éliminer toutes les lignes d'un tableau contenant des valeurs manquantes.
 
 
-#### L'utilisation des fonctions
+#### L'utilisation des fonctions {#functions}
 
 Dans R, les fonctions sont des objets particuliers qui permettent d'effectuer des tâches très variées. Du calcul d'une moyenne à la création d'un graphique, en passant par la réalisation d'analyses statistiques complexes ou simplement l'affichage du chemin du répertoire de travail, tout, dans R, repose sur l'utilisation de fonctions. Vous en avez déjà vu un certain nombre :
 

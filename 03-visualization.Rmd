@@ -123,5 +123,216 @@ Dans le cadre de ce cours, nous nous limiterons aux 5 types de graphiques suivan
 5. les diagrammes bâtons
 
 
+## Les nuages de points
 
+C'est probablement le plus simple des 5 types de graphiques citées plus haut. Il s'agit de graphiques bi-variés pour lesquels une variable est associée à l'axe des abscisses, et une autre est associée à l'axe des ordonnées. Comme pour le graphique présenté à la figure \@ref(fig:gapminder_fig) ci-dessus, d'autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme...).
+
+Nous allons ici nous intéresser à la relation qui existe entre :
+
+1. `dep_delay` : le retard des vols au décollage, que nous placerons sur l'axe des "x"
+2. `arr_delay` : le retard des mêmes vols à l'aterrissage, que nous placerons sur l'axe des "y"
+
+Afin d'avoir un jeu de données plus facile à utiliser, nous nous contenterons de visualiser les vols d'Alaska Airline, donc le code de compagnie aérienne est `"AS"`.
+
+```{r tidy=FALSE}
+alaska_flights <- flights %>%
+  filter(carrier == "AS")
+```
+
+Il est normal que vous ne compreniez pas encore les commandes ci-dessous. Nous verrons ça plus tard. Retenez juste que nous avons maintenant créer un nouveau tableau, nommé `alaska_flights`, qui contient toutes les informations des vols d'Alaska Airline. Commencez par examiner ce tableau avec la fonction `View()`. En quoi est-il différent du tableau `flights` ?
+
+### La couche de base : la fonction `ggplot()`
+
+La fonction `ggplot()` permet d'établir la première base du graphique. C'est grâce à cette fonction que l'on précise quel jeu de données utiliser et quelle variables placer sur les axes :
+
+```{r fig.cap="Un graphique sans `geom`"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay))
+```
+
+Ce graphique est pour le moins vide : c'est normal, nous n'avons pas encore spéifié la couche contenant l'objet géométrique que nous souhaitons utiliser. 
+
+### Ajout d'une couche supplémentaire : l'objet géométrique
+
+Les nuages de points sont créés par la fonction `geom_point()` :
+
+```{r fig.cap="Retards à l'arrivée en fonction des retard au décollage pour les vols d'Alaska Airline au départ de New York City en 2013", tidy=FALSE}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
+  geom_point()
+```
+
+plusieurs choses importantes sont à remarquer ici :
+
+1. le graphique présente maintenant une couche supplémentaire constituée de points.
+2. la fonction `geom_point()` nous prévient que 5 lignes contenant des données manquantes n'ont pas été intégrées au graphique. Les données manquent soit pour une variable, soit pour l'autre, soit pour les 2. il est donc impossible de les faire apparaître sur le graphique.
+3. il existe une relation positive entre `dep_delay` et `arr_delay` : quand le retard d'un vol au décollage augmente, le retard de ce vol augmente aussi à l'arrivée.
+4. Enfin, il y a une grande majorité de points centrés près de l'origine (0,0).
+
+Si je résume cette syntaxe :
+
+- Au sein de la fonction `ggplot()`, on spécifie 2 composants de la grammaire des graphiques :
+    1. le nom du tableau contenant les données grâce à l'argument `data = alaska_flights`
+    2. l'association (`mapping`) des variables à des caractéristiques esthétiques (`aes()`) en précisant `aes(x = dep_delay, y = arr_delay)` :
+        - la variable `dep_delay` est associée à l'esthétique de position `x`
+        - la variable `arr_delay` est associée à l'esthétique de position `y`
+- On ajoute une couche au graphique `ggplot()` grâce au symbole `+`. La couche en question précise le troisème élément indispensable de la grammaire des graphiques : l'objet `geom`étrique. Ici, les objets sont des `point`s. On le spécifie grâce à la fonction `geom_point()`.
+
+Quelques remarques concernant les couches :
+
+- Notez que le signe `+` est placé *à la fin de la ligne*. Vous recevrez un message d'erreur si vous le placez au début.
+- Quand vous ajoutez une couche à un graphique, je vous encourage vivement à presser la touche `enter` de votre clavier juste après le symbole `+`. Ainsi, le code correspondant à chaque couche sera sur une ligne distincte, ce qui augmente considérablement la lisibilité de votre code.
+- Comme indiqué dans la section \@ref(functions), tant que les arguments d'une fonction sont spécifiés dans l'ordre, on peut se passer d'écrire leur nom. Ainsi, les deux blocs de commande suivants produisent exactement le même résultat :
+
+```{r eval=FALSE, tidy=FALSE}
+# Le nom des arguments est précisé
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
+  geom_point()
+
+# Le nom des arguments est omis
+ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) + 
+  geom_point()
+```
+
+
+### Exercices
+
+1. Donnez une raison pratique expliquant pourquoi les variables `dep_delay` et `arr_delay` ont une relation positive
+2. Quelles variables (pas nécessairement dans le tableau `alaska_flights`) pourraient avoir une corrélation négative (relation négative) avec `dep_delay` ? Pourquoi ? Rappelez-vous que nous étudions ici des variables numériques.
+3. Selon vous, pourquoi tant de points sont-il regroupés près de (0, 0) ? À quoi le point (0,0) correspond-il pour les vols d'Alaska Airline ?
+4. Citez les éléments de ce graphique/de ces données qui vous sautent le plus aux yeux ?
+5. Créez un nouveau nuage de points en utilisant d'autres variables du jeu de données `alaska_flights`
+
+
+### Over-plotting
+
+L'over-plotting est la superposition importante d'une grande quantité d'information sur une zone restreinte d'un graphique. Dans notre cas, nous observons un over-plotting important autour de (0,0). Cet effet est gênant car il est difficile de se faire une idée précise du nombre de points accumulés dans cette zone. La façon la plus simple de régler le problème est de modifier la transparence grâce à l'argument `alpha` de la fonction `geom_point()`. Par défaut, cette valeur est fixée à 1, pour une opacité totale. Une valeur de 0 rend les points totalement transparents, et donc invisibles. Trouver la bonne valeur peut demander de tâtonner une peu :
+
+```{r tidy=FALSE, warning = FALSE, fig.cap="La même figure, avec des points semi-transparents"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
+  geom_point(alpha = 0.2)
+```
+
+Notez que :
+
+- la transparence est additive : plus il y a de points, plus la zone est foncée car les points se superposent et rendent la zone plus opaque.
+- l'argument `alpha = 0.2` n'est pas intégré à l'intérieur d'une fonction `aes()` car il n'est pas associé à une variable : c'est un simple paramètre.
+
+L'over-plotting est souvent rencontré lorsque l'on représente plusieurs nuages de points pour les différentes valeurs d'une variable catégorielle. par exemple, si on transforme les mois de l'année en facteur (`factor(month)`), ont peut regarder s'il existe une relation entre les retards à l'aterrissage et le mois de l'année :
+
+```{r tidy=FALSE, warning=FALSE, fig.cap="Retards à l'arrivée pour les 12 mois de l'année 2013"}
+ggplot(data = alaska_flights, mapping = aes(x = factor(month), y = arr_delay)) +
+  geom_point()
+```
+
+Ici, l'ajout de transparence ne serait pas suffisant. Une autre solution est d'appliquer la mothode dîte de "jittering", ou tremblement. Elle consiste à ajouter un bruit aléatoire horizontal et/ou vertical aux points d'un graphique. Ici, on peut ajouter un léger bruit horizontal afin de disperser un peu les points pour chaque mois de l'année. On n'ajoute pas de bruit vertical car on ne souhaite pas que les valeurs de retard (sur l'axe des `y`) soient altérées :
+
+```{r jittering, tidy=FALSE, warning=FALSE, fig.cap="Retards à l'arrivée pour les 12 mois de l'année 2013"}
+ggplot(data = alaska_flights, mapping = aes(x = factor(month), y = arr_delay)) +
+  geom_jitter(width = 0.25)
+```
+
+On y voit déjà plus clair. L'argument `width` permet de spécifier l'intensité de la dispersion horizontale. Pour ajouter du bruit vertical (ce qui n'est pas souhaitable ici !), on peut ajouter l'argument `height`. le graphique de la figure \@ref(fig:jittering) est parfois appelé un "stripchart". C'est un graphique du type "nuage de points", mais pour lequel l'une des 2 variables et numérique, et l'autre est catégorielle.
+
+Il est évidemment possible d'ajouter de la transparence : 
+
+```{r tidy=FALSE, warning=FALSE, fig.cap="Retards à l'arrivée pour les 12 mois de l'année 2013"}
+ggplot(data = alaska_flights, mapping = aes(x = factor(month), y = arr_delay)) +
+  geom_jitter(width = 0.25, alpha = 0.5)
+```
+
+
+### Couleur, taille et forme
+
+L'argument `color` (ou `colour`, les deux orthographes fonctionnent) permet de spécifier la couleur des points. L'argument `size` permet de spécifier la taille des points. L'argument `shape` permet de spécifier la forme utilisée en guise de symbole. Ces 3 arguments peuvent être utilisés comme des paramètres, pour modifier l'ensemble des points d'un graphique. Mais ils peuvent aussi être associés à une variable, pour apporter une information supplémentaire.
+
+Comparez les deux graphiques suivants :
+
+```{r, rightcolor, tidy=FALSE, warning=FALSE, fig.cap="Utilisation correcte de `color`"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(color = "blue")
+```
+
+```{r, wrongcolor, tidy=FALSE, warning=FALSE, fig.cap="Utilisation incorrecte de `color`"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(aes(color = "blue"))
+```
+
+Le code qui permet de produire la figure \@ref(fig:rightcolor) fait un usage correct de l'argument `color`. On demande des points de couleur bleue, les points apparaîssent bleus. La figure \@ref(fig:wrongcolor) en revanche ne produit pas le résultat attendu. Puisque nous avons mis l'argument `color` à l'intérieur de la fonction `aes()`, R s'attend à ce que la couleur soit associée à une variable. Puisqu'aucune variable ne s'appelle "blue", R utilise la couleur par défaut. Pour associer la couleur des points à une variable, nous devons fournir un nom de variable valide :
+
+```{r, varcolor, tidy=FALSE, warning=FALSE, fig.cap="Association de `color` à une variable catégorielle"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(aes(color = factor(month)))
+```
+
+Ici, l'utilisation de la couleur est correcte. Elle est associée à une variable catégorielle, et chaque valeur possible du vecteur `month` se voit donc attribuer une couleur différente.
+
+```{r, varcolor2, tidy=FALSE, warning=FALSE, fig.cap="Association de `color` à une variable numérique"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(aes(color = arr_time))
+```
+
+De la même façon, la couleur des points est ici associée à une variable continue (l'heure d'arrivée des vols). Les points se voient donc attribuer une couleur choisie le long d'un gradient.
+
+La même approche peut être utilisée pour spécifier la forme des symboles avec l'argument `shape`. Attention toutefois : une variable continue ne peut pas être associée à `shape`
+
+```{r, shapeplot, tidy=FALSE, warning=FALSE, fig.cap="Association de `shape` à un facteur"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(aes(shape = factor(month)))
+```
+
+Vous noterez que seuls les 6 premiers niveaux d'un facteur se voient attribuer une forme automatiquement. Au delà de 6 symboles différents sur un même graphique, le résultat est souvent illisible. Il est possible d'ajouter plus de 6 symboles, mais cela demande de modifier la légende manuellement et concrètement nous n'en aurons jamais besoin. Lorsque plus de 6 séries doivent être distinguées, d'autres solutions bien plus pertinentes (par exemple les `factet`s) devraient être utilisées.
+
+Comme pour la couleur, il est possible d'e spécifier'utiliser l'argument `shape` en tant que paramètre du graphique sans l'associer à une variable. Il faut alors fournir un code compris entre 0 et 24 :
+
+```{r, shapeplot2, tidy=FALSE, warning=FALSE, fig.cap="Utilisation de `shape` en tant que paramètre"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(shape = 4)
+```
+
+Notez qu'ici, `ggplot()` ne crée pas de légende : tous les points ont le même symbole, ce symbole n'est pas associé à une variable, une légende est donc inutile.
+
+Parmis les valeur possibles pour `shape`, les symboles 21 à 24 sont des symboles dont on peut spécifier séparément la couleur du contour, avec `color` et la couleur du fond avec `fill` :
+
+```{r, shapecolorplot, tidy=FALSE, warning=FALSE, fig.cap="Utilisation de `shape`, `color` et `fill`"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(shape = 21, fill = "steelblue", color = "orange", alpha = 0.5)
+```
+
+N'hésitez pas à zoomer pour bien observer les points et comprendre ce qui se passe. Un conseil, faites des choix raisonnables ! Trop de couleurs n'est pas forcément souhaitable.
+
+Enfin, on peut ajuster la taille des symboles avec l'argument `size`. Tout comme il n'est pas possible d'associer une variable continue à `shape`, et il n'est pas conseillé d'associer une variable catégorielle nominale (c'est à dire un facteur non ordonné) à `size`. Associer une variable continue est en ravanche parfois utile :
+
+```{r, sizeplot, tidy=FALSE, warning=FALSE, fig.cap="Association d'une variable continue à la taille des symboles avec l'argument `size`"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
+  geom_point(aes(size = arr_time), alpha = 0.1)
+```
+
+Si l'over-plotting est ici très important (c'est pourquoi j'ai utilisé `alpha`), on constate néanmoins que les vols avec les retards les plus importants sont presque tous arrivés très tôt dans la journée ("500" signifie 5h00 du matin). Il s'agit probablement de vols qui devaient arriver dans la nuit, avant minuit, et qui sont finalement arrivés en tout début de journée, etnre 00h01 et 5h00 du matin. Comme pour les autres arguments, il est possible d'utiliser `size` avec une valeur fixe, la même pour tous les symboles, lorsque cet argument n'est pas associé à une variable.
+
+Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l'ensemble de ces arguments, il est malheureusement très facile d'obtenir des graphiques peu lisibles, ou contenant tellement d'information qu'ils en deviennent difficiles à déchiffrer. Faites preuve de modération :
+
+```{r, badplot, tidy=FALSE, warning=FALSE, fig.cap="Sometimes, less is more!"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, size = arr_time)) +
+  geom_point(alpha = 0.6, 
+             shape = 22,
+             color = "orange",
+             fill = "steelblue",
+             stroke = 2)
+```
+
+
+### Exercices
+
+À quoi sert l'argument `stroke` ?
+
+Avec le jeu de données `diamonds`, tapez le code permettant de créer le graphique \@ref(fig:exodiamonds) (Indice : affichez le tableau `diamonds` dans la console afin de voir quelles sont les variables disponibles).
+
+```{r, exodiamonds, tidy=FALSE, warning=FALSE, echo = FALSE, fig.cap="Prix de 53940 diamants en fonction de leur taille en carats et de leur couleur."}
+ggplot(data = diamonds, mapping = aes(x = carat, y = price)) +
+    geom_point(alpha = 0.5, shape = 4, aes(color = color))
+```
+
+Selon vous, à quoi sont dues les bandes verticales que l'on observe sur ce graphique ?
+
+
+## Graphiques en lignes
 

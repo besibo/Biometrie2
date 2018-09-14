@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-09-13">
+<meta name="date" content="2018-09-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -145,6 +145,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.2.2" data-path="viz.html"><a href="viz.html#gapminder"><i class="fa fa-check"></i><b>4.2.2</b> Gapminder</a></li>
 <li class="chapter" data-level="4.2.3" data-path="viz.html"><a href="viz.html#autres-elements-de-la-grammaire-des-graphiques"><i class="fa fa-check"></i><b>4.2.3</b> Autres éléments de la grammaire des graphiques</a></li>
 <li class="chapter" data-level="4.2.4" data-path="viz.html"><a href="viz.html#le-package-ggplot2"><i class="fa fa-check"></i><b>4.2.4</b> Le package <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="viz.html"><a href="viz.html#les-nuages-de-points"><i class="fa fa-check"></i><b>4.3</b> Les nuages de points</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="viz.html"><a href="viz.html#la-couche-de-base-la-fonction-ggplot"><i class="fa fa-check"></i><b>4.3.1</b> La couche de base : la fonction <code>ggplot()</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="viz.html"><a href="viz.html#ajout-dune-couche-supplementaire-lobjet-geometrique"><i class="fa fa-check"></i><b>4.3.2</b> Ajout d’une couche supplémentaire : l’objet géométrique</a></li>
+<li class="chapter" data-level="4.3.3" data-path="viz.html"><a href="viz.html#exercices-2"><i class="fa fa-check"></i><b>4.3.3</b> Exercices</a></li>
+<li class="chapter" data-level="4.3.4" data-path="viz.html"><a href="viz.html#over-plotting"><i class="fa fa-check"></i><b>4.3.4</b> Over-plotting</a></li>
+<li class="chapter" data-level="4.3.5" data-path="viz.html"><a href="viz.html#couleur-taille-et-forme"><i class="fa fa-check"></i><b>4.3.5</b> Couleur, taille et forme</a></li>
+<li class="chapter" data-level="4.3.6" data-path="viz.html"><a href="viz.html#exercices-3"><i class="fa fa-check"></i><b>4.3.6</b> Exercices</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
@@ -273,7 +281,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul>
 <p>Examinons maintenant la figure @ref(fig:gapminder_fig) qui représente ces variables pour chacun des 142 pays de ce jeu de données (notez l’utilisation de la notation scientifique dans la légende).</p>
 <div class="figure" style="text-align: center">
-<img src="figure/gapminder_fig-1.png" alt="Espérance de vie en fonction du PIB par habitant en 2007" width="70%" />
+<img src="figure/gapminder_fig-1.png" alt="Espérance de vie en fonction du PIB par habitant en 2007" width="90%" />
 <p class="caption">
 (#fig:gapminder_fig)Espérance de vie en fonction du PIB par habitant en 2007
 </p>
@@ -314,6 +322,237 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li>les histogrammes</li>
 <li>les diagrammes bâtons</li>
 </ol>
+</div>
+</div>
+<div id="les-nuages-de-points" class="section level2">
+<h2><span class="header-section-number">4.3</span> Les nuages de points</h2>
+<p>C’est probablement le plus simple des 5 types de graphiques citées plus haut. Il s’agit de graphiques bi-variés pour lesquels une variable est associée à l’axe des abscisses, et une autre est associée à l’axe des ordonnées. Comme pour le graphique présenté à la figure @ref(fig:gapminder_fig) ci-dessus, d’autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme…).</p>
+<p>Nous allons ici nous intéresser à la relation qui existe entre :</p>
+<ol style="list-style-type: decimal">
+<li><code>dep_delay</code> : le retard des vols au décollage, que nous placerons sur l’axe des “x”</li>
+<li><code>arr_delay</code> : le retard des mêmes vols à l’aterrissage, que nous placerons sur l’axe des “y”</li>
+</ol>
+<p>Afin d’avoir un jeu de données plus facile à utiliser, nous nous contenterons de visualiser les vols d’Alaska Airline, donc le code de compagnie aérienne est <code>&quot;AS&quot;</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alaska_flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(carrier <span class="op">==</span><span class="st"> &quot;AS&quot;</span>)</code></pre></div>
+<p>Il est normal que vous ne compreniez pas encore les commandes ci-dessous. Nous verrons ça plus tard. Retenez juste que nous avons maintenant créer un nouveau tableau, nommé <code>alaska_flights</code>, qui contient toutes les informations des vols d’Alaska Airline. Commencez par examiner ce tableau avec la fonction <code>View()</code>. En quoi est-il différent du tableau <code>flights</code> ?</p>
+<div id="la-couche-de-base-la-fonction-ggplot" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> La couche de base : la fonction <code>ggplot()</code></h3>
+<p>La fonction <code>ggplot()</code> permet d’établir la première base du graphique. C’est grâce à cette fonction que l’on précise quel jeu de données utiliser et quelle variables placer sur les axes :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-37"></span>
+<img src="figure/unnamed-chunk-37-1.png" alt="Un graphique sans `geom`" width="90%" />
+<p class="caption">
+Figure 4.1: Un graphique sans <code>geom</code>
+</p>
+</div>
+<p>Ce graphique est pour le moins vide : c’est normal, nous n’avons pas encore spéifié la couche contenant l’objet géométrique que nous souhaitons utiliser.</p>
+</div>
+<div id="ajout-dune-couche-supplementaire-lobjet-geometrique" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Ajout d’une couche supplémentaire : l’objet géométrique</h3>
+<p>Les nuages de points sont créés par la fonction <code>geom_point()</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<pre><code>Warning: Removed 5 rows containing missing values (geom_point).</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-38"></span>
+<img src="figure/unnamed-chunk-38-1.png" alt="Retards à l'arrivée en fonction des retard au décollage pour les vols d'Alaska Airline au départ de New York City en 2013" width="90%" />
+<p class="caption">
+Figure 4.2: Retards à l’arrivée en fonction des retard au décollage pour les vols d’Alaska Airline au départ de New York City en 2013
+</p>
+</div>
+<p>plusieurs choses importantes sont à remarquer ici :</p>
+<ol style="list-style-type: decimal">
+<li>le graphique présente maintenant une couche supplémentaire constituée de points.</li>
+<li>la fonction <code>geom_point()</code> nous prévient que 5 lignes contenant des données manquantes n’ont pas été intégrées au graphique. Les données manquent soit pour une variable, soit pour l’autre, soit pour les 2. il est donc impossible de les faire apparaître sur le graphique.</li>
+<li>il existe une relation positive entre <code>dep_delay</code> et <code>arr_delay</code> : quand le retard d’un vol au décollage augmente, le retard de ce vol augmente aussi à l’arrivée.</li>
+<li>Enfin, il y a une grande majorité de points centrés près de l’origine (0,0).</li>
+</ol>
+<p>Si je résume cette syntaxe :</p>
+<ul>
+<li>Au sein de la fonction <code>ggplot()</code>, on spécifie 2 composants de la grammaire des graphiques :
+<ol style="list-style-type: decimal">
+<li>le nom du tableau contenant les données grâce à l’argument <code>data = alaska_flights</code></li>
+<li>l’association (<code>mapping</code>) des variables à des caractéristiques esthétiques (<code>aes()</code>) en précisant <code>aes(x = dep_delay, y = arr_delay)</code> :
+<ul>
+<li>la variable <code>dep_delay</code> est associée à l’esthétique de position <code>x</code></li>
+<li>la variable <code>arr_delay</code> est associée à l’esthétique de position <code>y</code></li>
+</ul></li>
+</ol></li>
+<li>On ajoute une couche au graphique <code>ggplot()</code> grâce au symbole <code>+</code>. La couche en question précise le troisème élément indispensable de la grammaire des graphiques : l’objet <code>geom</code>étrique. Ici, les objets sont des <code>point</code>s. On le spécifie grâce à la fonction <code>geom_point()</code>.</li>
+</ul>
+<p>Quelques remarques concernant les couches :</p>
+<ul>
+<li>Notez que le signe <code>+</code> est placé <em>à la fin de la ligne</em>. Vous recevrez un message d’erreur si vous le placez au début.</li>
+<li>Quand vous ajoutez une couche à un graphique, je vous encourage vivement à presser la touche <code>enter</code> de votre clavier juste après le symbole <code>+</code>. Ainsi, le code correspondant à chaque couche sera sur une ligne distincte, ce qui augmente considérablement la lisibilité de votre code.</li>
+<li>Comme indiqué dans la section <a href="bases.html#functions">2.2.4.3</a>, tant que les arguments d’une fonction sont spécifiés dans l’ordre, on peut se passer d’écrire leur nom. Ainsi, les deux blocs de commande suivants produisent exactement le même résultat :</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Le nom des arguments est précisé</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()
+
+<span class="co"># Le nom des arguments est omis</span>
+<span class="kw">ggplot</span>(alaska_flights, <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+</div>
+<div id="exercices-2" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Exercices</h3>
+<ol style="list-style-type: decimal">
+<li>Donnez une raison pratique expliquant pourquoi les variables <code>dep_delay</code> et <code>arr_delay</code> ont une relation positive</li>
+<li>Quelles variables (pas nécessairement dans le tableau <code>alaska_flights</code>) pourraient avoir une corrélation négative (relation négative) avec <code>dep_delay</code> ? Pourquoi ? Rappelez-vous que nous étudions ici des variables numériques.</li>
+<li>Selon vous, pourquoi tant de points sont-il regroupés près de (0, 0) ? À quoi le point (0,0) correspond-il pour les vols d’Alaska Airline ?</li>
+<li>Citez les éléments de ce graphique/de ces données qui vous sautent le plus aux yeux ?</li>
+<li>Créez un nouveau nuage de points en utilisant d’autres variables du jeu de données <code>alaska_flights</code></li>
+</ol>
+</div>
+<div id="over-plotting" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> Over-plotting</h3>
+<p>L’over-plotting est la superposition importante d’une grande quantité d’information sur une zone restreinte d’un graphique. Dans notre cas, nous observons un over-plotting important autour de (0,0). Cet effet est gênant car il est difficile de se faire une idée précise du nombre de points accumulés dans cette zone. La façon la plus simple de régler le problème est de modifier la transparence grâce à l’argument <code>alpha</code> de la fonction <code>geom_point()</code>. Par défaut, cette valeur est fixée à 1, pour une opacité totale. Une valeur de 0 rend les points totalement transparents, et donc invisibles. Trouver la bonne valeur peut demander de tâtonner une peu :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-40"></span>
+<img src="figure/unnamed-chunk-40-1.png" alt="La même figure, avec des points semi-transparents" width="90%" />
+<p class="caption">
+Figure 4.3: La même figure, avec des points semi-transparents
+</p>
+</div>
+<p>Notez que :</p>
+<ul>
+<li>la transparence est additive : plus il y a de points, plus la zone est foncée car les points se superposent et rendent la zone plus opaque.</li>
+<li>l’argument <code>alpha = 0.2</code> n’est pas intégré à l’intérieur d’une fonction <code>aes()</code> car il n’est pas associé à une variable : c’est un simple paramètre.</li>
+</ul>
+<p>L’over-plotting est souvent rencontré lorsque l’on représente plusieurs nuages de points pour les différentes valeurs d’une variable catégorielle. par exemple, si on transforme les mois de l’année en facteur (<code>factor(month)</code>), ont peut regarder s’il existe une relation entre les retards à l’aterrissage et le mois de l’année :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-41"></span>
+<img src="figure/unnamed-chunk-41-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
+<p class="caption">
+Figure 4.4: Retards à l’arrivée pour les 12 mois de l’année 2013
+</p>
+</div>
+<p>Ici, l’ajout de transparence ne serait pas suffisant. Une autre solution est d’appliquer la mothode dîte de “jittering”, ou tremblement. Elle consiste à ajouter un bruit aléatoire horizontal et/ou vertical aux points d’un graphique. Ici, on peut ajouter un léger bruit horizontal afin de disperser un peu les points pour chaque mois de l’année. On n’ajoute pas de bruit vertical car on ne souhaite pas que les valeurs de retard (sur l’axe des <code>y</code>) soient altérées :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.25</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:jittering"></span>
+<img src="figure/jittering-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
+<p class="caption">
+Figure 4.5: Retards à l’arrivée pour les 12 mois de l’année 2013
+</p>
+</div>
+<p>On y voit déjà plus clair. L’argument <code>width</code> permet de spécifier l’intensité de la dispersion horizontale. Pour ajouter du bruit vertical (ce qui n’est pas souhaitable ici !), on peut ajouter l’argument <code>height</code>. le graphique de la figure <a href="viz.html#fig:jittering">4.5</a> est parfois appelé un “stripchart”. C’est un graphique du type “nuage de points”, mais pour lequel l’une des 2 variables et numérique, et l’autre est catégorielle.</p>
+<p>Il est évidemment possible d’ajouter de la transparence :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-42"></span>
+<img src="figure/unnamed-chunk-42-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
+<p class="caption">
+Figure 4.6: Retards à l’arrivée pour les 12 mois de l’année 2013
+</p>
+</div>
+</div>
+<div id="couleur-taille-et-forme" class="section level3">
+<h3><span class="header-section-number">4.3.5</span> Couleur, taille et forme</h3>
+<p>L’argument <code>color</code> (ou <code>colour</code>, les deux orthographes fonctionnent) permet de spécifier la couleur des points. L’argument <code>size</code> permet de spécifier la taille des points. L’argument <code>shape</code> permet de spécifier la forme utilisée en guise de symbole. Ces 3 arguments peuvent être utilisés comme des paramètres, pour modifier l’ensemble des points d’un graphique. Mais ils peuvent aussi être associés à une variable, pour apporter une information supplémentaire.</p>
+<p>Comparez les deux graphiques suivants :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:rightcolor"></span>
+<img src="figure/rightcolor-1.png" alt="Utilisation correcte de `color`" width="90%" />
+<p class="caption">
+Figure 4.7: Utilisation correcte de <code>color</code>
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:wrongcolor"></span>
+<img src="figure/wrongcolor-1.png" alt="Utilisation incorrecte de `color`" width="90%" />
+<p class="caption">
+Figure 4.8: Utilisation incorrecte de <code>color</code>
+</p>
+</div>
+<p>Le code qui permet de produire la figure <a href="viz.html#fig:rightcolor">4.7</a> fait un usage correct de l’argument <code>color</code>. On demande des points de couleur bleue, les points apparaîssent bleus. La figure <a href="viz.html#fig:wrongcolor">4.8</a> en revanche ne produit pas le résultat attendu. Puisque nous avons mis l’argument <code>color</code> à l’intérieur de la fonction <code>aes()</code>, R s’attend à ce que la couleur soit associée à une variable. Puisqu’aucune variable ne s’appelle “blue”, R utilise la couleur par défaut. Pour associer la couleur des points à une variable, nous devons fournir un nom de variable valide :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">factor</span>(month)))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:varcolor"></span>
+<img src="figure/varcolor-1.png" alt="Association de `color` à une variable catégorielle" width="90%" />
+<p class="caption">
+Figure 4.9: Association de <code>color</code> à une variable catégorielle
+</p>
+</div>
+<p>Ici, l’utilisation de la couleur est correcte. Elle est associée à une variable catégorielle, et chaque valeur possible du vecteur <code>month</code> se voit donc attribuer une couleur différente.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> arr_time))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:varcolor2"></span>
+<img src="figure/varcolor2-1.png" alt="Association de `color` à une variable numérique" width="90%" />
+<p class="caption">
+Figure 4.10: Association de <code>color</code> à une variable numérique
+</p>
+</div>
+<p>De la même façon, la couleur des points est ici associée à une variable continue (l’heure d’arrivée des vols). Les points se voient donc attribuer une couleur choisie le long d’un gradient.</p>
+<p>La même approche peut être utilisée pour spécifier la forme des symboles avec l’argument <code>shape</code>. Attention toutefois : une variable continue ne peut pas être associée à <code>shape</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> <span class="kw">factor</span>(month)))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:shapeplot"></span>
+<img src="figure/shapeplot-1.png" alt="Association de `shape` à un facteur" width="90%" />
+<p class="caption">
+Figure 4.11: Association de <code>shape</code> à un facteur
+</p>
+</div>
+<p>Vous noterez que seuls les 6 premiers niveaux d’un facteur se voient attribuer une forme automatiquement. Au delà de 6 symboles différents sur un même graphique, le résultat est souvent illisible. Il est possible d’ajouter plus de 6 symboles, mais cela demande de modifier la légende manuellement et concrètement nous n’en aurons jamais besoin. Lorsque plus de 6 séries doivent être distinguées, d’autres solutions bien plus pertinentes (par exemple les <code>factet</code>s) devraient être utilisées.</p>
+<p>Comme pour la couleur, il est possible d’e spécifier’utiliser l’argument <code>shape</code> en tant que paramètre du graphique sans l’associer à une variable. Il faut alors fournir un code compris entre 0 et 24 :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">4</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:shapeplot2"></span>
+<img src="figure/shapeplot2-1.png" alt="Utilisation de `shape` en tant que paramètre" width="90%" />
+<p class="caption">
+Figure 4.12: Utilisation de <code>shape</code> en tant que paramètre
+</p>
+</div>
+<p>Notez qu’ici, <code>ggplot()</code> ne crée pas de légende : tous les points ont le même symbole, ce symbole n’est pas associé à une variable, une légende est donc inutile.</p>
+<p>Parmis les valeur possibles pour <code>shape</code>, les symboles 21 à 24 sont des symboles dont on peut spécifier séparément la couleur du contour, avec <code>color</code> et la couleur du fond avec <code>fill</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:shapecolorplot"></span>
+<img src="figure/shapecolorplot-1.png" alt="Utilisation de `shape`, `color` et `fill`" width="90%" />
+<p class="caption">
+Figure 4.13: Utilisation de <code>shape</code>, <code>color</code> et <code>fill</code>
+</p>
+</div>
+<p>N’hésitez pas à zoomer pour bien observer les points et comprendre ce qui se passe. Un conseil, faites des choix raisonnables ! Trop de couleurs n’est pas forcément souhaitable.</p>
+<p>Enfin, on peut ajuster la taille des symboles avec l’argument <code>size</code>. Tout comme il n’est pas possible d’associer une variable continue à <code>shape</code>, et il n’est pas conseillé d’associer une variable catégorielle nominale (c’est à dire un facteur non ordonné) à <code>size</code>. Associer une variable continue est en ravanche parfois utile :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size =</span> arr_time), <span class="dt">alpha =</span> <span class="fl">0.1</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:sizeplot"></span>
+<img src="figure/sizeplot-1.png" alt="Association d'une variable continue à la taille des symboles avec l'argument `size`" width="90%" />
+<p class="caption">
+Figure 4.14: Association d’une variable continue à la taille des symboles avec l’argument <code>size</code>
+</p>
+</div>
+<p>Si l’over-plotting est ici très important (c’est pourquoi j’ai utilisé <code>alpha</code>), on constate néanmoins que les vols avec les retards les plus importants sont presque tous arrivés très tôt dans la journée (“500” signifie 5h00 du matin). Il s’agit probablement de vols qui devaient arriver dans la nuit, avant minuit, et qui sont finalement arrivés en tout début de journée, etnre 00h01 et 5h00 du matin. Comme pour les autres arguments, il est possible d’utiliser <code>size</code> avec une valeur fixe, la même pour tous les symboles, lorsque cet argument n’est pas associé à une variable.</p>
+<p>Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l’ensemble de ces arguments, il est malheureusement très facile d’obtenir des graphiques peu lisibles, ou contenant tellement d’information qu’ils en deviennent difficiles à déchiffrer. Faites preuve de modération :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">size =</span> arr_time)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.6</span>, 
+             <span class="dt">shape =</span> <span class="dv">22</span>,
+             <span class="dt">color =</span> <span class="st">&quot;orange&quot;</span>,
+             <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>,
+             <span class="dt">stroke =</span> <span class="dv">2</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:badplot"></span>
+<img src="figure/badplot-1.png" alt="Sometimes, less is more!" width="90%" />
+<p class="caption">
+Figure 4.15: Sometimes, less is more!
+</p>
+</div>
+</div>
+<div id="exercices-3" class="section level3">
+<h3><span class="header-section-number">4.3.6</span> Exercices</h3>
+<p>À quoi sert l’argument <code>stroke</code> ?</p>
+<p>Avec le jeu de données <code>diamonds</code>, tapez le code permettant de créer le graphique <a href="viz.html#fig:exodiamonds">4.16</a> (Indice : affichez le tableau <code>diamonds</code> dans la console afin de voir quelles sont les variables disponibles).</p>
+<div class="figure" style="text-align: center"><span id="fig:exodiamonds"></span>
+<img src="figure/exodiamonds-1.png" alt="Prix de 53940 diamants en fonction de leur taille en carats et de leur couleur." width="90%" />
+<p class="caption">
+Figure 4.16: Prix de 53940 diamants en fonction de leur taille en carats et de leur couleur.
+</p>
+</div>
+<p>Selon vous, à quoi sont dues les bandes verticales que l’on observe sur ce graphique ?</p>
 
 </div>
 </div>
