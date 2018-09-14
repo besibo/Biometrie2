@@ -334,5 +334,248 @@ ggplot(data = diamonds, mapping = aes(x = carat, y = price)) +
 Selon vous, à quoi sont dues les bandes verticales que l'on observe sur ce graphique ?
 
 
-## Graphiques en lignes
+## Les graphiques en lignes
+
+### Un nouveau jeu de données
+
+Les graphiques en ligne, ou "linegraphs" sont généralement utilisés lorsque l'axe des `x` porte une information **temporelle**, et l'axe des `y` une autre variable numérique. Le temps est une variable naturellement ordonnée : les jours, semaines, mois, années, se suivent naturellement. Les graphiques en lignes devraient être évités lorsqu'il n'y a pas une organisation séquentielle évidente de la variable portée par l'axe des `x`.
+
+Concentrons nous maintenant sur le tableau `weather` du package `nycflights13`. Explorez ce tableau en appliquant les méthodes vues dans le chapitre \@ref(dataset). N'oubliez pas de consultez l'aide de ce jeu de données.
+
+```{r}
+weather
+```
+
+Nous allons nous intéresser à la variable `temp`, qui contient un enregistrement de température pour chaque heure de chaque jour de 2013 pour les 3 aéroports de New York. Cela représente une grande quantité de données, aussi, nous nous limiterons aux températures observées entre le 1er et le 15 janvier, pour l'aéroport Newark uniquement.
+
+```{r tidy=FALSE}
+small_weather <- weather %>% 
+  filter(origin == "EWR",
+         month == 1,
+         day <= 15)
+```
+
+La fonction `filter()` fonctionne sur le même principe que la fonction `subset()` vue lors du premier TP. Ici, nous demandons à R de créer un nouveau tableau de données, nommé `small_weather`, qui ne contiendra que les lignes correspondant à `origin == "EWR"`, et `month == 1`, et `day <= 15`, c'est à dire les données météorologiques de l'aéroport de Newark pour les 15 premiers jours de janvier 2013.
+
+
+### Exercice
+
+Avec `View()`, consultez le tableau nouvellement créé. Expliquez pourquoi la variable `time_hour` identifie de manière unique le moment ou chaque mesure a été réalisée alors que ce n'est pas le cas de la variable `hour`.
+
+
+### La fonction `geom_line()`
+
+Les line graphs sont produits de la même façon que les nuages de points. Seul l'objet géométrique permettant de visualiser les données change. Au lieu d'utiliser `geom_point()`, on utilisera `geom_line()` :
+
+```{r linegraph, tidy=FALSE, fig.cap="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
+ggplot(data = small_weather, mapping = aes(x = time_hour, y = temp)) +
+  geom_line()
+```
+
+Très logiquement, on observe des oscillations plus ou moins régulières qui correspondent à l'alternance jour/nuit. Notez l'échelle de l'axe des ordonnées : les températures sont enregistrées en degrés Farenheit.
+
+Nous connaissons maintenant 2 types d'objets `geom`étriques : les points les les lignes. il est tout à fait possible d'ajouter plusieurs couches à un graphique, chacune d'elle correspondant à un objet `geom`étrique différent :
+
+```{r lineplotgraph, tidy=FALSE, fig.cap="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
+ggplot(data = small_weather, mapping = aes(x = time_hour, y = temp)) +
+  geom_line() +
+  geom_point()
+```
+
+Enfin, comme pour les points, il est possible de spécifier plusieurs caractéristiques esthétiques des lignes, soit en les associant à des variables, au sein de la fonction `aes()`, soit en les utilisant en guise de paramètres pour modifier l'aspect général. Les arguments les plus classiques sont une fois de plus `color` (ou `colour`) pour modifier la couleur des lignes,  `linetype` pour modifier le type de lignes (continues, pointillées, tirets, etc), et `size` pour modifier l'épaisseur des lignes.
+
+Reprenons le jeu de données complet `weather`, et filtrons uniquement les dates comprises entre le premier et le 15 janvier, mais cette fois pour les 3 aéroports de New York :
+
+```{r tidy=FALSE}
+small_weather_airports <- weather %>% 
+  filter(month == 1,
+         day <= 15)
+```
+
+Nous pouvons maintenant réaliser un "linegraph" sur lequel une courbe apparaîtra pour chaque aéroport. Pour cela, nous devons associer la variable `origin` à un attribut esthétique des lignes. Par exemple :
+
+```{r linecolor, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013"}
+ggplot(data = small_weather_airports, mapping = aes(x = time_hour, y = temp)) +
+  geom_line(aes(color = origin))
+```
+
+Ou bien :
+
+```{r linetype, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013"}
+ggplot(data = small_weather_airports, mapping = aes(x = time_hour, y = temp)) +
+  geom_line(aes(linetype = origin))
+```
+
+Ou encore :
+
+```{r linetypecolor, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013"}
+ggplot(data = small_weather_airports, mapping = aes(x = time_hour, y = temp)) +
+  geom_line(aes(color = origin, linetype = origin))
+```
+
+### À quel endroit placer `aes()` et les arguments `color`, `size`, etc. ?
+
+Jusqu'à maintenant, pour spécifier les associations entre certaines variables et les caractéristiques esthétiques d'un graphique, nous avons été amenés à utiliser la fonction `aes()` à 2 endroits distincts :
+
+1. au sein de la fonction `ggplot()`
+2. au sein des fonctions `geom_XXX()`
+
+Comment choisir l'endroit où renseigner `aes()` ? Pour bien comprendre, reprenons l'exemple du graphique \@ref(fig:lineplotgraph) sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j'omets volontairement le nom es arguments `data` et `mapping` dans la fonction `ggplot()`) :
+
+```{r lineplotgraph2, tidy=FALSE, fig.cap="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
+ggplot(small_weather, aes(x = time_hour, y = temp)) +
+  geom_line() +
+  geom_point()
+```
+
+Voyons ce qui se passe si on associe la variable `wind_speed` à l'esthétique `color`, à plusieurs endroits du code ci-dessus. Comparez les trois syntaxes et observez les différences entre les 3 graphiques obtenus :
+
+```{r wind, tidy=FALSE, fig.cap="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
+ggplot(small_weather, aes(x = time_hour, y = temp, color = wind_speed)) +
+  geom_line() +
+  geom_point()
+```
+
+```{r wind2, tidy=FALSE, fig.cap="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
+ggplot(small_weather, aes(x = time_hour, y = temp)) +
+  geom_line(aes(color = wind_speed)) +
+  geom_point()
+```
+
+```{r wind3, tidy=FALSE, fig.cap="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
+ggplot(small_weather, aes(x = time_hour, y = temp)) +
+  geom_line() +
+  geom_point(aes(color = wind_speed))
+```
+
+Vous l'aurez compris, lorsque l'on spécifie `aes()` à l'intérieur de la fonction `ggplot()`, les associations de variables et d'esthétiques sont appliquées à tous les objets géométriques, donc à toutes les autres couches. En revanche, quand `aes()` est spécifié dans une couche donnée, les réglages ne s'appliquent qu'à cette couche spécifique.
+
+En l'occurence, si le même réglage est spécifié dans la fonction `ggplot()` et dans une fonction `geom_XXX()`, c'est le réglage spécifié dans l'objet géométrique qui l'emporte :
+
+```{r wind4, tidy=FALSE, fig.cap="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
+ggplot(small_weather, aes(x = time_hour, y = temp, color = wind_speed)) +
+  geom_line(color = "orange") +
+  geom_point()
+```
+
+il est ainsi possible de spécifier des éléments esthétiques qui s'appliqueront à toutes les couches d'un graphique, et d'autres qui ne s'appliqueront qu'à une couche spécifique, qu'à un objet géométrique particulier.
+
+
+## Les histogrammes {#histogram}
+
+Un histogramme permet de visualiser la distribution **d'une variable** numérique continue. Contrairement aux deux types de graphique vus précédemment, il sera donc inutile de préciser la variable à associer à l'axe des ordonnées : R la cacule automatiquement pour nous lorsque nous faisons appel à la fonction `geom_histogram()` pour créer un objet géométrique "histogramme".
+
+### L'objet `geom_histogram()`
+
+Si on reprend le jeu de données `weather`, on peut par exemple s'intéresser à la distribution des températures tout au long de l'année :
+
+```{r warning=FALSE, tidy=FALSE}
+ggplot(weather, aes(x = temp)) +
+  geom_histogram()
+```
+
+On observe plusieurs choses :
+
+1. La distribution semble globalement bimodale avec un pic autour de 36-37 degrés farenheit (2 à 3 ºC)  et un autre autour de 65-70 degrés farenheit (18-21 ºC).
+2. Les températures ont varié de 12 degrés farenheit (-11ºC) à 100 degrés farenheit (près de 38ºC).
+3. R nous avertit qu'une valeur non finie n'a pas pu être intégrée
+4. R nou indique qu'il a choisi de représenter 30 classes de températures (`bins = 30`). C'est la valeur par défaut. R nous conseille de choisir une valeur plus appropriée.
+
+Comme pour les nuages de points utilisant les symboles 21 à 24, il est possible de spécifier la couleur de remplissage des barres avec l'argument `fill` et la couleur du contour des barres avec l'argument `color` :
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE}
+ggplot(weather, aes(x = temp)) +
+  geom_histogram(fill = "steelblue", color = "grey80")
+```
+
+### La taille des classes
+
+Par défaut, R choisit arbitrairement de représenter 30 classes. Ce n'est que rarement le bon choix, et il est souvent necessaire de tâtonner pour trouver le nombre de classes qui permet d'avoir une idée correcte de la distribution des données.
+
+Il est possible d'ajuster les caractéristiques des classes de l'histogramme de l'une des 3 façons suivantes :
+
+1. en ajustant le nombre de catégories avec `bins`
+2. en précisant la largeur des catégories avec `binwidth`
+3. en fournissant manuellement les limites des classes de tailles avec `breaks`
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE}
+ggplot(weather, aes(x = temp)) +
+  geom_histogram(bins = 60, color = "white")
+```
+
+Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n'est pas aussi lisse qu'elle en avait l'air. L'ajout d'une couche supplémentaire avec la fonction `geom_rug()` ("a rug"" est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu'on pouvait le croire :
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE}
+ggplot(weather, aes(x = temp)) +
+  geom_histogram(bins = 60, color = "white") +
+  geom_rug(alpha = 0.1)
+```
+
+Notez la transparence importante utilisée pour `geom_rug`. On constate que la précision des relevés de température n'est en fait que de quelques dixièmes de degrés.
+
+On peut également modifier la largeur des classes avec `binwidth` :
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE}
+ggplot(weather, aes(x = temp)) +
+  geom_histogram(binwidth = 10, color = "white")
+```
+
+Ici chaque catégorie recouvre 10 degrés farenheit. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l'argument `breaks` :
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE}
+ggplot(weather, aes(x = temp)) +
+  geom_histogram(breaks = c(0, 10, 20, 50, 60, 70, 80, 105), color = "white")
+```
+
+Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n'ont pas la même largeur. Cela rend l'interprétation difficile. Il est donc vivement conseillé, pour spécifier `breaks`, de créer des suites régulières, comme avec la fonction `seq()` par exemple (consultez sont fichier d'aide et les exemples !) :
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE}
+limits <- seq(from = 10, to = 105, by = 5)
+limits
+ggplot(weather, aes(x = temp)) +
+  geom_histogram(breaks = limits, color = "white")
+```
+
+Il est important que toute la gamme des valeurs de `temp` soit couverte par les limites des classes que nous avons définies, sinon, certaines valeurs sont omises et l'histogramme est donc incomplet/incorrect. Une façon de s'en assurer est d'afficher les résumé des données pour la colonne `temp` du jeu de données `weather` :
+
+```{r}
+summary(weather$temp)
+```
+
+On voit ici que les températures varien de 10.94 à 100.04 degrés farenheit. Les classes que nous avons définies couvrent une plage de température plus large (de 10 à 105). Toutes les données sont donc bien intégrées à l'histogramme.
+
+## Les `facet`s
+
+Nous l'avons indiqué plus haut, les `facet`s permettent de scinder le jeux de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous groupes. 
+
+Ainsi, si l'on souhaite connaître la distribution des températures pour chaque mois de l'année 2013, plutôt que de faire ceci :
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE}
+ggplot(weather, aes(x = temp, fill = factor(month))) +
+  geom_histogram(bins = 20, color = "grey30")
+```
+
+qui produit un graphique certes assez joli, mais difficile à interpréter, mieux vaut faire ceci : 
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2}
+ggplot(weather, aes(x = temp, fill = factor(month))) +
+  geom_histogram(bins = 20, color = "grey30") +
+  facet_wrap(~factor(month), ncol = 3)
+```
+
+La couche supplémentaire créée avec `facet_wrap` permet donc de scinder les données en foncton d'une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole `~` devant la variable que l'on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c'est la raison pour laquelle j'utilise la notation `factor(month)` et non simplement `month`.
+
+Avec la fonction `facet_wrap()`, il est possible d'indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaitées avec `ncol`, soit le nombre de lignes souhaitées avec `nrow`.
+
+Une autre fonction nommée `facte_grid` permet d'agencer des sous graphique selon 2 variables catégorielles. Per exemple :
+
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2}
+ggplot(weather, aes(x = temp, fill = factor(month))) +
+  geom_histogram(bins = 20, color = "grey30") +
+  facet_grid(factor(month) ~ origin)
+```
+
+Ici, nous avons utilisé la variable `month` (transformée en facteur) et la variable `origin` pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible de faire facilement des comparaisons des températures intermensuelles au sein d'un aéroport donné (en colonnes), ou de faire des comparaisons des températures observées le même mois dans plusieurs aéroports (en lignes). 
+
+`facet_grid()` doit elle aussi être utilisée avec le symbole `~`. Comme pour les indices d'un tableaux, on met à gauche du `~` la variable qui figurera en lignes, et à droite du `~` celle qui figurera en colonnes. Les arguments `nrow` et `ncol` ne peuvent donc pas être utilisés : c'est le nombre de niveaux de chaque variable catégorielle fournie à `facet_grid()` qui détermine le nombre de lignes et de colonnes du graphique.
 

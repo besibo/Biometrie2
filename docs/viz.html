@@ -154,6 +154,17 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.3.5" data-path="viz.html"><a href="viz.html#couleur-taille-et-forme"><i class="fa fa-check"></i><b>4.3.5</b> Couleur, taille et forme</a></li>
 <li class="chapter" data-level="4.3.6" data-path="viz.html"><a href="viz.html#exercices-3"><i class="fa fa-check"></i><b>4.3.6</b> Exercices</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="viz.html"><a href="viz.html#les-graphiques-en-lignes"><i class="fa fa-check"></i><b>4.4</b> Les graphiques en lignes</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="viz.html"><a href="viz.html#un-nouveau-jeu-de-donnees"><i class="fa fa-check"></i><b>4.4.1</b> Un nouveau jeu de données</a></li>
+<li class="chapter" data-level="4.4.2" data-path="viz.html"><a href="viz.html#exercice"><i class="fa fa-check"></i><b>4.4.2</b> Exercice</a></li>
+<li class="chapter" data-level="4.4.3" data-path="viz.html"><a href="viz.html#la-fonction-geom_line"><i class="fa fa-check"></i><b>4.4.3</b> La fonction <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.4.4" data-path="viz.html"><a href="viz.html#a-quel-endroit-placer-aes-et-les-arguments-color-size-etc."><i class="fa fa-check"></i><b>4.4.4</b> À quel endroit placer <code>aes()</code> et les arguments <code>color</code>, <code>size</code>, etc. ?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="viz.html"><a href="viz.html#histogram"><i class="fa fa-check"></i><b>4.5</b> Les histogrammes</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="viz.html"><a href="viz.html#lobjet-geom_histogram"><i class="fa fa-check"></i><b>4.5.1</b> L’objet <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="4.5.2" data-path="viz.html"><a href="viz.html#la-taille-des-classes"><i class="fa fa-check"></i><b>4.5.2</b> La taille des classes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="viz.html"><a href="viz.html#les-facets"><i class="fa fa-check"></i><b>4.6</b> Les <code>facet</code>s</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
 <li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a></li>
@@ -553,8 +564,240 @@ Figure 4.16: Prix de 53940 diamants en fonction de leur taille en carats et de l
 </p>
 </div>
 <p>Selon vous, à quoi sont dues les bandes verticales que l’on observe sur ce graphique ?</p>
-
 </div>
+</div>
+<div id="les-graphiques-en-lignes" class="section level2">
+<h2><span class="header-section-number">4.4</span> Les graphiques en lignes</h2>
+<div id="un-nouveau-jeu-de-donnees" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Un nouveau jeu de données</h3>
+<p>Les graphiques en ligne, ou “linegraphs” sont généralement utilisés lorsque l’axe des <code>x</code> porte une information <strong>temporelle</strong>, et l’axe des <code>y</code> une autre variable numérique. Le temps est une variable naturellement ordonnée : les jours, semaines, mois, années, se suivent naturellement. Les graphiques en lignes devraient être évités lorsqu’il n’y a pas une organisation séquentielle évidente de la variable portée par l’axe des <code>x</code>.</p>
+<p>Concentrons nous maintenant sur le tableau <code>weather</code> du package <code>nycflights13</code>. Explorez ce tableau en appliquant les méthodes vues dans le chapitre <a href="dataset.html#dataset">3</a>. N’oubliez pas de consultez l’aide de ce jeu de données.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">weather</code></pre></div>
+<pre><code># A tibble: 26,115 x 15
+   origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
+   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;
+ 1 EWR     2013     1     1     1  39.0  26.1  59.4      270      10.4 
+ 2 EWR     2013     1     1     2  39.0  27.0  61.6      250       8.06
+ 3 EWR     2013     1     1     3  39.0  28.0  64.4      240      11.5 
+ 4 EWR     2013     1     1     4  39.9  28.0  62.2      250      12.7 
+ 5 EWR     2013     1     1     5  39.0  28.0  64.4      260      12.7 
+ 6 EWR     2013     1     1     6  37.9  28.0  67.2      240      11.5 
+ 7 EWR     2013     1     1     7  39.0  28.0  64.4      240      15.0 
+ 8 EWR     2013     1     1     8  39.9  28.0  62.2      250      10.4 
+ 9 EWR     2013     1     1     9  39.9  28.0  62.2      260      15.0 
+10 EWR     2013     1     1    10  41    28.0  59.6      260      13.8 
+# ... with 26,105 more rows, and 5 more variables: wind_gust &lt;dbl&gt;,
+#   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Nous allons nous intéresser à la variable <code>temp</code>, qui contient un enregistrement de température pour chaque heure de chaque jour de 2013 pour les 3 aéroports de New York. Cela représente une grande quantité de données, aussi, nous nous limiterons aux températures observées entre le 1er et le 15 janvier, pour l’aéroport Newark uniquement.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">small_weather &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(origin <span class="op">==</span><span class="st"> &quot;EWR&quot;</span>,
+         month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,
+         day <span class="op">&lt;=</span><span class="st"> </span><span class="dv">15</span>)</code></pre></div>
+<p>La fonction <code>filter()</code> fonctionne sur le même principe que la fonction <code>subset()</code> vue lors du premier TP. Ici, nous demandons à R de créer un nouveau tableau de données, nommé <code>small_weather</code>, qui ne contiendra que les lignes correspondant à <code>origin == &quot;EWR&quot;</code>, et <code>month == 1</code>, et <code>day &lt;= 15</code>, c’est à dire les données météorologiques de l’aéroport de Newark pour les 15 premiers jours de janvier 2013.</p>
+</div>
+<div id="exercice" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Exercice</h3>
+<p>Avec <code>View()</code>, consultez le tableau nouvellement créé. Expliquez pourquoi la variable <code>time_hour</code> identifie de manière unique le moment ou chaque mesure a été réalisée alors que ce n’est pas le cas de la variable <code>hour</code>.</p>
+</div>
+<div id="la-fonction-geom_line" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> La fonction <code>geom_line()</code></h3>
+<p>Les line graphs sont produits de la même façon que les nuages de points. Seul l’objet géométrique permettant de visualiser les données change. Au lieu d’utiliser <code>geom_point()</code>, on utilisera <code>geom_line()</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:linegraph"></span>
+<img src="figure/linegraph-1.png" alt="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.17: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<p>Très logiquement, on observe des oscillations plus ou moins régulières qui correspondent à l’alternance jour/nuit. Notez l’échelle de l’axe des ordonnées : les températures sont enregistrées en degrés Farenheit.</p>
+<p>Nous connaissons maintenant 2 types d’objets <code>geom</code>étriques : les points les les lignes. il est tout à fait possible d’ajouter plusieurs couches à un graphique, chacune d’elle correspondant à un objet <code>geom</code>étrique différent :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:lineplotgraph"></span>
+<img src="figure/lineplotgraph-1.png" alt="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.18: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<p>Enfin, comme pour les points, il est possible de spécifier plusieurs caractéristiques esthétiques des lignes, soit en les associant à des variables, au sein de la fonction <code>aes()</code>, soit en les utilisant en guise de paramètres pour modifier l’aspect général. Les arguments les plus classiques sont une fois de plus <code>color</code> (ou <code>colour</code>) pour modifier la couleur des lignes, <code>linetype</code> pour modifier le type de lignes (continues, pointillées, tirets, etc), et <code>size</code> pour modifier l’épaisseur des lignes.</p>
+<p>Reprenons le jeu de données complet <code>weather</code>, et filtrons uniquement les dates comprises entre le premier et le 15 janvier, mais cette fois pour les 3 aéroports de New York :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">small_weather_airports &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,
+         day <span class="op">&lt;=</span><span class="st"> </span><span class="dv">15</span>)</code></pre></div>
+<p>Nous pouvons maintenant réaliser un “linegraph” sur lequel une courbe apparaîtra pour chaque aéroport. Pour cela, nous devons associer la variable <code>origin</code> à un attribut esthétique des lignes. Par exemple :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> origin))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:linecolor"></span>
+<img src="figure/linecolor-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.19: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<p>Ou bien :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> origin))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:linetype"></span>
+<img src="figure/linetype-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.20: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<p>Ou encore :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> origin, <span class="dt">linetype =</span> origin))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:linetypecolor"></span>
+<img src="figure/linetypecolor-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.21: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+</p>
+</div>
+</div>
+<div id="a-quel-endroit-placer-aes-et-les-arguments-color-size-etc." class="section level3">
+<h3><span class="header-section-number">4.4.4</span> À quel endroit placer <code>aes()</code> et les arguments <code>color</code>, <code>size</code>, etc. ?</h3>
+<p>Jusqu’à maintenant, pour spécifier les associations entre certaines variables et les caractéristiques esthétiques d’un graphique, nous avons été amenés à utiliser la fonction <code>aes()</code> à 2 endroits distincts :</p>
+<ol style="list-style-type: decimal">
+<li>au sein de la fonction <code>ggplot()</code></li>
+<li>au sein des fonctions <code>geom_XXX()</code></li>
+</ol>
+<p>Comment choisir l’endroit où renseigner <code>aes()</code> ? Pour bien comprendre, reprenons l’exemple du graphique <a href="viz.html#fig:lineplotgraph">4.18</a> sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j’omets volontairement le nom es arguments <code>data</code> et <code>mapping</code> dans la fonction <code>ggplot()</code>) :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:lineplotgraph2"></span>
+<img src="figure/lineplotgraph2-1.png" alt="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.22: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<p>Voyons ce qui se passe si on associe la variable <code>wind_speed</code> à l’esthétique <code>color</code>, à plusieurs endroits du code ci-dessus. Comparez les trois syntaxes et observez les différences entre les 3 graphiques obtenus :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp, <span class="dt">color =</span> wind_speed)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:wind"></span>
+<img src="figure/wind-1.png" alt="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.23: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> wind_speed)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:wind2"></span>
+<img src="figure/wind2-1.png" alt="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.24: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> wind_speed))</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:wind3"></span>
+<img src="figure/wind3-1.png" alt="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.25: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<p>Vous l’aurez compris, lorsque l’on spécifie <code>aes()</code> à l’intérieur de la fonction <code>ggplot()</code>, les associations de variables et d’esthétiques sont appliquées à tous les objets géométriques, donc à toutes les autres couches. En revanche, quand <code>aes()</code> est spécifié dans une couche donnée, les réglages ne s’appliquent qu’à cette couche spécifique.</p>
+<p>En l’occurence, si le même réglage est spécifié dans la fonction <code>ggplot()</code> et dans une fonction <code>geom_XXX()</code>, c’est le réglage spécifié dans l’objet géométrique qui l’emporte :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp, <span class="dt">color =</span> wind_speed)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;orange&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:wind4"></span>
+<img src="figure/wind4-1.png" alt="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
+<p class="caption">
+Figure 4.26: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+</p>
+</div>
+<p>il est ainsi possible de spécifier des éléments esthétiques qui s’appliqueront à toutes les couches d’un graphique, et d’autres qui ne s’appliqueront qu’à une couche spécifique, qu’à un objet géométrique particulier.</p>
+</div>
+</div>
+<div id="histogram" class="section level2">
+<h2><span class="header-section-number">4.5</span> Les histogrammes</h2>
+<p>Un histogramme permet de visualiser la distribution <strong>d’une variable</strong> numérique continue. Contrairement aux deux types de graphique vus précédemment, il sera donc inutile de préciser la variable à associer à l’axe des ordonnées : R la cacule automatiquement pour nous lorsque nous faisons appel à la fonction <code>geom_histogram()</code> pour créer un objet géométrique “histogramme”.</p>
+<div id="lobjet-geom_histogram" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> L’objet <code>geom_histogram()</code></h3>
+<p>Si on reprend le jeu de données <code>weather</code>, on peut par exemple s’intéresser à la distribution des températures tout au long de l’année :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="figure/unnamed-chunk-46-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>On observe plusieurs choses :</p>
+<ol style="list-style-type: decimal">
+<li>La distribution semble globalement bimodale avec un pic autour de 36-37 degrés farenheit (2 à 3 ºC) et un autre autour de 65-70 degrés farenheit (18-21 ºC).</li>
+<li>Les températures ont varié de 12 degrés farenheit (-11ºC) à 100 degrés farenheit (près de 38ºC).</li>
+<li>R nous avertit qu’une valeur non finie n’a pas pu être intégrée</li>
+<li>R nou indique qu’il a choisi de représenter 30 classes de températures (<code>bins = 30</code>). C’est la valeur par défaut. R nous conseille de choisir une valeur plus appropriée.</li>
+</ol>
+<p>Comme pour les nuages de points utilisant les symboles 21 à 24, il est possible de spécifier la couleur de remplissage des barres avec l’argument <code>fill</code> et la couleur du contour des barres avec l’argument <code>color</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;grey80&quot;</span>)</code></pre></div>
+<p><img src="figure/unnamed-chunk-47-1.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="la-taille-des-classes" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> La taille des classes</h3>
+<p>Par défaut, R choisit arbitrairement de représenter 30 classes. Ce n’est que rarement le bon choix, et il est souvent necessaire de tâtonner pour trouver le nombre de classes qui permet d’avoir une idée correcte de la distribution des données.</p>
+<p>Il est possible d’ajuster les caractéristiques des classes de l’histogramme de l’une des 3 façons suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>en ajustant le nombre de catégories avec <code>bins</code></li>
+<li>en précisant la largeur des catégories avec <code>binwidth</code></li>
+<li>en fournissant manuellement les limites des classes de tailles avec <code>breaks</code></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">60</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="figure/unnamed-chunk-48-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n’est pas aussi lisse qu’elle en avait l’air. L’ajout d’une couche supplémentaire avec la fonction <code>geom_rug()</code> (“a rug”&quot; est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu’on pouvait le croire :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">60</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_rug</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)</code></pre></div>
+<p><img src="figure/unnamed-chunk-49-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Notez la transparence importante utilisée pour <code>geom_rug</code>. On constate que la précision des relevés de température n’est en fait que de quelques dixièmes de degrés.</p>
+<p>On peut également modifier la largeur des classes avec <code>binwidth</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="figure/unnamed-chunk-50-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Ici chaque catégorie recouvre 10 degrés farenheit. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l’argument <code>breaks</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">105</span>), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="figure/unnamed-chunk-51-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n’ont pas la même largeur. Cela rend l’interprétation difficile. Il est donc vivement conseillé, pour spécifier <code>breaks</code>, de créer des suites régulières, comme avec la fonction <code>seq()</code> par exemple (consultez sont fichier d’aide et les exemples !) :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">limits &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">10</span>, <span class="dt">to =</span> <span class="dv">105</span>, <span class="dt">by =</span> <span class="dv">5</span>)
+limits</code></pre></div>
+<pre><code> [1]  10  15  20  25  30  35  40  45  50  55  60  65  70  75  80  85  90  95 100
+[20] 105</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">breaks =</span> limits, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
+<p><img src="figure/unnamed-chunk-52-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Il est important que toute la gamme des valeurs de <code>temp</code> soit couverte par les limites des classes que nous avons définies, sinon, certaines valeurs sont omises et l’histogramme est donc incomplet/incorrect. Une façon de s’en assurer est d’afficher les résumé des données pour la colonne <code>temp</code> du jeu de données <code>weather</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(weather<span class="op">$</span>temp)</code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+  10.94   39.92   55.40   55.26   69.98  100.04       1 </code></pre>
+<p>On voit ici que les températures varien de 10.94 à 100.04 degrés farenheit. Les classes que nous avons définies couvrent une plage de température plus large (de 10 à 105). Toutes les données sont donc bien intégrées à l’histogramme.</p>
+</div>
+</div>
+<div id="les-facets" class="section level2">
+<h2><span class="header-section-number">4.6</span> Les <code>facet</code>s</h2>
+<p>Nous l’avons indiqué plus haut, les <code>facet</code>s permettent de scinder le jeux de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous groupes.</p>
+<p>Ainsi, si l’on souhaite connaître la distribution des températures pour chaque mois de l’année 2013, plutôt que de faire ceci :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">fill =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>)</code></pre></div>
+<p><img src="figure/unnamed-chunk-54-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>qui produit un graphique certes assez joli, mais difficile à interpréter, mieux vaut faire ceci :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">fill =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">factor</span>(month), <span class="dt">ncol =</span> <span class="dv">3</span>)</code></pre></div>
+<p><img src="figure/unnamed-chunk-55-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>La couche supplémentaire créée avec <code>facet_wrap</code> permet donc de scinder les données en foncton d’une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole <code>~</code> devant la variable que l’on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c’est la raison pour laquelle j’utilise la notation <code>factor(month)</code> et non simplement <code>month</code>.</p>
+<p>Avec la fonction <code>facet_wrap()</code>, il est possible d’indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaitées avec <code>ncol</code>, soit le nombre de lignes souhaitées avec <code>nrow</code>.</p>
+<p>Une autre fonction nommée <code>facte_grid</code> permet d’agencer des sous graphique selon 2 variables catégorielles. Per exemple :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">fill =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">factor</span>(month) <span class="op">~</span><span class="st"> </span>origin)</code></pre></div>
+<p><img src="figure/unnamed-chunk-56-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Ici, nous avons utilisé la variable <code>month</code> (transformée en facteur) et la variable <code>origin</code> pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible de faire facilement des comparaisons des températures intermensuelles au sein d’un aéroport donné (en colonnes), ou de faire des comparaisons des températures observées le même mois dans plusieurs aéroports (en lignes).</p>
+<p><code>facet_grid()</code> doit elle aussi être utilisée avec le symbole <code>~</code>. Comme pour les indices d’un tableaux, on met à gauche du <code>~</code> la variable qui figurera en lignes, et à droite du <code>~</code> celle qui figurera en colonnes. Les arguments <code>nrow</code> et <code>ncol</code> ne peuvent donc pas être utilisés : c’est le nombre de niveaux de chaque variable catégorielle fournie à <code>facet_grid()</code> qui détermine le nombre de lignes et de colonnes du graphique.</p>
+
 </div>
 </div>
 <h3>Références</h3>
