@@ -529,7 +529,7 @@ ggplot(weather, aes(x = temp)) +
 
 Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n'ont pas la même largeur. Cela rend l'interprétation difficile. Il est donc vivement conseillé, pour spécifier `breaks`, de créer des suites régulières, comme avec la fonction `seq()` par exemple (consultez sont fichier d'aide et les exemples !) :
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE}
+```{r break, warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Un exemple d'utilisation de l'argument `break`"}
 limits <- seq(from = 10, to = 105, by = 5)
 limits
 ggplot(weather, aes(x = temp)) +
@@ -546,6 +546,9 @@ On voit ici que les températures varien de 10.94 à 100.04 degrés farenheit. L
 
 ## Les `facet`s
 
+
+### `facet_wrap()`
+
 Nous l'avons indiqué plus haut, les `facet`s permettent de scinder le jeux de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous groupes. 
 
 Ainsi, si l'on souhaite connaître la distribution des températures pour chaque mois de l'année 2013, plutôt que de faire ceci :
@@ -557,7 +560,7 @@ ggplot(weather, aes(x = temp, fill = factor(month))) +
 
 qui produit un graphique certes assez joli, mais difficile à interpréter, mieux vaut faire ceci : 
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2}
+```{r wrap, warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2, fig.cap="Un exemple d'utilisation de `facet_wrap()`"}
 ggplot(weather, aes(x = temp, fill = factor(month))) +
   geom_histogram(bins = 20, color = "grey30") +
   facet_wrap(~factor(month), ncol = 3)
@@ -567,9 +570,11 @@ La couche supplémentaire créée avec `facet_wrap` permet donc de scinder les d
 
 Avec la fonction `facet_wrap()`, il est possible d'indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaitées avec `ncol`, soit le nombre de lignes souhaitées avec `nrow`.
 
+### `facet_grid()`
+
 Une autre fonction nommée `facte_grid` permet d'agencer des sous graphique selon 2 variables catégorielles. Per exemple :
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2}
+```{r grid, warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2, fig.cap="Un exemple d'utilisation de `facet_grid()`"}
 ggplot(weather, aes(x = temp, fill = factor(month))) +
   geom_histogram(bins = 20, color = "grey30") +
   facet_grid(factor(month) ~ origin)
@@ -579,3 +584,83 @@ Ici, nous avons utilisé la variable `month` (transformée en facteur) et la var
 
 `facet_grid()` doit elle aussi être utilisée avec le symbole `~`. Comme pour les indices d'un tableaux, on met à gauche du `~` la variable qui figurera en lignes, et à droite du `~` celle qui figurera en colonnes. Les arguments `nrow` et `ncol` ne peuvent donc pas être utilisés : c'est le nombre de niveaux de chaque variable catégorielle fournie à `facet_grid()` qui détermine le nombre de lignes et de colonnes du graphique.
 
+Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé, et ajoutant des couches une à une sur un graphique, il est posible d'obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des srtuctures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc).
+
+
+### Exercices
+
+Examinez la figure \@ref(fig:grid).
+
+1. Quels éléments nouveaux ce graphiques nous apprend-il par rapport au graphique \@ref(fig:break) ci-dessus ? Comment le "`facet`ing" nous aide-t'il à visualiser les relations entre 2 (ou 3) variables ?
+2. À quoi correspondent les numéros 1 à 12 ?
+3. À quoi correspondent les chiffres25, 50, 75, 100 ?
+4. À quoi correspondent les chiffres 0, 100, 200, 300 ?
+5. Observez les échelles des axes `x` et `y` pour chaque sous graphique. Qu'on-t'elles de particulier ? En quoi est-ce utile ?
+6. La variabilité des températures est-elle plus importante entre les aéroports, entre les mois, ou au sein des mois ? Expliquez votre réflexion.
+
+
+## Les boîtes à moustaches ou boxplots
+
+Commençons par créer un boxplot pour comparer les températures mensuelles comme nous l'avons fait plus haut avec des histogrammes :
+
+```{r tidy=FALSE, fig.cap="Un boxplot for peu utile..."}
+ggplot(weather, aes(x = month, y = temp)) +
+  geom_boxplot()
+```
+
+Comme précédemment, R nous avertit qu'une observation n'a pas été intégrée (en raison d'une donnée manquante). Mais il nous dit aussi que `x` (pour nous, la variable `month`) est continue, et que nous avons probablement oublié de spécifier des groupes.
+
+En effet, les boxplots sont généralement utilisés pour comparer la distribution d'une variable numérique, pour chaque niveau d'une variable catégorielle (un facteur). il nous faut donc, ici encore, transformer `month` en facteur car dans notre tableau de départ, cette variable est considérée comme une variable numérique continue : 
+
+```{r tidy=FALSE, warning = FALSE, fig.cap="Boxplot des températures mensuelles"}
+ggplot(weather, aes(x = factor(month), y = temp)) +
+  geom_boxplot()
+```
+
+Dans un boxplot, les éléments sont les suivants :
+ 
+- la limite inférieure de la boîte correspond au premier quartile : 25% des données de l'échantillon sont situées sous cette valeur
+- la limite supérieure de la boîte correspond au troisième quartile : 25% des données de l'échantillon sont situées au-dessus de cette valeur
+- le segment épais à l'intérieur de la boîte corrspond au second quartile : c'est la médiane de l'échantillon. 50% des données de l'échantillon sont situées au dessus de cette valeur, et 50% au dessous.
+- la heuteur de la boîte correspond à ce que l'on appelle l'étendue inter-quartile ou Inter Quartile Range (IQR) en anglais. On trouve dans cette boîte 50% des observations de l'échantillon. C'est une mesure de la dispersion des 50% des données les plus centrales. Une boîte plus allongée indique donc une plus grande dispersion.
+- moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s'étendent usqu'aux valeurs minimales et maximales de l'échantillon, mais elles ne peuvent en aucun cas s'étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l'IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés "outliers". Ce sont des points qui s'éloignent du centre de la distribution de façon importante puisqu'ils sont au-delà de 1,5 fois l'IQR de part et d'autres du premier ou du troisième quartile. Il peut s'agir d'anomalies de mesure, d'anomalie de saisie de données, ou tout simplement, d'enregistrement tout à fait valides mais extrêmes. J'attire votre attention que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d'étendre les moustaches jusqu'à 1,8 fois l'IQR (ou 2, ou 2,5), nous observerions alors beaucoup moins d'outliers. D'une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante.
+
+On peut également aujouter une encoche autour de la valeur de médiane en ajoutant l'argument `notch = TRUE` à la fonction `geom_boxplot()` : 
+
+```{r notchedboxplot, tidy=FALSE, warning = FALSE, fig.cap="Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés."}
+ggplot(weather, aes(x = factor(month), y = temp)) +
+  geom_boxplot(notch = TRUE)
+```
+
+Comme l'indique la légende de la figure \@ref(fig:notchedboxplot), cette encoche correspond à l'etendue de l'intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d'en avoir la certitude absolue. Le mieux que l'on puisse faire, c'est quantifier l'incertitude. L'intervalle de confiance nous indique qu'il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d'incertitude, ce qui est une bonne chose.  
+Nous reviendrons sur cette notion importante à la fin des TP de biométrie 2 ou en biométrie 3, car ce type de graphique nous permettra d'anticiper sur les résultats des tests de comparaisons de moyennes.
+
+Dernière chose concernant les boxplots : c'est une représentation graphique très proche de l'histogramme. Pour vous en convaincre, je représente ci-dessous uniquement les temperatures du mois de novembre :
+
+```{r tidy=FALSE, warning = FALSE, message = FALSE, echo=FALSE, fig.cap="Distribution des températures de Novembre 2013"}
+library(gridExtra)
+
+pl1 <- weather %>% 
+  filter(month == 11) %>% 
+  ggplot(aes(x = temp)) +
+    geom_histogram() +
+    coord_flip()
+
+pl2 <- weather %>% 
+  filter(month == 11) %>% 
+  ggplot(aes(x= factor(month), y = temp)) +
+    geom_boxplot(notch = TRUE)
+
+pl3 <- weather %>% 
+  filter(month == 11) %>% 
+  ggplot(aes(x= factor(month), y = temp)) +
+  geom_jitter(width = 0.2, height=1, alpha=0.2)
+
+grid.arrange(pl1, pl2, pl3, nrow=1)
+```
+
+À gauche un histogramme pour les températures de novembre (j'ai permuté les axes pour `y` porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés farenheit. Au delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.
+
+Le nuage de points affiche toutes les données. C'est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut en être compliquée. L'histogramme simplifie ces données en les regroupant dans des classes. On constate toujours 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs : le minimum, le maximum, les 3 quartiles, et les bornes de l'intervalle de confiance à 95% de la médiane. C'est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure \@ref(fig:notchedboxplot) un peu plus haut), mais qui est forcément moins précise qu'un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l'histogramme. En outre, sur la figure \@ref(fig:notchedboxplot), la tendance générale est très visible : il fait plus chaud en été qu'en hiver (étonnant non ?).
+
+## Les diagrammes bâtons
