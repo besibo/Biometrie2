@@ -593,7 +593,7 @@ Examinez la figure \@ref(fig:grid).
 
 1. Quels éléments nouveaux ce graphiques nous apprend-il par rapport au graphique \@ref(fig:break) ci-dessus ? Comment le "`facet`ing" nous aide-t'il à visualiser les relations entre 2 (ou 3) variables ?
 2. À quoi correspondent les numéros 1 à 12 ?
-3. À quoi correspondent les chiffres25, 50, 75, 100 ?
+3. À quoi correspondent les chiffres 25, 50, 75, 100 ?
 4. À quoi correspondent les chiffres 0, 100, 200, 300 ?
 5. Observez les échelles des axes `x` et `y` pour chaque sous graphique. Qu'on-t'elles de particulier ? En quoi est-ce utile ?
 6. La variabilité des températures est-elle plus importante entre les aéroports, entre les mois, ou au sein des mois ? Expliquez votre réflexion.
