@@ -169,7 +169,12 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.6.2" data-path="viz.html"><a href="viz.html#facet_grid"><i class="fa fa-check"></i><b>4.6.2</b> <code>facet_grid()</code></a></li>
 <li class="chapter" data-level="4.6.3" data-path="viz.html"><a href="viz.html#exercices-4"><i class="fa fa-check"></i><b>4.6.3</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="viz.html"><a href="viz.html#les-boites-a-moustaches-ou-boxplots"><i class="fa fa-check"></i><b>4.7</b> Les boîtes à moustaches ou boxplots</a></li>
+<li class="chapter" data-level="4.7" data-path="viz.html"><a href="viz.html#les-boites-a-moustaches-ou-boxplots"><i class="fa fa-check"></i><b>4.7</b> Les boîtes à moustaches ou boxplots</a><ul>
+<li class="chapter" data-level="4.7.1" data-path="viz.html"><a href="viz.html#creation-de-boxplots-et-informations-apportees"><i class="fa fa-check"></i><b>4.7.1</b> Création de boxplots et informations apportées</a></li>
+<li class="chapter" data-level="4.7.2" data-path="viz.html"><a href="viz.html#lintervalle-de-confiance-a-95-de-la-mediane"><i class="fa fa-check"></i><b>4.7.2</b> L’intervalle de confiance à 95% de la médiane</a></li>
+<li class="chapter" data-level="4.7.3" data-path="viz.html"><a href="viz.html#une-autre-facon-dexaminer-des-distributions"><i class="fa fa-check"></i><b>4.7.3</b> Une autre façon d’examiner des distributions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="viz.html"><a href="viz.html#pour-conclure"><i class="fa fa-check"></i><b>4.7.4</b> Pour conclure</a></li>
+</ul></li>
 <li class="chapter" data-level="4.8" data-path="viz.html"><a href="viz.html#les-diagrammes-batons"><i class="fa fa-check"></i><b>4.8</b> Les diagrammes bâtons</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
@@ -840,6 +845,8 @@ Figure 4.29: Un exemple d’utilisation de <code>facet_grid()</code>
 </div>
 <div id="les-boites-a-moustaches-ou-boxplots" class="section level2">
 <h2><span class="header-section-number">4.7</span> Les boîtes à moustaches ou boxplots</h2>
+<div id="creation-de-boxplots-et-informations-apportees" class="section level3">
+<h3><span class="header-section-number">4.7.1</span> Création de boxplots et informations apportées</h3>
 <p>Commençons par créer un boxplot pour comparer les températures mensuelles comme nous l’avons fait plus haut avec des histogrammes :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
@@ -852,7 +859,7 @@ Figure 4.30: Un boxplot for peu utile…
 </p>
 </div>
 <p>Comme précédemment, R nous avertit qu’une observation n’a pas été intégrée (en raison d’une donnée manquante). Mais il nous dit aussi que <code>x</code> (pour nous, la variable <code>month</code>) est continue, et que nous avons probablement oublié de spécifier des groupes.</p>
-<p>En effet, les boxplots sont généralement utilisés pour comparer la distribution d’une variable numérique, pour chaque niveau d’une variable catégorielle (un facteur). il nous faut donc, ici encore, transformer <code>month</code> en facteur car dans notre tableau de départ, cette variable est considérée comme une variable numérique continue :</p>
+<p>En effet, les boxplots sont généralement utilisés pour examiner la distribution d’une variable numérique, pour chaque niveau d’une variable catégorielle (un facteur). Il nous faut donc, ici encore, transformer <code>month</code> en facteur car dans notre tableau de départ, cette variable est considérée comme une variable numérique continue :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-55"></span>
@@ -861,7 +868,7 @@ Figure 4.30: Un boxplot for peu utile…
 Figure 4.31: Boxplot des températures mensuelles
 </p>
 </div>
-<p>Dans un boxplot, les éléments sont les suivants :</p>
+<p>Les différents éléments d’un boxplot, sont les suivants :</p>
 <ul>
 <li>la limite inférieure de la boîte correspond au premier quartile : 25% des données de l’échantillon sont situées sous cette valeur</li>
 <li>la limite supérieure de la boîte correspond au troisième quartile : 25% des données de l’échantillon sont situées au-dessus de cette valeur</li>
@@ -869,6 +876,9 @@ Figure 4.31: Boxplot des températures mensuelles
 <li>la heuteur de la boîte correspond à ce que l’on appelle l’étendue inter-quartile ou Inter Quartile Range (IQR) en anglais. On trouve dans cette boîte 50% des observations de l’échantillon. C’est une mesure de la dispersion des 50% des données les plus centrales. Une boîte plus allongée indique donc une plus grande dispersion.</li>
 <li>moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s’étendent usqu’aux valeurs minimales et maximales de l’échantillon, mais elles ne peuvent en aucun cas s’étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l’IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés “outliers”. Ce sont des points qui s’éloignent du centre de la distribution de façon importante puisqu’ils sont au-delà de 1,5 fois l’IQR de part et d’autres du premier ou du troisième quartile. Il peut s’agir d’anomalies de mesure, d’anomalie de saisie de données, ou tout simplement, d’enregistrement tout à fait valides mais extrêmes. J’attire votre attention que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d’étendre les moustaches jusqu’à 1,8 fois l’IQR (ou 2, ou 2,5), nous observerions alors beaucoup moins d’outliers. D’une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante.</li>
 </ul>
+</div>
+<div id="lintervalle-de-confiance-a-95-de-la-mediane" class="section level3">
+<h3><span class="header-section-number">4.7.2</span> L’intervalle de confiance à 95% de la médiane</h3>
 <p>On peut également aujouter une encoche autour de la valeur de médiane en ajoutant l’argument <code>notch = TRUE</code> à la fonction <code>geom_boxplot()</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">notch =</span> <span class="ot">TRUE</span>)</code></pre></div>
@@ -880,15 +890,23 @@ Figure 4.32: Boxplot des températures mensuelles. Les intervalles de confiance 
 </div>
 <p>Comme l’indique la légende de la figure <a href="viz.html#fig:notchedboxplot">4.32</a>, cette encoche correspond à l’etendue de l’intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d’en avoir la certitude absolue. Le mieux que l’on puisse faire, c’est quantifier l’incertitude. L’intervalle de confiance nous indique qu’il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d’incertitude, ce qui est une bonne chose.<br />
 Nous reviendrons sur cette notion importante à la fin des TP de biométrie 2 ou en biométrie 3, car ce type de graphique nous permettra d’anticiper sur les résultats des tests de comparaisons de moyennes.</p>
-<p>Dernière chose concernant les boxplots : c’est une représentation graphique très proche de l’histogramme. Pour vous en convaincre, je représente ci-dessous uniquement les temperatures du mois de novembre :</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-56"></span>
-<img src="figure/unnamed-chunk-56-1.png" alt="Distribution des températures de Novembre 2013" width="90%" />
+</div>
+<div id="une-autre-facon-dexaminer-des-distributions" class="section level3">
+<h3><span class="header-section-number">4.7.3</span> Une autre façon d’examiner des distributions</h3>
+<p>Dernière chose concernant les boxplots : il s’agit d’une représentation graphique très proche de l’histogramme. Pour vous en convaincre, je représente à la figure <a href="viz.html#fig:compboxplot">4.33</a> ci-dessous uniquement les temperatures du mois de novembre, avec 3 types d’objets géométriques différents : un histogramme, un boxplot, et un nuage de points.</p>
+<div class="figure" style="text-align: center"><span id="fig:compboxplot"></span>
+<img src="figure/compboxplot-1.png" alt="Distribution des températures de Novembre 2013" width="90%" />
 <p class="caption">
 Figure 4.33: Distribution des températures de Novembre 2013
 </p>
 </div>
-<p>À gauche un histogramme pour les températures de novembre (j’ai permuté les axes pour <code>y</code> porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés farenheit. Au delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.</p>
-<p>Le nuage de points affiche toutes les données. C’est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut en être compliquée. L’histogramme simplifie ces données en les regroupant dans des classes. On constate toujours 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs : le minimum, le maximum, les 3 quartiles, et les bornes de l’intervalle de confiance à 95% de la médiane. C’est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure <a href="viz.html#fig:notchedboxplot">4.32</a> un peu plus haut), mais qui est forcément moins précise qu’un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l’histogramme. En outre, sur la figure <a href="viz.html#fig:notchedboxplot">4.32</a>, la tendance générale est très visible : il fait plus chaud en été qu’en hiver (étonnant non ?).</p>
+<p>Nous avons donc, à gauche un histogramme pour les températures de novembre (j’ai permuté les axes pour que <code>y</code> porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d’un nuage de point créé avec <code>geom_jitter()</code>. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.</p>
+<p>Le nuage de points affiche toutes les données. C’est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s’en trouver compliquée. L’histogramme simplifie les données en les regroupant dans des classes. C’est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l’intervalle de confiance à 95% de la médiane. C’est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure <a href="viz.html#fig:notchedboxplot">4.32</a> un peu plus haut), mais qui est forcément moins précise qu’un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l’histogramme. En outre, sur la figure <a href="viz.html#fig:notchedboxplot">4.32</a>, la tendance générale est très visible : il fait plus chaud en été qu’en hiver (étonnant non ?).</p>
+</div>
+<div id="pour-conclure" class="section level3">
+<h3><span class="header-section-number">4.7.4</span> Pour conclure</h3>
+<p>Les boîtes à moustaches permettent donc de comparer et contraster la distribution d’<strong>une variable quantitative</strong> pour plusieurs niveaux d’<strong>une variable catégorielle</strong>. On peut voir où la médiane tombe dans les différents groupes en observant la position de la ligne centrale dans la boîte. Pour avoir une idée de la dispersion de la variable au sein de chaque groupe, regardez à la fois la hauteur de la boîte et la longueur des moustaches. Quand les moustaches s’étendent loin de la boîte mais que la boîte est petite, cela signifie que la variabilité des valeurs proches du centre de la distribution est beaucoup plus faible que la variabilité des valeurs extrêmes. Enfin, les valeurs extrêmes ou aberrantes sont encore plus faciles à détecter avec une boîte à moustaches qu’avec un histogramme.</p>
+</div>
 </div>
 <div id="les-diagrammes-batons" class="section level2">
 <h2><span class="header-section-number">4.8</span> Les diagrammes bâtons</h2>
