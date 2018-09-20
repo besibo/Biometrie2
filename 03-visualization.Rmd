@@ -469,7 +469,7 @@ Un histogramme permet de visualiser la distribution **d'une variable** numériqu
 
 Si on reprend le jeu de données `weather`, on peut par exemple s'intéresser à la distribution des températures tout au long de l'année :
 
-```{r warning=FALSE, tidy=FALSE}
+```{r warning=FALSE, tidy=FALSE, fig.cap="Histogramme des températures enregistrées en 2013 dans les 3 aéroports de New York"}
 ggplot(weather, aes(x = temp)) +
   geom_histogram()
 ```
@@ -483,7 +483,7 @@ On observe plusieurs choses :
 
 Comme pour les nuages de points utilisant les symboles 21 à 24, il est possible de spécifier la couleur de remplissage des barres avec l'argument `fill` et la couleur du contour des barres avec l'argument `color` :
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE}
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Utilisation des arguments `fill` et `color` pour modifier l'aspect de l'histogramme."}
 ggplot(weather, aes(x = temp)) +
   geom_histogram(fill = "steelblue", color = "grey80")
 ```
@@ -498,14 +498,14 @@ Il est possible d'ajuster les caractéristiques des classes de l'histogramme de 
 2. en précisant la largeur des catégories avec `binwidth`
 3. en fournissant manuellement les limites des classes de tailles avec `breaks`
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE}
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Modification du nombre de classes"}
 ggplot(weather, aes(x = temp)) +
   geom_histogram(bins = 60, color = "white")
 ```
 
 Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n'est pas aussi lisse qu'elle en avait l'air. L'ajout d'une couche supplémentaire avec la fonction `geom_rug()` ("a rug"" est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu'on pouvait le croire :
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE}
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Ajout des données brutes sous forme de 'tapis' (`rug`) sous l'histogramme."}
 ggplot(weather, aes(x = temp)) +
   geom_histogram(bins = 60, color = "white") +
   geom_rug(alpha = 0.1)
@@ -515,14 +515,14 @@ Notez la transparence importante utilisée pour `geom_rug`. On constate que la p
 
 On peut également modifier la largeur des classes avec `binwidth` :
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE}
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Modification de la largeur des classes avec `binwidth`"}
 ggplot(weather, aes(x = temp)) +
   geom_histogram(binwidth = 10, color = "white")
 ```
 
 Ici chaque catégorie recouvre 10 degrés farenheit. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l'argument `breaks` :
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE}
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Spécification manuelle des limites de classes de tailles (classes irrégulières)"}
 ggplot(weather, aes(x = temp)) +
   geom_histogram(breaks = c(0, 10, 20, 50, 60, 70, 80, 105), color = "white")
 ```
@@ -553,7 +553,7 @@ Nous l'avons indiqué plus haut, les `facet`s permettent de scinder le jeux de d
 
 Ainsi, si l'on souhaite connaître la distribution des températures pour chaque mois de l'année 2013, plutôt que de faire ceci :
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE}
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Distribution des températures avec visualisation des données mensuelles."}
 ggplot(weather, aes(x = temp, fill = factor(month))) +
   geom_histogram(bins = 20, color = "grey30")
 ```

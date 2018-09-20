@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-09-15">
+<meta name="date" content="2018-09-20">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -733,7 +733,12 @@ Figure 4.26: Températures horaires et vitesse du vent à l’aéroport de Newar
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="figure/unnamed-chunk-46-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-46"></span>
+<img src="figure/unnamed-chunk-46-1.png" alt="Histogramme des températures enregistrées en 2013 dans les 3 aéroports de New York" width="90%" />
+<p class="caption">
+Figure 4.27: Histogramme des températures enregistrées en 2013 dans les 3 aéroports de New York
+</p>
+</div>
 <p>On observe plusieurs choses :</p>
 <ol style="list-style-type: decimal">
 <li>La distribution semble globalement bimodale avec un pic autour de 36-37 degrés farenheit (2 à 3 ºC) et un autre autour de 65-70 degrés farenheit (18-21 ºC).</li>
@@ -744,7 +749,12 @@ Figure 4.26: Températures horaires et vitesse du vent à l’aéroport de Newar
 <p>Comme pour les nuages de points utilisant les symboles 21 à 24, il est possible de spécifier la couleur de remplissage des barres avec l’argument <code>fill</code> et la couleur du contour des barres avec l’argument <code>color</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;grey80&quot;</span>)</code></pre></div>
-<p><img src="figure/unnamed-chunk-47-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-47"></span>
+<img src="figure/unnamed-chunk-47-1.png" alt="Utilisation des arguments `fill` et `color` pour modifier l'aspect de l'histogramme." width="90%" />
+<p class="caption">
+Figure 4.28: Utilisation des arguments <code>fill</code> et <code>color</code> pour modifier l’aspect de l’histogramme.
+</p>
+</div>
 </div>
 <div id="la-taille-des-classes" class="section level3">
 <h3><span class="header-section-number">4.5.2</span> La taille des classes</h3>
@@ -757,21 +767,41 @@ Figure 4.26: Températures horaires et vitesse du vent à l’aéroport de Newar
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">60</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="figure/unnamed-chunk-48-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-48"></span>
+<img src="figure/unnamed-chunk-48-1.png" alt="Modification du nombre de classes" width="90%" />
+<p class="caption">
+Figure 4.29: Modification du nombre de classes
+</p>
+</div>
 <p>Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n’est pas aussi lisse qu’elle en avait l’air. L’ajout d’une couche supplémentaire avec la fonction <code>geom_rug()</code> (“a rug”&quot; est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu’on pouvait le croire :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">60</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_rug</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)</code></pre></div>
-<p><img src="figure/unnamed-chunk-49-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-49"></span>
+<img src="figure/unnamed-chunk-49-1.png" alt="Ajout des données brutes sous forme de 'tapis' (`rug`) sous l'histogramme." width="90%" />
+<p class="caption">
+Figure 4.30: Ajout des données brutes sous forme de ‘tapis’ (<code>rug</code>) sous l’histogramme.
+</p>
+</div>
 <p>Notez la transparence importante utilisée pour <code>geom_rug</code>. On constate que la précision des relevés de température n’est en fait que de quelques dixièmes de degrés.</p>
 <p>On peut également modifier la largeur des classes avec <code>binwidth</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="figure/unnamed-chunk-50-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-50"></span>
+<img src="figure/unnamed-chunk-50-1.png" alt="Modification de la largeur des classes avec `binwidth`" width="90%" />
+<p class="caption">
+Figure 4.31: Modification de la largeur des classes avec <code>binwidth</code>
+</p>
+</div>
 <p>Ici chaque catégorie recouvre 10 degrés farenheit. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l’argument <code>breaks</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">105</span>), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
-<p><img src="figure/unnamed-chunk-51-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-51"></span>
+<img src="figure/unnamed-chunk-51-1.png" alt="Spécification manuelle des limites de classes de tailles (classes irrégulières)" width="90%" />
+<p class="caption">
+Figure 4.32: Spécification manuelle des limites de classes de tailles (classes irrégulières)
+</p>
+</div>
 <p>Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n’ont pas la même largeur. Cela rend l’interprétation difficile. Il est donc vivement conseillé, pour spécifier <code>breaks</code>, de créer des suites régulières, comme avec la fonction <code>seq()</code> par exemple (consultez sont fichier d’aide et les exemples !) :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">limits &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">10</span>, <span class="dt">to =</span> <span class="dv">105</span>, <span class="dt">by =</span> <span class="dv">5</span>)
 limits</code></pre></div>
@@ -782,7 +812,7 @@ limits</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:break"></span>
 <img src="figure/break-1.png" alt="Un exemple d'utilisation de l'argument `break`" width="90%" />
 <p class="caption">
-Figure 4.27: Un exemple d’utilisation de l’argument <code>break</code>
+Figure 4.33: Un exemple d’utilisation de l’argument <code>break</code>
 </p>
 </div>
 <p>Il est important que toute la gamme des valeurs de <code>temp</code> soit couverte par les limites des classes que nous avons définies, sinon, certaines valeurs sont omises et l’histogramme est donc incomplet/incorrect. Une façon de s’en assurer est d’afficher les résumé des données pour la colonne <code>temp</code> du jeu de données <code>weather</code> :</p>
@@ -800,7 +830,12 @@ Figure 4.27: Un exemple d’utilisation de l’argument <code>break</code>
 <p>Ainsi, si l’on souhaite connaître la distribution des températures pour chaque mois de l’année 2013, plutôt que de faire ceci :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">fill =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>)</code></pre></div>
-<p><img src="figure/unnamed-chunk-53-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-53"></span>
+<img src="figure/unnamed-chunk-53-1.png" alt="Distribution des températures avec visualisation des données mensuelles." width="90%" />
+<p class="caption">
+Figure 4.34: Distribution des températures avec visualisation des données mensuelles.
+</p>
+</div>
 <p>qui produit un graphique certes assez joli, mais difficile à interpréter, mieux vaut faire ceci :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">fill =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>) <span class="op">+</span>
@@ -808,7 +843,7 @@ Figure 4.27: Un exemple d’utilisation de l’argument <code>break</code>
 <div class="figure" style="text-align: center"><span id="fig:wrap"></span>
 <img src="figure/wrap-1.png" alt="Un exemple d'utilisation de `facet_wrap()`" width="90%" />
 <p class="caption">
-Figure 4.28: Un exemple d’utilisation de <code>facet_wrap()</code>
+Figure 4.35: Un exemple d’utilisation de <code>facet_wrap()</code>
 </p>
 </div>
 <p>La couche supplémentaire créée avec <code>facet_wrap</code> permet donc de scinder les données en foncton d’une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole <code>~</code> devant la variable que l’on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c’est la raison pour laquelle j’utilise la notation <code>factor(month)</code> et non simplement <code>month</code>.</p>
@@ -823,7 +858,7 @@ Figure 4.28: Un exemple d’utilisation de <code>facet_wrap()</code>
 <div class="figure" style="text-align: center"><span id="fig:grid"></span>
 <img src="figure/grid-1.png" alt="Un exemple d'utilisation de `facet_grid()`" width="90%" />
 <p class="caption">
-Figure 4.29: Un exemple d’utilisation de <code>facet_grid()</code>
+Figure 4.36: Un exemple d’utilisation de <code>facet_grid()</code>
 </p>
 </div>
 <p>Ici, nous avons utilisé la variable <code>month</code> (transformée en facteur) et la variable <code>origin</code> pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible de faire facilement des comparaisons des températures intermensuelles au sein d’un aéroport donné (en colonnes), ou de faire des comparaisons des températures observées le même mois dans plusieurs aéroports (en lignes).</p>
@@ -832,9 +867,9 @@ Figure 4.29: Un exemple d’utilisation de <code>facet_grid()</code>
 </div>
 <div id="exercices-4" class="section level3">
 <h3><span class="header-section-number">4.6.3</span> Exercices</h3>
-<p>Examinez la figure <a href="viz.html#fig:grid">4.29</a>.</p>
+<p>Examinez la figure <a href="viz.html#fig:grid">4.36</a>.</p>
 <ol style="list-style-type: decimal">
-<li>Quels éléments nouveaux ce graphiques nous apprend-il par rapport au graphique <a href="viz.html#fig:break">4.27</a> ci-dessus ? Comment le “<code>facet</code>ing” nous aide-t’il à visualiser les relations entre 2 (ou 3) variables ?</li>
+<li>Quels éléments nouveaux ce graphiques nous apprend-il par rapport au graphique <a href="viz.html#fig:break">4.33</a> ci-dessus ? Comment le “<code>facet</code>ing” nous aide-t’il à visualiser les relations entre 2 (ou 3) variables ?</li>
 <li>À quoi correspondent les numéros 1 à 12 ?</li>
 <li>À quoi correspondent les chiffres 25, 50, 75, 100 ?</li>
 <li>À quoi correspondent les chiffres 0, 100, 200, 300 ?</li>
@@ -855,7 +890,7 @@ Figure 4.29: Un exemple d’utilisation de <code>facet_grid()</code>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-54"></span>
 <img src="figure/unnamed-chunk-54-1.png" alt="Un boxplot for peu utile..." width="90%" />
 <p class="caption">
-Figure 4.30: Un boxplot for peu utile…
+Figure 4.37: Un boxplot for peu utile…
 </p>
 </div>
 <p>Comme précédemment, R nous avertit qu’une observation n’a pas été intégrée (en raison d’une donnée manquante). Mais il nous dit aussi que <code>x</code> (pour nous, la variable <code>month</code>) est continue, et que nous avons probablement oublié de spécifier des groupes.</p>
@@ -865,7 +900,7 @@ Figure 4.30: Un boxplot for peu utile…
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-55"></span>
 <img src="figure/unnamed-chunk-55-1.png" alt="Boxplot des températures mensuelles" width="90%" />
 <p class="caption">
-Figure 4.31: Boxplot des températures mensuelles
+Figure 4.38: Boxplot des températures mensuelles
 </p>
 </div>
 <p>Les différents éléments d’un boxplot, sont les suivants :</p>
@@ -885,23 +920,23 @@ Figure 4.31: Boxplot des températures mensuelles
 <div class="figure" style="text-align: center"><span id="fig:notchedboxplot"></span>
 <img src="figure/notchedboxplot-1.png" alt="Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés." width="90%" />
 <p class="caption">
-Figure 4.32: Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés.
+Figure 4.39: Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés.
 </p>
 </div>
-<p>Comme l’indique la légende de la figure <a href="viz.html#fig:notchedboxplot">4.32</a>, cette encoche correspond à l’etendue de l’intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d’en avoir la certitude absolue. Le mieux que l’on puisse faire, c’est quantifier l’incertitude. L’intervalle de confiance nous indique qu’il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d’incertitude, ce qui est une bonne chose.<br />
+<p>Comme l’indique la légende de la figure <a href="viz.html#fig:notchedboxplot">4.39</a>, cette encoche correspond à l’etendue de l’intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d’en avoir la certitude absolue. Le mieux que l’on puisse faire, c’est quantifier l’incertitude. L’intervalle de confiance nous indique qu’il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d’incertitude, ce qui est une bonne chose.<br />
 Nous reviendrons sur cette notion importante à la fin des TP de biométrie 2 ou en biométrie 3, car ce type de graphique nous permettra d’anticiper sur les résultats des tests de comparaisons de moyennes.</p>
 </div>
 <div id="une-autre-facon-dexaminer-des-distributions" class="section level3">
 <h3><span class="header-section-number">4.7.3</span> Une autre façon d’examiner des distributions</h3>
-<p>Dernière chose concernant les boxplots : il s’agit d’une représentation graphique très proche de l’histogramme. Pour vous en convaincre, je représente à la figure <a href="viz.html#fig:compboxplot">4.33</a> ci-dessous uniquement les temperatures du mois de novembre, avec 3 types d’objets géométriques différents : un histogramme, un boxplot, et un nuage de points.</p>
+<p>Dernière chose concernant les boxplots : il s’agit d’une représentation graphique très proche de l’histogramme. Pour vous en convaincre, je représente à la figure <a href="viz.html#fig:compboxplot">4.40</a> ci-dessous uniquement les temperatures du mois de novembre, avec 3 types d’objets géométriques différents : un histogramme, un boxplot, et un nuage de points.</p>
 <div class="figure" style="text-align: center"><span id="fig:compboxplot"></span>
 <img src="figure/compboxplot-1.png" alt="Distribution des températures de Novembre 2013" width="90%" />
 <p class="caption">
-Figure 4.33: Distribution des températures de Novembre 2013
+Figure 4.40: Distribution des températures de Novembre 2013
 </p>
 </div>
 <p>Nous avons donc, à gauche un histogramme pour les températures de novembre (j’ai permuté les axes pour que <code>y</code> porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d’un nuage de point créé avec <code>geom_jitter()</code>. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.</p>
-<p>Le nuage de points affiche toutes les données. C’est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s’en trouver compliquée. L’histogramme simplifie les données en les regroupant dans des classes. C’est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l’intervalle de confiance à 95% de la médiane. C’est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure <a href="viz.html#fig:notchedboxplot">4.32</a> un peu plus haut), mais qui est forcément moins précise qu’un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l’histogramme. En outre, sur la figure <a href="viz.html#fig:notchedboxplot">4.32</a>, la tendance générale est très visible : il fait plus chaud en été qu’en hiver (étonnant non ?).</p>
+<p>Le nuage de points affiche toutes les données. C’est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s’en trouver compliquée. L’histogramme simplifie les données en les regroupant dans des classes. C’est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l’intervalle de confiance à 95% de la médiane. C’est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure <a href="viz.html#fig:notchedboxplot">4.39</a> un peu plus haut), mais qui est forcément moins précise qu’un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l’histogramme. En outre, sur la figure <a href="viz.html#fig:notchedboxplot">4.39</a>, la tendance générale est très visible : il fait plus chaud en été qu’en hiver (étonnant non ?).</p>
 </div>
 <div id="pour-conclure" class="section level3">
 <h3><span class="header-section-number">4.7.4</span> Pour conclure</h3>
