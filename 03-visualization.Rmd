@@ -76,9 +76,9 @@ Pour chaque ligne, les variables suivantes sont décrites :
 - `Population` : nombre de personnes vivant dans le pays
 - `GDP per Capita` : produit intérieur brut (PIB) par habitant en dollars américains. GDP est l'abréviation de "Growth Domestic Product". C'est un indicateur de l'activité économique d'un pays, parfois utilisé comme une approximation du revenu moyen par habitant.
 
-Examinons maintenant la figure \@ref(fig:gapminder_fig) qui représente ces variables pour chacun des 142 pays de ce jeu de données (notez l'utilisation de la notation scientifique dans la légende).
+Examinons maintenant la figure \@ref(fig:gapmind) qui représente ces variables pour chacun des 142 pays de ce jeu de données (notez l'utilisation de la notation scientifique dans la légende).
 
-```{r gapminder_fig, echo=FALSE, fig.cap="Espérance de vie en fonction du PIB par habitant en 2007"}
+```{r gapmind, echo=FALSE, fig.cap="Espérance de vie en fonction du PIB par habitant en 2007"}
 gapminder_2007 %>% 
   ggplot(aes(x = `GDP per Capita`, y = `Life Expectancy`, color = Continent, size = Population)) + 
     geom_point()

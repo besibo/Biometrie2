@@ -301,11 +301,11 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><code>Population</code> : nombre de personnes vivant dans le pays</li>
 <li><code>GDP per Capita</code> : produit intérieur brut (PIB) par habitant en dollars américains. GDP est l’abréviation de “Growth Domestic Product”. C’est un indicateur de l’activité économique d’un pays, parfois utilisé comme une approximation du revenu moyen par habitant.</li>
 </ul>
-<p>Examinons maintenant la figure @ref(fig:gapminder_fig) qui représente ces variables pour chacun des 142 pays de ce jeu de données (notez l’utilisation de la notation scientifique dans la légende).</p>
-<div class="figure" style="text-align: center">
-<img src="figure/gapminder_fig-1.png" alt="Espérance de vie en fonction du PIB par habitant en 2007" width="90%" />
+<p>Examinons maintenant la figure <a href="viz.html#fig:gapmind">4.1</a> qui représente ces variables pour chacun des 142 pays de ce jeu de données (notez l’utilisation de la notation scientifique dans la légende).</p>
+<div class="figure" style="text-align: center"><span id="fig:gapmind"></span>
+<img src="figure/gapmind-1.png" alt="Espérance de vie en fonction du PIB par habitant en 2007" width="90%" />
 <p class="caption">
-(#fig:gapminder_fig)Espérance de vie en fonction du PIB par habitant en 2007
+Figure 4.1: Espérance de vie en fonction du PIB par habitant en 2007
 </p>
 </div>
 <p>Si on décrypte ce graphique du point de vue de la grammaire des graphiques, on voit que :</p>
@@ -365,7 +365,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-37"></span>
 <img src="figure/unnamed-chunk-37-1.png" alt="Un graphique sans `geom`" width="90%" />
 <p class="caption">
-Figure 4.1: Un graphique sans <code>geom</code>
+Figure 4.2: Un graphique sans <code>geom</code>
 </p>
 </div>
 <p>Ce graphique est pour le moins vide : c’est normal, nous n’avons pas encore spéifié la couche contenant l’objet géométrique que nous souhaitons utiliser.</p>
@@ -379,7 +379,7 @@ Figure 4.1: Un graphique sans <code>geom</code>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-38"></span>
 <img src="figure/unnamed-chunk-38-1.png" alt="Retards à l'arrivée en fonction des retard au décollage pour les vols d'Alaska Airline au départ de New York City en 2013" width="90%" />
 <p class="caption">
-Figure 4.2: Retards à l’arrivée en fonction des retard au décollage pour les vols d’Alaska Airline au départ de New York City en 2013
+Figure 4.3: Retards à l’arrivée en fonction des retard au décollage pour les vols d’Alaska Airline au départ de New York City en 2013
 </p>
 </div>
 <p>plusieurs choses importantes sont à remarquer ici :</p>
@@ -434,7 +434,7 @@ Figure 4.2: Retards à l’arrivée en fonction des retard au décollage pour le
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-40"></span>
 <img src="figure/unnamed-chunk-40-1.png" alt="La même figure, avec des points semi-transparents" width="90%" />
 <p class="caption">
-Figure 4.3: La même figure, avec des points semi-transparents
+Figure 4.4: La même figure, avec des points semi-transparents
 </p>
 </div>
 <p>Notez que :</p>
@@ -448,7 +448,7 @@ Figure 4.3: La même figure, avec des points semi-transparents
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-41"></span>
 <img src="figure/unnamed-chunk-41-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
 <p class="caption">
-Figure 4.4: Retards à l’arrivée pour les 12 mois de l’année 2013
+Figure 4.5: Retards à l’arrivée pour les 12 mois de l’année 2013
 </p>
 </div>
 <p>Ici, l’ajout de transparence ne serait pas suffisant. Une autre solution est d’appliquer la mothode dîte de “jittering”, ou tremblement. Elle consiste à ajouter un bruit aléatoire horizontal et/ou vertical aux points d’un graphique. Ici, on peut ajouter un léger bruit horizontal afin de disperser un peu les points pour chaque mois de l’année. On n’ajoute pas de bruit vertical car on ne souhaite pas que les valeurs de retard (sur l’axe des <code>y</code>) soient altérées :</p>
@@ -457,17 +457,17 @@ Figure 4.4: Retards à l’arrivée pour les 12 mois de l’année 2013
 <div class="figure" style="text-align: center"><span id="fig:jittering"></span>
 <img src="figure/jittering-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
 <p class="caption">
-Figure 4.5: Retards à l’arrivée pour les 12 mois de l’année 2013
+Figure 4.6: Retards à l’arrivée pour les 12 mois de l’année 2013
 </p>
 </div>
-<p>On y voit déjà plus clair. L’argument <code>width</code> permet de spécifier l’intensité de la dispersion horizontale. Pour ajouter du bruit vertical (ce qui n’est pas souhaitable ici !), on peut ajouter l’argument <code>height</code>. le graphique de la figure <a href="viz.html#fig:jittering">4.5</a> est parfois appelé un “stripchart”. C’est un graphique du type “nuage de points”, mais pour lequel l’une des 2 variables et numérique, et l’autre est catégorielle.</p>
+<p>On y voit déjà plus clair. L’argument <code>width</code> permet de spécifier l’intensité de la dispersion horizontale. Pour ajouter du bruit vertical (ce qui n’est pas souhaitable ici !), on peut ajouter l’argument <code>height</code>. le graphique de la figure <a href="viz.html#fig:jittering">4.6</a> est parfois appelé un “stripchart”. C’est un graphique du type “nuage de points”, mais pour lequel l’une des 2 variables et numérique, et l’autre est catégorielle.</p>
 <p>Il est évidemment possible d’ajouter de la transparence :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-42"></span>
 <img src="figure/unnamed-chunk-42-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
 <p class="caption">
-Figure 4.6: Retards à l’arrivée pour les 12 mois de l’année 2013
+Figure 4.7: Retards à l’arrivée pour les 12 mois de l’année 2013
 </p>
 </div>
 </div>
@@ -480,7 +480,7 @@ Figure 4.6: Retards à l’arrivée pour les 12 mois de l’année 2013
 <div class="figure" style="text-align: center"><span id="fig:rightcolor"></span>
 <img src="figure/rightcolor-1.png" alt="Utilisation correcte de `color`" width="90%" />
 <p class="caption">
-Figure 4.7: Utilisation correcte de <code>color</code>
+Figure 4.8: Utilisation correcte de <code>color</code>
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
@@ -488,16 +488,16 @@ Figure 4.7: Utilisation correcte de <code>color</code>
 <div class="figure" style="text-align: center"><span id="fig:wrongcolor"></span>
 <img src="figure/wrongcolor-1.png" alt="Utilisation incorrecte de `color`" width="90%" />
 <p class="caption">
-Figure 4.8: Utilisation incorrecte de <code>color</code>
+Figure 4.9: Utilisation incorrecte de <code>color</code>
 </p>
 </div>
-<p>Le code qui permet de produire la figure <a href="viz.html#fig:rightcolor">4.7</a> fait un usage correct de l’argument <code>color</code>. On demande des points de couleur bleue, les points apparaîssent bleus. La figure <a href="viz.html#fig:wrongcolor">4.8</a> en revanche ne produit pas le résultat attendu. Puisque nous avons mis l’argument <code>color</code> à l’intérieur de la fonction <code>aes()</code>, R s’attend à ce que la couleur soit associée à une variable. Puisqu’aucune variable ne s’appelle “blue”, R utilise la couleur par défaut. Pour associer la couleur des points à une variable, nous devons fournir un nom de variable valide :</p>
+<p>Le code qui permet de produire la figure <a href="viz.html#fig:rightcolor">4.8</a> fait un usage correct de l’argument <code>color</code>. On demande des points de couleur bleue, les points apparaîssent bleus. La figure <a href="viz.html#fig:wrongcolor">4.9</a> en revanche ne produit pas le résultat attendu. Puisque nous avons mis l’argument <code>color</code> à l’intérieur de la fonction <code>aes()</code>, R s’attend à ce que la couleur soit associée à une variable. Puisqu’aucune variable ne s’appelle “blue”, R utilise la couleur par défaut. Pour associer la couleur des points à une variable, nous devons fournir un nom de variable valide :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">factor</span>(month)))</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:varcolor"></span>
 <img src="figure/varcolor-1.png" alt="Association de `color` à une variable catégorielle" width="90%" />
 <p class="caption">
-Figure 4.9: Association de <code>color</code> à une variable catégorielle
+Figure 4.10: Association de <code>color</code> à une variable catégorielle
 </p>
 </div>
 <p>Ici, l’utilisation de la couleur est correcte. Elle est associée à une variable catégorielle, et chaque valeur possible du vecteur <code>month</code> se voit donc attribuer une couleur différente.</p>
@@ -506,7 +506,7 @@ Figure 4.9: Association de <code>color</code> à une variable catégorielle
 <div class="figure" style="text-align: center"><span id="fig:varcolor2"></span>
 <img src="figure/varcolor2-1.png" alt="Association de `color` à une variable numérique" width="90%" />
 <p class="caption">
-Figure 4.10: Association de <code>color</code> à une variable numérique
+Figure 4.11: Association de <code>color</code> à une variable numérique
 </p>
 </div>
 <p>De la même façon, la couleur des points est ici associée à une variable continue (l’heure d’arrivée des vols). Les points se voient donc attribuer une couleur choisie le long d’un gradient.</p>
@@ -516,7 +516,7 @@ Figure 4.10: Association de <code>color</code> à une variable numérique
 <div class="figure" style="text-align: center"><span id="fig:shapeplot"></span>
 <img src="figure/shapeplot-1.png" alt="Association de `shape` à un facteur" width="90%" />
 <p class="caption">
-Figure 4.11: Association de <code>shape</code> à un facteur
+Figure 4.12: Association de <code>shape</code> à un facteur
 </p>
 </div>
 <p>Vous noterez que seuls les 6 premiers niveaux d’un facteur se voient attribuer une forme automatiquement. Au delà de 6 symboles différents sur un même graphique, le résultat est souvent illisible. Il est possible d’ajouter plus de 6 symboles, mais cela demande de modifier la légende manuellement et concrètement nous n’en aurons jamais besoin. Lorsque plus de 6 séries doivent être distinguées, d’autres solutions bien plus pertinentes (par exemple les <code>factet</code>s) devraient être utilisées.</p>
@@ -526,7 +526,7 @@ Figure 4.11: Association de <code>shape</code> à un facteur
 <div class="figure" style="text-align: center"><span id="fig:shapeplot2"></span>
 <img src="figure/shapeplot2-1.png" alt="Utilisation de `shape` en tant que paramètre" width="90%" />
 <p class="caption">
-Figure 4.12: Utilisation de <code>shape</code> en tant que paramètre
+Figure 4.13: Utilisation de <code>shape</code> en tant que paramètre
 </p>
 </div>
 <p>Notez qu’ici, <code>ggplot()</code> ne crée pas de légende : tous les points ont le même symbole, ce symbole n’est pas associé à une variable, une légende est donc inutile.</p>
@@ -536,7 +536,7 @@ Figure 4.12: Utilisation de <code>shape</code> en tant que paramètre
 <div class="figure" style="text-align: center"><span id="fig:shapecolorplot"></span>
 <img src="figure/shapecolorplot-1.png" alt="Utilisation de `shape`, `color` et `fill`" width="90%" />
 <p class="caption">
-Figure 4.13: Utilisation de <code>shape</code>, <code>color</code> et <code>fill</code>
+Figure 4.14: Utilisation de <code>shape</code>, <code>color</code> et <code>fill</code>
 </p>
 </div>
 <p>N’hésitez pas à zoomer pour bien observer les points et comprendre ce qui se passe. Un conseil, faites des choix raisonnables ! Trop de couleurs n’est pas forcément souhaitable.</p>
@@ -546,7 +546,7 @@ Figure 4.13: Utilisation de <code>shape</code>, <code>color</code> et <code>fill
 <div class="figure" style="text-align: center"><span id="fig:sizeplot"></span>
 <img src="figure/sizeplot-1.png" alt="Association d'une variable continue à la taille des symboles avec l'argument `size`" width="90%" />
 <p class="caption">
-Figure 4.14: Association d’une variable continue à la taille des symboles avec l’argument <code>size</code>
+Figure 4.15: Association d’une variable continue à la taille des symboles avec l’argument <code>size</code>
 </p>
 </div>
 <p>Si l’over-plotting est ici très important (c’est pourquoi j’ai utilisé <code>alpha</code>), on constate néanmoins que les vols avec les retards les plus importants sont presque tous arrivés très tôt dans la journée (“500” signifie 5h00 du matin). Il s’agit probablement de vols qui devaient arriver dans la nuit, avant minuit, et qui sont finalement arrivés en tout début de journée, etnre 00h01 et 5h00 du matin. Comme pour les autres arguments, il est possible d’utiliser <code>size</code> avec une valeur fixe, la même pour tous les symboles, lorsque cet argument n’est pas associé à une variable.</p>
@@ -560,18 +560,18 @@ Figure 4.14: Association d’une variable continue à la taille des symboles ave
 <div class="figure" style="text-align: center"><span id="fig:badplot"></span>
 <img src="figure/badplot-1.png" alt="Sometimes, less is more!" width="90%" />
 <p class="caption">
-Figure 4.15: Sometimes, less is more!
+Figure 4.16: Sometimes, less is more!
 </p>
 </div>
 </div>
 <div id="exercices-3" class="section level3">
 <h3><span class="header-section-number">4.3.6</span> Exercices</h3>
 <p>À quoi sert l’argument <code>stroke</code> ?</p>
-<p>Avec le jeu de données <code>diamonds</code>, tapez le code permettant de créer le graphique <a href="viz.html#fig:exodiamonds">4.16</a> (Indice : affichez le tableau <code>diamonds</code> dans la console afin de voir quelles sont les variables disponibles).</p>
+<p>Avec le jeu de données <code>diamonds</code>, tapez le code permettant de créer le graphique <a href="viz.html#fig:exodiamonds">4.17</a> (Indice : affichez le tableau <code>diamonds</code> dans la console afin de voir quelles sont les variables disponibles).</p>
 <div class="figure" style="text-align: center"><span id="fig:exodiamonds"></span>
 <img src="figure/exodiamonds-1.png" alt="Prix de 53940 diamants en fonction de leur taille en carats et de leur couleur." width="90%" />
 <p class="caption">
-Figure 4.16: Prix de 53940 diamants en fonction de leur taille en carats et de leur couleur.
+Figure 4.17: Prix de 53940 diamants en fonction de leur taille en carats et de leur couleur.
 </p>
 </div>
 <p>Selon vous, à quoi sont dues les bandes verticales que l’on observe sur ce graphique ?</p>
@@ -618,7 +618,7 @@ Figure 4.16: Prix de 53940 diamants en fonction de leur taille en carats et de l
 <div class="figure" style="text-align: center"><span id="fig:linegraph"></span>
 <img src="figure/linegraph-1.png" alt="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.17: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+Figure 4.18: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <p>Très logiquement, on observe des oscillations plus ou moins régulières qui correspondent à l’alternance jour/nuit. Notez l’échelle de l’axe des ordonnées : les températures sont enregistrées en degrés Farenheit.</p>
@@ -629,7 +629,7 @@ Figure 4.17: Températures horaires à l’aéroport de Newark entre le 1er et l
 <div class="figure" style="text-align: center"><span id="fig:lineplotgraph"></span>
 <img src="figure/lineplotgraph-1.png" alt="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.18: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+Figure 4.19: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <p>Enfin, comme pour les points, il est possible de spécifier plusieurs caractéristiques esthétiques des lignes, soit en les associant à des variables, au sein de la fonction <code>aes()</code>, soit en les utilisant en guise de paramètres pour modifier l’aspect général. Les arguments les plus classiques sont une fois de plus <code>color</code> (ou <code>colour</code>) pour modifier la couleur des lignes, <code>linetype</code> pour modifier le type de lignes (continues, pointillées, tirets, etc), et <code>size</code> pour modifier l’épaisseur des lignes.</p>
@@ -643,7 +643,7 @@ Figure 4.18: Températures horaires à l’aéroport de Newark entre le 1er et l
 <div class="figure" style="text-align: center"><span id="fig:linecolor"></span>
 <img src="figure/linecolor-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.19: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+Figure 4.20: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <p>Ou bien :</p>
@@ -652,7 +652,7 @@ Figure 4.19: Températures horaires des 3 aéroports de New York entre le 1er et
 <div class="figure" style="text-align: center"><span id="fig:linetype"></span>
 <img src="figure/linetype-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.20: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+Figure 4.21: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <p>Ou encore :</p>
@@ -661,7 +661,7 @@ Figure 4.20: Températures horaires des 3 aéroports de New York entre le 1er et
 <div class="figure" style="text-align: center"><span id="fig:linetypecolor"></span>
 <img src="figure/linetypecolor-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.21: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+Figure 4.22: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
 </p>
 </div>
 </div>
@@ -672,14 +672,14 @@ Figure 4.21: Températures horaires des 3 aéroports de New York entre le 1er et
 <li>au sein de la fonction <code>ggplot()</code></li>
 <li>au sein des fonctions <code>geom_XXX()</code></li>
 </ol>
-<p>Comment choisir l’endroit où renseigner <code>aes()</code> ? Pour bien comprendre, reprenons l’exemple du graphique <a href="viz.html#fig:lineplotgraph">4.18</a> sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j’omets volontairement le nom es arguments <code>data</code> et <code>mapping</code> dans la fonction <code>ggplot()</code>) :</p>
+<p>Comment choisir l’endroit où renseigner <code>aes()</code> ? Pour bien comprendre, reprenons l’exemple du graphique <a href="viz.html#fig:lineplotgraph">4.19</a> sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j’omets volontairement le nom es arguments <code>data</code> et <code>mapping</code> dans la fonction <code>ggplot()</code>) :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:lineplotgraph2"></span>
 <img src="figure/lineplotgraph2-1.png" alt="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.22: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+Figure 4.23: Températures horaires à l’aéroport de Newark entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <p>Voyons ce qui se passe si on associe la variable <code>wind_speed</code> à l’esthétique <code>color</code>, à plusieurs endroits du code ci-dessus. Comparez les trois syntaxes et observez les différences entre les 3 graphiques obtenus :</p>
@@ -689,7 +689,7 @@ Figure 4.22: Températures horaires à l’aéroport de Newark entre le 1er et l
 <div class="figure" style="text-align: center"><span id="fig:wind"></span>
 <img src="figure/wind-1.png" alt="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.23: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+Figure 4.24: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
@@ -698,7 +698,7 @@ Figure 4.23: Températures horaires et vitesse du vent à l’aéroport de Newar
 <div class="figure" style="text-align: center"><span id="fig:wind2"></span>
 <img src="figure/wind2-1.png" alt="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.24: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+Figure 4.25: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
@@ -707,7 +707,7 @@ Figure 4.24: Températures horaires et vitesse du vent à l’aéroport de Newar
 <div class="figure" style="text-align: center"><span id="fig:wind3"></span>
 <img src="figure/wind3-1.png" alt="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.25: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+Figure 4.26: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <p>Vous l’aurez compris, lorsque l’on spécifie <code>aes()</code> à l’intérieur de la fonction <code>ggplot()</code>, les associations de variables et d’esthétiques sont appliquées à tous les objets géométriques, donc à toutes les autres couches. En revanche, quand <code>aes()</code> est spécifié dans une couche donnée, les réglages ne s’appliquent qu’à cette couche spécifique.</p>
@@ -718,7 +718,7 @@ Figure 4.25: Températures horaires et vitesse du vent à l’aéroport de Newar
 <div class="figure" style="text-align: center"><span id="fig:wind4"></span>
 <img src="figure/wind4-1.png" alt="Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013" width="90%" />
 <p class="caption">
-Figure 4.26: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
+Figure 4.27: Températures horaires et vitesse du vent à l’aéroport de Newark entre le 1er et le 15 janvier 2013
 </p>
 </div>
 <p>il est ainsi possible de spécifier des éléments esthétiques qui s’appliqueront à toutes les couches d’un graphique, et d’autres qui ne s’appliqueront qu’à une couche spécifique, qu’à un objet géométrique particulier.</p>
@@ -736,7 +736,7 @@ Figure 4.26: Températures horaires et vitesse du vent à l’aéroport de Newar
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-46"></span>
 <img src="figure/unnamed-chunk-46-1.png" alt="Histogramme des températures enregistrées en 2013 dans les 3 aéroports de New York" width="90%" />
 <p class="caption">
-Figure 4.27: Histogramme des températures enregistrées en 2013 dans les 3 aéroports de New York
+Figure 4.28: Histogramme des températures enregistrées en 2013 dans les 3 aéroports de New York
 </p>
 </div>
 <p>On observe plusieurs choses :</p>
@@ -752,7 +752,7 @@ Figure 4.27: Histogramme des températures enregistrées en 2013 dans les 3 aér
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-47"></span>
 <img src="figure/unnamed-chunk-47-1.png" alt="Utilisation des arguments `fill` et `color` pour modifier l'aspect de l'histogramme." width="90%" />
 <p class="caption">
-Figure 4.28: Utilisation des arguments <code>fill</code> et <code>color</code> pour modifier l’aspect de l’histogramme.
+Figure 4.29: Utilisation des arguments <code>fill</code> et <code>color</code> pour modifier l’aspect de l’histogramme.
 </p>
 </div>
 </div>
@@ -770,7 +770,7 @@ Figure 4.28: Utilisation des arguments <code>fill</code> et <code>color</code> p
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-48"></span>
 <img src="figure/unnamed-chunk-48-1.png" alt="Modification du nombre de classes" width="90%" />
 <p class="caption">
-Figure 4.29: Modification du nombre de classes
+Figure 4.30: Modification du nombre de classes
 </p>
 </div>
 <p>Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n’est pas aussi lisse qu’elle en avait l’air. L’ajout d’une couche supplémentaire avec la fonction <code>geom_rug()</code> (“a rug”&quot; est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu’on pouvait le croire :</p>
@@ -780,7 +780,7 @@ Figure 4.29: Modification du nombre de classes
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-49"></span>
 <img src="figure/unnamed-chunk-49-1.png" alt="Ajout des données brutes sous forme de 'tapis' (`rug`) sous l'histogramme." width="90%" />
 <p class="caption">
-Figure 4.30: Ajout des données brutes sous forme de ‘tapis’ (<code>rug</code>) sous l’histogramme.
+Figure 4.31: Ajout des données brutes sous forme de ‘tapis’ (<code>rug</code>) sous l’histogramme.
 </p>
 </div>
 <p>Notez la transparence importante utilisée pour <code>geom_rug</code>. On constate que la précision des relevés de température n’est en fait que de quelques dixièmes de degrés.</p>
@@ -790,7 +790,7 @@ Figure 4.30: Ajout des données brutes sous forme de ‘tapis’ (<code>rug</cod
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-50"></span>
 <img src="figure/unnamed-chunk-50-1.png" alt="Modification de la largeur des classes avec `binwidth`" width="90%" />
 <p class="caption">
-Figure 4.31: Modification de la largeur des classes avec <code>binwidth</code>
+Figure 4.32: Modification de la largeur des classes avec <code>binwidth</code>
 </p>
 </div>
 <p>Ici chaque catégorie recouvre 10 degrés farenheit. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l’argument <code>breaks</code> :</p>
@@ -799,7 +799,7 @@ Figure 4.31: Modification de la largeur des classes avec <code>binwidth</code>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-51"></span>
 <img src="figure/unnamed-chunk-51-1.png" alt="Spécification manuelle des limites de classes de tailles (classes irrégulières)" width="90%" />
 <p class="caption">
-Figure 4.32: Spécification manuelle des limites de classes de tailles (classes irrégulières)
+Figure 4.33: Spécification manuelle des limites de classes de tailles (classes irrégulières)
 </p>
 </div>
 <p>Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n’ont pas la même largeur. Cela rend l’interprétation difficile. Il est donc vivement conseillé, pour spécifier <code>breaks</code>, de créer des suites régulières, comme avec la fonction <code>seq()</code> par exemple (consultez sont fichier d’aide et les exemples !) :</p>
@@ -812,7 +812,7 @@ limits</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:break"></span>
 <img src="figure/break-1.png" alt="Un exemple d'utilisation de l'argument `break`" width="90%" />
 <p class="caption">
-Figure 4.33: Un exemple d’utilisation de l’argument <code>break</code>
+Figure 4.34: Un exemple d’utilisation de l’argument <code>break</code>
 </p>
 </div>
 <p>Il est important que toute la gamme des valeurs de <code>temp</code> soit couverte par les limites des classes que nous avons définies, sinon, certaines valeurs sont omises et l’histogramme est donc incomplet/incorrect. Une façon de s’en assurer est d’afficher les résumé des données pour la colonne <code>temp</code> du jeu de données <code>weather</code> :</p>
@@ -833,7 +833,7 @@ Figure 4.33: Un exemple d’utilisation de l’argument <code>break</code>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-53"></span>
 <img src="figure/unnamed-chunk-53-1.png" alt="Distribution des températures avec visualisation des données mensuelles." width="90%" />
 <p class="caption">
-Figure 4.34: Distribution des températures avec visualisation des données mensuelles.
+Figure 4.35: Distribution des températures avec visualisation des données mensuelles.
 </p>
 </div>
 <p>qui produit un graphique certes assez joli, mais difficile à interpréter, mieux vaut faire ceci :</p>
@@ -843,7 +843,7 @@ Figure 4.34: Distribution des températures avec visualisation des données mens
 <div class="figure" style="text-align: center"><span id="fig:wrap"></span>
 <img src="figure/wrap-1.png" alt="Un exemple d'utilisation de `facet_wrap()`" width="90%" />
 <p class="caption">
-Figure 4.35: Un exemple d’utilisation de <code>facet_wrap()</code>
+Figure 4.36: Un exemple d’utilisation de <code>facet_wrap()</code>
 </p>
 </div>
 <p>La couche supplémentaire créée avec <code>facet_wrap</code> permet donc de scinder les données en foncton d’une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole <code>~</code> devant la variable que l’on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c’est la raison pour laquelle j’utilise la notation <code>factor(month)</code> et non simplement <code>month</code>.</p>
@@ -858,7 +858,7 @@ Figure 4.35: Un exemple d’utilisation de <code>facet_wrap()</code>
 <div class="figure" style="text-align: center"><span id="fig:grid"></span>
 <img src="figure/grid-1.png" alt="Un exemple d'utilisation de `facet_grid()`" width="90%" />
 <p class="caption">
-Figure 4.36: Un exemple d’utilisation de <code>facet_grid()</code>
+Figure 4.37: Un exemple d’utilisation de <code>facet_grid()</code>
 </p>
 </div>
 <p>Ici, nous avons utilisé la variable <code>month</code> (transformée en facteur) et la variable <code>origin</code> pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible de faire facilement des comparaisons des températures intermensuelles au sein d’un aéroport donné (en colonnes), ou de faire des comparaisons des températures observées le même mois dans plusieurs aéroports (en lignes).</p>
@@ -867,9 +867,9 @@ Figure 4.36: Un exemple d’utilisation de <code>facet_grid()</code>
 </div>
 <div id="exercices-4" class="section level3">
 <h3><span class="header-section-number">4.6.3</span> Exercices</h3>
-<p>Examinez la figure <a href="viz.html#fig:grid">4.36</a>.</p>
+<p>Examinez la figure <a href="viz.html#fig:grid">4.37</a>.</p>
 <ol style="list-style-type: decimal">
-<li>Quels éléments nouveaux ce graphiques nous apprend-il par rapport au graphique <a href="viz.html#fig:break">4.33</a> ci-dessus ? Comment le “<code>facet</code>ing” nous aide-t’il à visualiser les relations entre 2 (ou 3) variables ?</li>
+<li>Quels éléments nouveaux ce graphiques nous apprend-il par rapport au graphique <a href="viz.html#fig:break">4.34</a> ci-dessus ? Comment le “<code>facet</code>ing” nous aide-t’il à visualiser les relations entre 2 (ou 3) variables ?</li>
 <li>À quoi correspondent les numéros 1 à 12 ?</li>
 <li>À quoi correspondent les chiffres 25, 50, 75, 100 ?</li>
 <li>À quoi correspondent les chiffres 0, 100, 200, 300 ?</li>
@@ -890,7 +890,7 @@ Figure 4.36: Un exemple d’utilisation de <code>facet_grid()</code>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-54"></span>
 <img src="figure/unnamed-chunk-54-1.png" alt="Un boxplot for peu utile..." width="90%" />
 <p class="caption">
-Figure 4.37: Un boxplot for peu utile…
+Figure 4.38: Un boxplot for peu utile…
 </p>
 </div>
 <p>Comme précédemment, R nous avertit qu’une observation n’a pas été intégrée (en raison d’une donnée manquante). Mais il nous dit aussi que <code>x</code> (pour nous, la variable <code>month</code>) est continue, et que nous avons probablement oublié de spécifier des groupes.</p>
@@ -900,7 +900,7 @@ Figure 4.37: Un boxplot for peu utile…
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-55"></span>
 <img src="figure/unnamed-chunk-55-1.png" alt="Boxplot des températures mensuelles" width="90%" />
 <p class="caption">
-Figure 4.38: Boxplot des températures mensuelles
+Figure 4.39: Boxplot des températures mensuelles
 </p>
 </div>
 <p>Les différents éléments d’un boxplot, sont les suivants :</p>
@@ -920,23 +920,23 @@ Figure 4.38: Boxplot des températures mensuelles
 <div class="figure" style="text-align: center"><span id="fig:notchedboxplot"></span>
 <img src="figure/notchedboxplot-1.png" alt="Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés." width="90%" />
 <p class="caption">
-Figure 4.39: Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés.
+Figure 4.40: Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés.
 </p>
 </div>
-<p>Comme l’indique la légende de la figure <a href="viz.html#fig:notchedboxplot">4.39</a>, cette encoche correspond à l’etendue de l’intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d’en avoir la certitude absolue. Le mieux que l’on puisse faire, c’est quantifier l’incertitude. L’intervalle de confiance nous indique qu’il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d’incertitude, ce qui est une bonne chose.<br />
+<p>Comme l’indique la légende de la figure <a href="viz.html#fig:notchedboxplot">4.40</a>, cette encoche correspond à l’etendue de l’intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d’en avoir la certitude absolue. Le mieux que l’on puisse faire, c’est quantifier l’incertitude. L’intervalle de confiance nous indique qu’il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d’incertitude, ce qui est une bonne chose.<br />
 Nous reviendrons sur cette notion importante à la fin des TP de biométrie 2 ou en biométrie 3, car ce type de graphique nous permettra d’anticiper sur les résultats des tests de comparaisons de moyennes.</p>
 </div>
 <div id="une-autre-facon-dexaminer-des-distributions" class="section level3">
 <h3><span class="header-section-number">4.7.3</span> Une autre façon d’examiner des distributions</h3>
-<p>Dernière chose concernant les boxplots : il s’agit d’une représentation graphique très proche de l’histogramme. Pour vous en convaincre, je représente à la figure <a href="viz.html#fig:compboxplot">4.40</a> ci-dessous uniquement les temperatures du mois de novembre, avec 3 types d’objets géométriques différents : un histogramme, un boxplot, et un nuage de points.</p>
+<p>Dernière chose concernant les boxplots : il s’agit d’une représentation graphique très proche de l’histogramme. Pour vous en convaincre, je représente à la figure <a href="viz.html#fig:compboxplot">4.41</a> ci-dessous uniquement les temperatures du mois de novembre, avec 3 types d’objets géométriques différents : un histogramme, un boxplot, et un nuage de points.</p>
 <div class="figure" style="text-align: center"><span id="fig:compboxplot"></span>
 <img src="figure/compboxplot-1.png" alt="Distribution des températures de Novembre 2013" width="90%" />
 <p class="caption">
-Figure 4.40: Distribution des températures de Novembre 2013
+Figure 4.41: Distribution des températures de Novembre 2013
 </p>
 </div>
 <p>Nous avons donc, à gauche un histogramme pour les températures de novembre (j’ai permuté les axes pour que <code>y</code> porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d’un nuage de point créé avec <code>geom_jitter()</code>. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.</p>
-<p>Le nuage de points affiche toutes les données. C’est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s’en trouver compliquée. L’histogramme simplifie les données en les regroupant dans des classes. C’est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l’intervalle de confiance à 95% de la médiane. C’est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure <a href="viz.html#fig:notchedboxplot">4.39</a> un peu plus haut), mais qui est forcément moins précise qu’un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l’histogramme. En outre, sur la figure <a href="viz.html#fig:notchedboxplot">4.39</a>, la tendance générale est très visible : il fait plus chaud en été qu’en hiver (étonnant non ?).</p>
+<p>Le nuage de points affiche toutes les données. C’est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s’en trouver compliquée. L’histogramme simplifie les données en les regroupant dans des classes. C’est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l’intervalle de confiance à 95% de la médiane. C’est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure <a href="viz.html#fig:notchedboxplot">4.40</a> un peu plus haut), mais qui est forcément moins précise qu’un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l’histogramme. En outre, sur la figure <a href="viz.html#fig:notchedboxplot">4.40</a>, la tendance générale est très visible : il fait plus chaud en été qu’en hiver (étonnant non ?).</p>
 </div>
 <div id="pour-conclure" class="section level3">
 <h3><span class="header-section-number">4.7.4</span> Pour conclure</h3>
