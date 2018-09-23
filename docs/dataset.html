@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-09-20">
+<meta name="date" content="2018-09-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -164,7 +164,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.5.1" data-path="viz.html"><a href="viz.html#lobjet-geom_histogram"><i class="fa fa-check"></i><b>4.5.1</b> L’objet <code>geom_histogram()</code></a></li>
 <li class="chapter" data-level="4.5.2" data-path="viz.html"><a href="viz.html#la-taille-des-classes"><i class="fa fa-check"></i><b>4.5.2</b> La taille des classes</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="viz.html"><a href="viz.html#les-facets"><i class="fa fa-check"></i><b>4.6</b> Les <code>facet</code>s</a><ul>
+<li class="chapter" data-level="4.6" data-path="viz.html"><a href="viz.html#facets"><i class="fa fa-check"></i><b>4.6</b> Les <code>facet</code>s</a><ul>
 <li class="chapter" data-level="4.6.1" data-path="viz.html"><a href="viz.html#facet_wrap"><i class="fa fa-check"></i><b>4.6.1</b> <code>facet_wrap()</code></a></li>
 <li class="chapter" data-level="4.6.2" data-path="viz.html"><a href="viz.html#facet_grid"><i class="fa fa-check"></i><b>4.6.2</b> <code>facet_grid()</code></a></li>
 <li class="chapter" data-level="4.6.3" data-path="viz.html"><a href="viz.html#exercices-4"><i class="fa fa-check"></i><b>4.6.3</b> Exercices</a></li>
@@ -175,7 +175,15 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.7.3" data-path="viz.html"><a href="viz.html#une-autre-facon-dexaminer-des-distributions"><i class="fa fa-check"></i><b>4.7.3</b> Une autre façon d’examiner des distributions</a></li>
 <li class="chapter" data-level="4.7.4" data-path="viz.html"><a href="viz.html#pour-conclure"><i class="fa fa-check"></i><b>4.7.4</b> Pour conclure</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="viz.html"><a href="viz.html#les-diagrammes-batons"><i class="fa fa-check"></i><b>4.8</b> Les diagrammes bâtons</a></li>
+<li class="chapter" data-level="4.8" data-path="viz.html"><a href="viz.html#les-diagrammes-batons"><i class="fa fa-check"></i><b>4.8</b> Les diagrammes bâtons</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="viz.html"><a href="viz.html#representation-graphique-avec-geom_bar-et-geom_col"><i class="fa fa-check"></i><b>4.8.1</b> Représentation graphique avec <code>geom_bar</code> et <code>geom_col</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="viz.html"><a href="viz.html#un-example-concret"><i class="fa fa-check"></i><b>4.8.2</b> Un example concret</a></li>
+<li class="chapter" data-level="4.8.3" data-path="viz.html"><a href="viz.html#exercices-5"><i class="fa fa-check"></i><b>4.8.3</b> Exercices</a></li>
+<li class="chapter" data-level="4.8.4" data-path="viz.html"><a href="viz.html#eviter-a-tout-prix-les-diagrammes-circulaires"><i class="fa fa-check"></i><b>4.8.4</b> Éviter à tout prix les diagrammes circulaires</a></li>
+<li class="chapter" data-level="4.8.5" data-path="viz.html"><a href="viz.html#comparer-2-variables-categorielles-avec-un-diagramme-baton"><i class="fa fa-check"></i><b>4.8.5</b> Comparer 2 variables catégorielles avec un diagramme bâton</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="viz.html"><a href="viz.html#les-legendes"><i class="fa fa-check"></i><b>4.9</b> Les légendes</a></li>
+<li class="chapter" data-level="4.10" data-path="viz.html"><a href="viz.html#exercice-1"><i class="fa fa-check"></i><b>4.10</b> Exercice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
 <li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a></li>
@@ -206,6 +214,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Pensez à installer ces packages avant de les charger si besoin</span>
 <span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(nycflights13)</code></pre></div>
+<hr />
 <div id="le-package-nycflights13" class="section level2">
 <h2><span class="header-section-number">3.1</span> Le package <code>nycflights13</code></h2>
 <p>Nous avons probablement déjà presque tous pris l’avion. Les grands aéroports contiennent de nombreuses portes d’embarquement, et pour chacune d’elles, des informations sur les vols en partance sont affichées. Par exemple, le numéro du vol, les heures de décollage et d’aterrissage prévues, les retards etc. Dans la mesure du possible, on aime arriver à destination à l’heure. Dans la suite de ce document, on examinera ce jeu de données, notamment afin d’en apprendre plus sur les causes de retard les plus fréquentes.</p>
@@ -217,6 +226,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><code>weather</code> : données météorologiques heure par heure (environ 8705 observations) pour chacun des 3 aéroports de New York</li>
 <li><code>airports</code> : noms et localisation géographiques des aéroports desservis (1458 aéroports)</li>
 </ol>
+<hr />
 </div>
 <div id="le-data-frame-flights" class="section level2">
 <h2><span class="header-section-number">3.2</span> Le data frame <code>flights</code></h2>
@@ -263,6 +273,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li><code>&lt;dttm&gt;</code> : combinaison de date et d’heure (“date time”)</li>
 </ul>
 <p>Cette façon d’afficher le contenu d’un tableau permet d’y voir (beaucoup) plus clair que l’affichage classique d’un <code>data.frame</code>. Malheureusement, ce n’est pas toujours suffisant. Voyons quelles sont les autres méthodes permettant d’explorer un <code>data.frame</code>.</p>
+<hr />
 </div>
 <div id="explorer-un-data.frame" class="section level2">
 <h2><span class="header-section-number">3.3</span> Explorer un <code>data.frame</code></h2>
@@ -358,6 +369,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?flights</code></pre></div>
 <p>Vous devriez absolument prendre l’habitude d’examiner les fichiers d’aide des fonctions ou jeux de données pour lesquels vous avez des questions. Ces fichiers sont très complets, et même s’il peuvent paraître impressionants au premier abord, ils sont tous structurés sur le même modèle et vous aideront à comprendre comment utiliser les fonctions, quels sont les arguments possibles, à quoi ils servent et comment les utiliser.</p>
 <p>Prenez le temps d’examiner le fichier d’aide du jeu de données <code>flights</code>. Avant de passer à la suite, assurez-vous d’avoir compris à quoi correspondent chacune des 19 variables de ce tableau.</p>
+<hr />
 </div>
 </div>
 <div id="exercices-1" class="section level2">

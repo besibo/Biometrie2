@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-09-20">
+<meta name="date" content="2018-09-23">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -164,7 +164,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.5.1" data-path="viz.html"><a href="viz.html#lobjet-geom_histogram"><i class="fa fa-check"></i><b>4.5.1</b> L’objet <code>geom_histogram()</code></a></li>
 <li class="chapter" data-level="4.5.2" data-path="viz.html"><a href="viz.html#la-taille-des-classes"><i class="fa fa-check"></i><b>4.5.2</b> La taille des classes</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="viz.html"><a href="viz.html#les-facets"><i class="fa fa-check"></i><b>4.6</b> Les <code>facet</code>s</a><ul>
+<li class="chapter" data-level="4.6" data-path="viz.html"><a href="viz.html#facets"><i class="fa fa-check"></i><b>4.6</b> Les <code>facet</code>s</a><ul>
 <li class="chapter" data-level="4.6.1" data-path="viz.html"><a href="viz.html#facet_wrap"><i class="fa fa-check"></i><b>4.6.1</b> <code>facet_wrap()</code></a></li>
 <li class="chapter" data-level="4.6.2" data-path="viz.html"><a href="viz.html#facet_grid"><i class="fa fa-check"></i><b>4.6.2</b> <code>facet_grid()</code></a></li>
 <li class="chapter" data-level="4.6.3" data-path="viz.html"><a href="viz.html#exercices-4"><i class="fa fa-check"></i><b>4.6.3</b> Exercices</a></li>
@@ -175,7 +175,15 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.7.3" data-path="viz.html"><a href="viz.html#une-autre-facon-dexaminer-des-distributions"><i class="fa fa-check"></i><b>4.7.3</b> Une autre façon d’examiner des distributions</a></li>
 <li class="chapter" data-level="4.7.4" data-path="viz.html"><a href="viz.html#pour-conclure"><i class="fa fa-check"></i><b>4.7.4</b> Pour conclure</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="viz.html"><a href="viz.html#les-diagrammes-batons"><i class="fa fa-check"></i><b>4.8</b> Les diagrammes bâtons</a></li>
+<li class="chapter" data-level="4.8" data-path="viz.html"><a href="viz.html#les-diagrammes-batons"><i class="fa fa-check"></i><b>4.8</b> Les diagrammes bâtons</a><ul>
+<li class="chapter" data-level="4.8.1" data-path="viz.html"><a href="viz.html#representation-graphique-avec-geom_bar-et-geom_col"><i class="fa fa-check"></i><b>4.8.1</b> Représentation graphique avec <code>geom_bar</code> et <code>geom_col</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="viz.html"><a href="viz.html#un-example-concret"><i class="fa fa-check"></i><b>4.8.2</b> Un example concret</a></li>
+<li class="chapter" data-level="4.8.3" data-path="viz.html"><a href="viz.html#exercices-5"><i class="fa fa-check"></i><b>4.8.3</b> Exercices</a></li>
+<li class="chapter" data-level="4.8.4" data-path="viz.html"><a href="viz.html#eviter-a-tout-prix-les-diagrammes-circulaires"><i class="fa fa-check"></i><b>4.8.4</b> Éviter à tout prix les diagrammes circulaires</a></li>
+<li class="chapter" data-level="4.8.5" data-path="viz.html"><a href="viz.html#comparer-2-variables-categorielles-avec-un-diagramme-baton"><i class="fa fa-check"></i><b>4.8.5</b> Comparer 2 variables catégorielles avec un diagramme bâton</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="viz.html"><a href="viz.html#les-legendes"><i class="fa fa-check"></i><b>4.9</b> Les légendes</a></li>
+<li class="chapter" data-level="4.10" data-path="viz.html"><a href="viz.html#exercice-1"><i class="fa fa-check"></i><b>4.10</b> Exercice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
 <li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a></li>
@@ -202,7 +210,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div id="header">
 <h1 class="title">Travaux Pratiques de Biométrie 2</h1>
 <h4 class="author"><em>Benoît Simon-Bouhet</em></h4>
-<h4 class="date"><em>2018-09-20</em></h4>
+<h4 class="date"><em>2018-09-23</em></h4>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
@@ -223,6 +231,7 @@ Les données que vous serez amenés à traiter lors de vos stages, ou plus tard,
 <ol start="3" style="list-style-type: decimal">
 <li>Vous apprendre comment calculer des statistiques descriptives simples, sur plusieurs types de variables, afin de vous mettre dans les meilleures conditions possible pour aborder d’une part les cours de biométrie 3 du second semestre, et d’autre part les comptes-rendus de TP que vous aurez à produire dans d’autres EC. Vos enseigants attendent de vous la plus grande rigueur lorsque vous analysez et présentez des résultats d’analyses statistiques. Ces TP ont pour objectifs de vous fournir les bases nécessaires pour satisfaire ce niveau d’exigence.</li>
 </ol>
+<hr />
 </div>
 <div id="organisation" class="section level2">
 <h2><span class="header-section-number">1.2</span> Organisation</h2>

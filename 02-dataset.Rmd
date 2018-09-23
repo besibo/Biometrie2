@@ -11,6 +11,8 @@ library(nycflights13)
 ```
 
 
+----
+
 ## Le package `nycflights13`
 
 Nous avons probablement déjà presque tous pris l'avion. Les grands aéroports contiennent de nombreuses portes d'embarquement, et pour chacune d'elles, des informations sur les vols en partance sont affichées. Par exemple, le numéro du vol, les heures de décollage et d'aterrissage prévues, les retards etc. Dans la mesure du possible, on aime arriver à destination à l'heure. Dans la suite de ce document, on examinera ce jeu de données, notamment afin d'en apprendre plus sur les causes de retard les plus fréquentes.
@@ -23,6 +25,8 @@ Ce package contient 5 "tableaux" contenant des informations sur chaque vol inté
 4. `weather` : données météorologiques heure par heure (environ 8705 observations) pour chacun des 3 aéroports de New York
 5. `airports` : noms et localisation géographiques des aéroports desservis (1458 aéroports)
 
+
+----
 
 ## Le data frame `flights`
 
@@ -56,6 +60,9 @@ Cette façon d'afficher les tableaux est spécifique des `tibble`s. Vous noterez
 - `<dttm>` : combinaison de date et d'heure ("date time")
 
 Cette façon d'afficher le contenu d'un tableau permet d'y voir (beaucoup) plus clair que l'affichage classique d'un `data.frame`. Malheureusement, ce n'est pas toujours suffisant. Voyons quelles sont les autres méthodes permettant d'explorer un `data.frame`.
+
+
+----
 
 ## Explorer un `data.frame`
 
@@ -132,6 +139,9 @@ Par exemple, examinez l'aide du jeu de données `flights` :
 Vous devriez absolument prendre l'habitude d'examiner les fichiers d'aide des fonctions ou jeux de données pour lesquels vous avez des questions. Ces fichiers sont très complets, et même s'il peuvent paraître impressionants au premier abord, ils sont tous structurés sur le même modèle et vous aideront à comprendre comment utiliser les fonctions, quels sont les arguments possibles, à quoi ils servent et comment les utiliser.
 
 Prenez le temps d'examiner le fichier d'aide du jeu de données `flights`. Avant de passer à la suite, assurez-vous d'avoir compris à quoi correspondent chacune des 19 variables de ce tableau.
+
+
+----
 
 ## Exercices
 
