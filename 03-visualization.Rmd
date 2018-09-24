@@ -889,17 +889,288 @@ Ici, chaque graphique permet de comparer les compagnies aériennes au sein de l'
 
 ----
 
-## Les légendes
+## De l'exploration à l'exposition
 
-Vous savez maintenant comment produire une grande variété de graphiques, permettant de visualiser le comportement d'une ou plusieurs variables, et de mettre en évidence des tendances, des relations entre variables numérique et/ou catégorielles. Afin de rendre vos graphiques plus présentables dans un rapport, il ne vous reste plus qu'à vous familiariser avec quelques fonctions permettant de légender correctement vos graphiques.
+Vous savez maintenant comment produire une grande variété de graphiques, permettant d'explorer vos données, de visualiser le comportement d'une ou plusieurs variables, et de mettre en évidence des tendances, des relations entre variables numérique et/ou catégorielles. Afin de rendre vos graphiques plus présentables dans un rapport, il ne vous reste plus qu'à vous familiariser avec quelques fonctions permettant de légender correctement vos graphiques et d'en modifier les légendes si nécessaire.
+
+### Les labels
+
+Le point de départ le plus évident est d'ajouter des labels de qualité. la fonction `labs()` du package `ggplot2` permet d'ajouter plusieurs types de labels sur vos graphiques :
+
+- un titre : il doit résumer les résultats les plus importants
+- un sous-titre : il permet de donner quelques détails supplémentaires
+- une légende : souvent utilisée pour présenter la source des données du graphique
+- un titre pour chaque axe : permet de préciser les variables portées par les axes et leurs unités
+- un titre pour chaque élément des légendes de couleurs, de forme, de taille, etc
+
+Reprenons par exemple le graphique de la figure \@ref(fig:varcolor) :
+
+```{r, varcolorlabel, tidy=FALSE, warning=FALSE, fig.cap="Association de `color` à une variable catégorielle"}
+ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay, color = factor(month))) +
+  geom_point()
+```
+
+Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajouter la fonction `labs()` sur une nouvelle couche du graphique :
 
 
+```{r, varcolorlabel2, tidy=FALSE, warning=FALSE, fig.cap="Exemple d'utilisation de `labs()`"}
+ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay, color = factor(month))) +
+  geom_point() +
+  labs(title = "Relation linéaire positive entre le retard des vols au départ et à l'arrivée",
+       subtitle = "L'essentiel des points est centré sur 0, mais certains retard dépassent 3 heures",
+       caption = "Source : `nycflights13`",
+       x = "Retard au départ de New York (minutes)",
+       y = "Retard à l'arrivée à destination (minutes)",
+       color = "Mois")
+```
+
+À partir de maintenant, vous devriez systématiquement légender les axes de vos graphiques en n'oubliant pas de préciser les unités, pour tous les graphiques que vous intégrez dans vos rapports, compte-rendus, mémoires, etc.
+
+
+### Les échelles
+
+Tous les aspects des graphiques que vous produisez peuvent être édités. C'est notamment le cas des échelles. Qu'il s'agisse de modifier l'étendue des axes, la densité du quadrillage, la position des tirets sur les axes, le nom des catégories figurant sur les axes ou dans les légendes ou encore les couleurs utilisées pour différentes catégories d'objets géométriques, tout est possible dans `ggplot2`.
+
+Nous n'avons pas le temps ici d'aborder toutes ces questions en détail. Je vous encourage donc à consulter l'ouvrage en ligne intitulé [R for data science](http://r4ds.had.co.nz/), et en particulier [son chapitre dédié aux échelles](http://r4ds.had.co.nz/graphics-for-communication.html#scales), si vous avez besoin d'apporter des modifications à vos graphiques et que vous ne trouvez pas comment faire dans cet ouvrage.
+
+Je vais ici uniquement détailler la façon de procéder pour modifier les couleurs choisies par défaut par `ggplot2`. Reprenons par exemple la figure \@ref(fig:barfacet), en ajoutant au passage des titres corrects pour nos axes
+
+```{r barfacetbis, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports\nde New York")
+```
+
+Notez que le caractère spécial `\n` permet de forcer un retour à la ligne. Ici, les 3 couleurs de remplissage (`fill`) utilisées pour différencier les 3 aéroports de New York ont été choisies par défaut par `ggplot2`. Il est possible de modifier ces couleurs de plusieurs façons :
+
+- en utilisant d'autres palettes de couleurs prédéfinies
+- en utilisant des couleurs choisies manuellement
+
+Toutes les fonctions permettant d'altérer les légendes commencent par `scale_`. Vient ensuite le nom de l'esthétique que l'on souhaite modifier (ici `fill_`) et enfin, le nom d'une fonction à appliquer. Les possibilités sont nombreuses et vous pouvez en avoir un aperçu en tapant le début du nom de la fonction et en parcourant la liste proposée par RStudio sous le curseur.
+
+Par exemple, pour utiliser des niveaux de gris plutôt que les couleurs, il suffit d'ajouter une couche à notre graphique :
+
+```{r barfacetgray, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports\nde New York") +
+  scale_fill_grey()
+```
+
+Le package `RColorBrewer` propose une large gamme de palettes de couleurs :
+
+![](images/brewer.png)
+
+`ggplot2` permet d'appliquer ces palettes très simplement :
+
+```{r barfacetbrewer, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports\nde New York") +
+  scale_fill_brewer(palette = "Accent")
+```
+
+De même, le package `viridis` propose une palette de couleur intéressante qui maximise le contraste et facilite la disrimination des catégories pour les daltoniens. Là encore, `ggplot2` nous donne accès à cette palette :
+
+```{r barfacetviridis, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports\nde New York") +
+  scale_fill_viridis_d()
+```
+
+Enfin, si les palettes de couleur ne convienent pas, il est toujours possible de spécifier manuellement les couleurs souhaitées. R propose un accès rapide à 657 noms de couleurs. Pour afficher leurs noms, il suffit de taper :
+
+```{r}
+colors()
+```
+
+Pour savoir à quelle couleur correspond chaque nom, le plus simple est probablement de consulter [ce document pdf](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) (n'hésitez pas à le sauvegarder si vous pensez en avoir besoin plus tard).
+
+```{r barfacetmanual, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports\nde New York") +
+  scale_fill_manual(values = c("dodgerblue1", "mediumorchid2", "red2"))
+```
+
+Outre ces 657 couleurs qui disposent d'un nom spécifique, il est possible de spécifier les couleurs en utilisant des codes hexadécimaux et des codes rgb (red, green, blue). De nombreux sites permettent de choisir n'importe quelle couleur dans une palette qui en compte des millions et d'obtenir de tels code. [Ce site](https://www.color-hex.com) permet de le faire très simplement :
+
+```{r barfacethex, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports\nde New York") +
+  scale_fill_manual(values = c("#6f71f2", "#6ff299", "#f2b86f"))
+```
+
+Dernière chose concernant les couleurs : un choix de fonction `scale_XXX_XXX()` inaproprié est la cause d'erreur la plus fréquente ! Par exemple, si on reprend le code des figures \@ref(fig:varcolor) et \@ref(fig:varcolor2) et que l'on modifie les palettes de couleurs, notez que les fonctions utilisées ne sont pas les mêmes :
+
+```{r, varcolorviridis, tidy=FALSE, warning=FALSE, fig.cap="Association de `color` à une variable catégorielle"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, color = factor(month))) +
+  geom_point() +
+  scale_color_viridis_d()
+```
+
+```{r, varcolorviridis2, tidy=FALSE, warning=FALSE, fig.cap="Association de `color` à une variable numérique"}
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, color = arr_time)) +
+  geom_point() +
+  scale_color_viridis_c()
+```
+
+Pour les 2 figures \@ref(fig:varcolorviridis) et \@ref(fig:varcolorviridis2), j'utilise la palette de couleur `viridis`. Pour ces 2 graphiques, c'est la couleur des points qui change. Puisque cette couleur est spécifiée avec l'esthétique `color` et non plus `fill`, la fonction utilisée est `scale_color_XXX()` et non plus `scale_fill_XXX()`. 
+
+Enfin, pour la figure \@ref(fig:varcolorviridis), c'est une variable catégorielle qui est associée à l'esthétique de couleur (`factor(month)`). La fonction utilisée pour modifier les couleurs doit donc en tenir compte : le `_d` à la fin de `scale_color_viridis_d()` signifie "discrete", c'est-à-dire "discontinue". À l'inverse, pour le graphique \@ref(fig:varcolorviridis2), c'est une variable numérique continue qui est associée à l'esthétique de couleur (`arr_time`). La fonction utilisée pour modifier les couleurs en est le reflet : le `_c` à la fin de `scale_color_viridis_c()` est l'abbréviation de "continuous", c'est-à-dire "continue".
+
+Si vous ne voulez pas avoir de message d'erreur, attention donc, à choisir la fonction `scale_XXX_XXX()` appropriée. Pour cela, aidez-vous de l'aide que RStudio vous apporte en tapant les premières lettres de la fonction et en parcourant la liste des fonctions proposées dans le menu déroullant qui apparait sous votre curseur.
+
+
+### Les thèmes
+
+L'apparence de tout ce qui ne concerne pas directement les données d'un graphique est sous le contrôle d'un thème. Les thèmes contrôle l'apparence générale du graphique : quelles polices et tailles de caractères sont utilisées, quel arrière plan est utilisé poru le graphique, faut-il intégrer un quadrillage sous le graphique, et si oui, quelles doivent être ses caractéristiques ?
+
+Il est posible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins. 
+
+Reprenons par exemple le code de la figure \@ref(fig:barfacetbrewer) et ajoutons un titre :
+
+```{r theme1, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Utilisation du thème par défaut : `theme_gray()`."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports de\nNew York",
+       title = "Couverture inégale des aéroports de New York par les compagnies aériennes") +
+  scale_fill_brewer(palette = "Accent")
+```
+
+Le thème utilisé par défaut est `theme_gray()`. Il est notamment responsable de l'arrière plan gris et du quadrillage blanc. Pour changer de thème, il suffit d'ajouter une couche au graphique en donnant le nom du nouveau thème :
+
+```{r themebw, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Utilisation du thème `theme_bw()`."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports de\nNew York",
+       title = "Couverture inégale des aéroports de New York par les compagnies aériennes") +
+  scale_fill_brewer(palette = "Accent") +
+  theme_bw()
+```
+
+Les thèmes complets que vous pouvez utiliser sont les suivants :
+
+- `theme_bw()` : fond blanc et quadrillage.
+- `theme_calssic()` : thème classique, avec des axes mais pas de quadrillage
+- `theme_dark()` : fond sombre pour augmenter le contraste
+- `theme_gray()` : thème par défaut : fond gris et quadrillage blanc
+- `theme_light()` : axes et quadrillages discrets
+- `theme_linedraw()` : uniquement des lignes noires
+- `theme_minimal()` : pas d'arrière plan, pas d'axes, quadrillage discret
+- `theme_void()` : theme vide, seuls les objets géométriques restent visibles
+
+```{r thememinimal, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Utilisation du thème minimaliste."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports de\nNew York",
+       title = "Couverture inégale des aéroports de New York par les compagnies aériennes") +
+  scale_fill_brewer(palette = "Accent") +
+  theme_minimal()
+```
+
+L'argument `base_family` de chaque thème permet de spécifier une police de caractère différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l'ordinateur que vous utilisez. Dans l'exemple de la figure \@ref(fig:themefont) ci-dessous, j'utilise la police "Futura LT Book". Ci cette police n'est pas disponible sur votre ordinateur, ce code produira une erreur. Si c'est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.
+
+```{r themefont, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Modification de la police de caractère."}
+ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
+  geom_bar(color = "black") +
+  facet_wrap(~origin, ncol = 1) +
+  labs(x = "Compagnie aérienne",
+       y = "Nombre de vols",
+       fill = "Aéroports de\nNew York",
+       title = "Couverture inégale des aéroports de New York par les compagnies aériennes") +
+  scale_fill_brewer(palette = "Accent") +
+  theme_minimal(base_family = "Futura LT Book")
+```
+
+Avec tout ça, vous devriez êtes armés pour produire 95% des graphiques dont vous aurez besoin tout au long de votre cursus universitaire. Un point important a pour l'instant été omis : l'ajout de barres d'erreurs sur vos graphiques. Nous verrons comment faire cela un peu plus tard, après avoir appris à manipuler efficacement des tableaux de données avec les packages `tidyr` et `dplyr`.
 
 ----
 
-## Exercice
+## Exercices
 
-En vous appuyant sur les fonctions et les principes de la grammaire des graphiques vous avez appris dans ce chapitre \@ref(viz), tapez les commandes permettant de produire les graphiques ci-dessous :
+Commencez par créer un nouveau jeu de données en exécutant ces commandes :
 
+```{r tidy=FALSE}
+set.seed(1234)
+small_flights <- flights %>% 
+  sample_n(1000) %>% 
+  filter(!is.na(arr_delay),
+         distance < 3000)
+```
 
+Ce nouveau jeu de données de petite taille (972 lignes) est nommé `small_flights`. Il contient les mêmes variables que le tableau `flights` mais ne contient qu'une petite fraction de ses lignes. Les lignes retenues ont été choisies au hasard. Vous pouvez visualiser son contenu en tapant son nom dans la console ou en utilisant la fonction `View()`.
 
+En vous appuyant sur les fonctions et les principes de la grammaire des graphiques que vous avez découverts dans ce chapitre \@ref(viz), et en vous servant de ce nouveau jeu de données, tapez les commandes qui permettent de produire le graphique ci-dessous :
+
+```{r exercice, echo=FALSE, tidy=FALSE, warning = FALSE}
+small_flights %>% 
+  ggplot(aes(x = distance, y = air_time, color = origin, shape = origin)) +
+    geom_point(alpha = 0.8) +
+    scale_color_brewer(palette = "Set1") +
+    labs(x = "Distance parcourue en vol (miles)",
+         y = "Temps de vol (minutes)",
+         title = "Relation entre le temps de vol et la distance parcourue",
+         subtitle = "Seuls les vols au départ de JFK et Newark parcourent plus de 1600 miles",
+         color = "Aéroport de\nNew York",
+         shape = "Aéroport de\nNew York",
+         caption = "Données : small_flights") +
+    theme_bw()
+```
+
+Quelques indices : 
+
+- les couleurs utilisées sont celles de la palette `Set1` du package `RColorBrewer`
+- les variables utilisées sont `origin`, `air_time` et `distance`
+- la transparence des symboles est fixée à `0.8`
+
+Toujours avec ce jeu de données `small-flights`, tapez les commandes permettant de produire le graphique ci-dessous :
+
+```{r exercice2, fig.asp=1, echo=FALSE, tidy=FALSE, warning = FALSE}
+small_flights %>% 
+  ggplot(aes(x = factor(month), fill = origin)) +
+    geom_bar() +
+    facet_wrap(~fct_infreq(carrier), nrow=4) +
+    scale_fill_brewer(palette = "Accent") +
+    labs(x = "Mois de l'année 2013",
+         y = "Nombre de vols",
+         title = "Évolution mensuelle du trafic aérien New Yorkais en 2013",
+         subtitle = "Seules 9 compagnies aériennes sur 14 ont déservi New York toute l'année",
+         fill = "Aéroport de\nNew York",
+         caption = "Données : small_flights") +
+    theme_bw()
+```
+
+Quelques indices : 
+
+- les couleurs utilisées sont celles de la palettes `Accent` du package `RColorBrewer`
+- les variables utilisées sont `month`, `carrier` et `origin`
