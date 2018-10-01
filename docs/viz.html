@@ -1081,7 +1081,7 @@ carrier_table                  <span class="co"># Enfin, on affiche la nouvelle 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">factor</span>(carrier_table<span class="op">$</span>carrier)</code></pre></div>
 <pre><code> [1] UA B6 EV DL AA MQ US 9E WN VX FL AS F9 YV HA OO
 Levels: 9E AA AS B6 DL EV F9 FL HA MQ OO UA US VX WN YV</code></pre>
-<p>Le premier niveau est toujours <code>9A</code>, puis <code>AA</code>, puis <code>AS</code>, et non l’ordre du tableau nouvellement créé (<code>UA</code>, puis <code>B6</code>, puis <code>EV</code>…) car les niveaux sont toujours triés par ordre alphabétique. La conséquence est que faire un barplot avec ces données et la fonction <code>geom_col()</code> ne permet pas d’ordonner les catégories correctement :</p>
+<p>Le premier niveau est toujours <code>9E</code>, puis <code>AA</code>, puis <code>AS</code>, et non l’ordre du tableau nouvellement créé (<code>UA</code>, puis <code>B6</code>, puis <code>EV</code>…) car les niveaux sont toujours triés par ordre alphabétique. La conséquence est que faire un barplot avec ces données et la fonction <code>geom_col()</code> ne permet pas d’ordonner les catégories correctement :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(carrier_table, <span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> nombre)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:bpcarriercol"></span>
@@ -1143,7 +1143,7 @@ Figure 4.48: Nombre de vols par compagnie aérienne au départ de New York en 20
 <p>Supposons par exemple que nous devions visualiser le nombre de vol de chaque compagnie aérienne, au départ de chacun des 3 aéroports de New York : John F. Kennedy (<code>JFK</code>), Newark (<code>EWR</code>) et La Guardia (LGA).</p>
 <div id="graphique-empile" class="section level4">
 <h4><span class="header-section-number">4.8.5.1</span> Graphique empilé</h4>
-<p>La méthode a plus simple est celle du graphique empilé :</p>
+<p>La méthode la plus simple est celle du graphique empilé :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:stacked"></span>
@@ -1181,7 +1181,7 @@ Figure 4.51: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 </div>
 <div id="utilisation-des-facets" class="section level4">
 <h4><span class="header-section-number">4.8.5.3</span> Utilisation des <code>facet</code>s</h4>
-<p>La meilleure alternative est probablement l’utilisation de <code>facet</code>s que nous avons déjà décrite à le section <a href="viz.html#facets">4.6</a> :</p>
+<p>La meilleure alternative est probablement l’utilisation de <code>facet</code>s que nous avons déjà décrite à la section <a href="viz.html#facets">4.6</a> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>origin, <span class="dt">ncol =</span> <span class="dv">1</span>)</code></pre></div>
@@ -1191,7 +1191,7 @@ Figure 4.51: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 Figure 4.52: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
 </p>
 </div>
-<p>Ici, chaque graphique permet de comparer les compagnies aériennes au sein de l’un des aéroports de New York, et puisque l’ordre des compagnies aériennes est le même sur l’axe des <code>x</code> des 3 graphiques, une lecture verticlae permet de comparer aisément le nombre de vls qu’une compagnie donnée a affrété dans chacun ds 3 aéroports de New York.</p>
+<p>Ici, chaque graphique permet de comparer les compagnies aériennes au sein de l’un des aéroports de New York, et puisque l’ordre des compagnies aériennes est le même sur l’axe des <code>x</code> des 3 graphiques, une lecture verticale permet de comparer aisément le nombre de vols qu’une compagnie donnée a affrété dans chacun des 3 aéroports de New York.</p>
 <hr />
 </div>
 </div>

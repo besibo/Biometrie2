@@ -774,7 +774,7 @@ Ici, la table a été triée par nombre de vols décroissants. Mais attention, *
 factor(carrier_table$carrier)
 ```
 
-Le premier niveau est toujours `9A`, puis `AA`, puis `AS`, et non l'ordre du tableau nouvellement créé (`UA`, puis `B6`, puis `EV`...) car les niveaux sont toujours triés par ordre alphabétique. La conséquence est que faire un barplot avec ces données et la fonction `geom_col()` ne permet pas d'ordonner les catégories correctement :
+Le premier niveau est toujours `9E`, puis `AA`, puis `AS`, et non l'ordre du tableau nouvellement créé (`UA`, puis `B6`, puis `EV`...) car les niveaux sont toujours triés par ordre alphabétique. La conséquence est que faire un barplot avec ces données et la fonction `geom_col()` ne permet pas d'ordonner les catégories correctement :
 
 ```{r bpcarriercol, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ de New York en 2013."}
 ggplot(carrier_table, aes(x = carrier, y = nombre)) +
@@ -841,7 +841,7 @@ Supposons par exemple que nous devions visualiser le nombre de vol de chaque com
 
 #### Graphique empilé
 
-La méthode a plus simple est celle du graphique empilé :
+La méthode la plus simple est celle du graphique empilé :
 
 ```{r stacked, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013."}
 ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
@@ -878,7 +878,7 @@ Là encore, la lecture de ces graphiques est souvent difficile car la comparaiso
 
 #### Utilisation des `facet`s
 
-La meilleure alternative est probablement l'utilisation de `facet`s que nous avons déjà décrite à le section \@ref(facets) :
+La meilleure alternative est probablement l'utilisation de `facet`s que nous avons déjà décrite à la section \@ref(facets) :
 
 ```{r barfacet, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013."}
 ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
@@ -886,7 +886,7 @@ ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
   facet_wrap(~origin, ncol = 1)
 ```
 
-Ici, chaque graphique permet de comparer les compagnies aériennes au sein de l'un des aéroports de New York, et puisque l'ordre des compagnies aériennes est le même sur l'axe des `x` des 3 graphiques, une lecture verticlae permet de comparer aisément le nombre de vls qu'une compagnie donnée a affrété dans chacun ds 3 aéroports de New York.
+Ici, chaque graphique permet de comparer les compagnies aériennes au sein de l'un des aéroports de New York, et puisque l'ordre des compagnies aériennes est le même sur l'axe des `x` des 3 graphiques, une lecture verticale permet de comparer aisément le nombre de vols qu'une compagnie donnée a affrété dans chacun des 3 aéroports de New York.
 
 
 ----
