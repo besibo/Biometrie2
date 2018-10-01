@@ -784,8 +784,23 @@ cols(
 <ol style="list-style-type: decimal">
 <li>L’objet <code>dauphin</code> est-il “tidy” (autrement dit, s’agit-il de “données rangées”) ? Justifiez.</li>
 <li>Produisez le graphique ci-dessous : <img src="figure/exercicedauphin-1.png" width="90%" style="display: block; margin: auto;" /> Indice : les droites de régression avec les intervalles de confiance sont ajoutés grâce à la fonction <code>geom_smooth(method = &quot;lm&quot;)</code></li>
-<li>Importez dans R le jeu de données <a href="data/whoTB.csv">whoTB.csv</a>. Ce jeu de données contient les cas de tuberculose (TB) séparés par année, pays, age, genre et méthode de diagnostique. Selon vous, ce jeu de données est-il “rangé” ? Pourquoi ?</li>
+<li>Importez dans R le jeu de données <a href="data/whoTB.csv">whoTB.csv</a>. Ce jeu de données contient les cas de tuberculose (TB) rapportés par l’Organisation Mondiale de la Santé (OMS, ou WHO en anglais : World Health Organization). Les cas sont répertoriés par année, pays, âge, sexe, type de tuberculose et méthode de diagnostique. Selon vous, ce jeu de données est-il “rangé” ? Pourquoi ?</li>
+<li>Si ce jeu de données n’est pas rangé, rangez-le en utilisant les fonctions du packages <code>tidyr</code> que nous avons découvertes dans ce chapitre : <code>gather()</code>, <code>spread()</code>, <code>separate()</code> et <code>unite()</code> (vous n’aurez pas nécessairement besoin d’utiliser ces 4 fonctions, et à l’inverse, certaines devront peut-être être utilisées plusieurs fois).</li>
 </ol>
+<p>Pour vous aider, l’OMS donne la signification des codes utilisés en guise de noms pour la plupart des colonnes. Ainsi :</p>
+<ul>
+<li><code>new</code> indique des nouveaux cas, <code>old</code> des anciens (ici, seuls les nouveaux cas sont rapportés)</li>
+<li>le type de cas est précisé ensuite :
+<ul>
+<li><code>sp</code> signifie “Smear Positive” (tuberculose pulmonaire à frottis positif)</li>
+<li><code>sn</code> signifie “Smear Negative” (tuberculose pulmonaire à frottis négatif)</li>
+<li><code>rel</code> signifie “relapse” (rechute)</li>
+<li><code>ep</code> signifie “Extra Pulmonary” (tuberculose extra-pulmonaire)</li>
+</ul></li>
+<li>le sexe est codé par <code>m</code> (male) ou <code>f</code> (female)</li>
+<li>enfin, les chiffres correspondent à des tranches d’âges : 014 signifie “de 0 à 14 ans”, “1524” signifie “de 15 à 24 ans”, etc.</li>
+</ul>
+<p>Dans ces colonnes aux noms composés, les nombres de cas de tuberculose sont rapportés.</p>
 
 </div>
 </div>
