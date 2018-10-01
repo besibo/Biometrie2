@@ -965,7 +965,9 @@ ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
 
 Le package `RColorBrewer` propose une large gamme de palettes de couleurs :
 
-![](images/brewer.png)
+```{r, RcolorbrewerPalettes, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Toutes les palettes de couleur du package `RColorBrewer`"}
+knitr::include_graphics('images/brewer.png')
+```
 
 `ggplot2` permet d'appliquer ces palettes très simplement :
 
@@ -1113,6 +1115,7 @@ ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
 ```
 
 Avec tout ça, vous devriez êtes armés pour produire 95% des graphiques dont vous aurez besoin tout au long de votre cursus universitaire. Un point important a pour l'instant été omis : l'ajout de barres d'erreurs sur vos graphiques. Nous verrons comment faire cela un peu plus tard, après avoir appris à manipuler efficacement des tableaux de données avec les packages `tidyr` et `dplyr`.
+
 
 ----
 

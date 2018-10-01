@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-09-24">
+<meta name="date" content="2018-10-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -189,7 +189,21 @@ code > span. { color: #1f1c1b; } /* Normal */
 </ul></li>
 <li class="chapter" data-level="4.10" data-path="viz.html"><a href="viz.html#exercices-6"><i class="fa fa-check"></i><b>4.10</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a><ul>
+<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#prerequis-1"><i class="fa fa-check"></i><b>5.1</b> Prérequis</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#cest-quoi-des-tidy-data"><i class="fa fa-check"></i><b>5.2</b> C’est quoi des “tidy data” ?</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="tidyr.html"><a href="tidyr.html#la-fonction-gather"><i class="fa fa-check"></i><b>5.2.1</b> La fonction <code>gather()</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidyr.html"><a href="tidyr.html#la-fonction-spread"><i class="fa fa-check"></i><b>5.2.2</b> La fonction <code>spread()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="tidyr.html"><a href="tidyr.html#les-fonctions-separate-et-unite"><i class="fa fa-check"></i><b>5.2.3</b> Les fonctions <code>separate()</code> et <code>unite()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="tidyr.html"><a href="tidyr.html#exercices-7"><i class="fa fa-check"></i><b>5.2.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#importer-des-donnees-depuis-un-tableur"><i class="fa fa-check"></i><b>5.3</b> Importer des données depuis un tableur</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="tidyr.html"><a href="tidyr.html#les-regles-de-base"><i class="fa fa-check"></i><b>5.3.1</b> Les règles de base</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tidyr.html"><a href="tidyr.html#tableur"><i class="fa fa-check"></i><b>5.3.2</b> Fichiers au format tableur (.xls ou .xlsx)</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tidyr.html"><a href="tidyr.html#fichiers-au-format-texte-brut-.csv"><i class="fa fa-check"></i><b>5.3.3</b> Fichiers au format texte brut (.csv)</a></li>
+<li class="chapter" data-level="5.3.4" data-path="tidyr.html"><a href="tidyr.html#exercices-8"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
@@ -1258,9 +1272,11 @@ Figure 4.56: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 </p>
 </div>
 <p>Le package <code>RColorBrewer</code> propose une large gamme de palettes de couleurs :</p>
-<div class="figure">
-<img src="images/brewer.png" />
-
+<div class="figure" style="text-align: center"><span id="fig:RcolorbrewerPalettes"></span>
+<img src="images/brewer.png" alt="Toutes les palettes de couleur du package `RColorBrewer`" width="50%" />
+<p class="caption">
+Figure 4.57: Toutes les palettes de couleur du package <code>RColorBrewer</code>
+</p>
 </div>
 <p><code>ggplot2</code> permet d’appliquer ces palettes très simplement :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
@@ -1273,7 +1289,7 @@ Figure 4.56: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 <div class="figure" style="text-align: center"><span id="fig:barfacetbrewer"></span>
 <img src="figure/barfacetbrewer-1.png" alt="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013." width="90%" />
 <p class="caption">
-Figure 4.57: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
+Figure 4.58: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
 </p>
 </div>
 <p>De même, le package <code>viridis</code> propose une palette de couleur intéressante qui maximise le contraste et facilite la disrimination des catégories pour les daltoniens. Là encore, <code>ggplot2</code> nous donne accès à cette palette :</p>
@@ -1287,7 +1303,7 @@ Figure 4.57: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 <div class="figure" style="text-align: center"><span id="fig:barfacetviridis"></span>
 <img src="figure/barfacetviridis-1.png" alt="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013." width="90%" />
 <p class="caption">
-Figure 4.58: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
+Figure 4.59: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
 </p>
 </div>
 <p>Enfin, si les palettes de couleur ne convienent pas, il est toujours possible de spécifier manuellement les couleurs souhaitées. R propose un accès rapide à 657 noms de couleurs. Pour afficher leurs noms, il suffit de taper :</p>
@@ -1522,7 +1538,7 @@ Figure 4.58: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 <div class="figure" style="text-align: center"><span id="fig:barfacetmanual"></span>
 <img src="figure/barfacetmanual-1.png" alt="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013." width="90%" />
 <p class="caption">
-Figure 4.59: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
+Figure 4.60: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
 </p>
 </div>
 <p>Outre ces 657 couleurs qui disposent d’un nom spécifique, il est possible de spécifier les couleurs en utilisant des codes hexadécimaux et des codes rgb (red, green, blue). De nombreux sites permettent de choisir n’importe quelle couleur dans une palette qui en compte des millions et d’obtenir de tels code. <a href="https://www.color-hex.com">Ce site</a> permet de le faire très simplement :</p>
@@ -1536,7 +1552,7 @@ Figure 4.59: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 <div class="figure" style="text-align: center"><span id="fig:barfacethex"></span>
 <img src="figure/barfacethex-1.png" alt="Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013." width="90%" />
 <p class="caption">
-Figure 4.60: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
+Figure 4.61: Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.
 </p>
 </div>
 <p>Dernière chose concernant les couleurs : un choix de fonction <code>scale_XXX_XXX()</code> inaproprié est la cause d’erreur la plus fréquente ! Par exemple, si on reprend le code des figures <a href="viz.html#fig:varcolor">4.10</a> et <a href="viz.html#fig:varcolor2">4.11</a> et que l’on modifie les palettes de couleurs, notez que les fonctions utilisées ne sont pas les mêmes :</p>
@@ -1546,7 +1562,7 @@ Figure 4.60: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 <div class="figure" style="text-align: center"><span id="fig:varcolorviridis"></span>
 <img src="figure/varcolorviridis-1.png" alt="Association de `color` à une variable catégorielle" width="90%" />
 <p class="caption">
-Figure 4.61: Association de <code>color</code> à une variable catégorielle
+Figure 4.62: Association de <code>color</code> à une variable catégorielle
 </p>
 </div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">color =</span> arr_time)) <span class="op">+</span>
@@ -1555,18 +1571,18 @@ Figure 4.61: Association de <code>color</code> à une variable catégorielle
 <div class="figure" style="text-align: center"><span id="fig:varcolorviridis2"></span>
 <img src="figure/varcolorviridis2-1.png" alt="Association de `color` à une variable numérique" width="90%" />
 <p class="caption">
-Figure 4.62: Association de <code>color</code> à une variable numérique
+Figure 4.63: Association de <code>color</code> à une variable numérique
 </p>
 </div>
-<p>Pour les 2 figures <a href="viz.html#fig:varcolorviridis">4.61</a> et <a href="viz.html#fig:varcolorviridis2">4.62</a>, j’utilise la palette de couleur <code>viridis</code>. Pour ces 2 graphiques, c’est la couleur des points qui change. Puisque cette couleur est spécifiée avec l’esthétique <code>color</code> et non plus <code>fill</code>, la fonction utilisée est <code>scale_color_XXX()</code> et non plus <code>scale_fill_XXX()</code>.</p>
-<p>Enfin, pour la figure <a href="viz.html#fig:varcolorviridis">4.61</a>, c’est une variable catégorielle qui est associée à l’esthétique de couleur (<code>factor(month)</code>). La fonction utilisée pour modifier les couleurs doit donc en tenir compte : le <code>_d</code> à la fin de <code>scale_color_viridis_d()</code> signifie “discrete”, c’est-à-dire “discontinue”. À l’inverse, pour le graphique <a href="viz.html#fig:varcolorviridis2">4.62</a>, c’est une variable numérique continue qui est associée à l’esthétique de couleur (<code>arr_time</code>). La fonction utilisée pour modifier les couleurs en est le reflet : le <code>_c</code> à la fin de <code>scale_color_viridis_c()</code> est l’abbréviation de “continuous”, c’est-à-dire “continue”.</p>
+<p>Pour les 2 figures <a href="viz.html#fig:varcolorviridis">4.62</a> et <a href="viz.html#fig:varcolorviridis2">4.63</a>, j’utilise la palette de couleur <code>viridis</code>. Pour ces 2 graphiques, c’est la couleur des points qui change. Puisque cette couleur est spécifiée avec l’esthétique <code>color</code> et non plus <code>fill</code>, la fonction utilisée est <code>scale_color_XXX()</code> et non plus <code>scale_fill_XXX()</code>.</p>
+<p>Enfin, pour la figure <a href="viz.html#fig:varcolorviridis">4.62</a>, c’est une variable catégorielle qui est associée à l’esthétique de couleur (<code>factor(month)</code>). La fonction utilisée pour modifier les couleurs doit donc en tenir compte : le <code>_d</code> à la fin de <code>scale_color_viridis_d()</code> signifie “discrete”, c’est-à-dire “discontinue”. À l’inverse, pour le graphique <a href="viz.html#fig:varcolorviridis2">4.63</a>, c’est une variable numérique continue qui est associée à l’esthétique de couleur (<code>arr_time</code>). La fonction utilisée pour modifier les couleurs en est le reflet : le <code>_c</code> à la fin de <code>scale_color_viridis_c()</code> est l’abbréviation de “continuous”, c’est-à-dire “continue”.</p>
 <p>Si vous ne voulez pas avoir de message d’erreur, attention donc, à choisir la fonction <code>scale_XXX_XXX()</code> appropriée. Pour cela, aidez-vous de l’aide que RStudio vous apporte en tapant les premières lettres de la fonction et en parcourant la liste des fonctions proposées dans le menu déroullant qui apparait sous votre curseur.</p>
 </div>
 <div id="les-themes" class="section level3">
 <h3><span class="header-section-number">4.9.3</span> Les thèmes</h3>
 <p>L’apparence de tout ce qui ne concerne pas directement les données d’un graphique est sous le contrôle d’un thème. Les thèmes contrôle l’apparence générale du graphique : quelles polices et tailles de caractères sont utilisées, quel arrière plan est utilisé poru le graphique, faut-il intégrer un quadrillage sous le graphique, et si oui, quelles doivent être ses caractéristiques ?</p>
 <p>Il est posible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins.</p>
-<p>Reprenons par exemple le code de la figure <a href="viz.html#fig:barfacetbrewer">4.57</a> et ajoutons un titre :</p>
+<p>Reprenons par exemple le code de la figure <a href="viz.html#fig:barfacetbrewer">4.58</a> et ajoutons un titre :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>origin, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">+</span>
@@ -1578,7 +1594,7 @@ Figure 4.62: Association de <code>color</code> à une variable numérique
 <div class="figure" style="text-align: center"><span id="fig:theme1"></span>
 <img src="figure/theme1-1.png" alt="Utilisation du thème par défaut : `theme_gray()`." width="90%" />
 <p class="caption">
-Figure 4.63: Utilisation du thème par défaut : <code>theme_gray()</code>.
+Figure 4.64: Utilisation du thème par défaut : <code>theme_gray()</code>.
 </p>
 </div>
 <p>Le thème utilisé par défaut est <code>theme_gray()</code>. Il est notamment responsable de l’arrière plan gris et du quadrillage blanc. Pour changer de thème, il suffit d’ajouter une couche au graphique en donnant le nom du nouveau thème :</p>
@@ -1594,7 +1610,7 @@ Figure 4.63: Utilisation du thème par défaut : <code>theme_gray()</code>.
 <div class="figure" style="text-align: center"><span id="fig:themebw"></span>
 <img src="figure/themebw-1.png" alt="Utilisation du thème `theme_bw()`." width="90%" />
 <p class="caption">
-Figure 4.64: Utilisation du thème <code>theme_bw()</code>.
+Figure 4.65: Utilisation du thème <code>theme_bw()</code>.
 </p>
 </div>
 <p>Les thèmes complets que vous pouvez utiliser sont les suivants :</p>
@@ -1620,10 +1636,10 @@ Figure 4.64: Utilisation du thème <code>theme_bw()</code>.
 <div class="figure" style="text-align: center"><span id="fig:thememinimal"></span>
 <img src="figure/thememinimal-1.png" alt="Utilisation du thème minimaliste." width="90%" />
 <p class="caption">
-Figure 4.65: Utilisation du thème minimaliste.
+Figure 4.66: Utilisation du thème minimaliste.
 </p>
 </div>
-<p>L’argument <code>base_family</code> de chaque thème permet de spécifier une police de caractère différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l’ordinateur que vous utilisez. Dans l’exemple de la figure <a href="viz.html#fig:themefont">4.66</a> ci-dessous, j’utilise la police “Futura LT Book”. Ci cette police n’est pas disponible sur votre ordinateur, ce code produira une erreur. Si c’est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.</p>
+<p>L’argument <code>base_family</code> de chaque thème permet de spécifier une police de caractère différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l’ordinateur que vous utilisez. Dans l’exemple de la figure <a href="viz.html#fig:themefont">4.67</a> ci-dessous, j’utilise la police “Futura LT Book”. Ci cette police n’est pas disponible sur votre ordinateur, ce code produira une erreur. Si c’est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>origin, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">+</span>
@@ -1636,7 +1652,7 @@ Figure 4.65: Utilisation du thème minimaliste.
 <div class="figure" style="text-align: center"><span id="fig:themefont"></span>
 <img src="figure/themefont-1.png" alt="Modification de la police de caractère." width="90%" />
 <p class="caption">
-Figure 4.66: Modification de la police de caractère.
+Figure 4.67: Modification de la police de caractère.
 </p>
 </div>
 <p>Avec tout ça, vous devriez êtes armés pour produire 95% des graphiques dont vous aurez besoin tout au long de votre cursus universitaire. Un point important a pour l’instant été omis : l’ajout de barres d’erreurs sur vos graphiques. Nous verrons comment faire cela un peu plus tard, après avoir appris à manipuler efficacement des tableaux de données avec les packages <code>tidyr</code> et <code>dplyr</code>.</p>
