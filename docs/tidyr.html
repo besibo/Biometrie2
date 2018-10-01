@@ -581,14 +581,14 @@ cases_split</code></pre></div>
 <p>Jusqu’à maintenant, nous avons travaillé exclusivement avec des jeux de données déjà disponibles dans R. La plupart du temps, les données sur lesquelles vous devrez travailler devront au préalable être importées dans R, à partir de fichiers issus de tableurs. De tels fichiers se présentent généralement sous l’un des 2 formats suivants :</p>
 <ol style="list-style-type: decimal">
 <li>fichiers au format “.csv” : il s’agit d’un format de fichier dit “texte brut”, c’est à dire qu’il peut être ouvert avec n’importe quel éditeur de texte, y compris le bloc notes de Windows. L’extension “.csv” est l’abbréviation de Comma Separated Values, autrement dit, dans ce type de fichiers, les colonnes sont séparées par des virgules. Cela peut poser problème en France puisque le symbole des décimales est souvent aussi la virgule (et non le point comme dans les pays anglo-saxons). Le séparateur de colonnes utilisé en France dans les fichiers <code>.csv</code> est alors souvent le point-virgule. Il est possible de créer des fichiers <code>.csv</code> à partir de n’importe quel tableur en choisissant <code>Fichier &gt; Exporter...</code> ou <code>Fichier &gt; Enregistrer sous...</code> puis en sélectionnant le format approprié (les dénomminations sont variables selon les logiciels : format texte brut, format csv, plain text, etc…).</li>
-<li>fichiers au format tableur : <code>.xls</code> ou .<code>xlsx</code> pour Excel, <code>.calc</code> pour Open Office.</li>
+<li>fichiers au format tableur : <code>.xls</code> ou <code>.xlsx</code> pour Excel, <code>.calc</code> pour Open Office.</li>
 </ol>
-<p>Dans les 2 cas, pour que R puisse importer les données contenues dans ces fichiers, un certain nombre de règes doivent être respectées :</p>
+<p>Dans les 2 cas, pour que R puisse importer les données contenues dans ces fichiers, un certain nombre de règles doivent être respectées :</p>
 <ol style="list-style-type: decimal">
-<li>La première chose à laquelle il faut veiller est la présentation des données. Les variables doivent être en colonnes et les observations en lignes. Dans l’idéal, les données doivent donc être “rangées”</li>
+<li>La première chose à laquelle il faut veiller est la présentation des données. Les variables doivent être en colonnes et les observations en lignes. Dans l’idéal, les données doivent donc être “rangées”.</li>
 <li>Les cases vides qui correspondent à des données manquantes doivent contenir les lettres <code>NA</code> en majuscule. Il est important de bien faire la distinction entre les vrais zéros (<em>i.e.</em> les grandeurs mesurées pour lesquelles un zéro a été obtenu), et les valeurs manquantes, c’est à dire pour lesquelles aucune valeur n’a pu être obtenue (<em>e.g.</em> variable non mesurée pour un individu donné ou à une station donnée).</li>
 <li>Il est généralement conseillé d’utiliser la première ligne du tableau Excel pour stocker le nom des variables et la première colonne pour stocker le nom des observations (identifiant des individus, des échantillons ou des stations par exemple).</li>
-<li>Ne jamais utiliser de caractères spéciaux tels que #, $, %, ^, &amp;, *, (, ), _, {, }, [, ], des accents, des cédilles des guillemets ou des apostrophes… Cela pourrait causer des erreurs dans R. Si votre fichier en contient, faites une recherche (<em>via</em> le menu <code>Edition &gt; Rechercher et remplacer</code>) pour remplacer chaque instance par un caractère qui ne posera pas de problème.</li>
+<li>Ne jamais utiliser de caractères spéciaux tels que #, $, %, ^, &amp;, *, (, ), {, }, [, ], des accents, des cédilles des guillemets ou des apostrophes… Cela pourrait causer des erreurs dans R. Si votre fichier en contient, faites une recherche (<em>via</em> le menu <code>Edition &gt; Rechercher et remplacer...</code>) pour remplacer chaque instance par un caractère qui ne posera pas de problème.</li>
 <li>Évitez les espaces dans vos noms de variables, d’observations ou de catégories et remplacez-les par des points ou des <code>_</code>.</li>
 <li>Si des noms de lignes sont présents dans votre tableau, chaque ligne doit avoir un nom unique (il ne faut pas que plusieurs lignes portent le même nom).</li>
 <li>Des noms courts pour les variables sont généralement plus faciles à manipuler par la suite.</li>
@@ -597,15 +597,15 @@ cases_split</code></pre></div>
 </div>
 <div id="tableur" class="section level3">
 <h3><span class="header-section-number">5.3.2</span> Fichiers au format tableur (.xls ou .xlsx)</h3>
-<p>À titre d’exemple, téléchargez le fichier <a href="data/dauphin.xls">dauphin.xls</a> et placez-le dans votre répertoire de travail. Ce jeu de données contient des résultats de dosage de différents métaux lourds (cadmium, cuivre et mercure) dans différents organes (foie et rein) de plusieurs dauphins communs <em>Delphinus delphis</em>. Les informations de taille, d’âge et de statut reproducteur sont également précisés. Ouvrez ce fichier dans un tableur. Vous constaterez que son format ne permet pas de l’importer tel quel dans R :</p>
+<p>À titre d’exemple, téléchargez le fichier <a href="data/dauphin.xls">dauphin.xls</a> et placez-le dans votre répertoire de travail. Ce jeu de données contient des résultats de dosage de différents métaux lourds (cadmium, cuivre et mercure) dans différents organes (foie et rein) de plusieurs dauphins communs <em>Delphinus delphis</em>. Les informations de taille, d’âge et de statut reproducteur sont également précisées. Ouvrez ce fichier dans un tableur. Vous constaterez que son format ne permet pas de l’importer tel quel dans R :</p>
 <ul>
 <li>Il contient des lignes vides inutiles au-dessus des données</li>
 <li>Il contient des commentaires inutiles au-dessus des données</li>
 <li>Les titres de colonnes sont complexes et contiennent des caractères spéciaux</li>
-<li>Dans le tableau, les données manquantes sont représentées soit par des “*“, soit par des cellules vides</li>
+<li>Dans le tableau, les données manquantes sont représentées soit par des “<code>*</code>”, soit par des cellules vides</li>
 </ul>
 <p>Importer un tel jeu de données dans R par les méthodes classiques (c’est-à-dire sans utiliser RStudio et uniquement grâce aux fonctions de base de R) demanderait donc un gros travail de mise en forme préalable. Heureusement, RStudio et le package <code>readxl</code> facilitent grandement le processus.</p>
-<p>Dans RStudio, localisez l’onglet <code>Files</code> situé dans le panneau situé en bas à droite de l’interface du logiciel. Dans ce panneau, naviguez jusqu’à votre répertoire de travail, qui doit maintenant contenir le fichier daupin.xls que vous avez téléchargé. Cliquez sur son nom, puis, dans le menu qui s’affiche, choisissez <code>Import Dataset...</code> :</p>
+<p>Dans RStudio, localisez l’onglet <code>Files</code> situé dans le panneau en bas à droite de l’interface du logiciel. Dans ce panneau, naviguez jusqu’à votre répertoire de travail, qui doit maintenant contenir le fichier daupin.xls que vous avez téléchargé. Cliquez sur son nom, puis, dans le menu qui s’affiche, choisissez <code>Import Dataset...</code> :</p>
 <div class="figure" style="text-align: center"><span id="fig:import"></span>
 <img src="images/import.png" alt="L'option `Import Dataset...` dans la fenêtre `Files` de RStudio" width="70%" />
 <p class="caption">
@@ -626,7 +626,7 @@ Figure 5.5: L’assistant d’importation de RStudio
 <li><code>Import Options</code> (en bas à gauche) : zone dans laquelle des options permettant d’importer les données correctement peuvent être spécifiées</li>
 <li><code>Code Preview</code> (en bas à droite) : les lignes de codes que vous pourrez copier-coller dans votre script une fois les réglages corrects effectués.</li>
 </ol>
-<p>Ici, nous constatons que les données ne sont pas au bon format. La première chose que nous pouvons faire est d’indiquer à R que nous souhaitons ignorer les 9 premières lignes du fichier. Ensuite, nous indiquons que l’étoile “<code>*</code>” est utilisées pour indiquer des données manquantes :</p>
+<p>Ici, nous constatons que les données ne sont pas au bon format. La première chose que nous pouvons faire est d’indiquer à R que nous souhaitons ignorer les 9 premières lignes du fichier. Ensuite, nous précisons à RStudio que l’étoile “<code>*</code>” a été utilisée pour indiquer des données manquantes :</p>
 <div class="figure" style="text-align: center"><span id="fig:import3"></span>
 <img src="images/import3.png" alt="Les bons réglages pour ce fichier" width="100%" />
 <p class="caption">
@@ -636,11 +636,10 @@ Figure 5.6: Les bons réglages pour ce fichier
 <p>Notez qu’à chaque fois que vous modifiez une valeur dans la zone <code>Import Options</code>, 2 choses se produisent simultanément :</p>
 <ol style="list-style-type: decimal">
 <li>La zone <code>Data Preview</code> est mise à jour. Cela permet de s’assurer que les changements effectués ont bien les effets escomptés</li>
-<li>La zone <code>Code Preview</code> est mise à jour. Cela permet de copier-coller dans son script les commandes permettant d’importer correctement les données. Ici, voilà le code que nous devons ajouter à notre script :</li>
+<li>La zone <code>Code Preview</code> est mise à jour. Cela permet de copier-coller dans un script les commandes permettant d’importer correctement les données. Ici, voilà le code que nous devons ajouter à notre script :</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## library(readxl)
-dauphin &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/dauphin.xls&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;*&quot;</span>, <span class="dt">skip =</span> <span class="dv">9</span>)</code></pre></div>
-<p>Nous disposons maintenant d’un nouvel objet nommé <code>dauphin</code>. Il est stocké sous la forme d’un <code>tibble</code> :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dauphin &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/dauphin.xls&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;*&quot;</span>, <span class="dt">skip =</span> <span class="dv">9</span>)</code></pre></div>
+<p>La commande <code>library(readxl)</code> est inutile puisque nous l’avons déjà saisie au début de ce chapitre. Nous disposons maintenant d’un nouvel objet nommé <code>dauphin</code>. Il est stocké sous la forme d’un <code>tibble</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dauphin</code></pre></div>
 <pre><code># A tibble: 93 x 9
    `N°`  Sexe  `Statut reprodu… `Taille en cm` `Age en années` `Cd (mg.kg-1)`
@@ -684,16 +683,16 @@ dauphin</code></pre></div>
 </div>
 <div id="fichiers-au-format-texte-brut-.csv" class="section level3">
 <h3><span class="header-section-number">5.3.3</span> Fichiers au format texte brut (.csv)</h3>
-<p>Nous allons utiliser les mêmes données que précédemment, mais cette fois-ci, elles sont contenues dans un fichier au format <code>.csv</code>. Téléchargez le fichier <a href="data/dauphin.csv">dauphin.csv</a>, placez-le dans votre répertoire de travail, et ouvrez-le avec le bloc notes Windows ou tout autre éditeur de texte brut disponible sur votre ordinateur. <strong>Attention</strong> : Microsoft Word n’est pas un éditeur de texte brut. Un fichier au format <code>.doc</code> ou <code>.docx</code> est illisible dans un éditeur de texte brut car outre le texte, ces formats de documents contiennent toutes les informations concernant la mise en forme du texte (polices de caractères, tailles, couleurs et autres attributs, présence de figures, de tableaux dans le document, etc.).</p>
-<p>À l’inverse, les fichiers au format <code>.txt</code>, <code>.csv</code> et même <code>.R</code> (vos scripts !) sont des fichiers au format texte brut. Vous pouvez d’ailleurs essayer d’ouvrir <code>dauphin.csv</code> depuis RStudio, en allant dans la fenêtre <code>Files</code> puis en cliquant sur le nom du fichier et en choisissant <code>View File</code>. RStudio doit ouvrir un nouvel onglet à côté de votre script vous permettant d’inspecter le contenu de ce fichier. Par rapport au fichier excel, vous pouvez noter un certain nombre de différences :</p>
+<p>Nous allons utiliser les mêmes données que précédemment, mais cette fois-ci, elles sont contenues dans un fichier au format <code>.csv</code>. Téléchargez le fichier <a href="data/dauphin.csv">dauphin.csv</a> (pour cela, faites un clic droit sur le lien et choisissez <code>Enregistrez la cible du lien sous...</code> ou une mention équivalente), placez-le dans votre répertoire de travail, et ouvrez-le avec le bloc notes Windows ou tout autre éditeur de texte brut disponible sur votre ordinateur. <strong>Attention</strong> : Microsoft Word n’est pas un éditeur de texte brut. Un fichier au format <code>.doc</code> ou <code>.docx</code> est illisible dans un éditeur de texte brut car outre le texte, ces formats de documents contiennent toutes les informations concernant la mise en forme du texte (polices de caractères, tailles, couleurs et autres attributs, présence de figures, de tableaux dans le document, etc.).</p>
+<p>À l’inverse, les fichiers au format <code>.txt</code>, <code>.csv</code> et même <code>.R</code> (vos scripts !) sont des fichiers au format texte brut. Vous pouvez d’ailleurs essayer d’ouvrir <code>dauphin.csv</code> depuis RStudio, en allant dans la fenêtre <code>Files</code> puis en cliquant sur le nom du fichier et en choisissant <code>View File</code>. RStudio ouvre un nouvel onglet à côté de votre script vous permettant d’inspecter le contenu de ce fichier. Par rapport au fichier excel, vous pouvez noter un certain nombre de différences :</p>
 <ol style="list-style-type: decimal">
 <li>les colonnes sont séparées par des tabulations</li>
 <li>les nombres décimaux utilisent la virgule (et non le point comme dans les pays anglo-saxons)</li>
 <li>les noms de colonne ont déjà été corrigés/simplifiés par rapport au tableau d’origine</li>
 <li>les valeurs manquantes sont toutes codées par des <code>NA</code>s</li>
 </ol>
-<p>Attention, à ce stade, vous avez ouvert un fichier au format texte brut dans RStudio, mais les données contenues dans ce fichier n’ont pas été importées dans R. Pour les importer, on procède comme pour les fichiers au format tableur (voir section <a href="tidyr.html#tableur">5.3.2</a> ci-dessus).</p>
-<p>On commence par cliquer sur le <code>dauphin.csv</code> dans l’onglet <code>Files</code> de RStudio. On sélectionne ensuite <code>Import Dataset...</code> :</p>
+<p>Attention, à ce stade, vous avez ouvert un fichier au format texte brut dans RStudio, mais les données contenues dans ce fichier n’ont pas été importées dans R pour autant. Pour les importer, on procède comme pour les fichiers au format tableur (voir section <a href="tidyr.html#tableur">5.3.2</a> ci-dessus).</p>
+<p>On commence par cliquer sur <code>dauphin.csv</code> dans l’onglet <code>Files</code> de RStudio. On sélectionne ensuite <code>Import Dataset...</code> :</p>
 <div class="figure" style="text-align: center"><span id="fig:importcsv1"></span>
 <img src="images/importcsv1.png" alt="Importer un fichier `.csv` depuis l'onglet `Files` de RStudio" width="80%" />
 <p class="caption">
@@ -707,8 +706,8 @@ Figure 5.7: Importer un fichier <code>.csv</code> depuis l’onglet <code>Files<
 Figure 5.8: Importer un fichier <code>.csv</code> depuis l’onglet <code>Files</code> de RStudio
 </p>
 </div>
-<p>Nous voyons ici que par défaut, RStudio considère qu’une unique colonne est présente. En effet, les fichiers <code>.csv</code> utilisent généralement la virgule pour séparer les colonnes. Ce n’est pas le cas ici. Il nous faut donc sélectionner, dans le champ <code>Delimiter</code>, l’option <code>Tab</code> (tabulation) et non <code>comma</code> (virgule).</p>
-<p>À ce stade, chaque variable est maintenant reconnue comme telle, chaque variable occupe donc une colonne distincte. Mais les colonnes <code>Cd</code>, <code>Cu</code> et <code>Hg</code> ne contiennent pas les bonnes valeurs (vous pouvez le vérifier en consultant l’onglet <code>dauphin.csv</code> que vous avez ouvert un peu plus tôt à côté de votre script). La cause est simple : R s’attend à ce que les nombres décimaux utilisent le point en guise de symbole des décimales. Or, notre fichier <code>.csv</code> utilise la virgule. C’est une convention qui dépend du pays dans lequel vous vous trouvez, et de la langue de votre système d’exploitation. Le fichier <code>dauphin.csv</code> ayant été créé sur un ordinateur français, la virgule a été utilisée en guise de symbole pour les décimales. Pour indiquer à R que la virgule est utilisée pour les nombres décimaux, cliquez sur <code>Locale &gt; Configure...</code>, changez le <code>.</code> en <code>,</code> dans le champ <code>Decimal Mark</code> et validez en cliquant sur <code>Configure</code> :</p>
+<p>Nous voyons ici que par défaut, RStudio considère qu’une unique colonne est présente. En effet, les fichiers <code>.csv</code> utilisent généralement la virgule pour séparer les colonnes. Ce n’est pas le cas ici. Il nous faut donc sélectionner, dans le champ <code>Delimiter</code>, l’option <code>Tab</code> (tabulation) et non <code>Comma</code> (virgule).</p>
+<p>À ce stade, chaque variable est maintenant reconnue comme telle, chaque variable occupe donc une colonne distincte. Mais les colonnes <code>Cd</code>, <code>Cu</code> et <code>Hg</code> ne contiennent pas les bonnes valeurs (vous pouvez le vérifier en consultant l’onglet <code>dauphin.csv</code> que vous avez ouvert un peu plus tôt à côté de votre script). La cause est simple : R s’attend à ce que les nombres décimaux utilisent le point en guise de symbole des décimales. Or, notre fichier <code>.csv</code> utilise la virgule. C’est une convention qui dépend du pays dans lequel vous vous trouvez, et de la langue de votre système d’exploitation (en langage technique, on parle de <code>Locale</code>). Le fichier <code>dauphin.csv</code> ayant été créé sur un ordinateur français, la virgule a été utilisée en guise de symbole des décimales. Pour l’indiquer à R, cliquez sur <code>Locale &gt; Configure...</code>, changez le <code>.</code> en <code>,</code> dans le champ <code>Decimal Mark</code> et validez en cliquant sur <code>Configure</code> :</p>
 <div class="figure" style="text-align: center"><span id="fig:importcsv3"></span>
 <img src="images/importcsv3.png" alt="Changement du symbole utilisé pour les décimales" width="50%" />
 <p class="caption">
@@ -722,9 +721,8 @@ Figure 5.9: Changement du symbole utilisé pour les décimales
 Figure 5.10: Les données, dans un format correct, permettant l’importation
 </p>
 </div>
-<p>Nous n’avons plus qu’à copier-coller dans notre script le code généré automatiquement en bas à droite de la fenêtre.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## library(readr)
-dauphin2 &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/dauphin.csv&quot;</span>, <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">escape_double =</span> <span class="ot">FALSE</span>, <span class="dt">locale =</span> <span class="kw">locale</span>(<span class="dt">decimal_mark =</span> <span class="st">&quot;,&quot;</span>), 
+<p>Nous n’avons plus qu’à copier-coller dans notre script le code généré automatiquement en bas à droite de la fenêtre (comme précédemment, la ligne <code>library(readr)</code> est inutile : nous avons déjà chargé ce package en début de chapitre).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dauphin2 &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/dauphin.csv&quot;</span>, <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">escape_double =</span> <span class="ot">FALSE</span>, <span class="dt">locale =</span> <span class="kw">locale</span>(<span class="dt">decimal_mark =</span> <span class="st">&quot;,&quot;</span>), 
     <span class="dt">trim_ws =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code>Parsed with column specification:
 cols(
@@ -740,8 +738,8 @@ cols(
 )</code></pre>
 <p>Notez que :</p>
 <ol style="list-style-type: decimal">
-<li>c’est le package <code>readr</code> et non plus <code>readxl</code> qui est utilisé</li>
-<li>la fonction <code>read_delim()</code> a remplacé la fonction <code>read_excel()</code>. Il existe beaucoup d’autres fonctions selon le format de vos données. Il est inutile de toutes les connaître dans la mesure où généralement, RStudio propose automatiquement la plus appropriée</li>
+<li>c’est le package <code>readr</code> et non plus <code>readxl</code> qui est utilisé.</li>
+<li>la fonction <code>read_delim()</code> a remplacé la fonction <code>read_excel()</code>. Il existe beaucoup d’autres fonctions selon le format de vos données (par exemple <code>read_csv()</code> et <code>read_csv2()</code>). Il est inutile de toutes les connaître dans la mesure où généralement, RStudio vous propose automatiquement la plus appropriée.</li>
 <li>R indique de quelle façon les colonnes ont été “parsées”, autrement dit, R indique quelles fonctions ont été utilisées pour reconnaître le type des données présentes dans chaque colonne.</li>
 </ol>
 <p>Toutes les fonctions permettant d’importer des données n’ont pas nécessairement le même comportement. Ainsi, si l’on compare les objets importés depuis le fichier tableur (<code>dauphin</code>) et depuis le fichier texte brut (<code>dauphin2</code>), le type de certaines variables est différent :</p>
