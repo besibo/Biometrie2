@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-10-01">
+<meta name="date" content="2018-10-02">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -227,11 +227,11 @@ code > span. { color: #1f1c1b; } /* Normal */
             <section class="normal" id="section-">
 <div id="viz" class="section level1">
 <h1><span class="header-section-number">4</span> Visualiser des données avec <code>ggplot2</code></h1>
-<p>Dans les chapitres <a href="bases.html#bases">2</a> et <a href="dataset.html#dataset">3</a>, nous avons vu ce qui me semble être les concepts essentiels avant de commencer à explorer en détail des données dans R. Les éléments de syntaxe abordés dans la section <a href="bases.html#code">2.2</a> sont nombreux et vous n’avez probablement pas tout retenu. C’est pourquoi je vous conseille de garder les tutoriels de DataCamp à portée de main afin de pouvoir refaire les parties que vous maîtrisez le moins. Ce n’est qu’en répétant plusieurs fois ces tutoriels que les choses seront vraiment comprises et que vous les retiendrez. Ainsi, si des éléments de code présentés ci-dessous vous semblent obscures, revenez en arrière : toutes les réponses à vos questions se trouvent probablement dans les chapitres précédents.</p>
+<p>Dans les chapitres <a href="bases.html#bases">2</a> et <a href="dataset.html#dataset">3</a>, nous avons vu ce qui me semble être les concepts essentiels avant de commencer à explorer en détail des données dans R. Les éléments de syntaxe abordés dans la section <a href="bases.html#code">2.2</a> sont nombreux et vous n’avez probablement pas tout retenu. C’est pourquoi je vous conseille de garder les tutoriels de DataCamp à portée de main afin de pouvoir refaire les parties que vous maîtrisez le moins. Ce n’est qu’en répétant plusieurs fois ces tutoriels que les choses seront vraiment comprises et que vous les retiendrez. Ainsi, si des éléments de code présentés ci-dessous vous semblent obscurs, revenez en arrière : toutes les réponses à vos questions se trouvent probablement dans les chapitres précédents.</p>
 <p>Après la découverte des bases du langage R, nous abordons maintenant les parties de ce livre qui concernent la “science des données” (ou “Data Science” pour nos amis anglo-saxons). Nous allons voir dans ce chapitre qu’outre les fonctions <code>View()</code> et <code>glimpse()</code>, l’exploration visuelle <em>via</em> la représentation graphique des données est un moyen indispensable et très puissant pour comprendre ce qui se passe dans un jeu de données. <strong>La visualisation de vos données devrait toujours être un préambule à toute analyse statistique.</strong></p>
-<p>La visualisation des données est en outre un excellent point de départ quand on découvre la programmation sous R, car ses bénéfices sont clairs et immédiats : vous pouvez créer des graphiques élégants et informatifs qui vous aident à comprendre les données. Dans ce chapitre, vous allez donc plonger dans l’art de la visualisation de données, en apprenant la structure de base des graphiques réalisés avec <code>ggplot2</code> qui permettent de transformer des données numériques et catégorielles en graphiques.</p>
-<p>Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet souvent nécessaire de transformer les données pour produire des représentations plus parlantes. Ainsi, dans les chapitres <a href="tidyr.html#tidyr">5</a> et <a href="wrangling.html#wrangling">6</a>, vous découvrirez les verbes clés qui vous permettront de sélectionner des variables importantes, de filtrer les observations clés, de créer de nouvelles variables, de calculer des résumés, d’associer des tableaus ou de les remettre en forme.</p>
-<p>C’est en combinant la transformation des données et les représentations graphiques avec votre curiosité et votre esprit critique, vous serez véritablement en mesure de réaliser l’analyse exploratoire de données, seul procédé permettant de poser des questions intéressantes et pertinentes sur les données et afin d’y répondre.</p>
+<p>La visualisation des données est en outre un excellent point de départ quand on découvre la programmation sous R, car ses bénéfices sont clairs et immédiats : vous pouvez créer des graphiques élégants et informatifs qui vous aident à comprendre les données. Dans ce chapitre, vous allez donc plonger dans l’art de la visualisation des données, en apprenant la structure de base des graphiques réalisés avec <code>ggplot2</code> qui permettent de transformer des données numériques et catégorielles en graphiques.</p>
+<p>Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet souvent nécessaire de transformer les données pour produire des représentations plus parlantes. Ainsi, dans les chapitres <a href="tidyr.html#tidyr">5</a> et <a href="wrangling.html#wrangling">6</a>, vous découvrirez les verbes clés qui vous permettront de sélectionner des variables importantes, de filtrer les observations clés, de créer de nouvelles variables, de calculer des résumés, d’associer des tableaux ou de les remettre en forme.</p>
+<p>Ce n’est qu’en combinant les transformations de données et représentations graphiques d’une part, avec votre curiosité et votre esprit critique d’autre part, que vous serez véritablement en mesure de réaliser une analyse exploratoire utile de vos données. C’est la seule façon d’identifier des questions intéressantes et pertinentes sur vos données, afin de tenter d’y répondre par les analyses statistiques et la modélisation par la suite.</p>
 <hr />
 <div id="prerequis" class="section level2">
 <h2><span class="header-section-number">4.1</span> Prérequis</h2>
@@ -239,9 +239,9 @@ code > span. { color: #1f1c1b; } /* Normal */
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(nycflights13)
 <span class="kw">library</span>(dplyr)</code></pre></div>
-<p>Si ce n’est pas déjà fait pensez à les installer avant de les charger en mémoire.</p>
-<p>Au niveau le plus élémentaire, les graphiques permettent de comprendre comment les variables se comparent en termes de tendance centrale (à quel endroit les valeurs ont tendance à être localisées, regroupées) et leur dispersion (comment les données varient autour du centre). La chose la plus importante à savoir sur les graphiques est qu’ils doivent être créés pour que votre public (le prof qui vous évalue, le collègue avec qui vous collaborez, votre futur patron, etc.) comprenne bien les résultats et les informations que vous souhaitez transmettre. Il s’agit d’un exercice d’équilibriste : d’une part, vous voulez mettre en évidence autant de relations significatives et de résultats intéressants que possible, mais de l’autre, vous ne voulez pas en inclure trop, afin d’éviter de rendre votre graphique illisible ou de submerger votre public. Tout comme n’importe quel paragraphe de document écrit, un graphique doit permettre de <strong>communiquer un message</strong> (une idée forte, un résultat marquant, une hypothèse nouvelle, etc).</p>
-<p>Comme nous le verrons, les graphiques nous aident également à repérer les tendances extrêmes et les valeurs aberrantes dans nos données. Nous verrons qu’une façon de faire assez classique consiste à comparer la distribution d’une variable quantitative pour les différents niveaux d’une variable catégorielle.</p>
+<p>Si ce n’est pas déjà fait, pensez à les installer avant de les charger en mémoire.</p>
+<p>Au niveau le plus élémentaire, les graphiques permettent de comprendre comment les variables se comparent en termes de tendance centrale (à quel endroit les valeurs ont tendance à être localisées, regroupées) et leur dispersion (comment les données varient autour du centre). La chose la plus importante à savoir sur les graphiques est qu’ils doivent être créés pour que votre public (le professeur qui vous évalue, le collègue avec qui vous collaborez, votre futur employeur, etc.) comprenne bien les résultats et les informations que vous souhaitez transmettre. Il s’agit d’un exercice d’équilibriste : d’une part, vous voulez mettre en évidence autant de relations significatives et de résultats intéressants que possible, mais de l’autre, vous ne voulez pas trop en inclure, afin d’éviter de rendre votre graphique illisible ou de submerger votre public. Tout comme n’importe quel paragraphe de document écrit, un graphique doit permettre de <strong>communiquer un message</strong> (une idée forte, un résultat marquant, une hypothèse nouvelle, etc).</p>
+<p>Comme nous le verrons, les graphiques nous aident également à repérer les tendances extrêmes et les valeurs aberrantes dans nos données. Nous verrons aussi qu’une façon de faire, assez classique, consiste à comparer la distribution d’une variable quantitative pour les différents niveaux d’une variable catégorielle.</p>
 <hr />
 </div>
 <div id="gggraph" class="section level2">
@@ -253,7 +253,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <blockquote>
 <p>Un graphique est l’association (<code>mapping</code>) de données/variables (<code>data</code>) à des attributs esthétiques (<code>aes</code>thetics) d’objets géométriques (<code>geom</code>etric objects).</p>
 </blockquote>
-<p>Pour clarifier, on peut disséquer un graphique en 3 éléments esentiels :</p>
+<p>Pour clarifier, on peut disséquer un graphique en 3 éléments essentiels :</p>
 <ol style="list-style-type: decimal">
 <li><code>data</code> : le jeu de données contenant les variables que l’on va associer à des objets géométriques</li>
 <li><code>geom</code> : les objets géométriques en question. Cela fait référence aux types d’objets que l’on peut observer sur le graphiques (des points, des lignes, des barres, etc)</li>
@@ -343,16 +343,15 @@ Figure 4.1: Espérance de vie en fonction du PIB par habitant en 2007
 <li>la variable <code>Population</code> est associée à l’<code>aes</code>thetic <code>size</code> (taille) des points</li>
 <li>la variable <code>Continent</code> est associée à l’<code>aes</code>thetic <code>color</code> (couleur) des points</li>
 </ul>
-<p>Ici, l’objet géométrique (ou <code>geom</code>) qui représente les données est le point. Les données (ou <code>data</code>) sont contenues dans le tableau <code>gapminder</code> et chaune de ces variables est associée (<code>mapping</code>) aux caractéristiques esthétiques des points.</p>
+<p>Ici, l’objet géométrique (ou <code>geom</code>) qui représente les données est le point. Les données (ou <code>data</code>) sont contenues dans le tableau <code>gapminder</code> et chacune de ces variables est associée (<code>mapping</code>) aux caractéristiques esthétiques des points.</p>
 </div>
 <div id="autres-elements-de-la-grammaire-des-graphiques" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Autres éléments de la grammaire des graphiques</h3>
 <p>Outre les éléments indispensables évoqués ici (<code>data</code>, <code>mapping</code>, <code>aes</code>, et <code>geom</code>), il existe d’autres aspects de la grammaire des graphiques qui permettent de contrôler l’aspect des graphiques. Ils ne sont pas toujours indispensables. Nous en verrons néanmoins quelque-uns particulièrement utiles :</p>
 <ul>
-<li><code>facet</code> : c’est un moyen très pratique de scinder le jeu de données en plusieurs sous-groupe et de produire automatiquement un graphique pour chacun d’entre eux.</li>
+<li><code>facet</code> : c’est un moyen très pratique de scinder le jeu de données en plusieurs sous-groupes et de produire automatiquement un graphique pour chacun d’entre eux.</li>
 <li><code>position</code> : permet notamment de modifier la position des barres d’un barplot.</li>
 <li><code>labs</code> : permet de définir les titres, sous-titres et légendes des axes d’un graphique</li>
-<li>l’ajustement du système de coordonnées.</li>
 <li><code>theme</code> : permet de modifier l’apect général des graphiques en appliquant des thèmes prédéfinis ou en modifiant certains aspects de thèmes existants</li>
 </ul>
 </div>
@@ -377,16 +376,16 @@ Figure 4.1: Espérance de vie en fonction du PIB par habitant en 2007
 </div>
 <div id="les-nuages-de-points" class="section level2">
 <h2><span class="header-section-number">4.3</span> Les nuages de points</h2>
-<p>C’est probablement le plus simple des 5 types de graphiques citées plus haut. Il s’agit de graphiques bi-variés pour lesquels une variable est associée à l’axe des abscisses, et une autre est associée à l’axe des ordonnées. Comme pour le graphique présenté à la figure @ref(fig:gapminder_fig) ci-dessus, d’autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme…).</p>
+<p>C’est probablement le plus simple des 5 types de graphiques cités plus haut. Il s’agit de graphiques bi-variés pour lesquels une variable est associée à l’axe des abscisses, et une autre est associée à l’axe des ordonnées. Comme pour le graphique présenté à la figure <a href="viz.html#fig:gapmind">4.1</a> ci-dessus, d’autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme…).</p>
 <p>Nous allons ici nous intéresser à la relation qui existe entre :</p>
 <ol style="list-style-type: decimal">
 <li><code>dep_delay</code> : le retard des vols au décollage, que nous placerons sur l’axe des “x”</li>
 <li><code>arr_delay</code> : le retard des mêmes vols à l’aterrissage, que nous placerons sur l’axe des “y”</li>
 </ol>
-<p>Afin d’avoir un jeu de données plus facile à utiliser, nous nous contenterons de visualiser les vols d’Alaska Airline, donc le code de compagnie aérienne est <code>&quot;AS&quot;</code>.</p>
+<p>Afin d’avoir un jeu de données plus facile à utiliser, nous nous contenterons de visualiser les vols d’Alaska Airlines, donc le code de compagnie aérienne est <code>&quot;AS&quot;</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">alaska_flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(carrier <span class="op">==</span><span class="st"> &quot;AS&quot;</span>)</code></pre></div>
-<p>Il est normal que vous ne compreniez pas encore les commandes ci-dessous. Nous verrons ça plus tard. Retenez juste que nous avons maintenant créer un nouveau tableau, nommé <code>alaska_flights</code>, qui contient toutes les informations des vols d’Alaska Airline. Commencez par examiner ce tableau avec la fonction <code>View()</code>. En quoi est-il différent du tableau <code>flights</code> ?</p>
+<p>Il est normal que vous ne compreniez pas encore les commandes ci-dessus : elles seront décrites dans le chapitre <a href="wrangling.html#wrangling">6</a>. Retenez juste que nous avons créé un nouveau tableau, nommé <code>alaska_flights</code>, qui contient toutes les informations des vols d’Alaska Airlines. Commencez par examiner ce tableau avec la fonction <code>View()</code>. En quoi est-il différent du tableau <code>flights</code> ?</p>
 <div id="la-couche-de-base-la-fonction-ggplot" class="section level3">
 <h3><span class="header-section-number">4.3.1</span> La couche de base : la fonction <code>ggplot()</code></h3>
 <p>La fonction <code>ggplot()</code> permet d’établir la première base du graphique. C’est grâce à cette fonction que l’on précise quel jeu de données utiliser et quelle variables placer sur les axes :</p>
@@ -397,7 +396,7 @@ Figure 4.1: Espérance de vie en fonction du PIB par habitant en 2007
 Figure 4.2: Un graphique sans <code>geom</code>
 </p>
 </div>
-<p>Ce graphique est pour le moins vide : c’est normal, nous n’avons pas encore spéifié la couche contenant l’objet géométrique que nous souhaitons utiliser.</p>
+<p>Ce graphique est pour le moins vide : c’est normal, nous n’avons pas encore spécifié la couche contenant l’objet géométrique que nous souhaitons utiliser.</p>
 </div>
 <div id="ajout-dune-couche-supplementaire-lobjet-geometrique" class="section level3">
 <h3><span class="header-section-number">4.3.2</span> Ajout d’une couche supplémentaire : l’objet géométrique</h3>
@@ -411,10 +410,10 @@ Figure 4.2: Un graphique sans <code>geom</code>
 Figure 4.3: Retards à l’arrivée en fonction des retard au décollage pour les vols d’Alaska Airline au départ de New York City en 2013
 </p>
 </div>
-<p>plusieurs choses importantes sont à remarquer ici :</p>
+<p>Plusieurs choses importantes sont à remarquer ici :</p>
 <ol style="list-style-type: decimal">
 <li>le graphique présente maintenant une couche supplémentaire constituée de points.</li>
-<li>la fonction <code>geom_point()</code> nous prévient que 5 lignes contenant des données manquantes n’ont pas été intégrées au graphique. Les données manquent soit pour une variable, soit pour l’autre, soit pour les 2. il est donc impossible de les faire apparaître sur le graphique.</li>
+<li>la fonction <code>geom_point()</code> nous prévient que 5 lignes contenant des données manquantes n’ont pas été intégrées au graphique. Les données manquent soit pour une variable, soit pour l’autre, soit pour les 2. Il est donc impossible de les faire apparaître sur le graphique.</li>
 <li>il existe une relation positive entre <code>dep_delay</code> et <code>arr_delay</code> : quand le retard d’un vol au décollage augmente, le retard de ce vol augmente aussi à l’arrivée.</li>
 <li>Enfin, il y a une grande majorité de points centrés près de l’origine (0,0).</li>
 </ol>
@@ -702,7 +701,7 @@ Figure 4.22: Températures horaires des 3 aéroports de New York entre le 1er et
 <li>au sein de la fonction <code>ggplot()</code></li>
 <li>au sein des fonctions <code>geom_XXX()</code></li>
 </ol>
-<p>Comment choisir l’endroit où renseigner <code>aes()</code> ? Pour bien comprendre, reprenons l’exemple du graphique <a href="viz.html#fig:lineplotgraph">4.19</a> sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j’omets volontairement le nom es arguments <code>data</code> et <code>mapping</code> dans la fonction <code>ggplot()</code>) :</p>
+<p>Comment choisir l’endroit où renseigner <code>aes()</code> ? Pour bien comprendre, reprenons l’exemple du graphique <a href="viz.html#fig:lineplotgraph">4.19</a> sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j’omets volontairement le nom des arguments <code>data</code> et <code>mapping</code> dans la fonction <code>ggplot()</code>) :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
@@ -757,7 +756,7 @@ Figure 4.27: Températures horaires et vitesse du vent à l’aéroport de Newar
 </div>
 <div id="histogram" class="section level2">
 <h2><span class="header-section-number">4.5</span> Les histogrammes</h2>
-<p>Un histogramme permet de visualiser la distribution <strong>d’une variable</strong> numérique continue. Contrairement aux deux types de graphique vus précédemment, il sera donc inutile de préciser la variable à associer à l’axe des ordonnées : R la cacule automatiquement pour nous lorsque nous faisons appel à la fonction <code>geom_histogram()</code> pour créer un objet géométrique “histogramme”.</p>
+<p>Un histogramme permet de visualiser la distribution <strong>d’une variable</strong> numérique continue. Contrairement aux deux types de graphiques vus précédemment, il sera donc inutile de préciser la variable à associer à l’axe des ordonnées : R la calcule automatiquement pour nous lorsque nous faisons appel à la fonction <code>geom_histogram()</code> pour créer un objet géométrique “histogramme”.</p>
 <div id="lobjet-geom_histogram" class="section level3">
 <h3><span class="header-section-number">4.5.1</span> L’objet <code>geom_histogram()</code></h3>
 <p>Si on reprend le jeu de données <code>weather</code>, on peut par exemple s’intéresser à la distribution des températures tout au long de l’année :</p>
@@ -789,12 +788,12 @@ Figure 4.29: Utilisation des arguments <code>fill</code> et <code>color</code> p
 </div>
 <div id="la-taille-des-classes" class="section level3">
 <h3><span class="header-section-number">4.5.2</span> La taille des classes</h3>
-<p>Par défaut, R choisit arbitrairement de représenter 30 classes. Ce n’est que rarement le bon choix, et il est souvent necessaire de tâtonner pour trouver le nombre de classes qui permet d’avoir une idée correcte de la distribution des données.</p>
+<p>Par défaut, R choisit arbitrairement de représenter 30 classes. Ce n’est que rarement le bon choix, et il est souvent nécessaire de tâtonner pour trouver le nombre de classes : celui qui permet d’avoir une idée correcte de la distribution des données.</p>
 <p>Il est possible d’ajuster les caractéristiques des classes de l’histogramme de l’une des 3 façons suivantes :</p>
 <ol style="list-style-type: decimal">
-<li>en ajustant le nombre de catégories avec <code>bins</code></li>
-<li>en précisant la largeur des catégories avec <code>binwidth</code></li>
-<li>en fournissant manuellement les limites des classes de tailles avec <code>breaks</code></li>
+<li>en ajustant le nombre de classes avec <code>bins</code></li>
+<li>en précisant la largeur des classes avec <code>binwidth</code></li>
+<li>en fournissant manuellement les limites des classes avec <code>breaks</code></li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">60</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
@@ -804,7 +803,7 @@ Figure 4.29: Utilisation des arguments <code>fill</code> et <code>color</code> p
 Figure 4.30: Modification du nombre de classes
 </p>
 </div>
-<p>Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n’est pas aussi lisse qu’elle en avait l’air. L’ajout d’une couche supplémentaire avec la fonction <code>geom_rug()</code> (“a rug”&quot; est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu’on pouvait le croire :</p>
+<p>Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n’est pas aussi lisse qu’elle en avait l’air. L’ajout d’une couche supplémentaire avec la fonction <code>geom_rug()</code> (“a rug” est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu’on pouvait le croire :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">60</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_rug</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)</code></pre></div>
@@ -814,7 +813,7 @@ Figure 4.30: Modification du nombre de classes
 Figure 4.31: Ajout des données brutes sous forme de ‘tapis’ (<code>rug</code>) sous l’histogramme.
 </p>
 </div>
-<p>Notez la transparence importante utilisée pour <code>geom_rug</code>. On constate que la précision des relevés de température n’est en fait que de quelques dixièmes de degrés.</p>
+<p>Notez la transparence importante utilisée pour <code>geom_rug()</code>. On constate que la précision des relevés de température n’est en fait que de quelques dixièmes de degrés.</p>
 <p>On peut également modifier la largeur des classes avec <code>binwidth</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">10</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
@@ -824,7 +823,7 @@ Figure 4.31: Ajout des données brutes sous forme de ‘tapis’ (<code>rug</cod
 Figure 4.32: Modification de la largeur des classes avec <code>binwidth</code>
 </p>
 </div>
-<p>Ici chaque catégorie recouvre 10 degrés farenheit. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l’argument <code>breaks</code> :</p>
+<p>Ici chaque catégorie recouvre 10 degrés farenheit, ce qui est probablement trop large puisque la bimodalité de la distribution est devenue presque invisible. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l’argument <code>breaks</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">105</span>), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-51"></span>
@@ -833,7 +832,7 @@ Figure 4.32: Modification de la largeur des classes avec <code>binwidth</code>
 Figure 4.33: Spécification manuelle des limites de classes de tailles (classes irrégulières)
 </p>
 </div>
-<p>Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n’ont pas la même largeur. Cela rend l’interprétation difficile. Il est donc vivement conseillé, pour spécifier <code>breaks</code>, de créer des suites régulières, comme avec la fonction <code>seq()</code> par exemple (consultez sont fichier d’aide et les exemples !) :</p>
+<p>Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n’ont pas la même largeur. Cela rend l’interprétation difficile. Il est donc vivement conseillé, pour spécifier <code>breaks</code>, de créer des suites régulières, comme avec la fonction <code>seq()</code> par exemple (consultez son fichier d’aide et les exemples !) :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">limits &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">10</span>, <span class="dt">to =</span> <span class="dv">105</span>, <span class="dt">by =</span> <span class="dv">5</span>)
 limits</code></pre></div>
 <pre><code> [1]  10  15  20  25  30  35  40  45  50  55  60  65  70  75  80  85  90  95 100
@@ -858,7 +857,7 @@ Figure 4.34: Un exemple d’utilisation de l’argument <code>break</code>
 <h2><span class="header-section-number">4.6</span> Les <code>facet</code>s</h2>
 <div id="facet_wrap" class="section level3">
 <h3><span class="header-section-number">4.6.1</span> <code>facet_wrap()</code></h3>
-<p>Nous l’avons indiqué plus haut, les <code>facet</code>s permettent de scinder le jeux de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous groupes.</p>
+<p>Nous l’avons indiqué plus haut, les <code>facet</code>s permettent de scinder le jeux de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous-groupes.</p>
 <p>Ainsi, si l’on souhaite connaître la distribution des températures pour chaque mois de l’année 2013, plutôt que de faire ceci :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">fill =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>)</code></pre></div>
@@ -878,12 +877,12 @@ Figure 4.35: Distribution des températures avec visualisation des données mens
 Figure 4.36: Un exemple d’utilisation de <code>facet_wrap()</code>
 </p>
 </div>
-<p>La couche supplémentaire créée avec <code>facet_wrap</code> permet donc de scinder les données en foncton d’une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole <code>~</code> devant la variable que l’on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c’est la raison pour laquelle j’utilise la notation <code>factor(month)</code> et non simplement <code>month</code>.</p>
-<p>Avec la fonction <code>facet_wrap()</code>, il est possible d’indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaitées avec <code>ncol</code>, soit le nombre de lignes souhaitées avec <code>nrow</code>.</p>
+<p>La couche supplémentaire créée avec <code>facet_wrap</code> permet donc de scinder les données en fonction d’une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole <code>~</code> devant la variable que l’on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c’est la raison pour laquelle j’utilise la notation <code>factor(month)</code> et non simplement <code>month</code>.</p>
+<p>Avec la fonction <code>facet_wrap()</code>, il est possible d’indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaité avec <code>ncol</code>, soit le nombre de lignes souhaitées avec <code>nrow</code>.</p>
 </div>
 <div id="facet_grid" class="section level3">
 <h3><span class="header-section-number">4.6.2</span> <code>facet_grid()</code></h3>
-<p>Une autre fonction nommée <code>facte_grid</code> permet d’agencer des sous graphique selon 2 variables catégorielles. Per exemple :</p>
+<p>Une autre fonction nommée <code>facet_grid()</code> permet d’agencer des sous-graphiques selon 2 variables catégorielles. Par exemple :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> temp, <span class="dt">fill =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">factor</span>(month) <span class="op">~</span><span class="st"> </span>origin)</code></pre></div>
@@ -893,9 +892,9 @@ Figure 4.36: Un exemple d’utilisation de <code>facet_wrap()</code>
 Figure 4.37: Un exemple d’utilisation de <code>facet_grid()</code>
 </p>
 </div>
-<p>Ici, nous avons utilisé la variable <code>month</code> (transformée en facteur) et la variable <code>origin</code> pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible de faire facilement des comparaisons des températures intermensuelles au sein d’un aéroport donné (en colonnes), ou de faire des comparaisons des températures observées le même mois dans plusieurs aéroports (en lignes).</p>
-<p><code>facet_grid()</code> doit elle aussi être utilisée avec le symbole <code>~</code>. Comme pour les indices d’un tableaux, on met à gauche du <code>~</code> la variable qui figurera en lignes, et à droite du <code>~</code> celle qui figurera en colonnes. Les arguments <code>nrow</code> et <code>ncol</code> ne peuvent donc pas être utilisés : c’est le nombre de niveaux de chaque variable catégorielle fournie à <code>facet_grid()</code> qui détermine le nombre de lignes et de colonnes du graphique.</p>
-<p>Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé, et ajoutant des couches une à une sur un graphique, il est posible d’obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des srtuctures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc).</p>
+<p>Ici, nous avons utilisé la variable <code>month</code> (transformée en facteur) et la variable <code>origin</code> pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible comparer facilement des températures inter-mensuelles au sein d’un aéroport donné (en colonnes), ou de comparer des températures enregistrées le même mois dans des aéroports distincts (en lignes).</p>
+<p><code>facet_grid()</code> doit elle aussi être utilisée avec le symbole <code>~</code>. Comme pour les indices d’un tableau, on met à gauche du <code>~</code> la variable qui figurera en lignes, et à droite du <code>~</code> celle qui figurera en colonnes. Les arguments <code>nrow</code> et <code>ncol</code> ne peuvent donc pas être utilisés : c’est le nombre de niveaux de chaque variable catégorielle fournie à <code>facet_grid()</code> qui détermine le nombre de lignes et de colonnes du graphique.</p>
+<p>Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé et en ajoutant des couches une à une sur un graphique, il est posible d’obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des srtuctures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc).</p>
 </div>
 <div id="exercices-4" class="section level3">
 <h3><span class="header-section-number">4.6.3</span> Exercices</h3>
@@ -927,7 +926,7 @@ Figure 4.38: Un boxplot for peu utile…
 </p>
 </div>
 <p>Comme précédemment, R nous avertit qu’une observation n’a pas été intégrée (en raison d’une donnée manquante). Mais il nous dit aussi que <code>x</code> (pour nous, la variable <code>month</code>) est continue, et que nous avons probablement oublié de spécifier des groupes.</p>
-<p>En effet, les boxplots sont généralement utilisés pour examiner la distribution d’une variable numérique, pour chaque niveau d’une variable catégorielle (un facteur). Il nous faut donc, ici encore, transformer <code>month</code> en facteur car dans notre tableau de départ, cette variable est considérée comme une variable numérique continue :</p>
+<p>En effet, les boxplots sont généralement utilisés pour examiner la distribution d’une variable numérique pour chaque niveau d’une variable catégorielle (un facteur). Il nous faut donc, ici encore, transformer <code>month</code> en facteur car dans notre tableau de départ, cette variable est considérée comme une variable numérique continue :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(weather, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-55"></span>
@@ -941,8 +940,8 @@ Figure 4.39: Boxplot des températures mensuelles
 <li>la limite inférieure de la boîte correspond au premier quartile : 25% des données de l’échantillon sont situées sous cette valeur</li>
 <li>la limite supérieure de la boîte correspond au troisième quartile : 25% des données de l’échantillon sont situées au-dessus de cette valeur</li>
 <li>le segment épais à l’intérieur de la boîte corrspond au second quartile : c’est la médiane de l’échantillon. 50% des données de l’échantillon sont situées au dessus de cette valeur, et 50% au dessous.</li>
-<li>la heuteur de la boîte correspond à ce que l’on appelle l’étendue inter-quartile ou Inter Quartile Range (IQR) en anglais. On trouve dans cette boîte 50% des observations de l’échantillon. C’est une mesure de la dispersion des 50% des données les plus centrales. Une boîte plus allongée indique donc une plus grande dispersion.</li>
-<li>moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s’étendent usqu’aux valeurs minimales et maximales de l’échantillon, mais elles ne peuvent en aucun cas s’étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l’IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés “outliers”. Ce sont des points qui s’éloignent du centre de la distribution de façon importante puisqu’ils sont au-delà de 1,5 fois l’IQR de part et d’autres du premier ou du troisième quartile. Il peut s’agir d’anomalies de mesure, d’anomalie de saisie de données, ou tout simplement, d’enregistrement tout à fait valides mais extrêmes. J’attire votre attention que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d’étendre les moustaches jusqu’à 1,8 fois l’IQR (ou 2, ou 2,5), nous observerions alors beaucoup moins d’outliers. D’une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante.</li>
+<li>la hauteur de la boîte correspond à ce que l’on appelle l’étendue inter-quartile ou Inter Quartile Range (IQR) en anglais. On trouve dans cette boîte 50% des observations de l’échantillon. C’est une mesure de la dispersion des 50% des données les plus centrales. Une boîte plus allongée indique donc une plus grande dispersion.</li>
+<li>les moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au-dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s’étendent jusqu’aux valeurs minimales et maximales de l’échantillon, mais elles ne peuvent en aucun cas s’étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l’IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés “outliers”. Ce sont des points qui s’éloignent du centre de la distribution de façon importante puisqu’ils sont au-delà de 1,5 fois l’IQR de part et d’autres du premier ou du troisième quartile. Il peut s’agir d’anomalies de mesure, d’anomalies de saisie de données, ou tout simplement, d’enregistrement tout à fait valides mais extrêmes. J’attire votre attention sur le fait que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d’étendre les moustaches jusqu’à 1,8 fois l’IQR (ou 2, ou 2,5). Nous observerions alors beaucoup moins d’outliers. D’une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante. Et dans tous les cas, l’examen attentif des outliers est utile car il nous permet d’en apprendre plus sur le comportement extrême de certaines observations.</li>
 </ul>
 </div>
 <div id="lintervalle-de-confiance-a-95-de-la-mediane" class="section level3">
@@ -956,8 +955,8 @@ Figure 4.39: Boxplot des températures mensuelles
 Figure 4.40: Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés.
 </p>
 </div>
-<p>Comme l’indique la légende de la figure <a href="viz.html#fig:notchedboxplot">4.40</a>, cette encoche correspond à l’etendue de l’intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d’en avoir la certitude absolue. Le mieux que l’on puisse faire, c’est quantifier l’incertitude. L’intervalle de confiance nous indique qu’il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d’incertitude, ce qui est une bonne chose.<br />
-Nous reviendrons sur cette notion importante à la fin des TP de biométrie 2 ou en biométrie 3, car ce type de graphique nous permettra d’anticiper sur les résultats des tests de comparaisons de moyennes.</p>
+<p>Comme l’indique la légende de la figure <a href="viz.html#fig:notchedboxplot">4.40</a>, cette encoche correspond à l’étendue de l’intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d’en avoir la certitude absolue. Le mieux que l’on puisse faire, c’est quantifier l’incertitude. L’intervalle de confiance nous indique qu’il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d’incertitude, ce qui est une bonne chose.<br />
+Nous reviendrons sur cette notion importante à la fin des TP de biométrie 2 ou en biométrie 3, car ce type de graphique nous permettra d’anticiper sur les résultats des tests de comparaison de moyennes.</p>
 </div>
 <div id="une-autre-facon-dexaminer-des-distributions" class="section level3">
 <h3><span class="header-section-number">4.7.3</span> Une autre façon d’examiner des distributions</h3>

@@ -1,14 +1,14 @@
 # Visualiser des données avec `ggplot2` {#viz}
 
-Dans les chapitres \@ref(bases) et \@ref(dataset), nous avons vu ce qui me semble être les concepts essentiels avant de commencer à explorer en détail des données dans R. Les éléments de syntaxe abordés dans la section \@ref(code) sont nombreux et vous n'avez probablement pas tout retenu. C'est pourquoi je vous conseille de garder les tutoriels de DataCamp à portée de main afin de pouvoir refaire les parties que vous maîtrisez le moins. Ce n'est qu'en répétant plusieurs fois ces tutoriels que les choses seront vraiment comprises et que vous les retiendrez. Ainsi, si des éléments de code présentés ci-dessous vous semblent obscures, revenez en arrière : toutes les réponses à vos questions se trouvent probablement dans les chapitres précédents.
+Dans les chapitres \@ref(bases) et \@ref(dataset), nous avons vu ce qui me semble être les concepts essentiels avant de commencer à explorer en détail des données dans R. Les éléments de syntaxe abordés dans la section \@ref(code) sont nombreux et vous n'avez probablement pas tout retenu. C'est pourquoi je vous conseille de garder les tutoriels de DataCamp à portée de main afin de pouvoir refaire les parties que vous maîtrisez le moins. Ce n'est qu'en répétant plusieurs fois ces tutoriels que les choses seront vraiment comprises et que vous les retiendrez. Ainsi, si des éléments de code présentés ci-dessous vous semblent obscurs, revenez en arrière : toutes les réponses à vos questions se trouvent probablement dans les chapitres précédents.
 
 Après la découverte des bases du langage R, nous abordons maintenant les parties de ce livre qui concernent la "science des données" (ou "Data Science" pour nos amis anglo-saxons). Nous allons voir dans ce chapitre qu'outre les fonctions `View()` et `glimpse()`, l'exploration visuelle *via* la représentation graphique des données est un moyen indispensable et très puissant pour comprendre ce qui se passe dans un jeu de données. **La visualisation de vos données devrait toujours être un préambule à toute analyse statistique.**
 
-La visualisation des données est en outre un excellent point de départ quand on découvre la programmation sous R, car ses bénéfices sont clairs et immédiats : vous pouvez créer des graphiques élégants et informatifs qui vous aident à comprendre les données. Dans ce chapitre, vous allez donc plonger dans l'art de la visualisation de données, en apprenant la structure de base des graphiques réalisés avec `ggplot2` qui permettent de transformer des données numériques et catégorielles en graphiques.
+La visualisation des données est en outre un excellent point de départ quand on découvre la programmation sous R, car ses bénéfices sont clairs et immédiats : vous pouvez créer des graphiques élégants et informatifs qui vous aident à comprendre les données. Dans ce chapitre, vous allez donc plonger dans l'art de la visualisation des données, en apprenant la structure de base des graphiques réalisés avec `ggplot2` qui permettent de transformer des données numériques et catégorielles en graphiques.
 
-Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet souvent nécessaire de transformer les données pour produire des représentations plus parlantes. Ainsi, dans les chapitres \@ref(tidyr) et \@ref(wrangling), vous découvrirez les verbes clés qui vous permettront de sélectionner des variables importantes, de filtrer les observations clés, de créer de nouvelles variables, de calculer des résumés, d'associer des tableaus ou de les remettre en forme.
+Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet souvent nécessaire de transformer les données pour produire des représentations plus parlantes. Ainsi, dans les chapitres \@ref(tidyr) et \@ref(wrangling), vous découvrirez les verbes clés qui vous permettront de sélectionner des variables importantes, de filtrer les observations clés, de créer de nouvelles variables, de calculer des résumés, d'associer des tableaux ou de les remettre en forme.
 
-C'est en combinant la transformation des données et les représentations graphiques avec votre curiosité et votre esprit critique, vous serez véritablement en mesure de réaliser l'analyse exploratoire de données, seul procédé permettant de poser des questions intéressantes et pertinentes sur les données et afin d'y répondre.
+Ce n'est qu'en combinant les transformations de données et représentations graphiques d'une part, avec votre curiosité et votre esprit critique d'autre part, que vous serez véritablement en mesure de réaliser une analyse exploratoire utile de vos données. C'est la seule façon d'identifier des questions intéressantes et pertinentes sur vos données, afin de tenter d'y répondre par les analyses statistiques et la modélisation par la suite.
 
 
 ----
@@ -23,11 +23,11 @@ library(nycflights13)
 library(dplyr)
 ```
 
-Si ce n'est pas déjà fait pensez à les installer avant de les charger en mémoire.
+Si ce n'est pas déjà fait, pensez à les installer avant de les charger en mémoire.
 
-Au niveau le plus élémentaire, les graphiques permettent de comprendre comment les variables se comparent en termes de tendance centrale (à quel endroit les valeurs ont tendance à être localisées, regroupées) et leur dispersion (comment les données varient autour du centre). La chose la plus importante à savoir sur les graphiques est qu'ils doivent être créés pour que votre public (le prof qui vous évalue, le collègue avec qui vous collaborez, votre futur patron, etc.) comprenne bien les résultats et les informations que vous souhaitez transmettre. Il s'agit d'un exercice d'équilibriste : d'une part, vous voulez mettre en évidence autant de relations significatives et de résultats intéressants que possible, mais de l'autre, vous ne voulez pas en inclure trop, afin d'éviter de rendre votre graphique illisible ou de submerger votre public. Tout comme n'importe quel paragraphe de document écrit, un graphique doit permettre de **communiquer un message** (une idée forte, un résultat marquant, une hypothèse nouvelle, etc).
+Au niveau le plus élémentaire, les graphiques permettent de comprendre comment les variables se comparent en termes de tendance centrale (à quel endroit les valeurs ont tendance à être localisées, regroupées) et leur dispersion (comment les données varient autour du centre). La chose la plus importante à savoir sur les graphiques est qu'ils doivent être créés pour que votre public (le professeur qui vous évalue, le collègue avec qui vous collaborez, votre futur employeur, etc.) comprenne bien les résultats et les informations que vous souhaitez transmettre. Il s'agit d'un exercice d'équilibriste : d'une part, vous voulez mettre en évidence autant de relations significatives et de résultats intéressants que possible, mais de l'autre, vous ne voulez pas trop en inclure, afin d'éviter de rendre votre graphique illisible ou de submerger votre public. Tout comme n'importe quel paragraphe de document écrit, un graphique doit permettre de **communiquer un message** (une idée forte, un résultat marquant, une hypothèse nouvelle, etc).
 
-Comme nous le verrons, les graphiques nous aident également à repérer les tendances extrêmes et les valeurs aberrantes dans nos données. Nous verrons qu'une façon de faire assez classique consiste à comparer la distribution d'une variable quantitative pour les différents niveaux d'une variable catégorielle.
+Comme nous le verrons, les graphiques nous aident également à repérer les tendances extrêmes et les valeurs aberrantes dans nos données. Nous verrons aussi qu'une façon de faire, assez classique, consiste à comparer la distribution d'une variable quantitative pour les différents niveaux d'une variable catégorielle.
 
 
 ----
@@ -43,7 +43,7 @@ En bref, la grammaire des graphiques nous dit que :
 
 > Un graphique est l'association (`mapping`) de données/variables (`data`) à des attributs esthétiques (`aes`thetics) d'objets géométriques (`geom`etric objects).
 
-Pour clarifier, on peut disséquer un graphique en 3 éléments esentiels :
+Pour clarifier, on peut disséquer un graphique en 3 éléments essentiels :
 
 1. `data` : le jeu de données contenant les variables que l'on va associer à des objets géométriques
 2. `geom` : les objets géométriques en question. Cela fait référence aux types d'objets que l'on peut observer sur le graphiques (des points, des lignes, des barres, etc)
@@ -95,17 +95,16 @@ Si on décrypte ce graphique du point de vue de la grammaire des graphiques, on 
 - la variable `Population` est associée à l'`aes`thetic `size` (taille) des points
 - la variable `Continent` est associée à l'`aes`thetic `color` (couleur) des points
 
-Ici, l'objet géométrique (ou `geom`) qui représente les données est le point. Les données (ou `data`) sont contenues dans le tableau `gapminder` et chaune de ces variables est associée (`mapping`) aux caractéristiques esthétiques des points.
+Ici, l'objet géométrique (ou `geom`) qui représente les données est le point. Les données (ou `data`) sont contenues dans le tableau `gapminder` et chacune de ces variables est associée (`mapping`) aux caractéristiques esthétiques des points.
 
 
 ### Autres éléments de la grammaire des graphiques
 
 Outre les éléments indispensables évoqués ici (`data`, `mapping`, `aes`, et `geom`), il existe d'autres aspects de la grammaire des graphiques qui permettent de contrôler l'aspect des graphiques. Ils ne sont pas toujours indispensables. Nous en verrons néanmoins quelque-uns particulièrement utiles : 
 
-- `facet` : c'est un moyen très pratique de scinder le jeu de données en plusieurs sous-groupe et de produire automatiquement un graphique pour chacun d'entre eux.
+- `facet` : c'est un moyen très pratique de scinder le jeu de données en plusieurs sous-groupes et de produire automatiquement un graphique pour chacun d'entre eux.
 - `position` : permet notamment de modifier la position des barres d'un barplot.
 - `labs` : permet de définir les titres, sous-titres et légendes des axes d'un graphique
-- l'ajustement du système de coordonnées.
 - `theme` : permet de modifier l'apect général des graphiques en appliquant des thèmes prédéfinis ou en modifiant certains aspects de thèmes existants
 
 
@@ -131,21 +130,21 @@ Dans le cadre de ce cours, nous nous limiterons aux 5 types de graphiques suivan
 
 ## Les nuages de points
 
-C'est probablement le plus simple des 5 types de graphiques citées plus haut. Il s'agit de graphiques bi-variés pour lesquels une variable est associée à l'axe des abscisses, et une autre est associée à l'axe des ordonnées. Comme pour le graphique présenté à la figure \@ref(fig:gapminder_fig) ci-dessus, d'autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme...).
+C'est probablement le plus simple des 5 types de graphiques cités plus haut. Il s'agit de graphiques bi-variés pour lesquels une variable est associée à l'axe des abscisses, et une autre est associée à l'axe des ordonnées. Comme pour le graphique présenté à la figure \@ref(fig:gapmind) ci-dessus, d'autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme...).
 
 Nous allons ici nous intéresser à la relation qui existe entre :
 
 1. `dep_delay` : le retard des vols au décollage, que nous placerons sur l'axe des "x"
 2. `arr_delay` : le retard des mêmes vols à l'aterrissage, que nous placerons sur l'axe des "y"
 
-Afin d'avoir un jeu de données plus facile à utiliser, nous nous contenterons de visualiser les vols d'Alaska Airline, donc le code de compagnie aérienne est `"AS"`.
+Afin d'avoir un jeu de données plus facile à utiliser, nous nous contenterons de visualiser les vols d'Alaska Airlines, donc le code de compagnie aérienne est `"AS"`.
 
 ```{r tidy=FALSE}
 alaska_flights <- flights %>%
   filter(carrier == "AS")
 ```
 
-Il est normal que vous ne compreniez pas encore les commandes ci-dessous. Nous verrons ça plus tard. Retenez juste que nous avons maintenant créer un nouveau tableau, nommé `alaska_flights`, qui contient toutes les informations des vols d'Alaska Airline. Commencez par examiner ce tableau avec la fonction `View()`. En quoi est-il différent du tableau `flights` ?
+Il est normal que vous ne compreniez pas encore les commandes ci-dessus : elles seront décrites dans le chapitre \@ref(wrangling). Retenez juste que nous avons créé un nouveau tableau, nommé `alaska_flights`, qui contient toutes les informations des vols d'Alaska Airlines. Commencez par examiner ce tableau avec la fonction `View()`. En quoi est-il différent du tableau `flights` ?
 
 ### La couche de base : la fonction `ggplot()`
 
@@ -155,7 +154,7 @@ La fonction `ggplot()` permet d'établir la première base du graphique. C'est g
 ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay))
 ```
 
-Ce graphique est pour le moins vide : c'est normal, nous n'avons pas encore spéifié la couche contenant l'objet géométrique que nous souhaitons utiliser. 
+Ce graphique est pour le moins vide : c'est normal, nous n'avons pas encore spécifié la couche contenant l'objet géométrique que nous souhaitons utiliser. 
 
 ### Ajout d'une couche supplémentaire : l'objet géométrique
 
@@ -166,10 +165,10 @@ ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) +
   geom_point()
 ```
 
-plusieurs choses importantes sont à remarquer ici :
+Plusieurs choses importantes sont à remarquer ici :
 
 1. le graphique présente maintenant une couche supplémentaire constituée de points.
-2. la fonction `geom_point()` nous prévient que 5 lignes contenant des données manquantes n'ont pas été intégrées au graphique. Les données manquent soit pour une variable, soit pour l'autre, soit pour les 2. il est donc impossible de les faire apparaître sur le graphique.
+2. la fonction `geom_point()` nous prévient que 5 lignes contenant des données manquantes n'ont pas été intégrées au graphique. Les données manquent soit pour une variable, soit pour l'autre, soit pour les 2. Il est donc impossible de les faire apparaître sur le graphique.
 3. il existe une relation positive entre `dep_delay` et `arr_delay` : quand le retard d'un vol au décollage augmente, le retard de ce vol augmente aussi à l'arrivée.
 4. Enfin, il y a une grande majorité de points centrés près de l'origine (0,0).
 
@@ -428,7 +427,7 @@ Jusqu'à maintenant, pour spécifier les associations entre certaines variables 
 1. au sein de la fonction `ggplot()`
 2. au sein des fonctions `geom_XXX()`
 
-Comment choisir l'endroit où renseigner `aes()` ? Pour bien comprendre, reprenons l'exemple du graphique \@ref(fig:lineplotgraph) sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j'omets volontairement le nom es arguments `data` et `mapping` dans la fonction `ggplot()`) :
+Comment choisir l'endroit où renseigner `aes()` ? Pour bien comprendre, reprenons l'exemple du graphique \@ref(fig:lineplotgraph) sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j'omets volontairement le nom des arguments `data` et `mapping` dans la fonction `ggplot()`) :
 
 ```{r lineplotgraph2, tidy=FALSE, fig.cap="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
 ggplot(small_weather, aes(x = time_hour, y = temp)) +
@@ -473,7 +472,7 @@ il est ainsi possible de spécifier des éléments esthétiques qui s'appliquero
 
 ## Les histogrammes {#histogram}
 
-Un histogramme permet de visualiser la distribution **d'une variable** numérique continue. Contrairement aux deux types de graphique vus précédemment, il sera donc inutile de préciser la variable à associer à l'axe des ordonnées : R la cacule automatiquement pour nous lorsque nous faisons appel à la fonction `geom_histogram()` pour créer un objet géométrique "histogramme".
+Un histogramme permet de visualiser la distribution **d'une variable** numérique continue. Contrairement aux deux types de graphiques vus précédemment, il sera donc inutile de préciser la variable à associer à l'axe des ordonnées : R la calcule automatiquement pour nous lorsque nous faisons appel à la fonction `geom_histogram()` pour créer un objet géométrique "histogramme".
 
 ### L'objet `geom_histogram()`
 
@@ -500,20 +499,20 @@ ggplot(weather, aes(x = temp)) +
 
 ### La taille des classes
 
-Par défaut, R choisit arbitrairement de représenter 30 classes. Ce n'est que rarement le bon choix, et il est souvent necessaire de tâtonner pour trouver le nombre de classes qui permet d'avoir une idée correcte de la distribution des données.
+Par défaut, R choisit arbitrairement de représenter 30 classes. Ce n'est que rarement le bon choix, et il est souvent nécessaire de tâtonner pour trouver le nombre de classes : celui qui permet d'avoir une idée correcte de la distribution des données.
 
 Il est possible d'ajuster les caractéristiques des classes de l'histogramme de l'une des 3 façons suivantes :
 
-1. en ajustant le nombre de catégories avec `bins`
-2. en précisant la largeur des catégories avec `binwidth`
-3. en fournissant manuellement les limites des classes de tailles avec `breaks`
+1. en ajustant le nombre de classes avec `bins`
+2. en précisant la largeur des classes avec `binwidth`
+3. en fournissant manuellement les limites des classes avec `breaks`
 
 ```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Modification du nombre de classes"}
 ggplot(weather, aes(x = temp)) +
   geom_histogram(bins = 60, color = "white")
 ```
 
-Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n'est pas aussi lisse qu'elle en avait l'air. L'ajout d'une couche supplémentaire avec la fonction `geom_rug()` ("a rug"" est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu'on pouvait le croire :
+Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n'est pas aussi lisse qu'elle en avait l'air. L'ajout d'une couche supplémentaire avec la fonction `geom_rug()` ("a rug" est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu'on pouvait le croire :
 
 ```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Ajout des données brutes sous forme de 'tapis' (`rug`) sous l'histogramme."}
 ggplot(weather, aes(x = temp)) +
@@ -521,7 +520,7 @@ ggplot(weather, aes(x = temp)) +
   geom_rug(alpha = 0.1)
 ```
 
-Notez la transparence importante utilisée pour `geom_rug`. On constate que la précision des relevés de température n'est en fait que de quelques dixièmes de degrés.
+Notez la transparence importante utilisée pour `geom_rug()`. On constate que la précision des relevés de température n'est en fait que de quelques dixièmes de degrés.
 
 On peut également modifier la largeur des classes avec `binwidth` :
 
@@ -530,14 +529,14 @@ ggplot(weather, aes(x = temp)) +
   geom_histogram(binwidth = 10, color = "white")
 ```
 
-Ici chaque catégorie recouvre 10 degrés farenheit. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l'argument `breaks` :
+Ici chaque catégorie recouvre 10 degrés farenheit, ce qui est probablement trop large puisque la bimodalité de la distribution est devenue presque invisible. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l'argument `breaks` :
 
 ```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Spécification manuelle des limites de classes de tailles (classes irrégulières)"}
 ggplot(weather, aes(x = temp)) +
   geom_histogram(breaks = c(0, 10, 20, 50, 60, 70, 80, 105), color = "white")
 ```
 
-Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n'ont pas la même largeur. Cela rend l'interprétation difficile. Il est donc vivement conseillé, pour spécifier `breaks`, de créer des suites régulières, comme avec la fonction `seq()` par exemple (consultez sont fichier d'aide et les exemples !) :
+Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n'ont pas la même largeur. Cela rend l'interprétation difficile. Il est donc vivement conseillé, pour spécifier `breaks`, de créer des suites régulières, comme avec la fonction `seq()` par exemple (consultez son fichier d'aide et les exemples !) :
 
 ```{r break, warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Un exemple d'utilisation de l'argument `break`"}
 limits <- seq(from = 10, to = 105, by = 5)
@@ -561,7 +560,7 @@ On voit ici que les températures varien de 10.94 à 100.04 degrés farenheit. L
 
 ### `facet_wrap()`
 
-Nous l'avons indiqué plus haut, les `facet`s permettent de scinder le jeux de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous groupes. 
+Nous l'avons indiqué plus haut, les `facet`s permettent de scinder le jeux de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous-groupes. 
 
 Ainsi, si l'on souhaite connaître la distribution des températures pour chaque mois de l'année 2013, plutôt que de faire ceci :
 
@@ -578,13 +577,13 @@ ggplot(weather, aes(x = temp, fill = factor(month))) +
   facet_wrap(~factor(month), ncol = 3)
 ```
 
-La couche supplémentaire créée avec `facet_wrap` permet donc de scinder les données en foncton d'une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole `~` devant la variable que l'on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c'est la raison pour laquelle j'utilise la notation `factor(month)` et non simplement `month`.
+La couche supplémentaire créée avec `facet_wrap` permet donc de scinder les données en fonction d'une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole `~` devant la variable que l'on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c'est la raison pour laquelle j'utilise la notation `factor(month)` et non simplement `month`.
 
-Avec la fonction `facet_wrap()`, il est possible d'indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaitées avec `ncol`, soit le nombre de lignes souhaitées avec `nrow`.
+Avec la fonction `facet_wrap()`, il est possible d'indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaité avec `ncol`, soit le nombre de lignes souhaitées avec `nrow`.
 
 ### `facet_grid()`
 
-Une autre fonction nommée `facte_grid` permet d'agencer des sous graphique selon 2 variables catégorielles. Per exemple :
+Une autre fonction nommée `facet_grid()` permet d'agencer des sous-graphiques selon 2 variables catégorielles. Par exemple :
 
 ```{r grid, warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2, fig.cap="Un exemple d'utilisation de `facet_grid()`"}
 ggplot(weather, aes(x = temp, fill = factor(month))) +
@@ -592,11 +591,11 @@ ggplot(weather, aes(x = temp, fill = factor(month))) +
   facet_grid(factor(month) ~ origin)
 ```
 
-Ici, nous avons utilisé la variable `month` (transformée en facteur) et la variable `origin` pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible de faire facilement des comparaisons des températures intermensuelles au sein d'un aéroport donné (en colonnes), ou de faire des comparaisons des températures observées le même mois dans plusieurs aéroports (en lignes). 
+Ici, nous avons utilisé la variable `month` (transformée en facteur) et la variable `origin` pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible comparer facilement des températures inter-mensuelles au sein d'un aéroport donné (en colonnes), ou de comparer des températures enregistrées le même mois dans des aéroports distincts (en lignes). 
 
-`facet_grid()` doit elle aussi être utilisée avec le symbole `~`. Comme pour les indices d'un tableaux, on met à gauche du `~` la variable qui figurera en lignes, et à droite du `~` celle qui figurera en colonnes. Les arguments `nrow` et `ncol` ne peuvent donc pas être utilisés : c'est le nombre de niveaux de chaque variable catégorielle fournie à `facet_grid()` qui détermine le nombre de lignes et de colonnes du graphique.
+`facet_grid()` doit elle aussi être utilisée avec le symbole `~`. Comme pour les indices d'un tableau, on met à gauche du `~` la variable qui figurera en lignes, et à droite du `~` celle qui figurera en colonnes. Les arguments `nrow` et `ncol` ne peuvent donc pas être utilisés : c'est le nombre de niveaux de chaque variable catégorielle fournie à `facet_grid()` qui détermine le nombre de lignes et de colonnes du graphique.
 
-Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé, et ajoutant des couches une à une sur un graphique, il est posible d'obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des srtuctures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc).
+Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé et en ajoutant des couches une à une sur un graphique, il est posible d'obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des srtuctures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc).
 
 
 ### Exercices
@@ -626,7 +625,7 @@ ggplot(weather, aes(x = month, y = temp)) +
 
 Comme précédemment, R nous avertit qu'une observation n'a pas été intégrée (en raison d'une donnée manquante). Mais il nous dit aussi que `x` (pour nous, la variable `month`) est continue, et que nous avons probablement oublié de spécifier des groupes.
 
-En effet, les boxplots sont généralement utilisés pour examiner la distribution d'une variable numérique, pour chaque niveau d'une variable catégorielle (un facteur). Il nous faut donc, ici encore, transformer `month` en facteur car dans notre tableau de départ, cette variable est considérée comme une variable numérique continue : 
+En effet, les boxplots sont généralement utilisés pour examiner la distribution d'une variable numérique pour chaque niveau d'une variable catégorielle (un facteur). Il nous faut donc, ici encore, transformer `month` en facteur car dans notre tableau de départ, cette variable est considérée comme une variable numérique continue : 
 
 ```{r tidy=FALSE, warning = FALSE, fig.cap="Boxplot des températures mensuelles"}
 ggplot(weather, aes(x = factor(month), y = temp)) +
@@ -638,8 +637,8 @@ Les différents éléments d'un boxplot, sont les suivants :
 - la limite inférieure de la boîte correspond au premier quartile : 25% des données de l'échantillon sont situées sous cette valeur
 - la limite supérieure de la boîte correspond au troisième quartile : 25% des données de l'échantillon sont situées au-dessus de cette valeur
 - le segment épais à l'intérieur de la boîte corrspond au second quartile : c'est la médiane de l'échantillon. 50% des données de l'échantillon sont situées au dessus de cette valeur, et 50% au dessous.
-- la heuteur de la boîte correspond à ce que l'on appelle l'étendue inter-quartile ou Inter Quartile Range (IQR) en anglais. On trouve dans cette boîte 50% des observations de l'échantillon. C'est une mesure de la dispersion des 50% des données les plus centrales. Une boîte plus allongée indique donc une plus grande dispersion.
-- moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s'étendent usqu'aux valeurs minimales et maximales de l'échantillon, mais elles ne peuvent en aucun cas s'étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l'IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés "outliers". Ce sont des points qui s'éloignent du centre de la distribution de façon importante puisqu'ils sont au-delà de 1,5 fois l'IQR de part et d'autres du premier ou du troisième quartile. Il peut s'agir d'anomalies de mesure, d'anomalie de saisie de données, ou tout simplement, d'enregistrement tout à fait valides mais extrêmes. J'attire votre attention que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d'étendre les moustaches jusqu'à 1,8 fois l'IQR (ou 2, ou 2,5), nous observerions alors beaucoup moins d'outliers. D'une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante.
+- la hauteur de la boîte correspond à ce que l'on appelle l'étendue inter-quartile ou Inter Quartile Range (IQR) en anglais. On trouve dans cette boîte 50% des observations de l'échantillon. C'est une mesure de la dispersion des 50% des données les plus centrales. Une boîte plus allongée indique donc une plus grande dispersion.
+- les moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au-dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s'étendent jusqu'aux valeurs minimales et maximales de l'échantillon, mais elles ne peuvent en aucun cas s'étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l'IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés "outliers". Ce sont des points qui s'éloignent du centre de la distribution de façon importante puisqu'ils sont au-delà de 1,5 fois l'IQR de part et d'autres du premier ou du troisième quartile. Il peut s'agir d'anomalies de mesure, d'anomalies de saisie de données, ou tout simplement, d'enregistrement tout à fait valides mais extrêmes. J'attire votre attention sur le fait que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d'étendre les moustaches jusqu'à 1,8 fois l'IQR (ou 2, ou 2,5). Nous observerions alors beaucoup moins d'outliers. D'une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante. Et dans tous les cas, l'examen attentif des outliers est utile car il nous permet d'en apprendre plus sur le comportement extrême de certaines observations.
 
 ### L'intervalle de confiance à 95% de la médiane
 
@@ -650,8 +649,8 @@ ggplot(weather, aes(x = factor(month), y = temp)) +
   geom_boxplot(notch = TRUE)
 ```
 
-Comme l'indique la légende de la figure \@ref(fig:notchedboxplot), cette encoche correspond à l'etendue de l'intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d'en avoir la certitude absolue. Le mieux que l'on puisse faire, c'est quantifier l'incertitude. L'intervalle de confiance nous indique qu'il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d'incertitude, ce qui est une bonne chose.  
-Nous reviendrons sur cette notion importante à la fin des TP de biométrie 2 ou en biométrie 3, car ce type de graphique nous permettra d'anticiper sur les résultats des tests de comparaisons de moyennes.
+Comme l'indique la légende de la figure \@ref(fig:notchedboxplot), cette encoche correspond à l'étendue de l'intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d'en avoir la certitude absolue. Le mieux que l'on puisse faire, c'est quantifier l'incertitude. L'intervalle de confiance nous indique qu'il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d'incertitude, ce qui est une bonne chose.  
+Nous reviendrons sur cette notion importante à la fin des TP de biométrie 2 ou en biométrie 3, car ce type de graphique nous permettra d'anticiper sur les résultats des tests de comparaison de moyennes.
 
 ### Une autre façon d'examiner des distributions
 

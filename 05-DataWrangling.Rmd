@@ -1,3 +1,4 @@
 # Tripatouiller les données avec `dplyr` {#wrangling}
 
 
+<!-- barres d'erreur -->
