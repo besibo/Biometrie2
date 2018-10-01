@@ -728,7 +728,7 @@ ggplot(data = fruits_counted, mapping = aes(x = fruit, y = nombre)) +
 
 Notez que les figures \@ref(fig:barplot) et \@ref(fig:barplotcol) sont absolument identiques (à l'exception du titre de l'axe des ordonnées), mais qu'elles ont été créées à partir de 2 tableaux de données différents. En particulier, notez que :
 
-- le code qui génère la figure \@ref(fig:barplot) utilise le jeu de données `fruits`, et n'associe pas de variable à l'axe des ordonnées : dans la fonction `aes()`, seule la variable associée à `x` est précisée. C'est la fonction `geom_bar()` qui calcule automatiquement les abondances (ou fréquences) pour chaque catégorie de la variable `fruit`. La varible `count` est ainsi générée automatiquement et associée à `y`.
+- le code qui génère la figure \@ref(fig:barplot) utilise le jeu de données `fruits`, et n'associe pas de variable à l'axe des ordonnées : dans la fonction `aes()`, seule la variable associée à `x` est précisée. C'est la fonction `geom_bar()` qui calcule automatiquement les abondances (ou fréquences) pour chaque catégorie de la variable `fruit`. La variable `count` est ainsi générée automatiquement et associée à `y`.
 - le code qui génère la figure \@ref(fig:barplotcol) utilise le jeu de données `fruits_counted`. Ici, la variable `nombre` est associée à l'axe des `y` grâce à la fonction `aes()`. La fonction `geom_col()` a besoin de 2 variables (une variable catégorielle pour l'axe des `x` et une numérique pour l'axe des `y`) pour fonctionner.
 
 Autrement dit, lorsque vous souhaiterez créer un diagramme bâtons, il faudra donc au préalable vérifier de quel type de données vous disposez pour choisir l'objet géométrique approprié :
@@ -739,14 +739,16 @@ Autrement dit, lorsque vous souhaiterez créer un diagramme bâtons, il faudra d
 
 ### Un example concret
 
-Revenons à `nycflights13`. Imaginons que nous souhaitions connaître le nombre de vols affrétés par chaque compagnie aérienne au départ de New York en 2013. Dans le jeu de données `flights`, la variable `carrier` nous indique à quelle compagnie aérienne appartiennent chacun des 336776 vols ayant quitté New York en 2013. La façon la plus simple de représenter ces données est donc la suivante :
+Revenons à `nycflights13`. Imaginons que nous souhaitions connaître le nombre de vols affrétés par chaque compagnie aérienne au départ de New York en 2013. Dans le jeu de données `flights`, la variable `carrier` nous indique à quelle compagnie aérienne appartiennent chacun des 336776 vols ayant quitté New York en 2013. Une façon simple de représenter ces données est donc la suivante :
 
 ```{r bpcarrier, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ de New York en 2013."}
 ggplot(data = flights, mapping = aes(x = carrier)) +
   geom_bar()
 ```
 
-Il est généralement plus utile de trier les catégories par ordre décroissant. Nous pouvons faire cela facilement grâce à la fonction `fct_infreq` du package `forcats`. Si vous avez installé le `tidyverse`, le package `forcast` doit être disponible sur votre ordinateur. N'oubliez pas de la charger si besoin :
+Ici, `geom_bar()` a compté le nombre d'occurences de chaque compagnie aérienne dans le tableau `flights` et a automatiquement associé ce nombre à l'axe des ordonnées.
+
+Il est généralement plus utile de trier les catégories par ordre décroissant. Nous pouvons faire cela facilement grâce à la fonction `fct_infreq()` du package `forcats`. Si vous avez installé le `tidyverse`, le package `forcast` doit être disponible sur votre ordinateur. N'oubliez pas de le charger si besoin :
 
 ```{r bpcarriersorted, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ de New York en 2013."}
 library(forcats)
@@ -756,7 +758,7 @@ ggplot(data = flights, mapping = aes(x = fct_infreq(carrier))) +
 
 Ordonner les catégories par ordre décroissant est souvent indispensable afin de faciliter la lecture du graphique et les comparaisons entre catégories. 
 
-Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aérienne, il nous faut faire appel à plusieurs fonctions du package `dplyr` que nous détaillerons dans les chapitres suivants. Ci-dessous, nous créons un nouveau tableau contenant le nombre de vols de chaque compagnie aérienne et les compagnies sont ordonnées par nombre de vols décroissants :
+Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aérienne, il nous faut faire appel à plusieurs fonctions du package `dplyr` que nous détaillerons dans le chapitre \@ref(wrangling). Ci-dessous, nous créons un nouveau tableau `carrier_table` contenant le nombre de vols de chaque compagnie aérienne et les compagnies sont ordonnées par nombre de vols décroissants :
 
 ```{r tidy = FALSE}
 carrier_table <- flights %>%   # Pour créer une nouvelle table, on prend flights, puis...

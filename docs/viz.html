@@ -1020,7 +1020,7 @@ Figure 4.43: Barplot pour des données pré-comptées.
 </div>
 <p>Notez que les figures <a href="viz.html#fig:barplot">4.42</a> et <a href="viz.html#fig:barplotcol">4.43</a> sont absolument identiques (à l’exception du titre de l’axe des ordonnées), mais qu’elles ont été créées à partir de 2 tableaux de données différents. En particulier, notez que :</p>
 <ul>
-<li>le code qui génère la figure <a href="viz.html#fig:barplot">4.42</a> utilise le jeu de données <code>fruits</code>, et n’associe pas de variable à l’axe des ordonnées : dans la fonction <code>aes()</code>, seule la variable associée à <code>x</code> est précisée. C’est la fonction <code>geom_bar()</code> qui calcule automatiquement les abondances (ou fréquences) pour chaque catégorie de la variable <code>fruit</code>. La varible <code>count</code> est ainsi générée automatiquement et associée à <code>y</code>.</li>
+<li>le code qui génère la figure <a href="viz.html#fig:barplot">4.42</a> utilise le jeu de données <code>fruits</code>, et n’associe pas de variable à l’axe des ordonnées : dans la fonction <code>aes()</code>, seule la variable associée à <code>x</code> est précisée. C’est la fonction <code>geom_bar()</code> qui calcule automatiquement les abondances (ou fréquences) pour chaque catégorie de la variable <code>fruit</code>. La variable <code>count</code> est ainsi générée automatiquement et associée à <code>y</code>.</li>
 <li>le code qui génère la figure <a href="viz.html#fig:barplotcol">4.43</a> utilise le jeu de données <code>fruits_counted</code>. Ici, la variable <code>nombre</code> est associée à l’axe des <code>y</code> grâce à la fonction <code>aes()</code>. La fonction <code>geom_col()</code> a besoin de 2 variables (une variable catégorielle pour l’axe des <code>x</code> et une numérique pour l’axe des <code>y</code>) pour fonctionner.</li>
 </ul>
 <p>Autrement dit, lorsque vous souhaiterez créer un diagramme bâtons, il faudra donc au préalable vérifier de quel type de données vous disposez pour choisir l’objet géométrique approprié :</p>
@@ -1031,7 +1031,7 @@ Figure 4.43: Barplot pour des données pré-comptées.
 </div>
 <div id="un-example-concret" class="section level3">
 <h3><span class="header-section-number">4.8.2</span> Un example concret</h3>
-<p>Revenons à <code>nycflights13</code>. Imaginons que nous souhaitions connaître le nombre de vols affrétés par chaque compagnie aérienne au départ de New York en 2013. Dans le jeu de données <code>flights</code>, la variable <code>carrier</code> nous indique à quelle compagnie aérienne appartiennent chacun des 336776 vols ayant quitté New York en 2013. La façon la plus simple de représenter ces données est donc la suivante :</p>
+<p>Revenons à <code>nycflights13</code>. Imaginons que nous souhaitions connaître le nombre de vols affrétés par chaque compagnie aérienne au départ de New York en 2013. Dans le jeu de données <code>flights</code>, la variable <code>carrier</code> nous indique à quelle compagnie aérienne appartiennent chacun des 336776 vols ayant quitté New York en 2013. Une façon simple de représenter ces données est donc la suivante :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> carrier)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:bpcarrier"></span>
@@ -1040,7 +1040,8 @@ Figure 4.43: Barplot pour des données pré-comptées.
 Figure 4.44: Nombre de vols par compagnie aérienne au départ de New York en 2013.
 </p>
 </div>
-<p>Il est généralement plus utile de trier les catégories par ordre décroissant. Nous pouvons faire cela facilement grâce à la fonction <code>fct_infreq</code> du package <code>forcats</code>. Si vous avez installé le <code>tidyverse</code>, le package <code>forcast</code> doit être disponible sur votre ordinateur. N’oubliez pas de la charger si besoin :</p>
+<p>Ici, <code>geom_bar()</code> a compté le nombre d’occurences de chaque compagnie aérienne dans le tableau <code>flights</code> et a automatiquement associé ce nombre à l’axe des ordonnées.</p>
+<p>Il est généralement plus utile de trier les catégories par ordre décroissant. Nous pouvons faire cela facilement grâce à la fonction <code>fct_infreq()</code> du package <code>forcats</code>. Si vous avez installé le <code>tidyverse</code>, le package <code>forcast</code> doit être disponible sur votre ordinateur. N’oubliez pas de le charger si besoin :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(forcats)
 <span class="kw">ggplot</span>(<span class="dt">data =</span> flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>()</code></pre></div>
