@@ -358,7 +358,7 @@ cases</code></pre></div>
 2 DE        5800   6000   6200
 3 US       15000  14000  13000</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># On utilise ensuite gather avec l&#39;argument convert = TRUE</span>
-<span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">&quot;2011&quot;</span><span class="op">:</span><span class="st">&quot;2013&quot;</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code># A tibble: 9 x 3
   country  year n_cases
   &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;
@@ -373,7 +373,7 @@ cases</code></pre></div>
 9 US       2013   13000</code></pre>
 <p>On voit ici que la variable <code>year</code> est maintenant une colonne numérique (<code>&lt;int&gt;</code> : nombres entiers), et non plus une variable de type “character”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Et en utilisant factor_key = TRUE...</span>
-<span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">&quot;2011&quot;</span><span class="op">:</span><span class="st">&quot;2013&quot;</span>, <span class="dt">factor_key =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>, <span class="dt">factor_key =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code># A tibble: 9 x 3
   country year  n_cases
   &lt;chr&gt;   &lt;fct&gt;   &lt;dbl&gt;

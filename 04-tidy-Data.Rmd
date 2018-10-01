@@ -155,14 +155,14 @@ C'est le comportement par défaut de la fonction `gather()` : les anciens titres
 cases <- as_tibble(cases)
 cases
 # On utilise ensuite gather avec l'argument convert = TRUE
-gather(data = cases, key = year, value = n_cases, "2011":"2013", convert = TRUE)
+gather(data = cases, key = year, value = n_cases, `2011`:`2013`, convert = TRUE)
 ```
 
 On voit ici que la variable `year` est maintenant une colonne numérique (`<int>` : nombres entiers), et non plus une variable de type "character".
 
 ```{r}
 # Et en utilisant factor_key = TRUE...
-gather(data = cases, key = year, value = n_cases, "2011":"2013", factor_key = TRUE)
+gather(data = cases, key = year, value = n_cases, `2011`:`2013`, factor_key = TRUE)
 ```
 
 On obtient cette fois une variable `year` sous la forme d'un facteur.
