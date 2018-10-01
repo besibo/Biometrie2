@@ -893,17 +893,17 @@ Ici, chaque graphique permet de comparer les compagnies aériennes au sein de l'
 
 ## De l'exploration à l'exposition
 
-Vous savez maintenant comment produire une grande variété de graphiques, permettant d'explorer vos données, de visualiser le comportement d'une ou plusieurs variables, et de mettre en évidence des tendances, des relations entre variables numérique et/ou catégorielles. Afin de rendre vos graphiques plus présentables dans un rapport, il ne vous reste plus qu'à vous familiariser avec quelques fonctions permettant de légender correctement vos graphiques et d'en modifier les légendes si nécessaire.
+Vous savez maintenant comment produire une grande variété de graphiques, permettant d'explorer vos données, de visualiser le comportement d'une ou plusieurs variables, et de mettre en évidence des tendances, des relations entre variables numérique et/ou catégorielles. Afin de rendre vos graphiques plus présentables dans un rapport, il ne vous reste plus qu'à vous familiariser avec quelques fonctions permettant d'annoter correctement vos graphiques et d'en modifier les légendes si nécessaire.
 
 ### Les labels
 
-Le point de départ le plus évident est d'ajouter des labels de qualité. la fonction `labs()` du package `ggplot2` permet d'ajouter plusieurs types de labels sur vos graphiques :
+Le point de départ le plus évident est d'ajouter des labels de qualité. La fonction `labs()` du package `ggplot2` permet d'ajouter plusieurs types de labels sur vos graphiques :
 
 - un titre : il doit résumer les résultats les plus importants
 - un sous-titre : il permet de donner quelques détails supplémentaires
 - une légende : souvent utilisée pour présenter la source des données du graphique
 - un titre pour chaque axe : permet de préciser les variables portées par les axes et leurs unités
-- un titre pour chaque élément des légendes de couleurs, de forme, de taille, etc
+- un titre pour les légendes de couleurs, de forme, de taille, etc
 
 Reprenons par exemple le graphique de la figure \@ref(fig:varcolor) :
 
@@ -912,15 +912,15 @@ ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay, color = factor(month)))
   geom_point()
 ```
 
-Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajouter la fonction `labs()` sur une nouvelle couche du graphique :
+Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajoutant la fonction `labs()` sur une nouvelle couche du graphique :
 
 
 ```{r, varcolorlabel2, tidy=FALSE, warning=FALSE, fig.cap="Exemple d'utilisation de `labs()`"}
 ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay, color = factor(month))) +
   geom_point() +
   labs(title = "Relation linéaire positive entre le retard des vols au départ et à l'arrivée",
-       subtitle = "L'essentiel des points est centré sur 0, mais certains retard dépassent 3 heures",
-       caption = "Source : `nycflights13`",
+       subtitle = "L'essentiel des points est centré sur 0, mais certains retards dépassent 3 heures",
+       caption = "Source : nycflights13",
        x = "Retard au départ de New York (minutes)",
        y = "Retard à l'arrivée à destination (minutes)",
        color = "Mois")
@@ -1048,7 +1048,7 @@ Si vous ne voulez pas avoir de message d'erreur, attention donc, à choisir la f
 
 ### Les thèmes
 
-L'apparence de tout ce qui ne concerne pas directement les données d'un graphique est sous le contrôle d'un thème. Les thèmes contrôle l'apparence générale du graphique : quelles polices et tailles de caractères sont utilisées, quel arrière plan est utilisé poru le graphique, faut-il intégrer un quadrillage sous le graphique, et si oui, quelles doivent être ses caractéristiques ?
+L'apparence de tout ce qui ne concerne pas directement les données d'un graphique est sous le contrôle d'un thème. Les thèmes contrôlent l'apparence générale du graphique : quelles polices et tailles de caractères sont utilisées, quel sera l'arrière plan du graphique, faut-il intégrer un quadrillage sous le graphique, et si oui, quelles doivent être ses caractéristiques ?
 
 Il est posible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins. 
 
@@ -1102,7 +1102,7 @@ ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
   theme_minimal()
 ```
 
-L'argument `base_family` de chaque thème permet de spécifier une police de caractère différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l'ordinateur que vous utilisez. Dans l'exemple de la figure \@ref(fig:themefont) ci-dessous, j'utilise la police "Futura LT Book". Ci cette police n'est pas disponible sur votre ordinateur, ce code produira une erreur. Si c'est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.
+L'argument `base_family` de chaque thème permet de spécifier une police de caractère différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l'ordinateur que vous utilisez. Dans l'exemple de la figure \@ref(fig:themefont) ci-dessous, j'utilise la police "Futura LT Book". Si cette police n'est pas disponible sur votre ordinateur, ce code produira une erreur. Si c'est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.
 
 ```{r themefont, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Modification de la police de caractère."}
 ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
@@ -1116,7 +1116,9 @@ ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
   theme_minimal(base_family = "Futura LT Book")
 ```
 
-Avec tout ça, vous devriez êtes armés pour produire 95% des graphiques dont vous aurez besoin tout au long de votre cursus universitaire. Un point important a pour l'instant été omis : l'ajout de barres d'erreurs sur vos graphiques. Nous verrons comment faire cela un peu plus tard, après avoir appris à manipuler efficacement des tableaux de données avec les packages `tidyr` et `dplyr`.
+Le choix d'un thème et d'une police adaptés doivent vous permettre de faire des graphiques originaux et clairs. Rappelez-vous toujours que vos choix en matière de graphiques doivent avoir pour objectif principal de rendre les tendances plus faciles à décrypter pour un lecteur non familier de vos données. C'est un outil de communication au même titre que n'importe quel paragraphe d'un rapport ou compte-rendu. Et comme pour un paragraphe, la première version d'un graphique est rarement la bonne.
+
+Vous devriez donc maintenant être bien armés pour produire 95% des graphiques dont vous aurez besoin tout au long de votre cursus universitaire. Toutefois, un point important a pour l'instant été omis : l'ajout de barres d'erreurs sur vos graphiques. Nous verrons comment faire cela un peu plus tard, après avoir appris à manipuler efficacement des tableaux de données avec les packages `tidyr` et `dplyr`.
 
 
 ----
