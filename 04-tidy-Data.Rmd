@@ -24,16 +24,16 @@ library(readr)
 
 Comme d'habitude, si vous recevez des messages d'erreur, c'est probablement parce que le package que vous essayez de charger en mémoire n'a pas été installé au préalable. Consultez la section \@ref(packages) si vous ne savez plus comment procéder.
 
-Outre ces packages classiques, nous aurons aussi besoin du package `EDAWR` qui n'est pas disponible sur les serveurs habituels de R. Pour l'installer, nous aurons besoin de procéder de la façon suivante : 
+Outre ces packages classiques, nous aurons aussi besoin du package `EDAWR` qui n'est pas disponible sur les serveurs habituels de R. Pour l'installer, on procède de la façon suivante : 
 
-1. Télécharger et chargez en mémoire le package `devtools` :
+1. Installez et chargez en mémoire le package `devtools` :
 
 ```{r eval = FALSE}
 install.packages("devtools")
 library(devtools)
 ```
 
-2. Téléchargez le package `EDAWR` depuis github grâce à la fonction `install_github()` du package `devtools` :
+2. Installez le package `EDAWR` depuis le site https://github.com grâce à la fonction `install_github()` du package `devtools` :
 
 ```{r eval = FALSE}
 install_github("rstudio/EDAWR")
@@ -77,21 +77,21 @@ Les "tidy data" (nous les appellerons "données rangées" dans la suite de ce li
 knitr::include_graphics('images/tidy.png')
 ```
 
-Malheureusement, les données peuvent être présentées sous de nombreux formats qui ne respectent pas ces règles de bases. La modification des tableaux est donc souvent un préambule nécessaire à toute analyse statistique ou représentation graphique.
+Malheureusement, les données peuvent être présentées sous de nombreux formats qui ne respectent pas ces règles de base. La modification des tableaux est donc souvent un préambule nécessaire à toute analyse statistique ou représentation graphique.
 
-Par exemple, examinez le tableau `cases` du package `EDAWR`, qui présente des nombre de cas de tuberculose dans 3 pays en 2011, 2012 et 2013.
+Par exemple, examinez le tableau `cases` du package `EDAWR`, qui présente le nombre de cas de tuberculose dans 3 pays en 2011, 2012 et 2013.
 
 ```{r}
 cases
 ```
-Dans ce tableau, essayer d'identifier quelles sont les variables en présence. Indice, vous devriez en trouver 3.
+Dans ce tableau, essayez d'identifier quelles sont les variables en présence. Indice, vous devriez en trouver 3.
 
 Essayez d'identifier également où se trouvent ces variables.
 
 Pour ma part, je compte les 3 variables suivantes :
 
 1. country : qui indique les pays dans lesquels les cas de tuberculose ont été dénombrés. Cette variable occupe la première colonne du tableau.
-2. la seconde variables est l'année, qui peut prendre les valeurs 2011, 2012 ou 2013. Cette variable occupe la ligne des titres des 3 colonnes de droite du tableau.
+2. la seconde variable est l'année, qui peut prendre les valeurs 2011, 2012 ou 2013. Cette variable occupe la ligne des titres des 3 colonnes de droite du tableau.
 3. et enfin, la troisième variable est le nombre de cas de tuberculose observés dans chaque pays et chaque année. Cette troisième variable occupe 3 lignes et 3 colonnes du tableau.
 
 Autrement dit, les variables peuvent être visualisées de la façon suivante :
@@ -100,7 +100,7 @@ Autrement dit, les variables peuvent être visualisées de la façon suivante :
 knitr::include_graphics('images/gather.png')
 ```
 
-Nous sommes donc loin du format des données rangées.
+Donc même si nous disposons ici d'un tableau rectangulaire classique, nous sommes bien loin du format des données rangées.
 
 ### La fonction `gather()`
 
@@ -108,24 +108,24 @@ Afin de transformer les données non rangées du tableau `cases` en données ran
 
 La fonction `gather()` prend 4 arguments :
 
-1. `data` : le nom du tableau de données que l'on souhaite "ranger"
+1. `data` : le nom du tableau de données que l'on souhaite "ranger".
 2. `key` : le nom d'une nouvelle variable qui contiendra les en-têtes des colonnes qui constituent la seconde variable. Ici, nous nommerons cette seconde variable `year` car elle devra contenir les années 2011, 2012 et 2013.
-3. `value` : le nom d'une noouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Ici, nous appelerons cette variables `n_cases` car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc)
-4. la liste des colonnes du tableau initial qui doivent être rassemblées (gather signifie rassembler en anglais), ici, les colonnes 2, 3 et 4 (on pourra les noter `2:4` ou, en utilisant leur nom, `"2011":"2013"`).
+3. `value` : le nom d'une nouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Nous appelerons cette variables `n_cases` car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc).
+4. la liste des colonnes du tableau initial qui doivent être rassemblées ("gather" signifie rassembler en anglais), ici, les colonnes 2, 3 et 4 (on pourra les noter `2:4` ou, en utilisant leur nom, `"2011":"2013"`).
 
 ```{r}
-gather(data = cases, key = year, value = n_cases, "2011":"2013")
+gather(data = cases, key = year, value = n_cases, `2011`:`2013`)
 ```
 
-Nous avns donc bien ici transformé le tableau de départ en un "tableau rangé" : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d'habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :
+Nous avons bien transformé le tableau de départ en un "tableau rangé" : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d'habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :
 
 ```{r}
-cases_tidy <- gather(data = cases, key = year, value = n_cases, "2011":"2013")
+cases_tidy <- gather(data = cases, key = year, value = n_cases, `2011`:`2013`)
 ```
 
 Il nous est maintenant plus facile de manipuler ces données pour en tirer de l'information, grâce à des analyses statistiques ou des représentations graphiques :
 
-```{r casesbarplot, tidy=FALSE, warning = FALSE, fig.cap="Modification de la police de caractère."}
+```{r casesbarplot, tidy=FALSE, warning = FALSE, fig.cap="Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2013."}
 ggplot(cases_tidy, aes(x = country, y = n_cases, fill = year)) +
   geom_col(position = "dodge", color = "black") +
   scale_fill_brewer(palette = "Accent") +
@@ -139,13 +139,13 @@ ggplot(cases_tidy, aes(x = country, y = n_cases, fill = year)) +
 
 On constate ici qu'entre 2011 et 2013, le nombre de cas de tuberculose a légèrement augmenté en Allemagne, est resté stable en France, et a diminué aux États-Unis.
 
-Notez ici que la variable `year` de notre nouveau tableau est considéré comme une variable catégorielle et non comme une variable numérique. On peut le voir en transformant notre tableau en tibble avec `as_tibble()`, ou en utilisant la fonction `str()` déjà décrite plus tôt :
+Notez ici que la variable `year` de notre nouveau tableau est considérée comme une variable catégorielle et non comme une variable numérique. On peut le voir en transformant notre tableau en tibble avec `as_tibble()`, ou en utilisant la fonction `str()` déjà décrite plus tôt :
 
 ```{r}
 str(cases_tidy)
 ```
 
-C'est le comportement par défuat de la fonction `gather()` : les anciens titres de colonnes sont convertis en chaînes de caractères. Il y a 2 alternatives possibles, que l'on peut spécifier grâce à 2 arguments supplémentaires de la fonction `gather()` :
+C'est le comportement par défaut de la fonction `gather()` : les anciens titres de colonnes sont convertis en chaînes de caractères. Il y a 2 alternatives possibles, que l'on peut spécifier grâce à 2 arguments supplémentaires de la fonction `gather()` :
 
 1. `convert = TRUE` : permet de transformer automatiquement la variable `key` en variable numérique ou logique (vrais/faux) selon le type de données qu'elle contient
 2. `factor_key = TRUE` : permet de transformer automatiquement la variable `key` en facteur. Les niveaux du nouveau facteur seront ordonnés dans le même sens que les colonnes du tableau de départ.
@@ -158,7 +158,7 @@ cases
 gather(data = cases, key = year, value = n_cases, "2011":"2013", convert = TRUE)
 ```
 
-On voit ici que la variable `year` est maintenant une colonne numérique (`<int>` : nombres entiers), et non plus une varaible de type "character".
+On voit ici que la variable `year` est maintenant une colonne numérique (`<int>` : nombres entiers), et non plus une variable de type "character".
 
 ```{r}
 # Et en utilisant factor_key = TRUE...
@@ -188,9 +188,9 @@ La fonction `spread()` prend 3 arguments :
 spread(cases_tidy, key = year, value = n_cases)
 ```
 
-Cette fonction sera donc rarement utilisée puisqu'elle ne permet pas d'obtenir des "tableaux rangés". toutefois, elle pourra vous être utile pour présenter des résultats sous forme synthétique. Prenons un exemple avec le jeu de données `flights`. Imaginons que vous deviez créer un tableau `n_vols` présentant, pour chacun des 3 aéroports de New York, le nombre de vols affrétés par chaque compagnie aérienne en 2013. Une possibilité serait de taper ceci :
+Cette fonction sera donc rarement utilisée puisqu'elle ne permet pas d'obtenir des "tableaux rangés". Toutefois, elle pourra vous être utile pour présenter des résultats sous forme synthétique. Prenons un exemple avec le jeu de données `flights`. Imaginons que vous deviez créer un tableau `n_vols` présentant, pour chacun des 3 aéroports de New York, le nombre de vols affrétés par chaque compagnie aérienne en 2013. Une possibilité serait de taper ceci :
 
-```{r}
+```{r tidy=FALSE}
 n_vols <- flights %>% 
   group_by(origin, carrier) %>% 
   count()
@@ -203,15 +203,15 @@ Les commandes permettant de produire ce tableau seront expliquées dans le chapi
 spread(n_vols, key = origin, value = n)
 ```
 
-Ce nouveau tableau contient maintenant 4 colonnes : une pour la variable `carrier`, et 3 pour la variable `origin`, soit une colonne pour chacun des 3 aéroports de New York. On parle de tableau au format large (par opposition au "tableau rangé", dit "format long"). Cela rend la présentation dans un rapport plus aisée. 
+Ce nouveau tableau contient maintenant 16 lignes (une par compagnie aérienne), et 4 colonnes : une pour la variable `carrier`, et 3 pour la variable `origin`, soit une colonne pour chacun des 3 aéroports de New York. On parle de tableau au format large (par opposition au "tableau rangé", dit "format long"). Cela rend la présentation dans un rapport plus aisée. 
 
-Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (`AS`) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique `NA`. Or, `NA` signifie "Not Available", autrement dit : données manquantes. Ici, il ne s'agit pas du tout de données manquantes. Cela signifie simplement qu'aucun vol d'e telle ou telle compagnie'Alaska Airline n'a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l'argument `fill` :
+Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (`AS`) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique `NA`. Or, `NA` signifie "Not Available", autrement dit : données manquantes. Ici, il ne s'agit pas du tout de données manquantes. Cela signifie simplement qu'aucun vol d'Alaska Airline n'a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l'argument `fill` :
 
 ```{r}
 spread(n_vols, key = origin, value = n, fill = 0)
 ```
 
-D'autres arguments existent. Je vous encourage vivement à consulter l'aide des fonctions `gather()` et `spread()` et à faire des essais.
+D'autres arguments existent. **Je vous encourage vivement** à consulter l'aide des fonctions `gather()` et `spread()` et à faire des essais.
 
 
 ### Les fonctions `separate()` et `unite()`

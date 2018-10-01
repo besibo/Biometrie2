@@ -241,14 +241,14 @@ code > span. { color: #1f1c1b; } /* Normal */
 <span class="kw">library</span>(readxl)
 <span class="kw">library</span>(readr)</code></pre></div>
 <p>Comme d’habitude, si vous recevez des messages d’erreur, c’est probablement parce que le package que vous essayez de charger en mémoire n’a pas été installé au préalable. Consultez la section <a href="bases.html#packages">2.3</a> si vous ne savez plus comment procéder.</p>
-<p>Outre ces packages classiques, nous aurons aussi besoin du package <code>EDAWR</code> qui n’est pas disponible sur les serveurs habituels de R. Pour l’installer, nous aurons besoin de procéder de la façon suivante :</p>
+<p>Outre ces packages classiques, nous aurons aussi besoin du package <code>EDAWR</code> qui n’est pas disponible sur les serveurs habituels de R. Pour l’installer, on procède de la façon suivante :</p>
 <ol style="list-style-type: decimal">
-<li>Télécharger et chargez en mémoire le package <code>devtools</code> :</li>
+<li>Installez et chargez en mémoire le package <code>devtools</code> :</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)
 <span class="kw">library</span>(devtools)</code></pre></div>
 <ol start="2" style="list-style-type: decimal">
-<li>Téléchargez le package <code>EDAWR</code> depuis github grâce à la fonction <code>install_github()</code> du package <code>devtools</code> :</li>
+<li>Installez le package <code>EDAWR</code> depuis le site <a href="https://github.com" class="uri">https://github.com</a> grâce à la fonction <code>install_github()</code> du package <code>devtools</code> :</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install_github</span>(<span class="st">&quot;rstudio/EDAWR&quot;</span>)</code></pre></div>
 <ol start="3" style="list-style-type: decimal">
@@ -274,19 +274,19 @@ code > span. { color: #1f1c1b; } /* Normal */
 Figure 5.1: La définition des ‘données rangées’, d’après <a href="http://r4ds.had.co.nz/tidy-data.html" class="uri">http://r4ds.had.co.nz/tidy-data.html</a>
 </p>
 </div>
-<p>Malheureusement, les données peuvent être présentées sous de nombreux formats qui ne respectent pas ces règles de bases. La modification des tableaux est donc souvent un préambule nécessaire à toute analyse statistique ou représentation graphique.</p>
-<p>Par exemple, examinez le tableau <code>cases</code> du package <code>EDAWR</code>, qui présente des nombre de cas de tuberculose dans 3 pays en 2011, 2012 et 2013.</p>
+<p>Malheureusement, les données peuvent être présentées sous de nombreux formats qui ne respectent pas ces règles de base. La modification des tableaux est donc souvent un préambule nécessaire à toute analyse statistique ou représentation graphique.</p>
+<p>Par exemple, examinez le tableau <code>cases</code> du package <code>EDAWR</code>, qui présente le nombre de cas de tuberculose dans 3 pays en 2011, 2012 et 2013.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cases</code></pre></div>
 <pre><code>  country  2011  2012  2013
 1      FR  7000  6900  7000
 2      DE  5800  6000  6200
 3      US 15000 14000 13000</code></pre>
-<p>Dans ce tableau, essayer d’identifier quelles sont les variables en présence. Indice, vous devriez en trouver 3.</p>
+<p>Dans ce tableau, essayez d’identifier quelles sont les variables en présence. Indice, vous devriez en trouver 3.</p>
 <p>Essayez d’identifier également où se trouvent ces variables.</p>
 <p>Pour ma part, je compte les 3 variables suivantes :</p>
 <ol style="list-style-type: decimal">
 <li>country : qui indique les pays dans lesquels les cas de tuberculose ont été dénombrés. Cette variable occupe la première colonne du tableau.</li>
-<li>la seconde variables est l’année, qui peut prendre les valeurs 2011, 2012 ou 2013. Cette variable occupe la ligne des titres des 3 colonnes de droite du tableau.</li>
+<li>la seconde variable est l’année, qui peut prendre les valeurs 2011, 2012 ou 2013. Cette variable occupe la ligne des titres des 3 colonnes de droite du tableau.</li>
 <li>et enfin, la troisième variable est le nombre de cas de tuberculose observés dans chaque pays et chaque année. Cette troisième variable occupe 3 lignes et 3 colonnes du tableau.</li>
 </ol>
 <p>Autrement dit, les variables peuvent être visualisées de la façon suivante :</p>
@@ -296,18 +296,18 @@ Figure 5.1: La définition des ‘données rangées’, d’après <a href="http
 Figure 5.2: Position des variables dans le tableau <code>cases</code> du package <code>EDAWR</code>
 </p>
 </div>
-<p>Nous sommes donc loin du format des données rangées.</p>
+<p>Donc même si nous disposons ici d’un tableau rectangulaire classique, nous sommes bien loin du format des données rangées.</p>
 <div id="la-fonction-gather" class="section level3">
 <h3><span class="header-section-number">5.2.1</span> La fonction <code>gather()</code></h3>
 <p>Afin de transformer les données non rangées du tableau <code>cases</code> en données rangées, nous allons utiliser la fonction <code>gather()</code> du package <code>tidyr</code>. Avant d’aller plus loin, essayez d’imaginer à quoi le tableau rangé devrait ressembler.</p>
 <p>La fonction <code>gather()</code> prend 4 arguments :</p>
 <ol style="list-style-type: decimal">
-<li><code>data</code> : le nom du tableau de données que l’on souhaite “ranger”</li>
+<li><code>data</code> : le nom du tableau de données que l’on souhaite “ranger”.</li>
 <li><code>key</code> : le nom d’une nouvelle variable qui contiendra les en-têtes des colonnes qui constituent la seconde variable. Ici, nous nommerons cette seconde variable <code>year</code> car elle devra contenir les années 2011, 2012 et 2013.</li>
-<li><code>value</code> : le nom d’une noouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Ici, nous appelerons cette variables <code>n_cases</code> car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc)</li>
-<li>la liste des colonnes du tableau initial qui doivent être rassemblées (gather signifie rassembler en anglais), ici, les colonnes 2, 3 et 4 (on pourra les noter <code>2:4</code> ou, en utilisant leur nom, <code>&quot;2011&quot;:&quot;2013&quot;</code>).</li>
+<li><code>value</code> : le nom d’une nouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Nous appelerons cette variables <code>n_cases</code> car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc).</li>
+<li>la liste des colonnes du tableau initial qui doivent être rassemblées (“gather” signifie rassembler en anglais), ici, les colonnes 2, 3 et 4 (on pourra les noter <code>2:4</code> ou, en utilisant leur nom, <code>&quot;2011&quot;:&quot;2013&quot;</code>).</li>
 </ol>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">&quot;2011&quot;</span><span class="op">:</span><span class="st">&quot;2013&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>)</code></pre></div>
 <pre><code>  country year n_cases
 1      FR 2011    7000
 2      DE 2011    5800
@@ -318,8 +318,8 @@ Figure 5.2: Position des variables dans le tableau <code>cases</code> du package
 7      FR 2013    7000
 8      DE 2013    6200
 9      US 2013   13000</code></pre>
-<p>Nous avns donc bien ici transformé le tableau de départ en un “tableau rangé” : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d’habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cases_tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">&quot;2011&quot;</span><span class="op">:</span><span class="st">&quot;2013&quot;</span>)</code></pre></div>
+<p>Nous avons bien transformé le tableau de départ en un “tableau rangé” : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d’habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cases_tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>)</code></pre></div>
 <p>Il nous est maintenant plus facile de manipuler ces données pour en tirer de l’information, grâce à des analyses statistiques ou des représentations graphiques :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(cases_tidy, <span class="kw">aes</span>(<span class="dt">x =</span> country, <span class="dt">y =</span> n_cases, <span class="dt">fill =</span> year)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
@@ -331,19 +331,19 @@ Figure 5.2: Position des variables dans le tableau <code>cases</code> du package
        <span class="dt">title =</span> <span class="st">&quot;Évolution du nombre de cas de tuberculose entre 2011 et 2013&quot;</span>,
        <span class="dt">subtitle =</span> <span class="st">&quot;DE : Allemagne, FR : France, US : États-Unis&quot;</span>)</code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:casesbarplot"></span>
-<img src="figure/casesbarplot-1.png" alt="Modification de la police de caractère." width="90%" />
+<img src="figure/casesbarplot-1.png" alt="Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2013." width="90%" />
 <p class="caption">
-Figure 5.3: Modification de la police de caractère.
+Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2013.
 </p>
 </div>
 <p>On constate ici qu’entre 2011 et 2013, le nombre de cas de tuberculose a légèrement augmenté en Allemagne, est resté stable en France, et a diminué aux États-Unis.</p>
-<p>Notez ici que la variable <code>year</code> de notre nouveau tableau est considéré comme une variable catégorielle et non comme une variable numérique. On peut le voir en transformant notre tableau en tibble avec <code>as_tibble()</code>, ou en utilisant la fonction <code>str()</code> déjà décrite plus tôt :</p>
+<p>Notez ici que la variable <code>year</code> de notre nouveau tableau est considérée comme une variable catégorielle et non comme une variable numérique. On peut le voir en transformant notre tableau en tibble avec <code>as_tibble()</code>, ou en utilisant la fonction <code>str()</code> déjà décrite plus tôt :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(cases_tidy)</code></pre></div>
 <pre><code>&#39;data.frame&#39;:   9 obs. of  3 variables:
  $ country: chr  &quot;FR&quot; &quot;DE&quot; &quot;US&quot; &quot;FR&quot; ...
  $ year   : chr  &quot;2011&quot; &quot;2011&quot; &quot;2011&quot; &quot;2012&quot; ...
  $ n_cases: num  7000 5800 15000 6900 6000 14000 7000 6200 13000</code></pre>
-<p>C’est le comportement par défuat de la fonction <code>gather()</code> : les anciens titres de colonnes sont convertis en chaînes de caractères. Il y a 2 alternatives possibles, que l’on peut spécifier grâce à 2 arguments supplémentaires de la fonction <code>gather()</code> :</p>
+<p>C’est le comportement par défaut de la fonction <code>gather()</code> : les anciens titres de colonnes sont convertis en chaînes de caractères. Il y a 2 alternatives possibles, que l’on peut spécifier grâce à 2 arguments supplémentaires de la fonction <code>gather()</code> :</p>
 <ol style="list-style-type: decimal">
 <li><code>convert = TRUE</code> : permet de transformer automatiquement la variable <code>key</code> en variable numérique ou logique (vrais/faux) selon le type de données qu’elle contient</li>
 <li><code>factor_key = TRUE</code> : permet de transformer automatiquement la variable <code>key</code> en facteur. Les niveaux du nouveau facteur seront ordonnés dans le même sens que les colonnes du tableau de départ.</li>
@@ -371,7 +371,7 @@ cases</code></pre></div>
 7 FR       2013    7000
 8 DE       2013    6200
 9 US       2013   13000</code></pre>
-<p>On voit ici que la variable <code>year</code> est maintenant une colonne numérique (<code>&lt;int&gt;</code> : nombres entiers), et non plus une varaible de type “character”.</p>
+<p>On voit ici que la variable <code>year</code> est maintenant une colonne numérique (<code>&lt;int&gt;</code> : nombres entiers), et non plus une variable de type “character”.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Et en utilisant factor_key = TRUE...</span>
 <span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">&quot;2011&quot;</span><span class="op">:</span><span class="st">&quot;2013&quot;</span>, <span class="dt">factor_key =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <pre><code># A tibble: 9 x 3
@@ -414,8 +414,10 @@ cases</code></pre></div>
 1      DE  5800  6000  6200
 2      FR  7000  6900  7000
 3      US 15000 14000 13000</code></pre>
-<p>Cette fonction sera donc rarement utilisée puisqu’elle ne permet pas d’obtenir des “tableaux rangés”. toutefois, elle pourra vous être utile pour présenter des résultats sous forme synthétique. Prenons un exemple avec le jeu de données <code>flights</code>. Imaginons que vous deviez créer un tableau <code>n_vols</code> présentant, pour chacun des 3 aéroports de New York, le nombre de vols affrétés par chaque compagnie aérienne en 2013. Une possibilité serait de taper ceci :</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_vols &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(origin, carrier) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>()
+<p>Cette fonction sera donc rarement utilisée puisqu’elle ne permet pas d’obtenir des “tableaux rangés”. Toutefois, elle pourra vous être utile pour présenter des résultats sous forme synthétique. Prenons un exemple avec le jeu de données <code>flights</code>. Imaginons que vous deviez créer un tableau <code>n_vols</code> présentant, pour chacun des 3 aéroports de New York, le nombre de vols affrétés par chaque compagnie aérienne en 2013. Une possibilité serait de taper ceci :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n_vols &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(origin, carrier) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">count</span>()
 n_vols</code></pre></div>
 <pre><code># A tibble: 35 x 3
 # Groups:   origin, carrier [35]
@@ -454,8 +456,8 @@ n_vols</code></pre></div>
 14 VX       1566  3596    NA
 15 WN       6188    NA  6087
 16 YV         NA    NA   601</code></pre>
-<p>Ce nouveau tableau contient maintenant 4 colonnes : une pour la variable <code>carrier</code>, et 3 pour la variable <code>origin</code>, soit une colonne pour chacun des 3 aéroports de New York. On parle de tableau au format large (par opposition au “tableau rangé”, dit “format long”). Cela rend la présentation dans un rapport plus aisée.</p>
-<p>Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (<code>AS</code>) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique <code>NA</code>. Or, <code>NA</code> signifie “Not Available”, autrement dit : données manquantes. Ici, il ne s’agit pas du tout de données manquantes. Cela signifie simplement qu’aucun vol d’e telle ou telle compagnie’Alaska Airline n’a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l’argument <code>fill</code> :</p>
+<p>Ce nouveau tableau contient maintenant 16 lignes (une par compagnie aérienne), et 4 colonnes : une pour la variable <code>carrier</code>, et 3 pour la variable <code>origin</code>, soit une colonne pour chacun des 3 aéroports de New York. On parle de tableau au format large (par opposition au “tableau rangé”, dit “format long”). Cela rend la présentation dans un rapport plus aisée.</p>
+<p>Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (<code>AS</code>) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique <code>NA</code>. Or, <code>NA</code> signifie “Not Available”, autrement dit : données manquantes. Ici, il ne s’agit pas du tout de données manquantes. Cela signifie simplement qu’aucun vol d’Alaska Airline n’a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l’argument <code>fill</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">spread</span>(n_vols, <span class="dt">key =</span> origin, <span class="dt">value =</span> n, <span class="dt">fill =</span> <span class="dv">0</span>)</code></pre></div>
 <pre><code># A tibble: 16 x 4
 # Groups:   carrier [16]
@@ -477,7 +479,7 @@ n_vols</code></pre></div>
 14 VX       1566  3596     0
 15 WN       6188     0  6087
 16 YV          0     0   601</code></pre>
-<p>D’autres arguments existent. Je vous encourage vivement à consulter l’aide des fonctions <code>gather()</code> et <code>spread()</code> et à faire des essais.</p>
+<p>D’autres arguments existent. <strong>Je vous encourage vivement</strong> à consulter l’aide des fonctions <code>gather()</code> et <code>spread()</code> et à faire des essais.</p>
 </div>
 <div id="les-fonctions-separate-et-unite" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> Les fonctions <code>separate()</code> et <code>unite()</code></h3>
