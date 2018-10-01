@@ -376,13 +376,13 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 [11] &quot;SkyWest Airlines Inc.&quot;       &quot;United Air Lines Inc.&quot;      
 [13] &quot;US Airways Inc.&quot;             &quot;Virgin America&quot;             
 [15] &quot;Southwest Airlines Co.&quot;      &quot;Mesa Airlines Inc.&quot;         </code></pre>
-<p>Cela nous permet de récupérer les données sous la forme d’un vecteur. Attention toutefois, le tableau <code>flights</code> contient tellement de lignes, que récuppérer une variable grâce à cet opérateur peut rapidement saturer la console. Si, par exemple, vous souhaitez extraire les données relatives aux compagnies aériennes (colonne <code>carrier</code>) du tableau flights, vous pouvez taper ceci :</p>
+<p>Cela nous permet de récupérer les données sous la forme d’un vecteur. Attention toutefois, le tableau <code>flights</code> contient tellement de lignes, que récuppérer une variable grâce à cet opérateur peut rapidement saturer la console. Si, par exemple, vous souhaitez extraire les données relatives aux compagnies aériennes (colonne <code>carrier</code>) du tableau <code>flights</code>, vous pouvez taper ceci :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights<span class="op">$</span>carrier</code></pre></div>
 <p>Le résultat est pour le moins indigeste ! Lorsqu’un tableau contient de nombreuses lignes, c’est rarement une bonne idée de transformer l’une de ses colonnes en vecteur. Dans la mesure du possible, les données d’un tableau doivent rester dans le tableau.</p>
 </div>
 <div id="les-fichiers-daide" class="section level3">
 <h3><span class="header-section-number">3.3.4</span> Les fichiers d’aide</h3>
-<p>Une fonctionalité particulièrement utile de R est son système d’aide. On peut obtenir de l’aide au sujet de n’importe quelle fonction et de n’importe quel jeu de données en tapan un <code>?</code> immédiatement suivi du nom de la fonction ou de l’objet.</p>
+<p>Une fonctionalité particulièrement utile de R est son système d’aide. On peut obtenir de l’aide au sujet de n’importe quelle fonction et de n’importe quel jeu de données en tapant un <code>?</code> immédiatement suivi du nom de la fonction ou de l’objet.</p>
 <p>Par exemple, examinez l’aide du jeu de données <code>flights</code> :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?flights</code></pre></div>
 <p>Vous devriez absolument prendre l’habitude d’examiner les fichiers d’aide des fonctions ou jeux de données pour lesquels vous avez des questions. Ces fichiers sont très complets, et même s’il peuvent paraître impressionants au premier abord, ils sont tous structurés sur le même modèle et vous aideront à comprendre comment utiliser les fonctions, quels sont les arguments possibles, à quoi ils servent et comment les utiliser.</p>

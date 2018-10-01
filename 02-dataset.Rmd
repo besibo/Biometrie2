@@ -117,7 +117,7 @@ Nous pouvons accéder à ces variables grâce à leur nom :
 airlines$name
 ```
 
-Cela nous permet de récupérer les données sous la forme d'un vecteur. Attention toutefois, le tableau `flights` contient tellement de lignes, que récuppérer une variable grâce à cet opérateur peut rapidement saturer la console. Si, par exemple, vous souhaitez extraire les données relatives aux compagnies aériennes (colonne `carrier`) du tableau flights, vous pouvez taper ceci :
+Cela nous permet de récupérer les données sous la forme d'un vecteur. Attention toutefois, le tableau `flights` contient tellement de lignes, que récuppérer une variable grâce à cet opérateur peut rapidement saturer la console. Si, par exemple, vous souhaitez extraire les données relatives aux compagnies aériennes (colonne `carrier`) du tableau `flights`, vous pouvez taper ceci :
 
 ```{r eval=FALSE}
 flights$carrier
@@ -128,7 +128,7 @@ Le résultat est pour le moins indigeste ! Lorsqu'un tableau contient de nombreu
 
 ### Les fichiers d'aide
 
-Une fonctionalité particulièrement utile de R est son système d'aide. On peut obtenir de l'aide au sujet de n'importe quelle fonction et de n'importe quel jeu de données en tapan un `?` immédiatement suivi du nom de la fonction ou de l'objet.
+Une fonctionalité particulièrement utile de R est son système d'aide. On peut obtenir de l'aide au sujet de n'importe quelle fonction et de n'importe quel jeu de données en tapant un `?` immédiatement suivi du nom de la fonction ou de l'objet.
 
 Par exemple, examinez l'aide du jeu de données `flights` :
 
