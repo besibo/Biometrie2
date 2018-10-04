@@ -9,7 +9,7 @@ Jusqu'à maintenant, vous avez utilisé des données qui étaient déjà dans ce
 
 ----
 
-## Prérequis {#prerequis}
+## Prérequis {#prerek}
 
 Dans ce chapitre, nous aurons besoin des packages suivants :
 
@@ -39,7 +39,7 @@ library(devtools)
 install_github("rstudio/EDAWR")
 ```
 
-Attention, sur les ordinateurs de l'université cette procédure ne fonctionne pas toujours. Si vous rencontrez des difficultés, suivez les instructions décrites à la fin de cette section \@ref(prerequis)
+Attention, sur les ordinateurs de l'université cette procédure ne fonctionne pas toujours. Si vous rencontrez des difficultés, suivez les instructions décrites à la fin de cette section \@ref(prerek)
 
 3. Chargez le package `EDAWR` de la façon habituelle :
 ```{r eval = FALSE}
