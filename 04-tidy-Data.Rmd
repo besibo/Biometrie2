@@ -9,7 +9,7 @@ Jusqu'à maintenant, vous avez utilisé des données qui étaient déjà dans ce
 
 ----
 
-## Prérequis
+## Prérequis {#prerequis}
 
 Dans ce chapitre, nous aurons besoin des packages suivants :
 
@@ -39,6 +39,8 @@ library(devtools)
 install_github("rstudio/EDAWR")
 ```
 
+Attention, sur les ordinateurs de l'université cette procédure ne fonctionne pas toujours. Si vous rencontrez des difficultés, suivez les instructions décrites à la fin de cette section \@ref(prerequis)
+
 3. Chargez le package `EDAWR` de la façon habituelle :
 ```{r eval = FALSE}
 library(EDAWR)
@@ -60,6 +62,18 @@ Le package `EDAWR` contient plusieurs jeux de données dont nous allons nous ser
 ```{r, eval=FALSE}
 data(package = "EDAWR")
 ```
+
+
+**En cas de problème pour installer le package `EDAWR` sur les ordinateurs de l'université.**
+
+Vous pouvez télécharger manuellement les 4 jeux de données dont nous aurons besoin grâce à ces 4 liens :
+
+- [cases](data/cases.rda)
+- [population](data/population.rda)
+- [rates](data/rates.rda)
+- [storms](data/storms.rda)
+
+Une fois téléchargés, les données contenues dans ces 4 fichiers peuvent être importées dans RStudio en cliquant sur `File > Open File...`, puis en sélectionnant un à un chacun des fichiers. Pour chaque fichier un nouvel objet doit apparaître dans votre environnement de travail (onglet `Environnement`, dans le panneau en haut à droite de RStudio). L'inconvénient de cette méthode est que les fichiers d'aide de ces jeux de données ne seront pas disponibles dans RStudio. Vous pouvez toutefois en consulter une version brute (non mise en forme) [en cliquant ici](https://github.com/rstudio/EDAWR/tree/master/man).
 
 
 ----

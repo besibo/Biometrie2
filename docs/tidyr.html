@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-10-02">
+<meta name="date" content="2018-10-04">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -190,7 +190,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li class="chapter" data-level="4.10" data-path="viz.html"><a href="viz.html#exercices-6"><i class="fa fa-check"></i><b>4.10</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a><ul>
-<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#prerequis-1"><i class="fa fa-check"></i><b>5.1</b> Prérequis</a></li>
+<li class="chapter" data-level="5.1" data-path="viz.html"><a href="viz.html#prerequis"><i class="fa fa-check"></i><b>5.1</b> Prérequis</a></li>
 <li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#cest-quoi-des-tidy-data"><i class="fa fa-check"></i><b>5.2</b> C’est quoi des “tidy data” ?</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="tidyr.html"><a href="tidyr.html#la-fonction-gather"><i class="fa fa-check"></i><b>5.2.1</b> La fonction <code>gather()</code></a></li>
 <li class="chapter" data-level="5.2.2" data-path="tidyr.html"><a href="tidyr.html#la-fonction-spread"><i class="fa fa-check"></i><b>5.2.2</b> La fonction <code>spread()</code></a></li>
@@ -231,7 +231,7 @@ code > span. { color: #1f1c1b; } /* Normal */
 <p>Dans ce chapitre, nous allons aller plus loin en présentant le concept de “tidy data”, ou “données nettes/rangées/soignées/ordonnées”. Vous verrez que l’idée d’avoir des données stockées dans un format “net” va plus loin que la simple définition usuelle que le terme “rangé” peut avoir lorsque les données sont simplement bien organisées dans un tableur. Nous définirons le terme “tidy data” de manière plus rigoureuse, en établissant un ensemble de règles permettant de stocker les données correctement afin de rendre plus aisées les analyses statistiques et les représentations graphiques.</p>
 <p>Jusqu’à maintenant, vous avez utilisé des données qui étaient déjà dans ce format (c’est le cas des données contenues dans <code>flights</code> ou dans <code>diamonds</code> par exemple). Pourtant, la plupart du temps, les données que vous manipulerez dans R seront importées depuis un tableur dans lequel vous ou vos collaborateurs en aurez fait la saisie. S’assurer que les données importées manuellement dans R sont correctement “nettoyées” et mises en forme de “tidy data” est indispensable pour éviter les problèmes lors de la réalisation de graphiques (voir chapitre <a href="viz.html#viz">4</a>) comme lors de la manipulation des données pour en tirer de l’information statistique pertinente (ce que nous verrons au chapitre <a href="wrangling.html#wrangling">6</a>).</p>
 <hr />
-<div id="prerequis-1" class="section level2">
+<div id="prerequis" class="section level2">
 <h2><span class="header-section-number">5.1</span> Prérequis</h2>
 <p>Dans ce chapitre, nous aurons besoin des packages suivants :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
@@ -251,12 +251,22 @@ code > span. { color: #1f1c1b; } /* Normal */
 <li>Installez le package <code>EDAWR</code> depuis le site <a href="https://github.com" class="uri">https://github.com</a> grâce à la fonction <code>install_github()</code> du package <code>devtools</code> :</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install_github</span>(<span class="st">&quot;rstudio/EDAWR&quot;</span>)</code></pre></div>
+<p>Attention, sur les ordinateurs de l’université cette procédure ne fonctionne pas toujours. Si vous rencontrez des difficultés, suivez les instructions décrites à la fin de cette section <a href="viz.html#prerequis">4.1</a></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Chargez le package <code>EDAWR</code> de la façon habituelle :</li>
 </ol>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(EDAWR)</code></pre></div>
 <p>Le package <code>EDAWR</code> contient plusieurs jeux de données dont nous allons nous servir pour illustrer les questions liées au format des tableaux de données. Pour en avoir la liste, vous pouvez taper :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="dt">package =</span> <span class="st">&quot;EDAWR&quot;</span>)</code></pre></div>
+<p><strong>En cas de problème pour installer le package <code>EDAWR</code> sur les ordinateurs de l’université.</strong></p>
+<p>Vous pouvez télécharger manuellement les 4 jeux de données dont nous aurons besoin grâce à ces 4 liens :</p>
+<ul>
+<li><a href="data/cases.rda">cases</a></li>
+<li><a href="data/population.rda">population</a></li>
+<li><a href="data/rates.rda">rates</a></li>
+<li><a href="data/storms.rda">storms</a></li>
+</ul>
+<p>Une fois téléchargés, les données contenues dans ces 4 fichiers peuvent être importées dans RStudio en cliquant sur <code>File &gt; Open File...</code>, puis en sélectionnant un à un chacun des fichiers. Pour chaque fichier un nouvel objet doit apparaître dans votre environnement de travail (onglet <code>Environnement</code>, dans le panneau en haut à droite de RStudio). L’inconvénient de cette méthode est que les fichiers d’aide de ces jeux de données ne seront pas disponibles dans RStudio. Vous pouvez toutefois en consulter une version brute (non mise en forme) <a href="https://github.com/rstudio/EDAWR/tree/master/man">en cliquant ici</a>.</p>
 <hr />
 </div>
 <div id="cest-quoi-des-tidy-data" class="section level2">
