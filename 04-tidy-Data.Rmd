@@ -68,10 +68,10 @@ data(package = "EDAWR")
 
 Vous pouvez télécharger manuellement les 4 jeux de données dont nous aurons besoin grâce à ces 4 liens :
 
-- [cases](data/cases.rda)
-- [population](data/population.rda)
-- [rates](data/rates.rda)
-- [storms](data/storms.rda)
+- [cases](data/cases.rdata)
+- [population](data/population.rdata)
+- [rates](data/rates.rdata)
+- [storms](data/storms.rdata)
 
 Une fois téléchargés, les données contenues dans ces 4 fichiers peuvent être importées dans RStudio en cliquant sur `File > Open File...`, puis en sélectionnant un à un chacun des fichiers. Pour chaque fichier un nouvel objet doit apparaître dans votre environnement de travail (onglet `Environnement`, dans le panneau en haut à droite de RStudio). L'inconvénient de cette méthode est que les fichiers d'aide de ces jeux de données ne seront pas disponibles dans RStudio. Vous pouvez toutefois en consulter une version brute (non mise en forme) [en cliquant ici](https://github.com/rstudio/EDAWR/tree/master/man).
 

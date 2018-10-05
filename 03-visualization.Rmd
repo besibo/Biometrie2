@@ -128,7 +128,7 @@ Dans le cadre de ce cours, nous nous limiterons aux 5 types de graphiques suivan
 
 ----
 
-## Les nuages de points
+## Les nuages de points {#clouds}
 
 C'est probablement le plus simple des 5 types de graphiques cités plus haut. Il s'agit de graphiques bi-variés pour lesquels une variable est associée à l'axe des abscisses, et une autre est associée à l'axe des ordonnées. Comme pour le graphique présenté à la figure \@ref(fig:gapmind) ci-dessus, d'autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme...).
 

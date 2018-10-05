@@ -72,7 +72,7 @@ Parmi les nombreuses façons d'avoir une idée des données contenues dans un `d
 - la fonction `glimpse()` chargée avec le package `dplyr`. Elle est très similaire à la fonction `str()` découverte dans les tutoriels de DataCamp.
 - l'opérateur `$` permet d'accéder à une unique variable d'un `data.frame`.
 
-### `View()`
+### `View()` {#View}
 
 Tapez `View(flights)` dans votre script et exécutez la commande. Un nouvel onglet contenant ce qui ressemble à un tableaur doit s'ouvrir.
 

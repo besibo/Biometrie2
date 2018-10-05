@@ -222,7 +222,7 @@ Dans [le cours d'introduction à R](https://www.datacamp.com/community/open-cour
 
 Avant de passer à la suite, il nous reste 2 grandes notions à découvrir dans le domaine du code et de la syntaxe afin de pouvoir travailler efficacement dans R : les opérateurs de comparaison d'une part, et les fonctions d'autre part.
 
-#### Opérateurs de comparaison
+#### Opérateurs de comparaison {#comparaison}
 
 Comme leur nom l'indique, ils permettent de comparer des valeurs ou des objets. Les principaux opérateurs de comparaison sont :
 
