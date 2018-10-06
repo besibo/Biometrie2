@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-10-06">
+<meta name="date" content="2018-10-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -221,7 +221,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#prerek"><i class="fa fa-check"></i><b>5.1</b> Prérequis</a></li>
 <li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#cest-quoi-des-tidy-data"><i class="fa fa-check"></i><b>5.2</b> C’est quoi des “tidy data” ?</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="tidyr.html"><a href="tidyr.html#la-fonction-gather"><i class="fa fa-check"></i><b>5.2.1</b> La fonction <code>gather()</code></a></li>
-<li class="chapter" data-level="5.2.2" data-path="tidyr.html"><a href="tidyr.html#la-fonction-spread"><i class="fa fa-check"></i><b>5.2.2</b> La fonction <code>spread()</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> La fonction <code>spread()</code></a></li>
 <li class="chapter" data-level="5.2.3" data-path="tidyr.html"><a href="tidyr.html#les-fonctions-separate-et-unite"><i class="fa fa-check"></i><b>5.2.3</b> Les fonctions <code>separate()</code> et <code>unite()</code></a></li>
 <li class="chapter" data-level="5.2.4" data-path="tidyr.html"><a href="tidyr.html#exercices-7"><i class="fa fa-check"></i><b>5.2.4</b> Exercices</a></li>
 </ul></li>
@@ -241,7 +241,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.4.2" data-path="wrangling.html"><a href="wrangling.html#exercice-1"><i class="fa fa-check"></i><b>6.4.2</b> Exercice</a></li>
 <li class="chapter" data-level="6.4.3" data-path="wrangling.html"><a href="wrangling.html#les-conditions-logiques"><i class="fa fa-check"></i><b>6.4.3</b> Les conditions logiques</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="wrangling.html"><a href="wrangling.html#creer-des-resumes-avec-summarise-et-group_by"><i class="fa fa-check"></i><b>6.5</b> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.5" data-path="wrangling.html"><a href="wrangling.html#creer-des-resumes-avec-summarise-et-group_by"><i class="fa fa-check"></i><b>6.5</b> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></a><ul>
+<li class="chapter" data-level="6.5.1" data-path="wrangling.html"><a href="wrangling.html#principe-de-la-fonction-summarise"><i class="fa fa-check"></i><b>6.5.1</b> Principe de la fonction <code>summarise()</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="wrangling.html"><a href="wrangling.html#interet-de-la-fonction-group_by"><i class="fa fa-check"></i><b>6.5.2</b> Intérêt de la fonction <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.5.3" data-path="wrangling.html"><a href="wrangling.html#ajouter-des-barres-derreurs-sur-un-graphique"><i class="fa fa-check"></i><b>6.5.3</b> Ajouter des barres d’erreurs sur un graphique</a></li>
+<li class="chapter" data-level="6.5.4" data-path="wrangling.html"><a href="wrangling.html#grouper-par-plus-dune-variable"><i class="fa fa-check"></i><b>6.5.4</b> Grouper par plus d’une variable</a></li>
+<li class="chapter" data-level="6.5.5" data-path="wrangling.html"><a href="wrangling.html#un-raccourci-pratique-pour-compter-des-effectifs"><i class="fa fa-check"></i><b>6.5.5</b> Un raccourci pratique pour compter des effectifs</a></li>
+<li class="chapter" data-level="6.5.6" data-path="wrangling.html"><a href="wrangling.html#exercices-9"><i class="fa fa-check"></i><b>6.5.6</b> Exercices</a></li>
+</ul></li>
 <li class="chapter" data-level="6.6" data-path="wrangling.html"><a href="wrangling.html#trier-des-lignes-avec-arrange"><i class="fa fa-check"></i><b>6.6</b> Trier des lignes avec <code>arrange()</code></a></li>
 <li class="chapter" data-level="6.7" data-path="wrangling.html"><a href="wrangling.html#selectionner-des-variables-avec-select"><i class="fa fa-check"></i><b>6.7</b> Sélectionner des variables avec <code>select()</code></a></li>
 <li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#creer-de-nouvelles-variables-avec-mutate"><i class="fa fa-check"></i><b>6.8</b> Créer de nouvelles variables avec <code>mutate()</code></a></li>
@@ -490,6 +497,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

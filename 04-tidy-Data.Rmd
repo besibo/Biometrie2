@@ -182,7 +182,7 @@ gather(data = cases, key = year, value = n_cases, `2011`:`2013`, factor_key = TR
 On obtient cette fois une variable `year` sous la forme d'un facteur.
 
 
-### La fonction `spread()`
+### La fonction `spread()` {#spread}
 
 La fonction `spread()` permet de réaliser l'opération inverse de `gather()`. Elle "disperse" une unique colonne catégorielle en plusieurs colonnes.
 

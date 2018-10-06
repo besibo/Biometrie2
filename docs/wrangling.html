@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-10-06">
+<meta name="date" content="2018-10-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -221,7 +221,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#prerek"><i class="fa fa-check"></i><b>5.1</b> Prérequis</a></li>
 <li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#cest-quoi-des-tidy-data"><i class="fa fa-check"></i><b>5.2</b> C’est quoi des “tidy data” ?</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="tidyr.html"><a href="tidyr.html#la-fonction-gather"><i class="fa fa-check"></i><b>5.2.1</b> La fonction <code>gather()</code></a></li>
-<li class="chapter" data-level="5.2.2" data-path="tidyr.html"><a href="tidyr.html#la-fonction-spread"><i class="fa fa-check"></i><b>5.2.2</b> La fonction <code>spread()</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> La fonction <code>spread()</code></a></li>
 <li class="chapter" data-level="5.2.3" data-path="tidyr.html"><a href="tidyr.html#les-fonctions-separate-et-unite"><i class="fa fa-check"></i><b>5.2.3</b> Les fonctions <code>separate()</code> et <code>unite()</code></a></li>
 <li class="chapter" data-level="5.2.4" data-path="tidyr.html"><a href="tidyr.html#exercices-7"><i class="fa fa-check"></i><b>5.2.4</b> Exercices</a></li>
 </ul></li>
@@ -241,7 +241,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.4.2" data-path="wrangling.html"><a href="wrangling.html#exercice-1"><i class="fa fa-check"></i><b>6.4.2</b> Exercice</a></li>
 <li class="chapter" data-level="6.4.3" data-path="wrangling.html"><a href="wrangling.html#les-conditions-logiques"><i class="fa fa-check"></i><b>6.4.3</b> Les conditions logiques</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="wrangling.html"><a href="wrangling.html#creer-des-resumes-avec-summarise-et-group_by"><i class="fa fa-check"></i><b>6.5</b> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.5" data-path="wrangling.html"><a href="wrangling.html#creer-des-resumes-avec-summarise-et-group_by"><i class="fa fa-check"></i><b>6.5</b> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></a><ul>
+<li class="chapter" data-level="6.5.1" data-path="wrangling.html"><a href="wrangling.html#principe-de-la-fonction-summarise"><i class="fa fa-check"></i><b>6.5.1</b> Principe de la fonction <code>summarise()</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="wrangling.html"><a href="wrangling.html#interet-de-la-fonction-group_by"><i class="fa fa-check"></i><b>6.5.2</b> Intérêt de la fonction <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.5.3" data-path="wrangling.html"><a href="wrangling.html#ajouter-des-barres-derreurs-sur-un-graphique"><i class="fa fa-check"></i><b>6.5.3</b> Ajouter des barres d’erreurs sur un graphique</a></li>
+<li class="chapter" data-level="6.5.4" data-path="wrangling.html"><a href="wrangling.html#grouper-par-plus-dune-variable"><i class="fa fa-check"></i><b>6.5.4</b> Grouper par plus d’une variable</a></li>
+<li class="chapter" data-level="6.5.5" data-path="wrangling.html"><a href="wrangling.html#un-raccourci-pratique-pour-compter-des-effectifs"><i class="fa fa-check"></i><b>6.5.5</b> Un raccourci pratique pour compter des effectifs</a></li>
+<li class="chapter" data-level="6.5.6" data-path="wrangling.html"><a href="wrangling.html#exercices-9"><i class="fa fa-check"></i><b>6.5.6</b> Exercices</a></li>
+</ul></li>
 <li class="chapter" data-level="6.6" data-path="wrangling.html"><a href="wrangling.html#trier-des-lignes-avec-arrange"><i class="fa fa-check"></i><b>6.6</b> Trier des lignes avec <code>arrange()</code></a></li>
 <li class="chapter" data-level="6.7" data-path="wrangling.html"><a href="wrangling.html#selectionner-des-variables-avec-select"><i class="fa fa-check"></i><b>6.7</b> Sélectionner des variables avec <code>select()</code></a></li>
 <li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#creer-de-nouvelles-variables-avec-mutate"><i class="fa fa-check"></i><b>6.8</b> Créer de nouvelles variables avec <code>mutate()</code></a></li>
@@ -494,34 +501,368 @@ Figure 6.2: Schéma de la fonction <code>filter()</code> tiré de la ‘cheatshe
 </div>
 <div id="creer-des-resumes-avec-summarise-et-group_by" class="section level2">
 <h2><span class="header-section-number">6.5</span> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></h2>
-<div class="figure" style="text-align: center"><span id="fig:summarisefig"></span>
-<img src="images/summarizearrow.png" alt="Schéma de la fonction `summarise()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" />
+<div id="principe-de-la-fonction-summarise" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> Principe de la fonction <code>summarise()</code></h3>
+<p><img src="images/summarizearrow.png" width="70%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:summarisefig2"></span>
+<img src="images/summarize.png" alt="Schéma de la fonction `summarise()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="40%" />
 <p class="caption">
 Figure 6.3: Schéma de la fonction <code>summarise()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
 </p>
 </div>
-<p><img src="images/summarize.png" alt="Schéma de la fonction `summarise()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" /></p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">cancelled &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_time),</a>
-<a class="sourceLine" id="cb233-3" data-line-number="3">         <span class="kw">is.na</span>(arr_time)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb233-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>(carrier)</a>
-<a class="sourceLine" id="cb233-5" data-line-number="5">cancelled</a></code></pre></div>
+<p>La figure <a href="wrangling.html#fig:summarisefig2">6.3</a> ci-dessus indique comment fonctionne la fonction <code>summarise()</code> : elle prend plusieurs valeurs (potentiellement, un très grand nombre) et les réduit à une unique valeur qui les résume. Lorsque l’on applique cette démarche à plusieurs colonnes d’un tableau, on obtient un tableau qui ne contient plus qu’une unique ligne de résumé.</p>
+<p>La valeur qui résume les données est choisie par l’utilisateur. Il peut s’agir par exemple d’un calcul moyenne ou de variance, il peut s’agir de calculer une somme, ou d’extraire la valeur maximale ou minimale, ou encore, il peut tout simplement s’agir de déterminer un nombre d’observations.</p>
+<p>Ainsi, pour connaître la température moyenne et l’écart-type des températures dans les aéroports de New York, il suffit d’utiliser le tableau <code>weather</code> et sa variable <code>temp</code> que nous avons déjà utilisés dans les chapitres précédents :</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">moyenne =</span> <span class="kw">mean</span>(temp),</a>
+<a class="sourceLine" id="cb233-3" data-line-number="3">            <span class="dt">ecart_type =</span> <span class="kw">sd</span>(temp))</a></code></pre></div>
+<pre><code># A tibble: 1 x 2
+  moyenne ecart_type
+    &lt;dbl&gt;      &lt;dbl&gt;
+1      NA         NA</code></pre>
+<p>Les fonctions <code>mean()</code> et <code>sd()</code> permettent de calculer une moyenne et un écart-type respectivement. Ici, les valeurs retournées sont <code>NA</code> car une valeur de température est manquante :</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(temp))</a></code></pre></div>
+<pre><code># A tibble: 1 x 15
+  origin  year month   day  hour  temp  dewp humid wind_dir wind_speed wind_gust
+  &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+1 EWR     2013     8    22     9    NA    NA    NA      320       12.7        NA
+# ... with 4 more variables: precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;,
+#   time_hour &lt;dttm&gt;</code></pre>
+<p>Pour obtenir les valeurs souhaitées, il faut indiquer à R d’exclure les valeurs manquantes lors des calculs de moyenne et écart-types :</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1">weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">moyenne =</span> <span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb237-3" data-line-number="3">            <span class="dt">ecart_type =</span> <span class="kw">sd</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre><code># A tibble: 1 x 2
+  moyenne ecart_type
+    &lt;dbl&gt;      &lt;dbl&gt;
+1    55.3       17.8</code></pre>
+<p>La température moyenne est donc de 55.3 degrés Farenheit et l’écart-type vaut 17.8 degrés Farenheit.</p>
+</div>
+<div id="interet-de-la-fonction-group_by" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> Intérêt de la fonction <code>group_by()</code></h3>
+<p>La fonction devient particulièrement puissante lorsqu’elle est combinée avec la fonction <code>group_by()</code> :</p>
+<div class="figure" style="text-align: center"><span id="fig:groupby"></span>
+<img src="images/groupby.png" alt="Fonctionnement de `group_by()` travaillant de concert avec `summarise()`, tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="65%" />
+<p class="caption">
+Figure 6.4: Fonctionnement de <code>group_by()</code> travaillant de concert avec <code>summarise()</code>, tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
+</p>
+</div>
+<p>Comme son nom l’indique, la fonction <code>group_by()</code> permet de créer des sous-groupes dans un tableau, afin que le résumé des données soit calculé pour chacun des sous-groupes plutôt que sur l’ensemble du tableau. En ce sens, son fonctionnement est analogue à celui des <code>facet</code>s de <code>ggplot2</code> qui permettent de scinder les données d’un graphique en plusieurs sous-groupes.</p>
+<p>Pour revenir à l’exemple des températures, imaginons que nous souhaitions calculer les températures moyennes et les écart-types pour chaque mois de l’année. Voilà comment procéder :</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb239-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(month) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb239-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">moyenne =</span> <span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb239-4" data-line-number="4">            <span class="dt">ecart_type =</span> <span class="kw">sd</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<pre><code># A tibble: 12 x 3
+   month moyenne ecart_type
+   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;
+ 1     1    35.6      10.2 
+ 2     2    34.3       6.98
+ 3     3    39.9       6.25
+ 4     4    51.7       8.79
+ 5     5    61.8       9.68
+ 6     6    72.2       7.55
+ 7     7    80.1       7.12
+ 8     8    74.5       5.19
+ 9     9    67.4       8.47
+10    10    60.1       8.85
+11    11    45.0      10.4 
+12    12    38.4       9.98</code></pre>
+<p>Ici, les étapes sont les suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>On prend le tableau <code>weather</code>, <em>puis</em></li>
+<li>On groupe les données selon la variable <code>month</code>, <em>puis</em></li>
+<li>On résume les données groupées sous la forme de moyennes et d’écart-types</li>
+</ol>
+<p>Nous pouvons aller plus loin. Ajoutons à ce résumé 2 variables supplémentaires : le nombre de mesures et l’<strong>erreur standard</strong> (notée <span class="math inline">\(se\)</span>), qui peut être calculée de la façon suivante :</p>
+<p><span class="math display">\[se \approx \frac{s}{\sqrt{n}}\]</span></p>
+<p>avec <span class="math inline">\(s\)</span>, l’écart-type de l’échantillon et <span class="math inline">\(n\)</span>, la taille de l’échantillon. Cette grandeur est très importante en statistique puisqu’elle nous permet de quantifier <strong>l’imprécision</strong> de la moyenne. Elle intervient d’ailleurs dans le calcul de l’intervalle de confiance de la moyenne d’un échantillon. Nous allons donc calculer ici ces résumés, et nous donnerons un nom au tableau créé pour ouvoir ré-utiliser ces statistiques descriptives :</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">monthly_temp &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(month) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb241-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">moyenne =</span> <span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb241-4" data-line-number="4">            <span class="dt">ecart_type =</span> <span class="kw">sd</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb241-5" data-line-number="5">            <span class="dt">nb_obs =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb241-6" data-line-number="6">            <span class="dt">erreur_std =</span> ecart_type <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(nb_obs))</a>
+<a class="sourceLine" id="cb241-7" data-line-number="7">monthly_temp</a></code></pre></div>
+<pre><code># A tibble: 12 x 5
+   month moyenne ecart_type nb_obs erreur_std
+   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;  &lt;int&gt;      &lt;dbl&gt;
+ 1     1    35.6      10.2    2226      0.217
+ 2     2    34.3       6.98   2010      0.156
+ 3     3    39.9       6.25   2227      0.132
+ 4     4    51.7       8.79   2159      0.189
+ 5     5    61.8       9.68   2232      0.205
+ 6     6    72.2       7.55   2160      0.162
+ 7     7    80.1       7.12   2228      0.151
+ 8     8    74.5       5.19   2217      0.110
+ 9     9    67.4       8.47   2159      0.182
+10    10    60.1       8.85   2212      0.188
+11    11    45.0      10.4    2141      0.226
+12    12    38.4       9.98   2144      0.216</code></pre>
+<p>Vous constatez ici que nous avons 4 statistiques descriptives pour chaque mois de l’année. Deux choses sont importantes à retenir ici :</p>
+<ol style="list-style-type: decimal">
+<li>on peut obtenir le nombre d’observations dans chaque sous-groupe d’un tableau groupé en utilisant la fonction <code>n()</code>. Cette fonction n’a besoin d’aucun argument : elle détermine automatiquement la taille des groupes créés par <code>group_by()</code>.</li>
+<li>on peut créer de nouvelles variables en utilisant le nom de variables créées auparavant. Ainsi, nous avons créé la variable <code>erreur_std</code> en utilisant deux variables créées au préalable : <code>ecart-type</code> et <code>nb_obs</code></li>
+</ol>
+</div>
+<div id="ajouter-des-barres-derreurs-sur-un-graphique" class="section level3">
+<h3><span class="header-section-number">6.5.3</span> Ajouter des barres d’erreurs sur un graphique</h3>
+<p>Ce jeu de données contient donc les données nécessaires pour nous permettre de visualiser sur un graphique l’évolution des températures moyennes enregistrées dans les 3 aéroports de New York en 2013. Outre les température moyennes, nous devons faire figurer l’imprécision des estimations de moyenne avec des barres d’erreur (à l’aide de la fonction <code>geom_inerange()</code>). Comme expliqué plus haut, l’imprécision des moyennes calculées est estimée grâce à l’erreur standard. Toutefois, ici, les imprécisions sont tellement faibles que les barres d’erreurs resteront invisibles :</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">monthly_temp <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> moyenne, <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb243-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb243-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> moyenne <span class="op">-</span><span class="st"> </span>erreur_std, </a>
+<a class="sourceLine" id="cb243-6" data-line-number="6">                       <span class="dt">ymax =</span> moyenne <span class="op">+</span><span class="st"> </span>erreur_std),</a>
+<a class="sourceLine" id="cb243-7" data-line-number="7">                   <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:errorbars"></span>
+<img src="figure/errorbars-1.png" alt="Évolution des températures moyenne dans 3 aéroports de New York en 2013" width="90%" />
+<p class="caption">
+Figure 6.5: Évolution des températures moyenne dans 3 aéroports de New York en 2013
+</p>
+</div>
+<p>Vous remarquerez que :</p>
+<ol style="list-style-type: decimal">
+<li>j’associe <code>factor(month)</code>, et non simplement <code>month</code>, à l’axe des <code>x</code> afin d’avoir, sur l’axe des abscisses, des chiffres cohérents allant de 1 à 12, et non des chiffres à virgule</li>
+<li>l’argument <code>group = 1</code> doit être ajouté pour que la ligne reliant les points apparaisse. En effet, les lignes sont censées relier des points qui appartiennent à une même série temporelle. Or ici, nous avons transformé <code>month</code> en facteur. Préciser <code>group = 1</code> permet d’indiquer à <code>geom_line()</code> que toutes les catégories du facteur <code>month</code> appartiennent au même groupe, que ce facteur peut être considéré comme une variable continue, et qu’il est donc correct de relier les points.</li>
+<li>la fonction <code>geom_linerange()</code> contient de nouvelles caractéristiques esthétiques qu’il nous faut obligatoirement renseigner : les extrémités inférieures et supérieures des barres d’erreur. Il nous faut donc associer 2 variables à ces caractéristiques esthétiques. Ici, nous utilisons <code>moyenne - erreur_std</code> pour la borne inférieure des barres d’erreur, et <code>moyenne + erreur_std</code> pour la borne supérieure. Les variables <code>moyenne</code> et <code>erreur_std</code> faisant partie du tableau <code>monthly_temp</code>, <code>geom_linerange()</code> les trouve sans difficulté.</li>
+<li>les barres d’erreur produites sont minuscules. Je les ai fait apparaître en rouge afin de les rendre visibles, mais même comme cela, il faut zoomer fortement pour les distinguer. Afin de rendre l’utilisation de <code>geom_linerange()</code> plus explicite, je produis ci-dessous un autre graphique en remplaçant les erreurs standard par les écart-types en guise de barres d’erreur. Attention, ce n’est pas correct d’un point de vue statistique ! Les barres d’erreur doivent permettre de visualiser l’imprécision de la moyenne. C’est donc bien les erreurs standard qu’il faut faire figurer en guise de barres d’erreurs et non les écarty-types. Le graphique ci-dessous ne figure donc qu’à titre d’exemple, afin d’illustrer de façon plus parlante le fonctionnement de la fonction <code>geom_linerange()</code> :</li>
+</ol>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">monthly_temp <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb244-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> moyenne, <span class="dt">group =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb244-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb244-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb244-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> moyenne <span class="op">-</span><span class="st"> </span>ecart_type, <span class="dt">ymax =</span> moyenne <span class="op">+</span><span class="st"> </span>ecart_type)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb244-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mois&quot;</span>,</a>
+<a class="sourceLine" id="cb244-7" data-line-number="7">       <span class="dt">y =</span> <span class="st">&quot;Température (ºFarenheit)&quot;</span>, </a>
+<a class="sourceLine" id="cb244-8" data-line-number="8">       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures dans 3 aéroports de New York en 2013&quot;</span>,</a>
+<a class="sourceLine" id="cb244-9" data-line-number="9">       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span><span class="st">Il faut normalement faire figurer les erreurs standard.&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:errorbars2"></span>
+<img src="figure/errorbars2-1.png" alt="Évolution des températures moyenne dans 3 aéroports de New York en 2013" width="90%" />
+<p class="caption">
+Figure 6.6: Évolution des températures moyenne dans 3 aéroports de New York en 2013
+</p>
+</div>
+</div>
+<div id="grouper-par-plus-dune-variable" class="section level3">
+<h3><span class="header-section-number">6.5.4</span> Grouper par plus d’une variable</h3>
+<p>Jusqu’ici, nous avons groupé les données de température par mois. Il est tout à fait possible de grouper les données par plus d’une variable, par exemple, par mois et par aéroport d’origine :</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1">monthly_orig_temp &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(origin, month) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb245-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">moyenne =</span> <span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb245-4" data-line-number="4">            <span class="dt">ecart_type =</span> <span class="kw">sd</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb245-5" data-line-number="5">            <span class="dt">nb_obs =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb245-6" data-line-number="6">            <span class="dt">erreur_std =</span> ecart_type <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(nb_obs))</a>
+<a class="sourceLine" id="cb245-7" data-line-number="7">monthly_orig_temp</a></code></pre></div>
+<pre><code># A tibble: 36 x 6
+# Groups:   origin [?]
+   origin month moyenne ecart_type nb_obs erreur_std
+   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;  &lt;int&gt;      &lt;dbl&gt;
+ 1 EWR        1    35.6      10.8     742      0.396
+ 2 EWR        2    34.3       7.28    669      0.282
+ 3 EWR        3    40.1       6.72    743      0.247
+ 4 EWR        4    53.0       9.60    720      0.358
+ 5 EWR        5    63.3      10.6     744      0.389
+ 6 EWR        6    73.3       8.05    720      0.300
+ 7 EWR        7    80.7       7.37    741      0.271
+ 8 EWR        8    74.5       5.87    740      0.216
+ 9 EWR        9    67.3       9.32    719      0.348
+10 EWR       10    59.8       9.79    736      0.361
+# ... with 26 more rows</code></pre>
+<p>En plus de la variable <code>month</code>, la tableau <code>monthly_orig_temp</code> contient une variable <code>origin</code>. Les statistiques que nous avons calculées plus tôt sont maintenant disponibles pour chaque mois et chacun des 3 aéroports de New York. Nous pouvons utiliser ces données pour comparer les 3 aéroports :</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">monthly_orig_temp <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> moyenne, <span class="dt">group =</span> origin, <span class="dt">color =</span> origin)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb247-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> moyenne <span class="op">-</span><span class="st"> </span>ecart_type, <span class="dt">ymax =</span> moyenne <span class="op">+</span><span class="st"> </span>ecart_type)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb247-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mois&quot;</span>,</a>
+<a class="sourceLine" id="cb247-7" data-line-number="7">       <span class="dt">y =</span> <span class="st">&quot;Température (ºFarenheit)&quot;</span>, </a>
+<a class="sourceLine" id="cb247-8" data-line-number="8">       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures dans 3 aéroports de New York en 2013&quot;</span>,</a>
+<a class="sourceLine" id="cb247-9" data-line-number="9">       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span><span class="st">Il faut normalement faire figurer les erreurs standard.&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:errorbars3"></span>
+<img src="figure/errorbars3-1.png" alt="Évolution des températures moyenne dans 3 aéroports de New York en 2013" width="90%" />
+<p class="caption">
+Figure 6.7: Évolution des températures moyenne dans 3 aéroports de New York en 2013
+</p>
+</div>
+<p>Notez que j’utilise maintenant <code>group = origin</code> et non plus <code>group = 1</code>. Ici, les températures des 3 aéroports sont tellement similaires que les courbes sont difficiles à distinguer. Nous pouvons donc utiliser <code>facet_wrap()</code> pour tenter d’améliorer la visualisation :</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">monthly_orig_temp <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> moyenne, <span class="dt">group =</span> origin, <span class="dt">color =</span> origin)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb248-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb248-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb248-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> moyenne <span class="op">-</span><span class="st"> </span>ecart_type, <span class="dt">ymax =</span> moyenne <span class="op">+</span><span class="st"> </span>ecart_type)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb248-6" data-line-number="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>origin, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb248-7" data-line-number="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mois&quot;</span>,</a>
+<a class="sourceLine" id="cb248-8" data-line-number="8">       <span class="dt">y =</span> <span class="st">&quot;Température (ºFarenheit)&quot;</span>, </a>
+<a class="sourceLine" id="cb248-9" data-line-number="9">       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures dans 3 aéroports de New York en 2013&quot;</span>,</a>
+<a class="sourceLine" id="cb248-10" data-line-number="10">       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span><span class="st">Il faut normalement faire figurer les erreurs standard.&quot;</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:errorbars4"></span>
+<img src="figure/errorbars4-1.png" alt="Évolution des températures moyenne dans 3 aéroports de New York en 2013" width="90%" />
+<p class="caption">
+Figure 6.8: Évolution des températures moyenne dans 3 aéroports de New York en 2013
+</p>
+</div>
+<p>Enfin, lorsque nous groupons par plusieurs variables, il peut être utile de présenter les résultats sous la forme d’un tableau large (grâce à la fonction <code>spread()</code>, voir section <a href="tidyr.html#spread">5.2.2</a>) pour l’intégration dans un rapport par exemple :</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(origin, month) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb249-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">moyenne =</span> <span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb249-4" data-line-number="4"><span class="st">  </span><span class="kw">spread</span>(origin, moyenne)</a></code></pre></div>
+<pre><code># A tibble: 12 x 4
+   month   EWR   JFK   LGA
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1     1  35.6  35.4  36.0
+ 2     2  34.3  34.2  34.4
+ 3     3  40.1  39.5  40.0
+ 4     4  53.0  50.1  52.1
+ 5     5  63.3  59.3  62.8
+ 6     6  73.3  70.0  73.3
+ 7     7  80.7  78.7  80.8
+ 8     8  74.5  73.8  75.0
+ 9     9  67.3  66.9  67.9
+10    10  59.8  59.8  60.6
+11    11  44.6  45.1  45.3
+12    12  38.0  38.6  38.8</code></pre>
+<p>Sous cette forme, les données ne sont plus “rangées”, nous n’avons plus des “tidy data”, mais nous avons un tableau plus synthétique, facile à inclure dans un rapport.</p>
+</div>
+<div id="un-raccourci-pratique-pour-compter-des-effectifs" class="section level3">
+<h3><span class="header-section-number">6.5.5</span> Un raccourci pratique pour compter des effectifs</h3>
+<p>Il est tellement fréquent d’avoir à grouper des données en fonction d’une variable puis à compter le nombre d;observations dans chaque catégorie avrc <code>n()</code> que <code>dplyr</code> nous fournit un raccourci : la fonction <code>count()</code>.</p>
+<p>Ce code :</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(month) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>())</a></code></pre></div>
+<pre><code># A tibble: 12 x 2
+   month     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1     1  2226
+ 2     2  2010
+ 3     3  2227
+ 4     4  2159
+ 5     5  2232
+ 6     6  2160
+ 7     7  2228
+ 8     8  2217
+ 9     9  2159
+10    10  2212
+11    11  2141
+12    12  2144</code></pre>
+<p>est équivalent à celui-ci :</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(month)</a></code></pre></div>
+<pre><code># A tibble: 12 x 2
+   month     n
+   &lt;dbl&gt; &lt;int&gt;
+ 1     1  2226
+ 2     2  2010
+ 3     3  2227
+ 4     4  2159
+ 5     5  2232
+ 6     6  2160
+ 7     7  2228
+ 8     8  2217
+ 9     9  2159
+10    10  2212
+11    11  2141
+12    12  2144</code></pre>
+<p>Comme avec <code>group_by()</code>, il est bien sûr possible d’utiliser <code>count()</code> avec plusieurs variables :</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1">weather <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb255-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(origin, month) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb255-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">nombre =</span> <span class="kw">n</span>())</a></code></pre></div>
+<pre><code># A tibble: 36 x 3
+# Groups:   origin [?]
+   origin month nombre
+   &lt;chr&gt;  &lt;dbl&gt;  &lt;int&gt;
+ 1 EWR        1    742
+ 2 EWR        2    669
+ 3 EWR        3    743
+ 4 EWR        4    720
+ 5 EWR        5    744
+ 6 EWR        6    720
+ 7 EWR        7    741
+ 8 EWR        8    740
+ 9 EWR        9    719
+10 EWR       10    736
+# ... with 26 more rows</code></pre>
+</div>
+<div id="exercices-9" class="section level3">
+<h3><span class="header-section-number">6.5.6</span> Exercices</h3>
+<ol style="list-style-type: decimal">
+<li>Faites un tableau indiquant combien de vols ont été annulés après le décollage, pour chaque compagnie aérienne. Vous devriez obtenir le tableau suivant :</li>
+</ol>
 <pre><code># A tibble: 13 x 2
-   carrier     n
-   &lt;chr&gt;   &lt;int&gt;
- 1 9E         71
- 2 AA         34
- 3 B6         32
- 4 DL         15
- 5 EV        105
- 6 F9          1
- 7 FL          6
- 8 MQ         87
- 9 UA         63
-10 US         31
-11 VX          4
-12 WN          8
-13 YV          1</code></pre>
+   carrier cancelled
+   &lt;chr&gt;       &lt;int&gt;
+ 1 9E             71
+ 2 AA             34
+ 3 B6             32
+ 4 DL             15
+ 5 EV            105
+ 6 F9              1
+ 7 FL              6
+ 8 MQ             87
+ 9 UA             63
+10 US             31
+11 VX              4
+12 WN              8
+13 YV              1</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Faites un tableau indiquant les vitesses de vents minimales, maximales et moyennes, enregistrées chaque mois dans chaque aéroport de New York. Votre tableau devrait ressembler à ceci :</li>
+</ol>
+<pre><code># A tibble: 36 x 5
+# Groups:   origin [?]
+   origin month max_wind min_wind moy_wind
+   &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1 EWR        1     42.6        0     9.87
+ 2 EWR        2   1048.         0    12.2 
+ 3 EWR        3     29.9        0    11.6 
+ 4 EWR        4     25.3        0     9.63
+ 5 EWR        5     33.4        0     8.49
+ 6 EWR        6     34.5        0     9.55
+ 7 EWR        7     20.7        0     9.15
+ 8 EWR        8     21.9        0     7.62
+ 9 EWR        9     23.0        0     8.03
+10 EWR       10     26.5        0     8.32
+# ... with 26 more rows</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Sachant que les vitesses du vent sont exprimées en miles par heure, certaines valeurs sont-elles surprenantes ? À l’aide de la fonction <code>filter()</code>, éliminez la ou les valeurs aberrantes. Vous devriez obtenir ce tableau :</li>
+</ol>
+<pre><code># A tibble: 36 x 5
+# Groups:   origin [?]
+   origin month max_wind min_wind moy_wind
+   &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1 EWR        1     42.6        0     9.87
+ 2 EWR        2     31.1        0    10.7 
+ 3 EWR        3     29.9        0    11.6 
+ 4 EWR        4     25.3        0     9.63
+ 5 EWR        5     33.4        0     8.49
+ 6 EWR        6     34.5        0     9.55
+ 7 EWR        7     20.7        0     9.15
+ 8 EWR        8     21.9        0     7.62
+ 9 EWR        9     23.0        0     8.03
+10 EWR       10     26.5        0     8.32
+# ... with 26 more rows</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>En utilisant les données de vitesse de vent du tableau <code>weather</code>, produisez le graphique suivant :</li>
+</ol>
+<p><img src="figure/windspeed-1.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Indications :</p>
+<ul>
+<li>les vitesses de vent aberrantes ont été éliminées grâce à la fonction <code>filter()</code></li>
+<li>la fonction <code>geom_jitter()</code> a été utilisée avec l’argument <code>height = 0</code></li>
+<li>la transparence des points est fixée à <code>0.2</code></li>
+</ul>
+<p>Selon vous, pourquoi les points sont-ils organisés en bandes horizontales ?<br />
+Selon vous, pourquoi n’y a t’il jamais de vent entre 0 et environ 3 miles à l’heure (mph) ?<br />
+Sachant qu’en divisant des mph par 1.151 on obtient des vitesses en nœuds, que nous apprend cette commande :</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">sort</span>(<span class="kw">unique</span>(weather<span class="op">$</span>wind_speed))<span class="op">/</span><span class="fl">1.151</span></a></code></pre></div>
+<pre><code> [1]   0.000000   2.999427   3.999235   4.999044   5.998853   6.998662
+ [7]   7.998471   8.998280   9.998089  10.997897  11.997706  12.997515
+[13]  13.997324  14.997133  15.996942  16.996751  17.996560  18.996368
+[19]  19.996177  20.995986  21.995795  22.995604  23.995413  24.995222
+[25]  25.995030  26.994839  27.994648  28.994457  29.994266  30.994075
+[31]  31.993884  32.993692  33.993501  34.993310  36.992928 910.825873</code></pre>
+</div>
 </div>
 <div id="trier-des-lignes-avec-arrange" class="section level2">
 <h2><span class="header-section-number">6.6</span> Trier des lignes avec <code>arrange()</code></h2>
@@ -534,160 +875,42 @@ Figure 6.3: Schéma de la fonction <code>summarise()</code> tiré de la ‘cheat
 </div>
 <div id="associer-plusieurs-tableaux-avec-left_join-et-inner_join" class="section level2">
 <h2><span class="header-section-number">6.9</span> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></h2>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">all_flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(carrier)</a>
-<a class="sourceLine" id="cb235-3" data-line-number="3">all_flights</a></code></pre></div>
-<pre><code># A tibble: 16 x 2
-   carrier     n
-   &lt;chr&gt;   &lt;int&gt;
- 1 9E      18460
- 2 AA      32729
- 3 AS        714
- 4 B6      54635
- 5 DL      48110
- 6 EV      54173
- 7 F9        685
- 8 FL       3260
- 9 HA        342
-10 MQ      26397
-11 OO         32
-12 UA      58665
-13 US      20536
-14 VX       5162
-15 WN      12275
-16 YV        601</code></pre>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="kw">left_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>)</a></code></pre></div>
-<pre><code># A tibble: 16 x 3
-   carrier   n.x   n.y
-   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
- 1 9E      18460    71
- 2 AA      32729    34
- 3 AS        714    NA
- 4 B6      54635    32
- 5 DL      48110    15
- 6 EV      54173   105
- 7 F9        685     1
- 8 FL       3260     6
- 9 HA        342    NA
-10 MQ      26397    87
-11 OO         32    NA
-12 UA      58665    63
-13 US      20536    31
-14 VX       5162     4
-15 WN      12275     8
-16 YV        601     1</code></pre>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw">inner_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>)</a></code></pre></div>
-<pre><code># A tibble: 13 x 3
-   carrier   n.x   n.y
-   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
- 1 9E      18460    71
- 2 AA      32729    34
- 3 B6      54635    32
- 4 DL      48110    15
- 5 EV      54173   105
- 6 F9        685     1
- 7 FL       3260     6
- 8 MQ      26397    87
- 9 UA      58665    63
-10 US      20536    31
-11 VX       5162     4
-12 WN      12275     8
-13 YV        601     1</code></pre>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1"><span class="kw">inner_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pc =</span> n.y <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb241-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(pc))</a></code></pre></div>
-<pre><code># A tibble: 13 x 4
-   carrier   n.x   n.y     pc
-   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
- 1 9E      18460    71 0.385 
- 2 MQ      26397    87 0.330 
- 3 EV      54173   105 0.194 
- 4 FL       3260     6 0.184 
- 5 YV        601     1 0.166 
- 6 US      20536    31 0.151 
- 7 F9        685     1 0.146 
- 8 UA      58665    63 0.107 
- 9 AA      32729    34 0.104 
-10 VX       5162     4 0.0775
-11 WN      12275     8 0.0652
-12 B6      54635    32 0.0586
-13 DL      48110    15 0.0312</code></pre>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">left_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pc =</span> n.y <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(pc))</a></code></pre></div>
-<pre><code># A tibble: 16 x 4
-   carrier   n.x   n.y      pc
-   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
- 1 9E      18460    71  0.385 
- 2 MQ      26397    87  0.330 
- 3 EV      54173   105  0.194 
- 4 FL       3260     6  0.184 
- 5 YV        601     1  0.166 
- 6 US      20536    31  0.151 
- 7 F9        685     1  0.146 
- 8 UA      58665    63  0.107 
- 9 AA      32729    34  0.104 
-10 VX       5162     4  0.0775
-11 WN      12275     8  0.0652
-12 B6      54635    32  0.0586
-13 DL      48110    15  0.0312
-14 AS        714    NA NA     
-15 HA        342    NA NA     
-16 OO         32    NA NA     </code></pre>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">left_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pc =</span> n.y <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb245-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(carrier, pc, <span class="dt">.desc =</span> <span class="ot">TRUE</span>), <span class="dt">y =</span> pc)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb245-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb245-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Compagnie aérienne&quot;</span>,</a>
-<a class="sourceLine" id="cb245-6" data-line-number="6">         <span class="dt">y =</span> <span class="st">&quot;Proportion de vols annulés après décollage (%)&quot;</span>)</a></code></pre></div>
-<pre><code>Warning: Removed 3 rows containing missing values (position_stack).</code></pre>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">cancelled_origin &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_time),</a>
-<a class="sourceLine" id="cb247-3" data-line-number="3">         <span class="kw">is.na</span>(arr_time)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>(carrier, origin)</a>
-<a class="sourceLine" id="cb247-5" data-line-number="5">cancelled_origin</a></code></pre></div>
-<pre><code># A tibble: 30 x 3
-   carrier origin     n
-   &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;
- 1 9E      EWR        5
- 2 9E      JFK       59
- 3 9E      LGA        7
- 4 AA      EWR        4
- 5 AA      JFK       10
- 6 AA      LGA       20
- 7 B6      EWR        4
- 8 B6      JFK       26
- 9 B6      LGA        2
-10 DL      EWR        1
-# ... with 20 more rows</code></pre>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">all_flights_origin &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(carrier, origin)</a>
-<a class="sourceLine" id="cb249-3" data-line-number="3">all_flights_origin</a></code></pre></div>
-<pre><code># A tibble: 35 x 3
-   carrier origin     n
-   &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;
- 1 9E      EWR     1268
- 2 9E      JFK    14651
- 3 9E      LGA     2541
- 4 AA      EWR     3487
- 5 AA      JFK    13783
- 6 AA      LGA    15459
- 7 AS      EWR      714
- 8 B6      EWR     6557
- 9 B6      JFK    42076
-10 B6      LGA     6002
-# ... with 25 more rows</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">left_join</span>(all_flights_origin, cancelled_origin, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;carrier&quot;</span>, <span class="st">&quot;origin&quot;</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pc =</span> n.y <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(carrier, pc, <span class="dt">.desc =</span> <span class="ot">TRUE</span>), <span class="dt">y =</span> pc, <span class="dt">fill =</span> origin)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_col</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>origin, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb251-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Compagnie aérienne&quot;</span>,</a>
-<a class="sourceLine" id="cb251-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">&quot;Proportion de vols annulés après décollage (%)&quot;</span>,</a>
-<a class="sourceLine" id="cb251-8" data-line-number="8">         <span class="dt">fill =</span> <span class="st">&quot;Aéroport de</span><span class="ch">\n</span><span class="st">New York&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb251-9" data-line-number="9"><span class="st">    </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</a></code></pre></div>
-<pre><code>Warning: Removed 5 rows containing missing values (position_stack).</code></pre>
-<p><img src="figure/unnamed-chunk-104-1.png" width="90%" style="display: block; margin: auto;" /><img src="figure/unnamed-chunk-104-2.png" width="90%" style="display: block; margin: auto;" /></p>
+<!-- ```{r, tidy=FALSE} -->
+<!-- all_flights <- flights %>% -->
+<!--   count(carrier) -->
+<!-- all_flights -->
+<!-- left_join(all_flights, cancelled, by = "carrier") -->
+<!-- inner_join(all_flights, cancelled, by = "carrier") -->
+<!-- inner_join(all_flights, cancelled, by = "carrier") %>% -->
+<!--   mutate(pc = n.y * 100 / n.x) %>% -->
+<!--   arrange(desc(pc)) -->
+<!-- left_join(all_flights, cancelled, by = "carrier") %>% -->
+<!--   mutate(pc = n.y * 100 / n.x) %>% -->
+<!--   arrange(desc(pc)) -->
+<!-- left_join(all_flights, cancelled, by = "carrier") %>% -->
+<!--   mutate(pc = n.y * 100 / n.x) %>% -->
+<!--   ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc)) + -->
+<!--     geom_col() + -->
+<!--     labs(x = "Compagnie aérienne", -->
+<!--          y = "Proportion de vols annulés après décollage (%)") -->
+<!-- cancelled_origin <- flights %>% -->
+<!--   filter(!is.na(dep_time), -->
+<!--          is.na(arr_time)) %>% -->
+<!--   count(carrier, origin) -->
+<!-- cancelled_origin -->
+<!-- all_flights_origin <- flights %>% -->
+<!--   count(carrier, origin) -->
+<!-- all_flights_origin -->
+<!-- left_join(all_flights_origin, cancelled_origin, by = c("carrier", "origin")) %>% -->
+<!--   mutate(pc = n.y * 100 / n.x) %>% -->
+<!--   ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc, fill = origin)) + -->
+<!--     geom_col(color = "black") + -->
+<!--     facet_wrap(~origin, ncol = 1) + -->
+<!--     labs(x = "Compagnie aérienne", -->
+<!--          y = "Proportion de vols annulés après décollage (%)", -->
+<!--          fill = "Aéroport de\nNew York") + -->
+<!--     scale_fill_brewer(palette = "Set1") -->
+<!-- ``` -->
 <!-- barres d'erreur -->
 <!-- Vols de JFK du 12 février -->
 <!-- Diamonds trop gros à la fac -->
@@ -738,6 +961,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
