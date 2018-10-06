@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-10-05">
+<meta name="date" content="2018-10-06">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -241,10 +241,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.4.2" data-path="wrangling.html"><a href="wrangling.html#exercice-1"><i class="fa fa-check"></i><b>6.4.2</b> Exercice</a></li>
 <li class="chapter" data-level="6.4.3" data-path="wrangling.html"><a href="wrangling.html#les-conditions-logiques"><i class="fa fa-check"></i><b>6.4.3</b> Les conditions logiques</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="wrangling.html"><a href="wrangling.html#trier-des-lignes-avec-arrange"><i class="fa fa-check"></i><b>6.5</b> Trier des lignes avec <code>arrange()</code></a></li>
-<li class="chapter" data-level="6.6" data-path="wrangling.html"><a href="wrangling.html#selectionner-des-variables-avec-select"><i class="fa fa-check"></i><b>6.6</b> Sélectionner des variables avec <code>select()</code></a></li>
-<li class="chapter" data-level="6.7" data-path="wrangling.html"><a href="wrangling.html#creer-de-nouvelles-variables-avec-mutate"><i class="fa fa-check"></i><b>6.7</b> Créer de nouvelles variables avec <code>mutate()</code></a></li>
-<li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#creer-des-resumes-avec-summarise-et-group_by"><i class="fa fa-check"></i><b>6.8</b> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.5" data-path="wrangling.html"><a href="wrangling.html#creer-des-resumes-avec-summarise-et-group_by"><i class="fa fa-check"></i><b>6.5</b> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.6" data-path="wrangling.html"><a href="wrangling.html#trier-des-lignes-avec-arrange"><i class="fa fa-check"></i><b>6.6</b> Trier des lignes avec <code>arrange()</code></a></li>
+<li class="chapter" data-level="6.7" data-path="wrangling.html"><a href="wrangling.html#selectionner-des-variables-avec-select"><i class="fa fa-check"></i><b>6.7</b> Sélectionner des variables avec <code>select()</code></a></li>
+<li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#creer-de-nouvelles-variables-avec-mutate"><i class="fa fa-check"></i><b>6.8</b> Créer de nouvelles variables avec <code>mutate()</code></a></li>
 <li class="chapter" data-level="6.9" data-path="wrangling.html"><a href="wrangling.html#associer-plusieurs-tableaux-avec-left_join-et-inner_join"><i class="fa fa-check"></i><b>6.9</b> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>Références</a></li>
@@ -290,7 +290,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Travailler avec le pipe est très intéressant car toutes les fonctions de <code>dplyr</code> que nous allons décrire ensuite sont construites autour de la même syntaxe : on leur fournit un <code>data.frame</code> (ou encore mieux, un <code>tibble</code>), elles effectuent une opération et renvoient un nouveau <code>data.frame</code> (ou un nouveau <code>tibble</code>). Il est ainsi possible de créer des groupes de commandes cohérentes qui permettent, grâce à l’enchaînement d’étapes simples, d’aboutir à des résultats complexes.</p>
 <p>De la même façon que le <code>+</code> permet d’ajouter une couche supplémentaire à un graphique <code>ggplot2</code>, le pipe <code>%&gt;%</code> permet d’ajouter une opération supplémentaire dans un groupe de commandes.</p>
 <p>Pour reprendre un exemple de la section <a href="viz.html#clouds">4.3</a> sur les nuages de points, nous avions commencé par créer un objet nommé <code>alaska_flights</code> à partir de l’objet <code>flights</code> :</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">alaska_flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier <span class="op">==</span><span class="st"> &quot;AS&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">alaska_flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb216-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(carrier <span class="op">==</span><span class="st"> &quot;AS&quot;</span>)</a></code></pre></div>
 <p>Nous avions ensuite créé notre premier nuage de points avec ce code :</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb217-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
@@ -311,23 +312,23 @@ code span.wa { color: #bf0303; } /* Warning */
 Figure 6.1: Notre premier graphique, produit grâce au pipe
 </p>
 </div>
-<p>Notez bien qu’ici, aucun objet intermédiaire n’a été créé. Notez également que le premier argument du la fonction <code>ggplot()</code> a disparu : le pipe a fourni automatiquement à <code>ggplot()</code> les données générées au préalable (les données <code>flights</code> filtrées grâce à la fonction <code>filter</code>).</p>
+<p>Notez bien qu’ici, aucun objet intermédiaire n’a été créé. Notez également que le premier argument de la fonction <code>ggplot()</code> a disparu : le pipe a fourni automatiquement à <code>ggplot()</code> les données générées au préalable (les données <code>flights</code> filtrées grâce à la fonction <code>filter()</code>).</p>
 <p>Comme pour le <code>+</code> de <code>ggplot2</code>, il est conseillé de placer un seul pipe par ligne, de le placer en fin de ligne et de revenir à la ligne pour préciser l’étape suivante.</p>
 <p>Toutes les commandes que nous utiliserons à partir de maintenant reposeront sur le pipe puisqu’il permet de rendre le code plus lisible.</p>
 </div>
 <div id="les-verbes-du-tripatouillage-de-donnees" class="section level2">
 <h2><span class="header-section-number">6.3</span> Les verbes du tripatouillage de données</h2>
-<p>Nous allons ici nous concentrer sur les fonctions les plus courramment utilisées pour manipuler et résumer des données. Nous verrons 6 verbes principaux, chacun correspondant à une fonction précise de <code>dplyr</code>. Chaque section de ce chapitre sera consacrée à la présentation d’un example utilisant un ou plusieurs de ces verbes.</p>
-<p>Les 5 verbes sont :</p>
+<p>Nous allons ici nous concentrer sur les fonctions les plus couramment utilisées pour manipuler et résumer des données. Nous verrons 6 verbes principaux, chacun correspondant à une fonction précise de <code>dplyr</code>. Chaque section de ce chapitre sera consacrée à la présentation d’un exemple utilisant un ou plusieurs de ces verbes.</p>
+<p>Les 6 verbes sont :</p>
 <ol style="list-style-type: decimal">
 <li><code>filter()</code> : choisir des lignes dans un tableau à partir de conditions spécifiques (filtrer).</li>
 <li><code>arrange()</code> : trie les lignes d’un tableau selon un ou plusieurs critères (arranger).</li>
 <li><code>select()</code> : sélectionner des colonnes d’un tableau.</li>
 <li><code>mutate()</code> : créer de nouvelles variables en transformant et combinant des variables existantes (muter).</li>
 <li><code>summarise()</code> : calculer des résumés statistiques des données (résumer). Souvent utilisé en combinaison avec <code>group_by()</code>, qu permet de constituer des groupes au sein des données.</li>
-<li><code>join()</code> : associer, fusionner 2 <code>data.frame</code>s en faisant correspondre les éléments d’une colonne commune entre les 2 tableaux (joindre). Il y a beaucoup de fonctions permettant de joindre des tableaux de moult façons. Nous nous contenterons d’examiner les fonctions <code>left_join()</code> et <code>inner_join()</code>.</li>
+<li><code>join()</code> : associer, fusionner 2 <code>data.frame</code>s en faisant correspondre les éléments d’une colonne commune entre les 2 tableaux (joindre). Il y a de nombreuses façons de joindre des tableaux. Nous nous contenterons d’examiner les fonctions <code>left_join()</code> et <code>inner_join()</code>.</li>
 </ol>
-<p>Toutes ces fonctions, tous ces verbes, sont utilisés de la mêma façon : on prend un <code>data.frame</code>, grâce au pipe, on le transmet à l’une de ces fonctions dont on précise les arguments entre parenthèse. Évidemment, on peut enchaîner les actions, c’est tout l’intérêt du pipe.</p>
+<p>Toutes ces fonctions, tous ces verbes, sont utilisés de la mêma façon : on prend un <code>data.frame</code>, grâce au pipe, on le transmet à l’une de ces fonctions dont on précise les arguments entre parenthèses, la fonction nous renvoie un nouveau tableau modifié. Évidemment, on peut enchaîner les actions pour modifier plusieurs fois le même tableau, c’est tout l’intérêt du pipe.</p>
 <p>Enfin, gardez en tête qu’il existe beaucoup plus de fonctions dans <code>dplyr</code> que les 6 que nous allons détailler ici. Nous verrons parfois quelques variantes, mais globalement, maîtriser ces 6 fonctions simples devrait vous permettre de conduire une très large gamme de manipulations de données, et ainsi vous faciliter la vie pour la production de graphiques et l’analyse statistique de vos données.</p>
 </div>
 <div id="filtrer-des-lignes-avec-filter" class="section level2">
@@ -349,11 +350,11 @@ Figure 6.2: Schéma de la fonction <code>filter()</code> tiré de la ‘cheatshe
 <a class="sourceLine" id="cb220-4" data-line-number="4">         day <span class="op">&lt;=</span><span class="st"> </span><span class="dv">15</span>)</a></code></pre></div>
 <p>Dans les 2 cas, la première ligne de code nous permet :</p>
 <ol style="list-style-type: decimal">
-<li>d’indiquer le nom du nouvel objet dans lequel les données seront stockées (<code>alaska_flights</code> et <code>small-weather</code>)</li>
+<li>d’indiquer le nom du nouvel objet dans lequel les données modifiées seront stockées (<code>alaska_flights</code> et <code>small-weather</code>)</li>
 <li>d’indiquer de quel objet les données doivent être extraites (<code>flights</code> et <code>weather</code>)</li>
 <li>de passer cet objet à la fonction suivante avec un pipe <code>%&gt;%</code></li>
 </ol>
-<p>Le premier argument de la fonction <code>filter()</code> doit être le nom d’un <code>data.frame</code> ou d’un <code>tibble</code>. Ici, puisque nous utilisons le pipe, il est inutile de spécifier cet argument : c’est ce qui est placé à gauche du pipe qui est utilisé comme premier argument de la fonction <code>filter()</code>. Les arguments suivants constitue le ou les conditions qui doivent être respectées par les lignes du tableau de départ afin d’être intégrées au nouveau tableau de données.</p>
+<p>Le premier argument de la fonction <code>filter()</code> doit être le nom d’un <code>data.frame</code> ou d’un <code>tibble</code>. Ici, puisque nous utilisons le pipe, il est inutile de spécifier cet argument : c’est ce qui est placé à gauche du pipe qui est utilisé comme premier argument de la fonction <code>filter()</code>. Les arguments suivants constituent la ou les conditions qui doivent être respectées par les lignes du tableau de départ afin d’être intégrées au nouveau tableau de données.</p>
 </div>
 <div id="exercice-1" class="section level3">
 <h3><span class="header-section-number">6.4.2</span> Exercice</h3>
@@ -362,9 +363,9 @@ Figure 6.2: Schéma de la fonction <code>filter()</code> tiré de la ‘cheatshe
 </div>
 <div id="les-conditions-logiques" class="section level3">
 <h3><span class="header-section-number">6.4.3</span> Les conditions logiques</h3>
-<p>Dans la section <a href="bases.html#comparaison">2.2.4.2</a>, nous avons présenté en détail le fonctionnement des opérateurs de comparaison dans R. Relisez cette section si vous ne savez plus de quoi il s’agit. Les opérateurs de comparaison permettent de vérifier l’égalité ou l’inégalité entre des éléments. Ils renvoie <code>TRUE</code> ou <code>FALSE</code> et seront particulièrement utiles pour filtrer des lignes dans un tableau. Comme indiqué dans la section <a href="bases.html#comparaison">2.2.4.2</a>, voici la liste des opérateurs de comparaison usuels :</p>
+<p>Dans la section <a href="bases.html#comparaison">2.2.4.2</a>, nous avons présenté en détail le fonctionnement des opérateurs de comparaison dans R. Relisez cette section si vous ne savez plus de quoi il s’agit. Les opérateurs de comparaison permettent de vérifier l’égalité ou l’inégalité entre des éléments. Ils renvoient <code>TRUE</code> ou <code>FALSE</code> et seront particulièrement utiles pour filtrer des lignes dans un tableau. Comme indiqué dans la section <a href="bases.html#comparaison">2.2.4.2</a>, voici la liste des opérateurs de comparaison usuels :</p>
 <ul>
-<li><code>==</code> : égale à</li>
+<li><code>==</code> : égal à</li>
 <li><code>!=</code> : différent de</li>
 <li><code>&gt;</code> : supérieur à</li>
 <li><code>&lt;</code> : inférieur à</li>
@@ -373,14 +374,14 @@ Figure 6.2: Schéma de la fonction <code>filter()</code> tiré de la ‘cheatshe
 </ul>
 <p>À cette liste, nous pouvons ajouter quelques éléments utiles :</p>
 <ul>
-<li><code>is.na()</code> : renvoie <code>TRUE</code> contient des données manquantes.</li>
-<li><code>!</code> : permet de tester le contraire. Par exemple <code>!is.na()</code> renvoie la liste de ce qui ne contient pas de données manquantes.</li>
+<li><code>is.na()</code> : renvoie <code>TRUE</code> en cas de données manquantes.</li>
+<li><code>!</code> : permet de tester le contraire d’une expression logique. Par exemple <code>!is.na()</code> renvoie <code>TRUE</code> s’il n’y a pas de données manquantes.</li>
 <li><code>%in%</code> : permet de tester si l’élément de gauche est contenu dans la série d’éléments fournie à droite. Par exemple <code>2 %in% 1:5</code> renvoie <code>TRUE</code>, mais <code>2 %in% 5:10</code> renvoie <code>FALSE</code>.</li>
 <li><code>|</code> : opérateur logique <code>OU</code>. Permet de tester qu’une condition <code>OU</code> une autre est remplie.</li>
 <li><code>&amp;</code> : opérateur logique <code>ET</code>. Permet de tester qu’une condition <code>ET</code> une autre sont remplies.</li>
 </ul>
 <p>Voyons comment utiliser ces opérateurs avec la fonction <code>filter()</code>.</p>
-<p>Dans le tableau <code>flights</code>, tous les vols prévus ont-ils effectivement décolé ? Une bonne façon de le savoir est de regarder si, pour la variable <code>dep_time</code> (heure de décollage), des données manquantes sont présentes :</p>
+<p>Dans le tableau <code>flights</code>, tous les vols prévus ont-ils effectivement décollé ? Une bonne façon de le savoir est de regarder si, pour la variable <code>dep_time</code> (heure de décollage), des données manquantes sont présentes :</p>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb221-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(dep_time))</a></code></pre></div>
 <pre><code># A tibble: 8,255 x 19
@@ -399,7 +400,8 @@ Figure 6.2: Schéma de la fonction <code>filter()</code> tiré de la ‘cheatshe
 # ... with 8,245 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
 #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
-<p>Il y a donc 8255 vols qui n’ont pas décollé. Dans le même ordre d’idée, y a t-il des vols qui ont décollé mais qui ne sont pas arrivés à destination ? Là encore, une façon d’obtenir cette information est de sélectionner les vols qui ont décollé (donc pour lesquels l’heure de décollage n’est pas manquante), mais pour lesquels l’heure d’atterrissage est manquante :</p>
+<p>Seules les lignes contenant <code>NA</code> dans la colonne <code>dep_time</code> sont retenues. Il y a donc 8255 vols qui n’ont finalement pas décollé.</p>
+<p>Dans le même ordre d’idée, y a t-il des vols qui ont décollé mais qui ne sont pas arrivés à destination ? Là encore, une façon d’obtenir cette information est de sélectionner les vols qui ont décollé (donc pour lesquels l’heure de décollage n’est pas manquante), mais pour lesquels l’heure d’atterrissage est manquante :</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb223-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_time),</a>
 <a class="sourceLine" id="cb223-3" data-line-number="3">         <span class="kw">is.na</span>(arr_time))</a></code></pre></div>
@@ -419,7 +421,7 @@ Figure 6.2: Schéma de la fonction <code>filter()</code> tiré de la ‘cheatshe
 # ... with 448 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
 #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
-<p>Notez l’utilisation du <code>!</code> pour la première condition. Cette syntaxe est équivalente à :</p>
+<p>Notez l’utilisation du <code>!</code> pour la première condition. Nous récupérons ici les lignes pour lesquelles <code>dep_time</code> n’est pas <code>NA</code> et pour lesquelles <code>arr_time</code> est <code>NA</code>. Seules les lignes qui respectent cette double condition sont retenues. Cette syntaxe est équivalente à :</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb225-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_time) <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(arr_time))</a></code></pre></div>
 <pre><code># A tibble: 458 x 19
@@ -438,26 +440,72 @@ Figure 6.2: Schéma de la fonction <code>filter()</code> tiré de la ‘cheatshe
 # ... with 448 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
 #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
-<p>Dans la fonction <code>filter()</code>, séparer plusieurs conditions par des virgules signifie que seules les lignes qui remplissent toutes les conditions seront retenue. C’est donc l’équivalent du <code>ET</code> logique.</p>
-<p>Il y a donc 458 vols qui ne sont pas arrivés à destination (soit moins de 0,2% des vols au départ de New York en 2013). Selon vous, quelles peuvent en être les raisons ?</p>
+<p>Dans la fonction <code>filter()</code>, séparer plusieurs conditions par des virgules signifie que seules les lignes qui remplissent toutes les conditions seront retenues. C’est donc l’équivalent du <code>ET</code> logique.</p>
+<p>Il y a donc 458 vols qui ne sont pas arrivés à destination (soit moins de 0,2% des vols au départ de New York en 2013). Selon vous, quelles raisons peuvent expliquer qu’un vol qui a décollé n’ait pas d’heure d’atterrissage ?</p>
+<p>Enfin, pour illustrer l’utilisation de <code>|</code> (le <code>OU</code> logique) et de <code>%in%</code>, imaginons que nous souhaitions extraire les informations des vols ayant quitté l’aéroport <code>JFK</code> à destination d’Atlanta, Géorgie (<code>ATL</code>) et de Seatle, Washington (<code>SEA</code>), aux mois d’octobre, novembre et décembre :</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1">atl_sea_fall &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(origin <span class="op">==</span><span class="st"> &quot;JFK&quot;</span>, </a>
+<a class="sourceLine" id="cb227-3" data-line-number="3">         dest <span class="op">==</span><span class="st"> &quot;ATL&quot;</span> <span class="op">|</span><span class="st"> </span>dest <span class="op">==</span><span class="st"> &quot;SEA&quot;</span>, </a>
+<a class="sourceLine" id="cb227-4" data-line-number="4">         month <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb227-5" data-line-number="5">atl_sea_fall</a></code></pre></div>
+<pre><code># A tibble: 962 x 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013    10     1      638            640        -2      839            905
+ 2  2013    10     1      729            735        -6     1049           1040
+ 3  2013    10     1      824            830        -6     1030           1059
+ 4  2013    10     1      853            900        -7     1217           1157
+ 5  2013    10     1     1328           1330        -2     1543           1553
+ 6  2013    10     1     1459           1500        -1     1817           1829
+ 7  2013    10     1     1544           1545        -1     1815           1819
+ 8  2013    10     1     1754           1800        -6     2102           2103
+ 9  2013    10     1     1825           1830        -5     2159           2150
+10  2013    10     1     1841           1840         1     2058           2116
+# ... with 952 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+#   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Examinez ce tableau avec <code>View()</code> pour vérifier que la variable <code>dest</code> contient bien uniquement les codes <code>ATL</code> et <code>SEA</code> correspondant aux 2 aéroports qui nous intéressent. Nous avons extrait ici les vols à destination d’Atlanta <strong>et</strong> Seatle, pourtant, il nous a fallu utiliser le <code>OU</code> logique. Car chaque vol n’a qu’une unique destination, or nous souhaitons récupérer toutes les lignes pour lesquelles la destination est soit <code>ATL</code>, soit <code>SEA</code> (l’une <strong>ou</strong> l’autre).</p>
+<p>Une autre solution pour obtenir le même tableau est de remplacer l’expression contenant <code>|</code> par une expression contenant <code>%in%</code> :</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1">atl_sea_fall2 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb229-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(origin <span class="op">==</span><span class="st"> &quot;JFK&quot;</span>, </a>
+<a class="sourceLine" id="cb229-3" data-line-number="3">         dest <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ATL&quot;</span>, <span class="st">&quot;SEA&quot;</span>), </a>
+<a class="sourceLine" id="cb229-4" data-line-number="4">         month <span class="op">&gt;=</span><span class="st"> </span><span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb229-5" data-line-number="5">atl_sea_fall2</a></code></pre></div>
+<pre><code># A tibble: 962 x 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013    10     1      638            640        -2      839            905
+ 2  2013    10     1      729            735        -6     1049           1040
+ 3  2013    10     1      824            830        -6     1030           1059
+ 4  2013    10     1      853            900        -7     1217           1157
+ 5  2013    10     1     1328           1330        -2     1543           1553
+ 6  2013    10     1     1459           1500        -1     1817           1829
+ 7  2013    10     1     1544           1545        -1     1815           1819
+ 8  2013    10     1     1754           1800        -6     2102           2103
+ 9  2013    10     1     1825           1830        -5     2159           2150
+10  2013    10     1     1841           1840         1     2058           2116
+# ... with 952 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+#   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Ici, toutes les lignes du tableau dont la variable <code>dest</code> est égale à un élément du vecteur <code>c(&quot;ATL&quot;, &quot;SEA&quot;)</code> sont retenues. L’utilisation du <code>OU</code> logique eput être source d’erreur. Je préfère donc utiliser <code>%in%</code> qui me semble plus parlant. La fonction <code>identical()</code> nous confirme que les deux façons de faire produisent exactement le même résultat, libre à vous de rpivilégier la méthode qui vous convient le mieux :</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">identical</span>(atl_sea_fall, atl_sea_fall2)</a></code></pre></div>
+<pre><code>[1] TRUE</code></pre>
 </div>
-</div>
-<div id="trier-des-lignes-avec-arrange" class="section level2">
-<h2><span class="header-section-number">6.5</span> Trier des lignes avec <code>arrange()</code></h2>
-</div>
-<div id="selectionner-des-variables-avec-select" class="section level2">
-<h2><span class="header-section-number">6.6</span> Sélectionner des variables avec <code>select()</code></h2>
-</div>
-<div id="creer-de-nouvelles-variables-avec-mutate" class="section level2">
-<h2><span class="header-section-number">6.7</span> Créer de nouvelles variables avec <code>mutate()</code></h2>
 </div>
 <div id="creer-des-resumes-avec-summarise-et-group_by" class="section level2">
-<h2><span class="header-section-number">6.8</span> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></h2>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1">cancelled &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_time),</a>
-<a class="sourceLine" id="cb227-3" data-line-number="3">         <span class="kw">is.na</span>(arr_time)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb227-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>(carrier)</a>
-<a class="sourceLine" id="cb227-5" data-line-number="5">cancelled</a></code></pre></div>
+<h2><span class="header-section-number">6.5</span> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></h2>
+<div class="figure" style="text-align: center"><span id="fig:summarisefig"></span>
+<img src="images/summarizearrow.png" alt="Schéma de la fonction `summarise()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" />
+<p class="caption">
+Figure 6.3: Schéma de la fonction <code>summarise()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
+</p>
+</div>
+<p><img src="images/summarize.png" alt="Schéma de la fonction `summarise()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" /></p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">cancelled &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_time),</a>
+<a class="sourceLine" id="cb233-3" data-line-number="3">         <span class="kw">is.na</span>(arr_time)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb233-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>(carrier)</a>
+<a class="sourceLine" id="cb233-5" data-line-number="5">cancelled</a></code></pre></div>
 <pre><code># A tibble: 13 x 2
    carrier     n
    &lt;chr&gt;   &lt;int&gt;
@@ -475,44 +523,171 @@ Figure 6.2: Schéma de la fonction <code>filter()</code> tiré de la ‘cheatshe
 12 WN          8
 13 YV          1</code></pre>
 </div>
+<div id="trier-des-lignes-avec-arrange" class="section level2">
+<h2><span class="header-section-number">6.6</span> Trier des lignes avec <code>arrange()</code></h2>
+</div>
+<div id="selectionner-des-variables-avec-select" class="section level2">
+<h2><span class="header-section-number">6.7</span> Sélectionner des variables avec <code>select()</code></h2>
+</div>
+<div id="creer-de-nouvelles-variables-avec-mutate" class="section level2">
+<h2><span class="header-section-number">6.8</span> Créer de nouvelles variables avec <code>mutate()</code></h2>
+</div>
 <div id="associer-plusieurs-tableaux-avec-left_join-et-inner_join" class="section level2">
 <h2><span class="header-section-number">6.9</span> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></h2>
-<!-- ```{r, tidy=FALSE} -->
-<!-- all_flights <- flights %>%  -->
-<!--   count(carrier) -->
-<!-- all_flights -->
-<!-- left_join(all_flights, cancelled, by = "carrier") -->
-<!-- inner_join(all_flights, cancelled, by = "carrier") -->
-<!-- inner_join(all_flights, cancelled, by = "carrier") %>%  -->
-<!--   mutate(pc = n.y * 100 / n.x) %>%  -->
-<!--   arrange(desc(pc)) -->
-<!-- left_join(all_flights, cancelled, by = "carrier") %>%  -->
-<!--   mutate(pc = n.y * 100 / n.x) %>%  -->
-<!--   arrange(desc(pc)) -->
-<!-- left_join(all_flights, cancelled, by = "carrier") %>%  -->
-<!--   mutate(pc = n.y * 100 / n.x) %>%  -->
-<!--   ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc)) + -->
-<!--     geom_col() + -->
-<!--     labs(x = "Compagnie aérienne", -->
-<!--          y = "Proportion de vols annulés après décollage (%)") -->
-<!-- cancelled_origin <- flights %>%  -->
-<!--   filter(!is.na(dep_time), -->
-<!--          is.na(arr_time)) %>%  -->
-<!--   count(carrier, origin) -->
-<!-- cancelled_origin -->
-<!-- all_flights_origin <- flights %>%  -->
-<!--   count(carrier, origin) -->
-<!-- all_flights_origin -->
-<!-- left_join(all_flights_origin, cancelled_origin, by = c("carrier", "origin")) %>%  -->
-<!--   mutate(pc = n.y * 100 / n.x) %>%  -->
-<!--   ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc, fill = origin)) + -->
-<!--     geom_col(color = "black") + -->
-<!--     facet_wrap(~origin, ncol = 1) + -->
-<!--     labs(x = "Compagnie aérienne", -->
-<!--          y = "Proportion de vols annulés après décollage (%)", -->
-<!--          fill = "Aéroport de\nNew York") + -->
-<!--     scale_fill_brewer(palette = "Set1") -->
-<!-- ``` -->
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">all_flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb235-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(carrier)</a>
+<a class="sourceLine" id="cb235-3" data-line-number="3">all_flights</a></code></pre></div>
+<pre><code># A tibble: 16 x 2
+   carrier     n
+   &lt;chr&gt;   &lt;int&gt;
+ 1 9E      18460
+ 2 AA      32729
+ 3 AS        714
+ 4 B6      54635
+ 5 DL      48110
+ 6 EV      54173
+ 7 F9        685
+ 8 FL       3260
+ 9 HA        342
+10 MQ      26397
+11 OO         32
+12 UA      58665
+13 US      20536
+14 VX       5162
+15 WN      12275
+16 YV        601</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="kw">left_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>)</a></code></pre></div>
+<pre><code># A tibble: 16 x 3
+   carrier   n.x   n.y
+   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
+ 1 9E      18460    71
+ 2 AA      32729    34
+ 3 AS        714    NA
+ 4 B6      54635    32
+ 5 DL      48110    15
+ 6 EV      54173   105
+ 7 F9        685     1
+ 8 FL       3260     6
+ 9 HA        342    NA
+10 MQ      26397    87
+11 OO         32    NA
+12 UA      58665    63
+13 US      20536    31
+14 VX       5162     4
+15 WN      12275     8
+16 YV        601     1</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1"><span class="kw">inner_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>)</a></code></pre></div>
+<pre><code># A tibble: 13 x 3
+   carrier   n.x   n.y
+   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;
+ 1 9E      18460    71
+ 2 AA      32729    34
+ 3 B6      54635    32
+ 4 DL      48110    15
+ 5 EV      54173   105
+ 6 F9        685     1
+ 7 FL       3260     6
+ 8 MQ      26397    87
+ 9 UA      58665    63
+10 US      20536    31
+11 VX       5162     4
+12 WN      12275     8
+13 YV        601     1</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1"><span class="kw">inner_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pc =</span> n.y <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb241-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(pc))</a></code></pre></div>
+<pre><code># A tibble: 13 x 4
+   carrier   n.x   n.y     pc
+   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;
+ 1 9E      18460    71 0.385 
+ 2 MQ      26397    87 0.330 
+ 3 EV      54173   105 0.194 
+ 4 FL       3260     6 0.184 
+ 5 YV        601     1 0.166 
+ 6 US      20536    31 0.151 
+ 7 F9        685     1 0.146 
+ 8 UA      58665    63 0.107 
+ 9 AA      32729    34 0.104 
+10 VX       5162     4 0.0775
+11 WN      12275     8 0.0652
+12 B6      54635    32 0.0586
+13 DL      48110    15 0.0312</code></pre>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">left_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb243-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pc =</span> n.y <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb243-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(pc))</a></code></pre></div>
+<pre><code># A tibble: 16 x 4
+   carrier   n.x   n.y      pc
+   &lt;chr&gt;   &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+ 1 9E      18460    71  0.385 
+ 2 MQ      26397    87  0.330 
+ 3 EV      54173   105  0.194 
+ 4 FL       3260     6  0.184 
+ 5 YV        601     1  0.166 
+ 6 US      20536    31  0.151 
+ 7 F9        685     1  0.146 
+ 8 UA      58665    63  0.107 
+ 9 AA      32729    34  0.104 
+10 VX       5162     4  0.0775
+11 WN      12275     8  0.0652
+12 B6      54635    32  0.0586
+13 DL      48110    15  0.0312
+14 AS        714    NA NA     
+15 HA        342    NA NA     
+16 OO         32    NA NA     </code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">left_join</span>(all_flights, cancelled, <span class="dt">by =</span> <span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pc =</span> n.y <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb245-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(carrier, pc, <span class="dt">.desc =</span> <span class="ot">TRUE</span>), <span class="dt">y =</span> pc)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb245-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Compagnie aérienne&quot;</span>,</a>
+<a class="sourceLine" id="cb245-6" data-line-number="6">         <span class="dt">y =</span> <span class="st">&quot;Proportion de vols annulés après décollage (%)&quot;</span>)</a></code></pre></div>
+<pre><code>Warning: Removed 3 rows containing missing values (position_stack).</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">cancelled_origin &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_time),</a>
+<a class="sourceLine" id="cb247-3" data-line-number="3">         <span class="kw">is.na</span>(arr_time)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="st">  </span><span class="kw">count</span>(carrier, origin)</a>
+<a class="sourceLine" id="cb247-5" data-line-number="5">cancelled_origin</a></code></pre></div>
+<pre><code># A tibble: 30 x 3
+   carrier origin     n
+   &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;
+ 1 9E      EWR        5
+ 2 9E      JFK       59
+ 3 9E      LGA        7
+ 4 AA      EWR        4
+ 5 AA      JFK       10
+ 6 AA      LGA       20
+ 7 B6      EWR        4
+ 8 B6      JFK       26
+ 9 B6      LGA        2
+10 DL      EWR        1
+# ... with 20 more rows</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">all_flights_origin &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(carrier, origin)</a>
+<a class="sourceLine" id="cb249-3" data-line-number="3">all_flights_origin</a></code></pre></div>
+<pre><code># A tibble: 35 x 3
+   carrier origin     n
+   &lt;chr&gt;   &lt;chr&gt;  &lt;int&gt;
+ 1 9E      EWR     1268
+ 2 9E      JFK    14651
+ 3 9E      LGA     2541
+ 4 AA      EWR     3487
+ 5 AA      JFK    13783
+ 6 AA      LGA    15459
+ 7 AS      EWR      714
+ 8 B6      EWR     6557
+ 9 B6      JFK    42076
+10 B6      LGA     6002
+# ... with 25 more rows</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">left_join</span>(all_flights_origin, cancelled_origin, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;carrier&quot;</span>, <span class="st">&quot;origin&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pc =</span> n.y <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(carrier, pc, <span class="dt">.desc =</span> <span class="ot">TRUE</span>), <span class="dt">y =</span> pc, <span class="dt">fill =</span> origin)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_col</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span>origin, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb251-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Compagnie aérienne&quot;</span>,</a>
+<a class="sourceLine" id="cb251-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">&quot;Proportion de vols annulés après décollage (%)&quot;</span>,</a>
+<a class="sourceLine" id="cb251-8" data-line-number="8">         <span class="dt">fill =</span> <span class="st">&quot;Aéroport de</span><span class="ch">\n</span><span class="st">New York&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb251-9" data-line-number="9"><span class="st">    </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set1&quot;</span>)</a></code></pre></div>
+<pre><code>Warning: Removed 5 rows containing missing values (position_stack).</code></pre>
+<p><img src="figure/unnamed-chunk-104-1.png" width="90%" style="display: block; margin: auto;" /><img src="figure/unnamed-chunk-104-2.png" width="90%" style="display: block; margin: auto;" /></p>
 <!-- barres d'erreur -->
 <!-- Vols de JFK du 12 février -->
 <!-- Diamonds trop gros à la fac -->

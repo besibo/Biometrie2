@@ -37,7 +37,7 @@ De la même façon que le `+` permet d'ajouter une couche supplémentaire à un 
 
 Pour reprendre un exemple de la section \@ref(clouds) sur les nuages de points, nous avions commencé par créer un objet nommé `alaska_flights` à partir de l'objet `flights` :
 
-```{r}
+```{r, tidy = FALSE}
 alaska_flights <- flights %>%
   filter(carrier == "AS")
 ```
@@ -64,7 +64,7 @@ flights %>%
     geom_point()
 ```
 
-Notez bien qu'ici, aucun objet intermédiaire n'a été créé. Notez également que le premier argument du la fonction `ggplot()` a disparu : le pipe a fourni automatiquement à `ggplot()` les données générées au préalable (les données `flights` filtrées grâce à la fonction `filter`).
+Notez bien qu'ici, aucun objet intermédiaire n'a été créé. Notez également que le premier argument de la fonction `ggplot()` a disparu : le pipe a fourni automatiquement à `ggplot()` les données générées au préalable (les données `flights` filtrées grâce à la fonction `filter()`).
 
 Comme pour le `+` de `ggplot2`, il est conseillé de placer un seul pipe par ligne, de le placer en fin de ligne et de revenir à la ligne pour préciser l'étape suivante.
 
@@ -73,18 +73,18 @@ Toutes les commandes que nous utiliserons à partir de maintenant reposeront sur
 
 ## Les verbes du tripatouillage de données
 
-Nous allons ici nous concentrer sur les fonctions les plus courramment utilisées pour manipuler et résumer des données. Nous verrons 6 verbes principaux, chacun correspondant à une fonction précise de `dplyr`. Chaque section de ce chapitre sera consacrée à la présentation d'un example utilisant un ou plusieurs de ces verbes.
+Nous allons ici nous concentrer sur les fonctions les plus couramment utilisées pour manipuler et résumer des données. Nous verrons 6 verbes principaux, chacun correspondant à une fonction précise de `dplyr`. Chaque section de ce chapitre sera consacrée à la présentation d'un exemple utilisant un ou plusieurs de ces verbes.
 
-Les 5 verbes sont :
+Les 6 verbes sont :
 
 1. `filter()` : choisir des lignes dans un tableau à partir de conditions spécifiques (filtrer).
 2. `arrange()` : trie les lignes d'un tableau selon un ou plusieurs critères (arranger).
 3. `select()` : sélectionner des colonnes d'un tableau.
 4. `mutate()` : créer de nouvelles variables en transformant et combinant des variables existantes (muter).
 5. `summarise()` : calculer des résumés statistiques des données (résumer). Souvent utilisé en combinaison avec `group_by()`, qu permet de constituer des groupes au sein des données.
-6. `join()` : associer, fusionner 2 `data.frame`s en faisant correspondre les éléments d'une colonne commune entre les 2 tableaux (joindre). Il y a beaucoup de fonctions permettant de joindre des tableaux de moult façons. Nous nous contenterons d'examiner les fonctions `left_join()` et `inner_join()`.
+6. `join()` : associer, fusionner 2 `data.frame`s en faisant correspondre les éléments d'une colonne commune entre les 2 tableaux (joindre). Il y a de nombreuses façons de joindre des tableaux. Nous nous contenterons d'examiner les fonctions `left_join()` et `inner_join()`.
 
-Toutes ces fonctions, tous ces verbes, sont utilisés de la mêma façon : on prend un `data.frame`, grâce au pipe, on le transmet à l'une de ces fonctions dont on précise les arguments entre parenthèse. Évidemment, on peut enchaîner les actions, c'est tout l'intérêt du pipe.
+Toutes ces fonctions, tous ces verbes, sont utilisés de la mêma façon : on prend un `data.frame`, grâce au pipe, on le transmet à l'une de ces fonctions dont on précise les arguments entre parenthèses, la fonction nous renvoie un nouveau tableau modifié. Évidemment, on peut enchaîner les actions pour modifier plusieurs fois le même tableau, c'est tout l'intérêt du pipe.
 
 Enfin, gardez en tête qu'il existe beaucoup plus de fonctions dans `dplyr` que les 6 que nous allons détailler ici. Nous verrons parfois quelques variantes, mais globalement, maîtriser ces 6 fonctions simples devrait vous permettre de conduire une très large gamme de manipulations de données, et ainsi vous faciliter la vie pour la production de graphiques et l'analyse statistique de vos données.
 
@@ -113,11 +113,11 @@ small_weather <- weather %>%
 
 Dans les 2 cas, la première ligne de code nous permet :
 
-1. d'indiquer le nom du nouvel objet dans lequel les données seront stockées (`alaska_flights` et `small-weather`)
+1. d'indiquer le nom du nouvel objet dans lequel les données modifiées seront stockées (`alaska_flights` et `small-weather`)
 2. d'indiquer de quel objet les données doivent être extraites (`flights` et `weather`)
 3. de passer cet objet à la fonction suivante avec un pipe `%>%`
 
-Le premier argument de la fonction `filter()` doit être le nom d'un `data.frame` ou d'un `tibble`. Ici, puisque nous utilisons le pipe, il est inutile de spécifier cet argument : c'est ce qui est placé à gauche du pipe qui est utilisé comme premier argument de la fonction `filter()`. Les arguments suivants constitue le ou les conditions qui doivent être respectées par les lignes du tableau de départ afin d'être intégrées au nouveau tableau de données.
+Le premier argument de la fonction `filter()` doit être le nom d'un `data.frame` ou d'un `tibble`. Ici, puisque nous utilisons le pipe, il est inutile de spécifier cet argument : c'est ce qui est placé à gauche du pipe qui est utilisé comme premier argument de la fonction `filter()`. Les arguments suivants constituent la ou les conditions qui doivent être respectées par les lignes du tableau de départ afin d'être intégrées au nouveau tableau de données.
 
 ### Exercice
 
@@ -135,9 +135,9 @@ Vérifiez que cet objet contient bien `r nrow(JFK_12fev)` lignes.
 
 ### Les conditions logiques
 
-Dans la section \@ref(comparaison), nous avons présenté en détail le fonctionnement des opérateurs de comparaison dans R. Relisez cette section si vous ne savez plus de quoi il s'agit. Les opérateurs de comparaison permettent de vérifier l'égalité ou l'inégalité entre des éléments. Ils renvoie `TRUE` ou `FALSE` et seront particulièrement utiles pour filtrer des lignes dans un tableau. Comme indiqué dans la section \@ref(comparaison), voici la liste des opérateurs de comparaison usuels :
+Dans la section \@ref(comparaison), nous avons présenté en détail le fonctionnement des opérateurs de comparaison dans R. Relisez cette section si vous ne savez plus de quoi il s'agit. Les opérateurs de comparaison permettent de vérifier l'égalité ou l'inégalité entre des éléments. Ils renvoient `TRUE` ou `FALSE` et seront particulièrement utiles pour filtrer des lignes dans un tableau. Comme indiqué dans la section \@ref(comparaison), voici la liste des opérateurs de comparaison usuels :
 
-* `==` : égale à
+* `==` : égal à
 * `!=` : différent de
 * `>` : supérieur à
 * `<` : inférieur à
@@ -146,22 +146,24 @@ Dans la section \@ref(comparaison), nous avons présenté en détail le fonction
 
 À cette liste, nous pouvons ajouter quelques éléments utiles :
 
-* `is.na()` : renvoie `TRUE` contient des données manquantes.
-* `!` : permet de tester le contraire. Par exemple `!is.na()` renvoie la liste de ce qui ne contient pas de données manquantes.
+* `is.na()` : renvoie `TRUE` en cas de données manquantes.
+* `!` : permet de tester le contraire d'une expression logique. Par exemple `!is.na()` renvoie `TRUE` s'il n'y a pas de données manquantes.
 * `%in%` : permet de tester si l'élément de gauche est contenu dans la série d'éléments fournie à droite. Par exemple `2 %in% 1:5` renvoie `TRUE`, mais `2 %in% 5:10` renvoie `FALSE`.
 * `|` : opérateur logique `OU`. Permet de tester qu'une condition `OU` une autre est remplie.
 * `&` : opérateur logique `ET`. Permet de tester qu'une condition `ET` une autre sont remplies.
 
 Voyons comment utiliser ces opérateurs avec la fonction `filter()`.
 
-Dans le tableau `flights`, tous les vols prévus ont-ils effectivement décolé ? Une bonne façon de le savoir est de regarder si, pour la variable `dep_time` (heure de décollage), des données manquantes sont présentes :
+Dans le tableau `flights`, tous les vols prévus ont-ils effectivement décollé ? Une bonne façon de le savoir est de regarder si, pour la variable `dep_time` (heure de décollage), des données manquantes sont présentes :
 
 ```{r, tidy=FALSE}
 flights %>% 
   filter(is.na(dep_time))
 ```
 
-Il y a donc `r nycflights13::flights %>% filter(is.na(dep_time)) %>% nrow()` vols qui n'ont pas décollé. Dans le même ordre d'idée, y a t-il des vols qui ont décollé mais qui ne sont pas arrivés à destination ? Là encore, une façon d'obtenir cette information est de sélectionner les vols qui ont décollé (donc pour lesquels l'heure de décollage n'est pas manquante), mais pour lesquels l'heure d'atterrissage est manquante :
+Seules les lignes contenant `NA` dans la colonne `dep_time` sont retenues. Il y a donc `r nycflights13::flights %>% filter(is.na(dep_time)) %>% nrow()` vols qui n'ont finalement pas décollé. 
+
+Dans le même ordre d'idée, y a t-il des vols qui ont décollé mais qui ne sont pas arrivés à destination ? Là encore, une façon d'obtenir cette information est de sélectionner les vols qui ont décollé (donc pour lesquels l'heure de décollage n'est pas manquante), mais pour lesquels l'heure d'atterrissage est manquante :
 
 ```{r, tidy=FALSE}
 flights %>% 
@@ -169,16 +171,61 @@ flights %>%
          is.na(arr_time))
 ```
 
-Notez l'utilisation du `!` pour la première condition. Cette syntaxe est équivalente à :
+Notez l'utilisation du `!` pour la première condition. Nous récupérons ici les lignes pour lesquelles `dep_time` n'est pas `NA` et pour lesquelles `arr_time` est `NA`. Seules les lignes qui respectent cette double condition sont retenues. Cette syntaxe est équivalente à :
 
 ```{r, tidy=FALSE}
 flights %>% 
   filter(!is.na(dep_time) & is.na(arr_time))
 ```
 
-Dans la fonction `filter()`, séparer plusieurs conditions par des virgules signifie que seules les lignes qui remplissent toutes les conditions seront retenue. C'est donc l'équivalent du `ET` logique.
+Dans la fonction `filter()`, séparer plusieurs conditions par des virgules signifie que seules les lignes qui remplissent toutes les conditions seront retenues. C'est donc l'équivalent du `ET` logique.
 
-Il y a donc `r nycflights13::flights %>% filter(!is.na(dep_time) & is.na(arr_time)) %>% nrow()` vols qui ne sont pas arrivés à destination (soit moins de 0,2% des vols au départ de New York en 2013). Selon vous, quelles peuvent en être les raisons ?
+Il y a donc `r nycflights13::flights %>% filter(!is.na(dep_time) & is.na(arr_time)) %>% nrow()` vols qui ne sont pas arrivés à destination (soit moins de 0,2% des vols au départ de New York en 2013). Selon vous, quelles raisons peuvent expliquer qu'un vol qui a décollé n'ait pas d'heure d'atterrissage ?
+
+Enfin, pour illustrer l'utilisation de `|` (le `OU` logique) et de `%in%`, imaginons que nous souhaitions extraire les informations des vols ayant quitté l'aéroport `JFK` à destination d'Atlanta, Géorgie (`ATL`) et de Seatle, Washington (`SEA`), aux mois d'octobre, novembre et décembre :
+
+```{r, tidy = FALSE}
+atl_sea_fall <- flights %>% 
+  filter(origin == "JFK", 
+         dest == "ATL" | dest == "SEA", 
+         month >= 10)
+atl_sea_fall
+```
+
+Examinez ce tableau avec `View()` pour vérifier que la variable `dest` contient bien uniquement les codes `ATL` et `SEA` correspondant aux 2 aéroports qui nous intéressent. Nous avons extrait ici les vols à destination d'Atlanta **et** Seatle, pourtant, il nous a fallu utiliser le `OU` logique. Car chaque vol n'a qu'une unique destination, or nous souhaitons récupérer toutes les lignes pour lesquelles la destination est soit `ATL`, soit `SEA` (l'une **ou** l'autre).
+
+Une autre solution pour obtenir le même tableau est de remplacer l'expression contenant `|` par une expression contenant `%in%` :
+
+```{r, tidy = FALSE}
+atl_sea_fall2 <- flights %>% 
+  filter(origin == "JFK", 
+         dest %in% c("ATL", "SEA"), 
+         month >= 10)
+atl_sea_fall2
+```
+
+Ici, toutes les lignes du tableau dont la variable `dest` est égale à un élément du vecteur `c("ATL", "SEA")` sont retenues. L'utilisation du `OU` logique eput être source d'erreur. Je préfère donc utiliser `%in%` qui me semble plus parlant. La fonction `identical()` nous confirme que les deux façons de faire produisent exactement le même résultat, libre à vous de rpivilégier la méthode qui vous convient le mieux :
+
+```{r}
+identical(atl_sea_fall, atl_sea_fall2)
+```
+
+
+## Créer des résumés avec `summarise()` et `group_by()`
+
+```{r, summarisefig, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Schéma de la fonction `summarise()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+knitr::include_graphics('images/summarizearrow.png')
+knitr::include_graphics('images/summarize.png')
+```
+
+
+```{r, tidy=FALSE}
+cancelled <- flights %>% 
+  filter(!is.na(dep_time),
+         is.na(arr_time)) %>% 
+  count(carrier)
+cancelled
+```
 
 
 
@@ -191,62 +238,53 @@ Il y a donc `r nycflights13::flights %>% filter(!is.na(dep_time) & is.na(arr_tim
 ## Créer de nouvelles variables avec `mutate()`
 
 
-## Créer des résumés avec `summarise()` et `group_by()`
-
-```{r, tidy=FALSE}
-cancelled <- flights %>% 
-  filter(!is.na(dep_time),
-         is.na(arr_time)) %>% 
-  count(carrier)
-cancelled
-```
 
 ## Associer plusieurs tableaux avec `left_join()` et `inner_join()`
 
-<!-- ```{r, tidy=FALSE} -->
-<!-- all_flights <- flights %>%  -->
-<!--   count(carrier) -->
-<!-- all_flights -->
+```{r, tidy=FALSE}
+all_flights <- flights %>%
+  count(carrier)
+all_flights
 
-<!-- left_join(all_flights, cancelled, by = "carrier") -->
-<!-- inner_join(all_flights, cancelled, by = "carrier") -->
-<!-- inner_join(all_flights, cancelled, by = "carrier") %>%  -->
-<!--   mutate(pc = n.y * 100 / n.x) %>%  -->
-<!--   arrange(desc(pc)) -->
+left_join(all_flights, cancelled, by = "carrier")
+inner_join(all_flights, cancelled, by = "carrier")
+inner_join(all_flights, cancelled, by = "carrier") %>%
+  mutate(pc = n.y * 100 / n.x) %>%
+  arrange(desc(pc))
 
-<!-- left_join(all_flights, cancelled, by = "carrier") %>%  -->
-<!--   mutate(pc = n.y * 100 / n.x) %>%  -->
-<!--   arrange(desc(pc)) -->
+left_join(all_flights, cancelled, by = "carrier") %>%
+  mutate(pc = n.y * 100 / n.x) %>%
+  arrange(desc(pc))
 
-<!-- left_join(all_flights, cancelled, by = "carrier") %>%  -->
-<!--   mutate(pc = n.y * 100 / n.x) %>%  -->
-<!--   ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc)) + -->
-<!--     geom_col() + -->
-<!--     labs(x = "Compagnie aérienne", -->
-<!--          y = "Proportion de vols annulés après décollage (%)") -->
+left_join(all_flights, cancelled, by = "carrier") %>%
+  mutate(pc = n.y * 100 / n.x) %>%
+  ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc)) +
+    geom_col() +
+    labs(x = "Compagnie aérienne",
+         y = "Proportion de vols annulés après décollage (%)")
 
 
-<!-- cancelled_origin <- flights %>%  -->
-<!--   filter(!is.na(dep_time), -->
-<!--          is.na(arr_time)) %>%  -->
-<!--   count(carrier, origin) -->
-<!-- cancelled_origin -->
+cancelled_origin <- flights %>%
+  filter(!is.na(dep_time),
+         is.na(arr_time)) %>%
+  count(carrier, origin)
+cancelled_origin
 
-<!-- all_flights_origin <- flights %>%  -->
-<!--   count(carrier, origin) -->
-<!-- all_flights_origin -->
+all_flights_origin <- flights %>%
+  count(carrier, origin)
+all_flights_origin
 
-<!-- left_join(all_flights_origin, cancelled_origin, by = c("carrier", "origin")) %>%  -->
-<!--   mutate(pc = n.y * 100 / n.x) %>%  -->
-<!--   ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc, fill = origin)) + -->
-<!--     geom_col(color = "black") + -->
-<!--     facet_wrap(~origin, ncol = 1) + -->
-<!--     labs(x = "Compagnie aérienne", -->
-<!--          y = "Proportion de vols annulés après décollage (%)", -->
-<!--          fill = "Aéroport de\nNew York") + -->
-<!--     scale_fill_brewer(palette = "Set1") -->
+left_join(all_flights_origin, cancelled_origin, by = c("carrier", "origin")) %>%
+  mutate(pc = n.y * 100 / n.x) %>%
+  ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc, fill = origin)) +
+    geom_col(color = "black") +
+    facet_wrap(~origin, ncol = 1) +
+    labs(x = "Compagnie aérienne",
+         y = "Proportion de vols annulés après décollage (%)",
+         fill = "Aéroport de\nNew York") +
+    scale_fill_brewer(palette = "Set1")
 
-<!-- ``` -->
+```
 
 
 
