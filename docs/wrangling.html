@@ -250,7 +250,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.5.6" data-path="wrangling.html"><a href="wrangling.html#exercices-9"><i class="fa fa-check"></i><b>6.5.6</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="wrangling.html"><a href="wrangling.html#selectionner-des-variables-avec-select"><i class="fa fa-check"></i><b>6.6</b> Sélectionner des variables avec <code>select()</code></a></li>
-<li class="chapter" data-level="6.7" data-path="wrangling.html"><a href="wrangling.html#creer-de-nouvelles-variables-avec-mutate"><i class="fa fa-check"></i><b>6.7</b> Créer de nouvelles variables avec <code>mutate()</code></a></li>
+<li class="chapter" data-level="6.7" data-path="wrangling.html"><a href="wrangling.html#creer-de-nouvelles-variables-avec-mutate"><i class="fa fa-check"></i><b>6.7</b> Créer de nouvelles variables avec <code>mutate()</code></a><ul>
+<li class="chapter" data-level="6.7.1" data-path="wrangling.html"><a href="wrangling.html#principe-1"><i class="fa fa-check"></i><b>6.7.1</b> Principe</a></li>
+<li class="chapter" data-level="6.7.2" data-path="wrangling.html"><a href="wrangling.html#exercices-10"><i class="fa fa-check"></i><b>6.7.2</b> Exercices</a></li>
+</ul></li>
 <li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#trier-des-lignes-avec-arrange"><i class="fa fa-check"></i><b>6.8</b> Trier des lignes avec <code>arrange()</code></a></li>
 <li class="chapter" data-level="6.9" data-path="wrangling.html"><a href="wrangling.html#associer-plusieurs-tableaux-avec-left_join-et-inner_join"><i class="fa fa-check"></i><b>6.9</b> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></a></li>
 </ul></li>
@@ -1006,6 +1009,8 @@ Figure 6.9: Schéma de la fonction <code>select()</code> tiré de la ‘cheatshe
 </div>
 <div id="creer-de-nouvelles-variables-avec-mutate" class="section level2">
 <h2><span class="header-section-number">6.7</span> Créer de nouvelles variables avec <code>mutate()</code></h2>
+<div id="principe-1" class="section level3">
+<h3><span class="header-section-number">6.7.1</span> Principe</h3>
 <div class="figure" style="text-align: center"><span id="fig:mutatefig"></span>
 <img src="images/mutate.png" alt="Schéma de la fonction `mutate()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" />
 <p class="caption">
@@ -1082,8 +1087,31 @@ il atterrit avec seulement 5 minutes de retard, 10 minutes ont été gagnées en
 <a class="sourceLine" id="cb281-2" data-line-number="2"><span class="st">  </span><span class="kw">transmute</span>(<span class="dt">gain =</span> dep_delay <span class="op">-</span><span class="st"> </span>arr_delay,</a>
 <a class="sourceLine" id="cb281-3" data-line-number="3">         <span class="dt">distance =</span> distance <span class="op">*</span><span class="st"> </span><span class="fl">1.60934</span>,</a>
 <a class="sourceLine" id="cb281-4" data-line-number="4">         <span class="dt">speed =</span> (distance <span class="op">/</span><span class="st"> </span>air_time) <span class="op">*</span><span class="st"> </span><span class="dv">60</span>)</a></code></pre></div>
-<p>Y a-t’il un lien entre le gain de temps et la vitesse en vol ou la distance ? Pour le savoir, il suffit de faire quelques graphiques.</p>
+</div>
+<div id="exercices-10" class="section level3">
+<h3><span class="header-section-number">6.7.2</span> Exercices</h3>
+<ol style="list-style-type: decimal">
+<li><p>Dans <code>ggplot2</code> le jeu de données <code>mpg</code> contient des informations sur 234 modèles de voitures. Examinez ce jeu de données avec la fonction <code>View()</code> et consultez l’aide de ce jeu de données pour savoir à quoi correspondent les différentes variables. Quelle(s) variable(s) nous renseignent sur la consommation des véhicules ? À quoi correspond la variable <code>disp</code> ?</p></li>
+<li><p>La consommation est donnée en miles par gallon. Créez une nouvelle variable <code>conso</code> qui contiendra la consommation exprimée en nombre de litres pour 100 kilomètres.</p></li>
+<li><p>Faîtes un graphique présentant la relation entre la cylindrée en litres et la consommation sur autoroute exprimée en nombre de litres pour 100 kilomètres. Vous excluerez les véhicules dont la <code>class</code>e est <code>2seater</code> de ce graphique (il s’agit de voitures de sports très compactes qu’il est difficile de mesurer aux autres). Sur votre graphique, la couleur devrait représenter le type de véhicule. Vous ajouterez une droite de régression en utilisant <code>geom_smooth(method = &quot;lm&quot;)</code>. Votre graphique devrait ressembler à ceci :</p></li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:consommation"></span>
+<img src="figure/consommation-1.png" alt="Consommation en fonction de la cylindrée" width="90%" />
+<p class="caption">
+Figure 6.11: Consommation en fonction de la cylindrée
+</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li>Ce graphique présente-t’il correctement l’ensemble des données de ces 2 variables ? Pourquoi ? Comparez le graphique <a href="wrangling.html#fig:consommation">6.11</a> de la question 3 ci-dessus et le graphique <a href="wrangling.html#fig:consommation2">6.12</a> présenté ci-dessous. Selon vous, quels arguments et/ou fonctions ont été modifiés pour arriver à ce nouveau graphique ? Quels sont les avantages et les inconvénients de ce graphique par rapport au précédent ?</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:consommation2"></span>
+<img src="figure/consommation2-1.png" alt="Consommation en fonction de la cylindrée" width="90%" />
+<p class="caption">
+Figure 6.12: Consommation en fonction de la cylindrée
+</p>
+</div>
 <hr />
+</div>
 </div>
 <div id="trier-des-lignes-avec-arrange" class="section level2">
 <h2><span class="header-section-number">6.8</span> Trier des lignes avec <code>arrange()</code></h2>

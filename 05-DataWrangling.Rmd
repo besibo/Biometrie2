@@ -569,6 +569,7 @@ flights %>%
 
 ## Créer de nouvelles variables avec `mutate()`
 
+### Principe
 
 ```{r, mutatefig, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Schéma de la fonction `mutate()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
 knitr::include_graphics('images/mutate.png')
@@ -618,7 +619,44 @@ gain_speed <- flights_sml %>%
          speed = (distance / air_time) * 60)
 ```
 
-Y a-t'il un lien entre le gain de temps et la vitesse en vol ou la distance ? Pour le savoir, il suffit de faire quelques graphiques.
+
+### Exercices
+
+1. Dans `ggplot2` le jeu de données `mpg` contient des informations sur 234 modèles de voitures. Examinez ce jeu de données avec la fonction `View()` et consultez l'aide de ce jeu de données pour savoir à quoi correspondent les différentes variables. Quelle(s) variable(s) nous renseignent sur la consommation des véhicules ? À quoi correspond la variable `disp` ?
+
+2. La consommation est donnée en miles par gallon. Créez une nouvelle variable `conso` qui contiendra la consommation exprimée en nombre de litres pour 100 kilomètres.
+
+3. Faîtes un graphique présentant la relation entre la cylindrée en litres et la consommation sur autoroute exprimée en nombre de litres pour 100 kilomètres. Vous excluerez les véhicules dont la `class`e est `2seater` de ce graphique (il s'agit de voitures de sports très compactes qu'il est difficile de mesurer aux autres). Sur votre graphique, la couleur devrait représenter le type de véhicule. Vous ajouterez une droite de régression en utilisant `geom_smooth(method = "lm")`. Votre graphique devrait ressembler à ceci :
+
+```{r consommation, tidy=FALSE, warning = FALSE, echo = FALSE, fig.cap = "Consommation en fonction de la cylindrée"}
+mpg %>% 
+  filter(class != "2seater") %>% 
+  mutate(conso = 235.215 / hwy) %>% 
+  ggplot(aes(x = displ, y = conso)) +
+  geom_point(aes(color = class)) +
+  geom_smooth(method = "lm") +
+  labs(x = "Cylindrée (volume du moteur en litres)",
+       y = "Consommation (litres pour 100 kilomètres)",
+       color = "Type de\nvéhicule",
+       title = "Relation positive entre cylindrée et consommation") +
+  theme_minimal(base_family = "Futura LT Book")
+```
+
+4. Ce graphique présente-t'il correctement l'ensemble des données de ces 2 variables ? Pourquoi ? Comparez le graphique \@ref(fig:consommation) de la question 3 ci-dessus et le graphique \@ref(fig:consommation2) présenté ci-dessous. Selon vous, quels arguments et/ou fonctions ont été modifiés pour arriver à ce nouveau graphique ? Quels sont les avantages et les inconvénients de ce graphique par rapport au précédent ?
+
+```{r consommation2, tidy=FALSE, warning = FALSE, echo = FALSE, fig.cap="Consommation en fonction de la cylindrée"}
+mpg %>% 
+  filter(class != "2seater") %>% 
+  mutate(conso = 235.215 / hwy) %>% 
+  ggplot(aes(x = displ, y = conso)) +
+  geom_jitter(aes(fill = class), shape=21, width=0.05, height=0.05, alpha = 0.7) +
+  geom_smooth(method = "lm") +
+  labs(x = "Cylindrée (volume du moteur en litres)",
+       y = "Consommation (litres pour 100 kilomètres)",
+       fill = "Type de\nvéhicule",
+       title = "Relation positive entre cylindrée et consommation") +
+  theme_minimal(base_family = "Futura LT Book")
+```
 
 ----
 
