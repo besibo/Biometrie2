@@ -16,6 +16,8 @@ library(tidyverse)
 ```
 
 
+----
+
 ## Le pipe `%>%`
 
 Avant d'entrer dans le vif du sujet, je souhaite introduire ici la notion de "pipe" (prononcer à l'anglo-saxonne). Le pipe est un opérateur que nous avons déjà vu apparaître à plusieurs reprises dans les chapitres précédents sans expliquer son fonctionnement.
@@ -71,6 +73,8 @@ Comme pour le `+` de `ggplot2`, il est conseillé de placer un seul pipe par lig
 Toutes les commandes que nous utiliserons à partir de maintenant reposeront sur le pipe puisqu'il permet de rendre le code plus lisible.
 
 
+----
+
 ## Les verbes du tripatouillage de données
 
 Nous allons ici nous concentrer sur les fonctions les plus couramment utilisées pour manipuler et résumer des données. Nous verrons 6 verbes principaux, chacun correspondant à une fonction précise de `dplyr`. Chaque section de ce chapitre sera consacrée à la présentation d'un exemple utilisant un ou plusieurs de ces verbes.
@@ -88,6 +92,8 @@ Toutes ces fonctions, tous ces verbes, sont utilisés de la mêma façon : on pr
 
 Enfin, gardez en tête qu'il existe beaucoup plus de fonctions dans `dplyr` que les 6 que nous allons détailler ici. Nous verrons parfois quelques variantes, mais globalement, maîtriser ces 6 fonctions simples devrait vous permettre de conduire une très large gamme de manipulations de données, et ainsi vous faciliter la vie pour la production de graphiques et l'analyse statistique de vos données.
 
+
+----
 
 ## Filtrer des lignes avec `filter()`
 
@@ -210,6 +216,8 @@ Ici, toutes les lignes du tableau dont la variable `dest` est égale à un élé
 identical(atl_sea_fall, atl_sea_fall2)
 ```
 
+
+----
 
 ## Créer des résumés avec `summarise()` et `group_by()`
 
@@ -482,15 +490,144 @@ sort(unique(weather$wind_speed)) / 1.151
 ```
 
 
-## Trier des lignes avec `arrange()`
-
+----
 
 ## Sélectionner des variables avec `select()`
 
+```{r, selectfig, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Schéma de la fonction `select()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+knitr::include_graphics('images/select.png')
+```
+
+Il n'est pas rare de travailler avec des tableaux contenant des centaines, voir des milliers de colonnes. Dans de tels cas, il peut être utile de réduire le jeu de données aux variables qui vous intéressent. Le rôle de la fonction `select()` est de retenir uniquement les colonnes dont on a spécifié le nom, afin de recentrer l'analyse sur les variables utiles.
+
+`select()` n'est pas particulièrement utile pour le jeu de données `flights` puisqu'il ne contient que 19 variables. Toutefois, on peut malgré tout comprendre le fonctionnement général. Par exemle, pour sélectionner uniquement les colonnes `year`, `month` et `day`, on tape :
+
+```{r, tidy = FALSE}
+# Sélection de variables par leur nom
+flights %>% 
+  select(year, month, day)
+```
+
+Puisque ces 3 variables sont placées les unes à côté des autres dans le tableau `flights`, on peut utiliser la notation `:` pour les sélectionner :
+
+```{r, tidy = FALSE}
+# Sélection de toutes les variables entre `year` et `day` (inclues)
+flights %>% 
+  select(year:day)
+```
+
+À l'inverse, si on veut supprimer certaines colonnes, on peut utiliser la notation `-` :
+
+```{r, tidy = FALSE}
+# Sélection de toutes les variables de `flights` à l'exception
+# de celles comprises entre `year` et `day` (inclues)
+flights %>% 
+  select(-(year:day))
+```
+
+Il y a beaucoup de fonctions permettant de sélectionner des variables dont le noms respectent certains critères. Par exemple :
+
+- `starts_with("abc")` : renvoie toutes les variables dont les noms commencent par "abc"
+- `ends_with("xyz")` : renvoie toutes les variables dont les noms se terminent par "xyz"
+- `contains("ijk")` : renvoie toutes les variables dont les noms contiennent "ijk"
+
+Il en existe beaucoup d'autres. Vous pouvez consulter l'aide de `?select()` pour en savoir plus.
+
+Ainsi, il est par exemple possible d'extraire toutes les variables contenant le mot "time" ainsi :
+
+```{r, tidy=FALSE}
+flights %>% 
+  select(contains("time"))
+```
+
+Évidemment, le tableau `flights` n'est pas modifié par cette opération : il contient toujours les 19 variables de départ. Pour travailler avec ces tableaux de données contenant moins de variables, il faut les stocker dans un nouvel objet en leur donnant un nom :
+
+```{r, tidy=FALSE}
+flights_time <- flights %>% 
+  select(contains("time"))
+```
+
+Enfin, on peut utiliser `select()` pour renommer des variables. Mais ce n'est que rarement utile car `select()` élimine toutes les variables qui n'ont pas été explicitement nommées :
+
+```{r, tidy=FALSE}
+flights %>% 
+  select(year:day,
+         heure_depart = dep_time,
+         retard_depart = dep_delay)
+```
+
+Il est donc généralement préférable d'utiliser `rename()` pour renommer certaines variables sans en éliminer aucune :
+
+```{r, tidy=FALSE}
+flights %>% 
+  rename(heure_depart = dep_time,
+         retard_depart = dep_delay)
+```
+
+
+----
 
 ## Créer de nouvelles variables avec `mutate()`
 
 
+```{r, mutatefig, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Schéma de la fonction `mutate()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+knitr::include_graphics('images/mutate.png')
+```
+
+La fonction `mutate()` permet de créer de nouvelles variables à partir des variables existantes, ou de modifier des variables déjà présentes dans un jeu de données. Il est en effet fréquent d'avoir besoin de calculer de nouvelles variables, souvnet plus informatives que les variables disponibles.
+
+Voyons un exemple. Nous commençons par créer un nouveau jeu de données `flights_sml` en sélectionnant uniquement les variables qui nous seront utiles :
+
+```{r, tidy=FALSE}
+flights_sml <- flights %>% 
+  select(year:day,
+         ends_with("delay"),
+         distance,
+         air_time)
+flights_sml
+```
+
+À partir de ce nouveau tableau, nous allons calculer 2 nouvelles variables : 
+
+1. `gain` : afin de savoir si les avions peuvent rattraper une partie de leur retard en vol, nous allons calculer la différence entre le retard au départ et à l'arrivée (donc le gain de temps accumlé lors du vol). En effet, si un avion décolle avec 15 minutes de retard, mais qu
+il atterrit avec seulement 5 minutes de retard, 10 minutes ont été gagnées en vol, et les passagers sont moins mécontents.
+2. `speed`  afin de connaitre la vitesse moyenne des avions en vol, nous allons diviser la distance parcourue par les avions par le temps passé en l'air. Il ne faudra pas oublier de multiplier par 60 car les temps sont exprimés en minutes. Nous en profiterons pour transformer les distances exprimées en miles par des distances exprimées en kilomètres en multipliant les distances en miles par 1.60934. Ainsi, `speed` sera exprimée en kilomètres par heure.
+
+```{r, tidy=FALSE}
+flights_sml %>% 
+  mutate(gain = dep_delay - arr_delay,
+         distance = distance * 1.60934,
+         speed = (distance / air_time) * 60)
+```
+
+Si on souhaite conserver uniquement les variables nouvellement créées par `mutate()`, on peut utiliser `transmute()` :
+
+```{r, tidy=FALSE}
+flights_sml %>% 
+  transmute(gain = dep_delay - arr_delay,
+         distance = distance * 1.60934,
+         speed = (distance / air_time) * 60)
+```
+
+Et comme toujours, pour pouvoir réutiliser ces données, on leur donne un nom :
+
+```{r, tidy=FALSE}
+gain_speed <- flights_sml %>% 
+  transmute(gain = dep_delay - arr_delay,
+         distance = distance * 1.60934,
+         speed = (distance / air_time) * 60)
+```
+
+Y a-t'il un lien entre le gain de temps et la vitesse en vol ou la distance ? Pour le savoir, il suffit de faire quelques graphiques.
+
+----
+
+## Trier des lignes avec `arrange()`
+
+
+
+
+----
 
 ## Associer plusieurs tableaux avec `left_join()` et `inner_join()`
 
