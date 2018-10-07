@@ -13,7 +13,6 @@ library(nycflights13)
 
 ```{r include=FALSE}
 library(tidyverse)
-data(flights)
 ```
 
 
@@ -168,7 +167,12 @@ flights %>%
   filter(is.na(dep_time))
 ```
 
-Seules les lignes contenant `NA` dans la colonne `dep_time` sont retenues. Il y a donc `r flights %>% filter(is.na(dep_time)) %>% nrow()` vols qui n'ont finalement pas décollé. 
+```{r, tidy=FALSE, include=FALSE}
+naflights <- flights %>% 
+  filter(is.na(dep_time))
+```
+
+Seules les lignes contenant `NA` dans la colonne `dep_time` sont retenues. Il y a donc `r nrow(naflights)` vols qui n'ont finalement pas décollé. 
 
 Dans le même ordre d'idée, y a t-il des vols qui ont décollé mais qui ne sont pas arrivés à destination ? Là encore, une façon d'obtenir cette information est de sélectionner les vols qui ont décollé (donc pour lesquels l'heure de décollage n'est pas manquante), mais pour lesquels l'heure d'atterrissage est manquante :
 
@@ -185,9 +189,14 @@ flights %>%
   filter(!is.na(dep_time) & is.na(arr_time))
 ```
 
+```{r, tidy=FALSE, include=FALSE}
+flights_annul <- flights %>% 
+  filter(!is.na(dep_time) & is.na(arr_time))
+```
+
 Dans la fonction `filter()`, séparer plusieurs conditions par des virgules signifie que seules les lignes qui remplissent toutes les conditions seront retenues. C'est donc l'équivalent du `ET` logique.
 
-Il y a donc `r flights %>% filter(!is.na(dep_time) & is.na(arr_time)) %>% nrow()` vols qui ne sont pas arrivés à destination (soit moins de 0,2% des vols au départ de New York en 2013). Selon vous, quelles raisons peuvent expliquer qu'un vol qui a décollé n'ait pas d'heure d'atterrissage ?
+Il y a donc `r nrow(flights_annul)` vols qui ne sont pas arrivés à destination (soit moins de 0,2% des vols au départ de New York en 2013). Selon vous, quelles raisons peuvent expliquer qu'un vol qui a décollé n'ait pas d'heure d'atterrissage ?
 
 Enfin, pour illustrer l'utilisation de `|` (le `OU` logique) et de `%in%`, imaginons que nous souhaitions extraire les informations des vols ayant quitté l'aéroport `JFK` à destination d'Atlanta, Géorgie (`ATL`) et de Seatle, Washington (`SEA`), aux mois d'octobre, novembre et décembre :
 
@@ -260,7 +269,14 @@ weather %>%
             ecart_type = sd(temp, na.rm = TRUE))
 ```
 
-La température moyenne est donc de `r round(mean(weather$temp, na.rm = TRUE),1)` degrés Farenheit et l'écart-type vaut `r round(sd(weather$temp, na.rm = TRUE),1)` degrés Farenheit.
+
+```{r, tidy = FALSE, include = FALSE}
+temper <- weather %>% 
+  summarise(moyenne = mean(temp, na.rm = TRUE),
+            ecart_type = sd(temp, na.rm = TRUE))
+```
+
+La température moyenne est donc de `r round(temper[1,1],1)` degrés Farenheit et l'écart-type vaut `r round(temper[1,2],1)` degrés Farenheit.
 
 
 ### Intérêt de la fonction `group_by()`
