@@ -677,16 +677,160 @@ mpg %>%
 
 ----
 
-## Trier des lignes avec `arrange()`
+## Trier des lignes avec `arrange()` {#arrange}
 
+```{r, arrangefig, echo = FALSE, out.width='40%', fig.align='center', fig.cap="Schéma de la fonction `arrange()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+knitr::include_graphics('images/arrange.png')
+```
 
+La fonction `arrange()` permet de trier des tableaux en ordonnant les éléments d'une ou plusieurs colonnes. Les tris peuvent être en ordre croissants (c'est le cas par défaut) ou décroissants (grâce à la fonction `desc()`, abbréviation de "descending").
 
+`arrange()` fonctionne donc comme `filter()`, mais au lieu de sélectionner des lignes, cette fonction change leur ordre. Il faut lui fournir le nom d'un tableau et au minimum le nom d'une variable selon laquelle le tri doit être réalisé. Si plusieurs variables sont fournies, chaque variable supplémentaire permet de résoudre les égalités. Ainsi, pour ordonner le tableau `flights` par ordre croissant de retard au départ (`dep_delay`), on tape :
+
+```{r, tidy = FALSE}
+flights %>% 
+  arrange(dep_delay)
+```
+
+Notez que la variable `dep-delay` est maintenant triée en ordre croissant. Notez également que 2 vols ont eu exactement 25 minutes d'avance. Comparez le tableau précédent avec celui-ci :
+
+```{r, tidy = FALSE}
+flights %>% 
+  arrange(dep_delay, month, day)
+```
+
+Les lignes des 2 vols ayant 25 minutes d'avance au décollage ont été inversées : le vol du mois de mars apparait maintenant avant le vol du mois d'octobre. La variable `month` a été utilisée pour ordonner les lignes en cas d'égalité de la variable `dep_delay`.
+
+Comme indiqué plus haut, il est possible de trier les données par ordre décroissant :
+
+```{r, tidy = FALSE}
+flights %>% 
+  arrange(desc(dep_delay))
+```
+
+Cela est particulièrement utile après l'obtention de résumés groupés pour connaître la catégorie la plus représentée. Par exemple, si nous souhaitons connaître les destinations la plus fréquentes au départ de New York, on peut procéder ainsi :
+
+1. prendre le tableau `flights`, *puis,*
+2. grouper les données par destination (variable `dest`) et compter le nombre de vols. Ces deux opérations peuvent être effectuées avec `group_by()` puis `summarise()`, ou directement avec `count()`. *Puis,*
+3. trier les données par effectif décroissant.
+
+```{r, tidy=FALSE}
+flights %>% 
+  count(dest) %>% 
+  arrange(desc(n))
+```
+
+Nous voyons ici que les aéroports `ORD` et `ATL` sont les 2 destinations les plus fréquentes, avec plus de 17000 vols par an. 
 
 ----
 
 ## Associer plusieurs tableaux avec `left_join()` et `inner_join()`
 
+### Principe
 
+Une autre règle que nous n'avons pas encore évoquée au sujet des "tidy data" ou "données rangées" est la suivante : 
+
+> Chaque tableau contient des données appartenant à une unité d'observation cohérente et unique.
+
+Autrement dit, les informations concernant les vols vont dans un tableau, les informations concernant les aéroports dans un autre tableau, et celles concernant les avions dans un troisième tableau. Cela semble évident, pourtant, on constate souvent qu'un même tableau contient des variables qui concernent des unités d'observations différentes.
+
+Lorsque nous avons plusieurs tableaux à disposition, il peut alors être nécessaire de récuppérer des informations dans plusieurs d'entre eux afn, notamment de produire des tableaux de synthèse. Par exemple, dans la section \@ref(arrange) ci-dessus, nous avons affiché les destinations les plus fréquentes au départ des aéroports de New York. Donnons un nom à ce tableau pour pouvoir le ré-utiliser :
+
+```{r, tidy=FALSE}
+popular_dest <- flights %>% 
+  count(dest) %>% 
+  arrange(desc(n))
+popular_dest
+```
+
+À quel aéroport correspondent les codes `ORD` et `ATL` ? S'agit-il d'Orlando et Atlanta ? Pour le savoir, il faut aller chercher l'information qui se trouve dans le tableau `airports` : il contient, parmi d'autres variables, les codes et les noms de 1458 aéroports aux État-Unis.
+
+`dplyr` fournit toute une gamme de fonctions permettant d'effectuer des associations de tableaux en fonction de critères spécifiés par l'utilisateur.
+
+### `inner_join()`
+
+```{r, inner, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Schéma de la fonction `inner_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+knitr::include_graphics('images/innerjoin.png')
+```
+
+La fonction `inner_join()` permet de relier des tableaux en ne conservant que les lignes qui sont présentes à la fois dans l'un et dans l'autre. Il faut identifier dans chacun des tableaux une colonne contenant des données en commun, qui servira de guide pour mettre les lignes correctes les unes en face des autres. Ici, nous partons de notre tableau `popular_dest`, qui contient les codes des aéroports dans sa colonne `dest`. Et nous faisons une "jointure interne" avec le tableau `airports` qui contient lui aussi une colonne contenant les codes des aéroports : la variable `faa`.
+
+```{r, tidy = FALSE}
+inner_popular <- popular_dest %>% 
+  inner_join(airports, by = c("dest" = "faa"))
+inner_popular
+```
+
+Le nouvel objet `inner_popular` contient donc les données du tableau `popular_dest` auxquelles ont été ajoutées les colonnes correspondantes du tableau airports. Si tout ce qui nous intéresse, c'est de connaitre le nom complet des aéroports les plus populaires, on peut utiliser `select()` pour ne garder que les variables intéressantes :
+
+```{r, tidy = FALSE}
+inner_popular <- popular_dest %>% 
+  inner_join(airports, by = c("dest" = "faa")) %>% 
+  select(dest, name, n)
+inner_popular
+```
+
+On peut noter plusieurs choses dans ce nouveau tableau :
+
+* `ORD` n'est pas l'aéroport d'Orlando mais l'aéroport international de Chicago Ohare. C'est donc la destination la plus fréquente au départ de New York.
+* `ATL` est bien l'aéroport d'Atlanta.
+* `inner_popular` contient `r nrow(inner_popular)` lignes alors que notre tableau de départ en contenait `r nrow(popular_dest)`. 
+```{r}
+nrow(popular_dest)
+nrow(inner_popular)
+```
+
+Certaines lignes ont donc été supprimées car le code aéroport dans `popular_dest` (notre tableau de départ) n'a pas été retrouvé dans la colonne `faa` du tableau `airports`. C'est le principe même de la jointure interne (voir figure \@ref(fig:inner)) : seules les lignes communes trouvées dans les 2 tableaux sont conservées. Si l'on souhaite absolument conserver toutes les lignes du tableau de départ, il faut faire une jointure gauche, ou "left join". 
+
+
+### `left_join()`
+
+```{r, left, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Schéma de la fonction `left_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+knitr::include_graphics('images/leftjoin.png')
+```
+
+Comme indiqué par la figure \@ref(fig:left) ci-dessus, une jointure gauche permet de conserver toutes les lignes du tableau de gauche, et de leur faire correspondre des lignes du second tableau. Si aucune correspondance n'est trouvée dans le second tableau, des données manquantes sont ajoutées sous forme de `NA`s. Voyons ce que cela donne avec le même exemple que précédemment :
+
+```{r, tidy = FALSE}
+left_popular <- popular_dest %>% 
+  left_join(airports, by = c("dest" = "faa")) %>% 
+  select(dest, name, n)
+left_popular
+```
+
+En apparence, le tableau `left_popular`, créé avec `left_join()` semble identique au tableau `inner_popular` créé avec `inner_join()`. Pourtant, ce n'est pas le cas :
+
+```{r}
+identical(inner_popular, left_popular)
+```
+
+En l'occurence, nous avons vu que `inner_popular` ne contenait pas autant de ligne que le tableau de départ `popular_dest`. Avec une jointure gauche, les lignes du tableau de départ sont toutes conservées. `popular_dest` et `left_popular` ont donc le même nombre de lignes.
+
+```{r}
+nrow(inner_popular)
+nrow(left_popular)
+nrow(popular_dest)
+```
+
+Pour savoir quelles lignes de `popular_dest` manquent dans `inner_dest` (il devrait y en avoir 4), il suffit de filtrer les lignes de `left_dest` qui contiennent des données manquantes dans la colonne `name` :
+
+```{r, tidy = FALSE}
+left_popular %>% 
+  filter(is.na(name))
+```
+
+Une rapide recherche dans un moteur de recherche vous apprendra que ces aéroports ne sont pas situés sur le sol américain. Trois d'entre eux sont situés à Puerto Rico (`SJU`, `BQN` et `PSE`) et le dernier (`STT`) est situé aux Îles Vierges.
+
+Il y aurait bien plus à dire sur les jointures :
+
+- Quelles sont les autres possibilités de jointures (`right_join()`, `outer_join()`, `full_join()`, etc...) ?
+- Que se passe-t'il si les colonnes communes des 2 tableaux contiennent des élements dupliqués ?
+- Est-il toujours nécessaire d'utiliser l'argument `by` ?
+- Est-il possible de joindre des tableaux en associant plus d'une colonne de chaque tableau d'origine ?
+
+Pour avoir la réponse à toutes ces questions, je vous conseille de lire [ce chapitre](http://r4ds.had.co.nz/relational-data.html) de cet ouvrage très complet sur "la science des données" avec R et le `tidyverse` : [R for Data Science](http://r4ds.had.co.nz).
+
+Néanmoins, avec les deux fonctions `inner_join()` et `left_join()` décrite ici devraient vous permettre de couvrir l'essentiel de vos besoins.
 
 <!-- ```{r, tidy=FALSE} -->
 <!-- all_flights <- flights %>% -->
@@ -734,8 +878,5 @@ mpg %>%
 <!-- ``` -->
 
 
-
-<!-- barres d'erreur -->
-<!-- Vols de JFK du 12 février -->
 
 <!-- Diamonds trop gros à la fac -->

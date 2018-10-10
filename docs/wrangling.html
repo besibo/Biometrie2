@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-10-07">
+<meta name="date" content="2018-10-10">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -254,8 +254,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.7.1" data-path="wrangling.html"><a href="wrangling.html#principe-1"><i class="fa fa-check"></i><b>6.7.1</b> Principe</a></li>
 <li class="chapter" data-level="6.7.2" data-path="wrangling.html"><a href="wrangling.html#exercices-10"><i class="fa fa-check"></i><b>6.7.2</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#trier-des-lignes-avec-arrange"><i class="fa fa-check"></i><b>6.8</b> Trier des lignes avec <code>arrange()</code></a></li>
-<li class="chapter" data-level="6.9" data-path="wrangling.html"><a href="wrangling.html#associer-plusieurs-tableaux-avec-left_join-et-inner_join"><i class="fa fa-check"></i><b>6.9</b> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></a></li>
+<li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#arrange"><i class="fa fa-check"></i><b>6.8</b> Trier des lignes avec <code>arrange()</code></a></li>
+<li class="chapter" data-level="6.9" data-path="wrangling.html"><a href="wrangling.html#associer-plusieurs-tableaux-avec-left_join-et-inner_join"><i class="fa fa-check"></i><b>6.9</b> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></a><ul>
+<li class="chapter" data-level="6.9.1" data-path="wrangling.html"><a href="wrangling.html#principe-2"><i class="fa fa-check"></i><b>6.9.1</b> Principe</a></li>
+<li class="chapter" data-level="6.9.2" data-path="wrangling.html"><a href="wrangling.html#inner_join"><i class="fa fa-check"></i><b>6.9.2</b> <code>inner_join()</code></a></li>
+<li class="chapter" data-level="6.9.3" data-path="wrangling.html"><a href="wrangling.html#left_join"><i class="fa fa-check"></i><b>6.9.3</b> <code>left_join()</code></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
@@ -1113,12 +1117,243 @@ Figure 6.12: Consommation en fonction de la cylindrée
 <hr />
 </div>
 </div>
-<div id="trier-des-lignes-avec-arrange" class="section level2">
+<div id="arrange" class="section level2">
 <h2><span class="header-section-number">6.8</span> Trier des lignes avec <code>arrange()</code></h2>
+<div class="figure" style="text-align: center"><span id="fig:arrangefig"></span>
+<img src="images/arrange.png" alt="Schéma de la fonction `arrange()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="40%" />
+<p class="caption">
+Figure 6.13: Schéma de la fonction <code>arrange()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
+</p>
+</div>
+<p>La fonction <code>arrange()</code> permet de trier des tableaux en ordonnant les éléments d’une ou plusieurs colonnes. Les tris peuvent être en ordre croissants (c’est le cas par défaut) ou décroissants (grâce à la fonction <code>desc()</code>, abbréviation de “descending”).</p>
+<p><code>arrange()</code> fonctionne donc comme <code>filter()</code>, mais au lieu de sélectionner des lignes, cette fonction change leur ordre. Il faut lui fournir le nom d’un tableau et au minimum le nom d’une variable selon laquelle le tri doit être réalisé. Si plusieurs variables sont fournies, chaque variable supplémentaire permet de résoudre les égalités. Ainsi, pour ordonner le tableau <code>flights</code> par ordre croissant de retard au départ (<code>dep_delay</code>), on tape :</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb282-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(dep_delay)</a></code></pre></div>
+<pre><code># A tibble: 336,776 x 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013    12     7     2040           2123       -43       40           2352
+ 2  2013     2     3     2022           2055       -33     2240           2338
+ 3  2013    11    10     1408           1440       -32     1549           1559
+ 4  2013     1    11     1900           1930       -30     2233           2243
+ 5  2013     1    29     1703           1730       -27     1947           1957
+ 6  2013     8     9      729            755       -26     1002            955
+ 7  2013    10    23     1907           1932       -25     2143           2143
+ 8  2013     3    30     2030           2055       -25     2213           2250
+ 9  2013     3     2     1431           1455       -24     1601           1631
+10  2013     5     5      934            958       -24     1225           1309
+# ... with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+#   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Notez que la variable <code>dep-delay</code> est maintenant triée en ordre croissant. Notez également que 2 vols ont eu exactement 25 minutes d’avance. Comparez le tableau précédent avec celui-ci :</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(dep_delay, month, day)</a></code></pre></div>
+<pre><code># A tibble: 336,776 x 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013    12     7     2040           2123       -43       40           2352
+ 2  2013     2     3     2022           2055       -33     2240           2338
+ 3  2013    11    10     1408           1440       -32     1549           1559
+ 4  2013     1    11     1900           1930       -30     2233           2243
+ 5  2013     1    29     1703           1730       -27     1947           1957
+ 6  2013     8     9      729            755       -26     1002            955
+ 7  2013     3    30     2030           2055       -25     2213           2250
+ 8  2013    10    23     1907           1932       -25     2143           2143
+ 9  2013     3     2     1431           1455       -24     1601           1631
+10  2013     5     5      934            958       -24     1225           1309
+# ... with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+#   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Les lignes des 2 vols ayant 25 minutes d’avance au décollage ont été inversées : le vol du mois de mars apparait maintenant avant le vol du mois d’octobre. La variable <code>month</code> a été utilisée pour ordonner les lignes en cas d’égalité de la variable <code>dep_delay</code>.</p>
+<p>Comme indiqué plus haut, il est possible de trier les données par ordre décroissant :</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dep_delay))</a></code></pre></div>
+<pre><code># A tibble: 336,776 x 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     9      641            900      1301     1242           1530
+ 2  2013     6    15     1432           1935      1137     1607           2120
+ 3  2013     1    10     1121           1635      1126     1239           1810
+ 4  2013     9    20     1139           1845      1014     1457           2210
+ 5  2013     7    22      845           1600      1005     1044           1815
+ 6  2013     4    10     1100           1900       960     1342           2211
+ 7  2013     3    17     2321            810       911      135           1020
+ 8  2013     6    27      959           1900       899     1236           2226
+ 9  2013     7    22     2257            759       898      121           1026
+10  2013    12     5      756           1700       896     1058           2020
+# ... with 336,766 more rows, and 11 more variables: arr_delay &lt;dbl&gt;,
+#   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+#   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+<p>Cela est particulièrement utile après l’obtention de résumés groupés pour connaître la catégorie la plus représentée. Par exemple, si nous souhaitons connaître les destinations la plus fréquentes au départ de New York, on peut procéder ainsi :</p>
+<ol style="list-style-type: decimal">
+<li>prendre le tableau <code>flights</code>, <em>puis,</em></li>
+<li>grouper les données par destination (variable <code>dest</code>) et compter le nombre de vols. Ces deux opérations peuvent être effectuées avec <code>group_by()</code> puis <code>summarise()</code>, ou directement avec <code>count()</code>. <em>Puis,</em></li>
+<li>trier les données par effectif décroissant.</li>
+</ol>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(dest) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb288-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a></code></pre></div>
+<pre><code># A tibble: 105 x 2
+   dest      n
+   &lt;chr&gt; &lt;int&gt;
+ 1 ORD   17283
+ 2 ATL   17215
+ 3 LAX   16174
+ 4 BOS   15508
+ 5 MCO   14082
+ 6 CLT   14064
+ 7 SFO   13331
+ 8 FLL   12055
+ 9 MIA   11728
+10 DCA    9705
+# ... with 95 more rows</code></pre>
+<p>Nous voyons ici que les aéroports <code>ORD</code> et <code>ATL</code> sont les 2 destinations les plus fréquentes, avec plus de 17000 vols par an.</p>
 <hr />
 </div>
 <div id="associer-plusieurs-tableaux-avec-left_join-et-inner_join" class="section level2">
 <h2><span class="header-section-number">6.9</span> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></h2>
+<div id="principe-2" class="section level3">
+<h3><span class="header-section-number">6.9.1</span> Principe</h3>
+<p>Une autre règle que nous n’avons pas encore évoquée au sujet des “tidy data” ou “données rangées” est la suivante :</p>
+<blockquote>
+<p>Chaque tableau contient des données appartenant à une unité d’observation cohérente et unique.</p>
+</blockquote>
+<p>Autrement dit, les informations concernant les vols vont dans un tableau, les informations concernant les aéroports dans un autre tableau, et celles concernant les avions dans un troisième tableau. Cela semble évident, pourtant, on constate souvent qu’un même tableau contient des variables qui concernent des unités d’observations différentes.</p>
+<p>Lorsque nous avons plusieurs tableaux à disposition, il peut alors être nécessaire de récuppérer des informations dans plusieurs d’entre eux afn, notamment de produire des tableaux de synthèse. Par exemple, dans la section <a href="wrangling.html#arrange">6.8</a> ci-dessus, nous avons affiché les destinations les plus fréquentes au départ des aéroports de New York. Donnons un nom à ce tableau pour pouvoir le ré-utiliser :</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1">popular_dest &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb290-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(dest) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb290-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a>
+<a class="sourceLine" id="cb290-4" data-line-number="4">popular_dest</a></code></pre></div>
+<pre><code># A tibble: 105 x 2
+   dest      n
+   &lt;chr&gt; &lt;int&gt;
+ 1 ORD   17283
+ 2 ATL   17215
+ 3 LAX   16174
+ 4 BOS   15508
+ 5 MCO   14082
+ 6 CLT   14064
+ 7 SFO   13331
+ 8 FLL   12055
+ 9 MIA   11728
+10 DCA    9705
+# ... with 95 more rows</code></pre>
+<p>À quel aéroport correspondent les codes <code>ORD</code> et <code>ATL</code> ? S’agit-il d’Orlando et Atlanta ? Pour le savoir, il faut aller chercher l’information qui se trouve dans le tableau <code>airports</code> : il contient, parmi d’autres variables, les codes et les noms de 1458 aéroports aux État-Unis.</p>
+<p><code>dplyr</code> fournit toute une gamme de fonctions permettant d’effectuer des associations de tableaux en fonction de critères spécifiés par l’utilisateur.</p>
+</div>
+<div id="inner_join" class="section level3">
+<h3><span class="header-section-number">6.9.2</span> <code>inner_join()</code></h3>
+<div class="figure" style="text-align: center"><span id="fig:inner"></span>
+<img src="images/innerjoin.png" alt="Schéma de la fonction `inner_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" />
+<p class="caption">
+Figure 6.14: Schéma de la fonction <code>inner_join()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
+</p>
+</div>
+<p>La fonction <code>inner_join()</code> permet de relier des tableaux en ne conservant que les lignes qui sont présentes à la fois dans l’un et dans l’autre. Il faut identifier dans chacun des tableaux une colonne contenant des données en commun, qui servira de guide pour mettre les lignes correctes les unes en face des autres. Ici, nous partons de notre tableau <code>popular_dest</code>, qui contient les codes des aéroports dans sa colonne <code>dest</code>. Et nous faisons une “jointure interne” avec le tableau <code>airports</code> qui contient lui aussi une colonne contenant les codes des aéroports : la variable <code>faa</code>.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">inner_popular &lt;-<span class="st"> </span>popular_dest <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(airports, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;dest&quot;</span> =<span class="st"> &quot;faa&quot;</span>))</a>
+<a class="sourceLine" id="cb292-3" data-line-number="3">inner_popular</a></code></pre></div>
+<pre><code># A tibble: 101 x 9
+   dest      n name                   lat    lon   alt    tz dst   tzone       
+   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;                &lt;dbl&gt;  &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       
+ 1 ORD   17283 Chicago Ohare Intl    42.0  -87.9   668    -6 A     America/Chi…
+ 2 ATL   17215 Hartsfield Jackson …  33.6  -84.4  1026    -5 A     America/New…
+ 3 LAX   16174 Los Angeles Intl      33.9 -118.    126    -8 A     America/Los…
+ 4 BOS   15508 General Edward Lawr…  42.4  -71.0    19    -5 A     America/New…
+ 5 MCO   14082 Orlando Intl          28.4  -81.3    96    -5 A     America/New…
+ 6 CLT   14064 Charlotte Douglas I…  35.2  -80.9   748    -5 A     America/New…
+ 7 SFO   13331 San Francisco Intl    37.6 -122.     13    -8 A     America/Los…
+ 8 FLL   12055 Fort Lauderdale Hol…  26.1  -80.2     9    -5 A     America/New…
+ 9 MIA   11728 Miami Intl            25.8  -80.3     8    -5 A     America/New…
+10 DCA    9705 Ronald Reagan Washi…  38.9  -77.0    15    -5 A     America/New…
+# ... with 91 more rows</code></pre>
+<p>Le nouvel objet <code>inner_popular</code> contient donc les données du tableau <code>popular_dest</code> auxquelles ont été ajoutées les colonnes correspondantes du tableau airports. Si tout ce qui nous intéresse, c’est de connaitre le nom complet des aéroports les plus populaires, on peut utiliser <code>select()</code> pour ne garder que les variables intéressantes :</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">inner_popular &lt;-<span class="st"> </span>popular_dest <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb294-2" data-line-number="2"><span class="st">  </span><span class="kw">inner_join</span>(airports, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;dest&quot;</span> =<span class="st"> &quot;faa&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb294-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(dest, name, n)</a>
+<a class="sourceLine" id="cb294-4" data-line-number="4">inner_popular</a></code></pre></div>
+<pre><code># A tibble: 101 x 3
+   dest  name                                   n
+   &lt;chr&gt; &lt;chr&gt;                              &lt;int&gt;
+ 1 ORD   Chicago Ohare Intl                 17283
+ 2 ATL   Hartsfield Jackson Atlanta Intl    17215
+ 3 LAX   Los Angeles Intl                   16174
+ 4 BOS   General Edward Lawrence Logan Intl 15508
+ 5 MCO   Orlando Intl                       14082
+ 6 CLT   Charlotte Douglas Intl             14064
+ 7 SFO   San Francisco Intl                 13331
+ 8 FLL   Fort Lauderdale Hollywood Intl     12055
+ 9 MIA   Miami Intl                         11728
+10 DCA   Ronald Reagan Washington Natl       9705
+# ... with 91 more rows</code></pre>
+<p>On peut noter plusieurs choses dans ce nouveau tableau :</p>
+<ul>
+<li><code>ORD</code> n’est pas l’aéroport d’Orlando mais l’aéroport international de Chicago Ohare. C’est donc la destination la plus fréquente au départ de New York.</li>
+<li><code>ATL</code> est bien l’aéroport d’Atlanta.</li>
+<li><code>inner_popular</code> contient 101 lignes alors que notre tableau de départ en contenait 105.</li>
+</ul>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="kw">nrow</span>(popular_dest)</a></code></pre></div>
+<pre><code>[1] 105</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="kw">nrow</span>(inner_popular)</a></code></pre></div>
+<pre><code>[1] 101</code></pre>
+<p>Certaines lignes ont donc été supprimées car le code aéroport dans <code>popular_dest</code> (notre tableau de départ) n’a pas été retrouvé dans la colonne <code>faa</code> du tableau <code>airports</code>. C’est le principe même de la jointure interne (voir figure <a href="wrangling.html#fig:inner">6.14</a>) : seules les lignes communes trouvées dans les 2 tableaux sont conservées. Si l’on souhaite absolument conserver toutes les lignes du tableau de départ, il faut faire une jointure gauche, ou “left join”.</p>
+</div>
+<div id="left_join" class="section level3">
+<h3><span class="header-section-number">6.9.3</span> <code>left_join()</code></h3>
+<div class="figure" style="text-align: center"><span id="fig:left"></span>
+<img src="images/leftjoin.png" alt="Schéma de la fonction `left_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" />
+<p class="caption">
+Figure 6.15: Schéma de la fonction <code>left_join()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
+</p>
+</div>
+<p>Comme indiqué par la figure <a href="wrangling.html#fig:left">6.15</a> ci-dessus, une jointure gauche permet de conserver toutes les lignes du tableau de gauche, et de leur faire correspondre des lignes du second tableau. Si aucune correspondance n’est trouvée dans le second tableau, des données manquantes sont ajoutées sous forme de <code>NA</code>s. Voyons ce que cela donne avec le même exemple que précédemment :</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">left_popular &lt;-<span class="st"> </span>popular_dest <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb300-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(airports, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;dest&quot;</span> =<span class="st"> &quot;faa&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(dest, name, n)</a>
+<a class="sourceLine" id="cb300-4" data-line-number="4">left_popular</a></code></pre></div>
+<pre><code># A tibble: 105 x 3
+   dest  name                                   n
+   &lt;chr&gt; &lt;chr&gt;                              &lt;int&gt;
+ 1 ORD   Chicago Ohare Intl                 17283
+ 2 ATL   Hartsfield Jackson Atlanta Intl    17215
+ 3 LAX   Los Angeles Intl                   16174
+ 4 BOS   General Edward Lawrence Logan Intl 15508
+ 5 MCO   Orlando Intl                       14082
+ 6 CLT   Charlotte Douglas Intl             14064
+ 7 SFO   San Francisco Intl                 13331
+ 8 FLL   Fort Lauderdale Hollywood Intl     12055
+ 9 MIA   Miami Intl                         11728
+10 DCA   Ronald Reagan Washington Natl       9705
+# ... with 95 more rows</code></pre>
+<p>En apparence, le tableau <code>left_popular</code>, créé avec <code>left_join()</code> semble identique au tableau <code>inner_popular</code> créé avec <code>inner_join()</code>. Pourtant, ce n’est pas le cas :</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">identical</span>(inner_popular, left_popular)</a></code></pre></div>
+<pre><code>[1] FALSE</code></pre>
+<p>En l’occurence, nous avons vu que <code>inner_popular</code> ne contenait pas autant de ligne que le tableau de départ <code>popular_dest</code>. Avec une jointure gauche, les lignes du tableau de départ sont toutes conservées. <code>popular_dest</code> et <code>left_popular</code> ont donc le même nombre de lignes.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="kw">nrow</span>(inner_popular)</a></code></pre></div>
+<pre><code>[1] 101</code></pre>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="kw">nrow</span>(left_popular)</a></code></pre></div>
+<pre><code>[1] 105</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">nrow</span>(popular_dest)</a></code></pre></div>
+<pre><code>[1] 105</code></pre>
+<p>Pour savoir quelles lignes de <code>popular_dest</code> manquent dans <code>inner_dest</code> (il devrait y en avoir 4), il suffit de filtrer les lignes de <code>left_dest</code> qui contiennent des données manquantes dans la colonne <code>name</code> :</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1">left_popular <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb310-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(name))</a></code></pre></div>
+<pre><code># A tibble: 4 x 3
+  dest  name      n
+  &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
+1 SJU   &lt;NA&gt;   5819
+2 BQN   &lt;NA&gt;    896
+3 STT   &lt;NA&gt;    522
+4 PSE   &lt;NA&gt;    365</code></pre>
+<p>Une rapide recherche dans un moteur de recherche vous apprendra que ces aéroports ne sont pas situés sur le sol américain. Trois d’entre eux sont situés à Puerto Rico (<code>SJU</code>, <code>BQN</code> et <code>PSE</code>) et le dernier (<code>STT</code>) est situé aux Îles Vierges.</p>
+<p>Il y aurait bien plus à dire sur les jointures :</p>
+<ul>
+<li>Quelles sont les autres possibilités de jointures (<code>right_join()</code>, <code>outer_join()</code>, <code>full_join()</code>, etc…) ?</li>
+<li>Que se passe-t’il si les colonnes communes des 2 tableaux contiennent des élements dupliqués ?</li>
+<li>Est-il toujours nécessaire d’utiliser l’argument <code>by</code> ?</li>
+<li>Est-il possible de joindre des tableaux en associant plus d’une colonne de chaque tableau d’origine ?</li>
+</ul>
+<p>Pour avoir la réponse à toutes ces questions, je vous conseille de lire <a href="http://r4ds.had.co.nz/relational-data.html">ce chapitre</a> de cet ouvrage très complet sur “la science des données” avec R et le <code>tidyverse</code> : <a href="http://r4ds.had.co.nz">R for Data Science</a>.</p>
 <!-- ```{r, tidy=FALSE} -->
 <!-- all_flights <- flights %>% -->
 <!--   count(carrier) -->
@@ -1155,10 +1390,9 @@ Figure 6.12: Consommation en fonction de la cylindrée
 <!--          fill = "Aéroport de\nNew York") + -->
 <!--     scale_fill_brewer(palette = "Set1") -->
 <!-- ``` -->
-<!-- barres d'erreur -->
-<!-- Vols de JFK du 12 février -->
 <!-- Diamonds trop gros à la fac -->
 
+</div>
 </div>
 </div>
             </section>
