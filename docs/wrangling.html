@@ -1383,45 +1383,9 @@ Figure 6.15: Schéma de la fonction <code>left_join()</code> tiré de la ‘chea
 <li><p>Ajoutez à votre tableau <code>carrier_stats</code> le nom complet des compagnies aériennes en réalisant la jointure appropriée avec le tableau <code>airlines</code>.</p></li>
 <li><p>Faites un graphique synthétique présentant ces résultats de la façon la plus claire possible</p></li>
 <li><p>Quelle compagnie aérienne semble se comporter très différemment des autres ? À quoi pouvez-vous attribuer ce comportement atypique ?</p></li>
-<li><p>Pour les compagnies affretant un grand nombre de vols chaque année (e.g. <code>UA</code>, <code>B6</code> et <code>EV</code>), quelles sont les périodes ou les plus fortes proportions de vols en retard sont observés ? Et les plus faibles ? Quelle hypothèse pouvez-vous formuler pour expliquer ces observations ?</p></li>
+<li><p>Pour les compagnies affretant un grand nombre de vols chaque année (e.g. <code>UA</code>, <code>B6</code> et <code>EV</code>), quelles sont les périodes où les plus fortes proportions de vols en retard sont observées ? Et les plus faibles ? Quelle(s) hypothèse(s) pouvez-vous formuler pour expliquer ces observations ?</p></li>
 <li><p>Faites un tableau synthétique présentant ces résultats de la façon la plus compacte et claire que possible, afin par exemple de les intégrer à un rapport.</p></li>
 </ol>
-<!-- ```{r, tidy=FALSE} -->
-<!-- all_flights <- flights %>% -->
-<!--   count(carrier) -->
-<!-- all_flights -->
-<!-- left_join(all_flights, cancelled, by = "carrier") -->
-<!-- inner_join(all_flights, cancelled, by = "carrier") -->
-<!-- inner_join(all_flights, cancelled, by = "carrier") %>% -->
-<!--   mutate(pc = n.y * 100 / n.x) %>% -->
-<!--   arrange(desc(pc)) -->
-<!-- left_join(all_flights, cancelled, by = "carrier") %>% -->
-<!--   mutate(pc = n.y * 100 / n.x) %>% -->
-<!--   arrange(desc(pc)) -->
-<!-- left_join(all_flights, cancelled, by = "carrier") %>% -->
-<!--   mutate(pc = n.y * 100 / n.x) %>% -->
-<!--   ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc)) + -->
-<!--     geom_col() + -->
-<!--     labs(x = "Compagnie aérienne", -->
-<!--          y = "Proportion de vols annulés après décollage (%)") -->
-<!-- cancelled_origin <- flights %>% -->
-<!--   filter(!is.na(dep_time), -->
-<!--          is.na(arr_time)) %>% -->
-<!--   count(carrier, origin) -->
-<!-- cancelled_origin -->
-<!-- all_flights_origin <- flights %>% -->
-<!--   count(carrier, origin) -->
-<!-- all_flights_origin -->
-<!-- left_join(all_flights_origin, cancelled_origin, by = c("carrier", "origin")) %>% -->
-<!--   mutate(pc = n.y * 100 / n.x) %>% -->
-<!--   ggplot(aes(x = fct_reorder(carrier, pc, .desc = TRUE), y = pc, fill = origin)) + -->
-<!--     geom_col(color = "black") + -->
-<!--     facet_wrap(~origin, ncol = 1) + -->
-<!--     labs(x = "Compagnie aérienne", -->
-<!--          y = "Proportion de vols annulés après décollage (%)", -->
-<!--          fill = "Aéroport de\nNew York") + -->
-<!--     scale_fill_brewer(palette = "Set1") -->
-<!-- ``` -->
 
 </div>
 </div>

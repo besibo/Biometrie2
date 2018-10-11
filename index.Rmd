@@ -35,7 +35,7 @@ Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) né
 
 Ces travaux pratiques ont essentiellement 3 objectifs :
 
-1. Vous faire (re)découvrir les logiciels [R](https://cran.r-project.org) et [Rstudio](https://www.rstudio.com) dans lesquels vous allez passer beaucoup de temps en L3 puis en master. Si vous choisissez une spécialité de master qui implique de traiter des données (c'est-à-dire à peu près toutes les spécialités !) et /ou de communiquer des résultats d'analyses statistiques, alors R et RStudio devraient être les logiciels vers lesquels vous vous tournerez naturellement.
+1. Vous faire (re)découvrir les logiciels [R](https://cran.r-project.org) et [Rstudio](https://www.rstudio.com) dans lesquels vous allez passer beaucoup de temps en L3 puis en master. Si vous choisissez une spécialité de master qui implique de traiter des données (c'est-à-dire à peu près toutes les spécialités !) et/ou de communiquer des résultats d'analyses statistiques, alors R et RStudio devraient être les logiciels vers lesquels vous vous tournerez naturellement.
 2. Vous faire prendre conscience de l'importance des visualisations graphiques :
   - d'une part, pour comprendre à quoi ressemblent les données en votre possession,
   - d'autre part, pour vous permettre de formuler des hypothèses pertinentes et intéressantes concernant les systèmes que vous étudiez, 

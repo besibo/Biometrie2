@@ -1,12 +1,12 @@
 # R et RStudio : les bases {#bases}
 
-Avant de commencer à explorer des données dans R, il y a plusieurs concepts de clé qu'il faut comprendre premier lieu :
+Avant de commencer à explorer des données dans R, il y a plusieurs concepts clés qu'il faut comprendre premier lieu :
 
 1. Que sont R et RStudio ?
 2. Comment s'y prend-on pour coder dans R ?
 3. Que sont les "packages" ?
 
-Si vous pensez être déjà à l'aise avec ces concepts, lisez attentivement ce chapitre et faites les exercices demandés. Cela vous rafraîchira probablement la mémoire, et il n'est pas impossible que vous appreniez une chose ou deux au passage. Une bonne maîtrise des éléments présentés dans ce chapitre est un effet nécessaire pour aborder sereinement la section \@ref(dataset) ci-dessous, qui présente quelques jeux de données que nous explorerons en détail au cours de ces séances de TP qui viennent. 
+Même si vous pensez être déjà à l'aise avec ces concepts, lisez attentivement ce chapitre et faites les exercices demandés. Cela vous rafraîchira probablement la mémoire, et il n'est pas impossible que vous appreniez une chose ou deux au passage. Une bonne maîtrise des éléments présentés dans ce chapitre est un effet nécessaire pour aborder sereinement les chapitres suivants, à commencer par le chapitre \@ref(dataset), qui présente quelques jeux de données que nous explorerons en détail dans cet ouvrage. 
 
 Ce chapitre est en grande partie basé sur les 3 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :
 
@@ -21,7 +21,7 @@ Ce chapitre est en grande partie basé sur les 3 ressources suivantes que je vou
 
 ## Que sont R et RStudio
 
-Pour l'ensemble des TP de biométrie 2, j'attends de vous que vous utilisez R *via* RStudio. Les utilisateurs novices confondent souvent les deux. Pour tenter une analogie simple :
+Pour l'ensemble de ces TP, j'attends de vous que vous utilisez R *via* RStudio. Les utilisateurs novices confondent souvent les deux. Pour tenter une analogie simple :
 
 - R est le moteur d'une voiture
 - RStudio est l'habitacle, le tableau de bord, les pédales
@@ -40,11 +40,11 @@ Avant tout, vous devez télécharger et installer R et RStudio, dans cet ordre :
 1. [Téléchargez et installez R](https://cran.r-project.org)
  - Note : vous devez installer ce logiciel en premier
  - Cliquez sur le lien de telechargement qui correspond à votre système d'exploitation, puis, sur "base", et suivez les instructions
-2. [Téléchargez et installez R](https://www.rstudio.com/products/RStudio/#Desktop)
+2. [Téléchargez et installez RStudio](https://www.rstudio.com/products/RStudio/#Desktop)
  - Cliquez sur "Download RStudio Desktop"
  - Choisissez la version gratuite et cliquez sur le lien de télechargement qui correspond à votre système d'exploitation.
  
-Pour plus de détails sur la façon de procéder, vous pouvez consulter [cette vidéo](https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=3) sur le site de DataCamp. Il est possible que vous deviez créer un compte (gratuit) pour accéder à la vidéo.
+Pour plus de détails sur la façon de procéder, vous pouvez consulter [cette vidéo](https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=3) sur le site de DataCamp. Pour accéder à la vidéo, il est possible que vous deviez vous identifier avec le compte (gratuit) que vous avez créé un peu plus tôt.
 
 
 ### Utiliser R depuis RStudio
@@ -68,9 +68,9 @@ Regardez [cette vidéo DataCamp](https://campus.datacamp.com/courses/working-wit
 
 ## Comment exécuter du code R ? {#code}
 
-Maintenant que vous avez configuré R et RStudio, vous vous demandez probablement "OK. Maintenant, comment utiliser R ?" La première chose à noter est que, contrairement à d'autres logiciels comme Excel, STATA ou SAS qui fournissent des interfaces où tout se fait en cliquant avec sa souris, R est un langage interprété, ce qui signifie que vous devez entrer des commandes R écrites en code R. C'est-à-dire que vous devez **programmer** en R (j'utilise les termes "coder" et "programmer" de manière interchangeable dans ce livre). 
+Maintenant que vous avez installé R et RStudio, vous vous demandez probablement comment on s'en sert... La première chose à noter est que, contrairement à d'autres logiciels comme Excel, STATA ou SAS qui fournissent des interfaces où tout se fait en cliquant avec sa souris, R est un langage interprété, ce qui signifie que vous devez taper des commandes R, écrites en code R. C'est-à-dire que vous devez **programmer** en R (j'utilise les termes "coder" et "programmer" de manière interchangeable dans ce livre). 
 
-Il n'est pas nécessaire d'être un programmeur pour utiliser R. Néamnoins il existe un ensemble de concepts de programmation de base que les utilisateurs R doivent comprendre. Par conséquent, bien que ce livre ne soit pas un livre sur la programmation, vous en apprendrez juste assez sur ces concepts de programmation de base nécessaires pour explorer et analyser efficacement des données.
+Il n'est pas nécessaire d'être un programmeur pour utiliser R, néamnoins, il est nécessaire de programmer ! Il existe en effet un ensemble de concepts de programmation de base que les utilisateurs R doivent comprendre et maîtriser. Par conséquent, bien que ce livre ne soit pas un livre sur la programmation, vous en apprendrez juste assez sur ces concepts de programmation de base pour explorer et analyser efficacement des données.
 
 ### La console
 
@@ -82,7 +82,7 @@ Cliquez dans la console (après le symbole `>`) et tapez ceci, sans oublier de v
 3 + 8
 ```
 
-Félicitations, vous venez de taper votre première instruction R : vous savez maintenant faire une addition !
+Félicitations, vous venez de taper votre première instruction R : vous savez maintenant faire des additions !
 
 ### Le répertoire de travail
 
@@ -98,18 +98,18 @@ Ce répertoire de travail est important : c'est là que seront stockés les tabl
 
 Avant d'aller plus loin je vous conseille donc vivement de : 
 
-1. Créer un nouveau dossier intitulé "Biometrie" sur votre espace personnel (généralement, sur le disque "W:" des ordinateurs de l'Université)
+1. Créer un nouveau dossier intitulé "Rstats" sur votre espace personnel (généralement, sur le disque "W:" des ordinateurs de l'Université)
 2. Indiquez à RStudio que vous souhaitez travailler dans ce nouveau répertoire de travail. Pour cela vous avez 3 solutions au choix :
     1. Dans RStudio, cliquez dans le menu "Session > Set Working Directory > Choose Directory..." puis naviguez jusqu'au dossier que vous venez de créer
-    2. Dans le panneau "Files", naviguez jusqu'au dossier "Biometrie" que vous venez de créer, puis cliquez sur le bouton "More > Set As Working Directory"
+    2. Dans le panneau "Files", naviguez jusqu'au dossier "Rstats" que vous venez de créer, puis cliquez sur le bouton "More > Set As Working Directory"
     3. En ligne de commande, dans la console, utilisez la fonction `setwd()` pour spécifier le chemin de votre nouveau dossier, par exemple :
   
 ```{r eval=FALSE}
 # Attention à bien respecter les majuscules et à utiliser les guillemets.
-setwd("W:/Biometrie")
+setwd("W:/Rstats")
 ```
   
-Il ne vous reste plus qu'à vérifier que le changement a bien été pris en compte en tapant à nouveau `getwd()` dans la console. Attention, vous devez vous assurer d'être dans le bon répertoire de travil **à chaque nouvelle session** !
+Il ne vous reste plus qu'à vérifier que le changement a bien été pris en compte en tapant à nouveau `getwd()` dans la console. Attention, vous devez vous assurer d'être dans le bon répertoire de travail **à chaque nouvelle session** !
 
 
 ### Les scripts
@@ -126,7 +126,7 @@ Les avantages de travailler dans un script sont nombreux :
 1. Vous pouvez sauvegarder votre script à tout moment (vous devriez prendre l'habitude de le sauvegarder très régulièrement). Vous gardez ainsi la trace de toutes les commandes que vous avez tapées.
 2. Vous pouvez aisément partager votre script pour collaborer avec vos collègues de promo et enseignants.
 3. Vous pouvez documenter votre démarche et les différentes étapes de vos analyses. Vous devez ajouter autant de commentaires que possible. Cela permettra à vos collaborateurs de comprendre ce que vous avez fait. Et cela vous permettra de comprendre ce que vous avez fait il y a 6 mois quand vous vous re-plongerez dans vos analyses dans quelques temps. Si votre démarche vous paraît cohérente maintenant, il n'est en effet pas garanti que vous rappellerez de chaque détail dans 6 mois ou 6 ans.
-4. Un script bien structuré et clair permet de rendre vos analyses répétables. Si vous passer 15 heures à analyser un tableau de données précis, il vous suffira de quelques secondes pour analyser un nouveau jeu de données similaires : vous n'aurez que quelques lignes à modifier dans votre script original pour l'appliquer à de nouvelles données.
+4. Un script bien structuré et clair permet de rendre vos analyses répétables. Si vous passez 15 heures à analyser un tableau de données précis, il vous suffira de quelques secondes pour analyser un nouveau jeu de données similaire : vous n'aurez que quelques lignes à modifier dans votre script original pour l'appliquer à de nouvelles données.
 
 Vous pouvez créer un script en cliquant dans le menu "File > New File > R Script". Un nouveau panneau s'ouvre dans l'application. Pensez à sauvegarder immédiatement votre nouveau script. Il faut pour cela lui donner un nom. Vous noterez que par défaut, RStudio propose d'enregistrer votre script dans votre répertoire de travail.
 
@@ -138,7 +138,7 @@ Pour exécuter les commandes du script dans la console, il suffit de placer le c
 
 Ci-dessous, un exemple de script
 
-```{r eval=FALSE}
+```{r eval=FALSE, tidy = FALSE}
 # Penser à installer le package ggplot2 si besoin
 # install.packages("ggplot2")
 
@@ -217,7 +217,7 @@ Dans [le cours d'introduction à R](https://www.datacamp.com/community/open-cour
 - [Chapitre 4 : les facteurs](https://campus.datacamp.com/courses/introduction-a-r/chapitre-4-facteurs?ex=1)
     - Des données catégorielles (et non pas *numériques*) représentés dans R sous forme de `factor`s.
 - [Chapitre 5 : les jeux de données ou `data.frame`](https://campus.datacamp.com/courses/introduction-a-r/chapitre-5-les-jeux-de-donnees?ex=1)
-    - Les `data.frame`s sont similaires aux feuilles de calcul rectangulaires que l'on peut produire dans un tableur. Dans R, ce sont des objets rectangulaires (des tableaux !) contenant des jeux de jeux de données : les lignes correspondent aux observations et les colonnes aux variables décrivant les observations. La plupart du temps, c'es le format de données que nous utiliserons. Plus de détails dans la partie \@ref(dataset).
+    - Les `data.frame`s sont similaires aux feuilles de calcul rectangulaires que l'on peut produire dans un tableur. Dans R, ce sont des objets rectangulaires (des tableaux !) contenant des jeux de données : les lignes correspondent aux observations et les colonnes aux variables décrivant les observations. La plupart du temps, c'est le format de données que nous utiliserons. Plus de détails dans le chapitre \@ref(dataset).
     
 
 Avant de passer à la suite, il nous reste 2 grandes notions à découvrir dans le domaine du code et de la syntaxe afin de pouvoir travailler efficacement dans R : les opérateurs de comparaison d'une part, et les fonctions d'autre part.
@@ -290,7 +290,7 @@ Dans un cas comme celui là, R va *recycler* l'objet le plus court, ici `tailles
 
 Ce type de recyclage est très risqué car il est difficile de savoir ce qui a été comparé avec quoi. En travaillant avec des tableaux plutôt qu'avec des vecteurs, le problème est généralement évité puisque toutes les colonnes d'un `data.frame` contiennent le même nombre d'éléments.
 
-Dernière chose concernant les opérateurs de comparaison : la question des données manquantes. Dans R les données manquantes sont symbolisées par cette notation : `NA`, abréviation de "Not Available". Le symbole `NaN` est parfois aussi observé lorsque des opérations ont conduit à des indéterminations. Mais c'est plus rare et la plupart du temps, les `NaN`s peuvent être traités comme les `NA`s. L'un des problèmes des données manquantes, est qu'il est nécessaire de prendre des précautions pour réaliser des comparaison les impliquants :
+Dernière chose concernant les opérateurs de comparaison : la question des données manquantes. Dans R les données manquantes sont symbolisées par cette notation : `NA`, abréviation de "Not Available". Le symbole `NaN` (comme "Not a Number") est parfois aussi observé lorsque des opérations ont conduit à des indéterminations. Mais c'est plus rare et la plupart du temps, les `NaN`s peuvent être traités comme les `NA`s. L'un des problèmes des données manquantes, est qu'il est nécessaire de prendre des précautions pour réaliser des comparaison les impliquants :
 ```{r}
 3 == NA
 ```
@@ -298,7 +298,7 @@ On s'attend logiquement à ce que 3 ne soit pas considéré comme égal à `NA`,
 ```{r}
 NA == NA
 ```
-C'est pourtant assez logique. Imaginons que j'ignore l'âge de Pierre et l'âge de Marie. Il n'y a aucune raison pour que leur âge soit le même, mais il est tout à fait possible qu'il le soit. C'est impossible à déterminer :
+C'est en fait assez logique. Imaginons que j'ignore l'âge de Pierre et l'âge de Marie. Il n'y a aucune raison pour que leur âge soit le même, mais il est tout à fait possible qu'il le soit. C'est impossible à déterminer :
 ```{r}
 age_Pierre <- NA
 age_Marie <- NA
@@ -362,6 +362,7 @@ Ce fichier d'aide nous apprend que par défaut, la syntaxe de la fonction `log()
 log(x, base = exp(1))
 ```
 Par défaut, la base du logarithme est fixée à `exp(1)`. Nous avons donc calculé un logarithme népérien (en base *e*). Cette fonction prend donc 2 arguments :
+
 1. `x` ne possède pas de valeur par défaut : il nous faut obligatoirement fournir quelque chose (la rubrique "Argument" du fichier d'aide nous indique que `x` doit être un vecteur numérique ou complexe) afin que la fonction puisse calculer un logarithme
 2. `base` possède un argument par défaut. Si nous ne spécifions pas nous même la valeur de `base`, elle sera fixée à sa valeur par défaut, c'est à dire `exp(1)`.
 
@@ -389,15 +390,10 @@ log(base = 10, x = 100)
 
 ## Les packages additionels {#packages}
 
-Une source de confusion importante pour les nouveaux utilisateurs de R est la notion de package. Les packages étendent les fonctionnalités de R en fournissant des fonctions, des données et de la documentation supplémentaires et peuvent être téléchargés gratuitement sur Internet. Ils sont écrits par une communauté mondiale d'utilisateurs R. Par exemple, parmi plus de 13000 packages disponibles à l'heure actuelle, nous utiliseront fréquemment :
+Une source de confusion importante pour les nouveaux utilisateurs de R est la notion de package. Les packages étendent les fonctionnalités de R en fournissant des fonctions, des données et de la documentation supplémentaires et peuvent être téléchargés gratuitement sur Internet. Ils sont écrits par une communauté mondiale d'utilisateurs de R. Par exemple, parmi plus de 13000 packages disponibles à l'heure actuelle, nous utiliseront fréquemment :
 
 * Le package `ggplot2` pour la visualisation des données dans le chapitre \@ref(viz)
 * Le package `dplyr` pour les manipuler des tableaux données dans le chapitre \@ref(wrangling)
-
-Il y a deux choses importantes à retenir à propos des packages R :
-
-1. *Installation* : la plupart des packages ne sont pas installés par défaut lorsque vous installez R et RStudio. Vous devez installer un package avant de pouvoir l'utiliser. Une fois que vous l'avez installé, vous n'avez probablement pas besoin de l'installer à nouveau, sauf si vous souhaitez le mettre à jour vers une version plus récente du package. 
-1. *Chargement* : les packages ne sont pas chargés automatiquement lorsque vous ouvrez RStudio. Vous devez les charger chaque fois que vous ouvrez RStudio en utilisant la commande `library ()`.
 
 Une bonne analogie pour les packages R : ils sont comme les apps que vous téléchargez sur un téléphone portable :
 
@@ -406,11 +402,10 @@ R : Un nouveau téléphone   |  Packages: Apps qu'on peut telécharger
 <img src="images/iphone.jpg" alt="Drawing" style="height: 200px;"/>  |  <img src="images/apps.jpg" alt="Drawing" style="height: 200px;"/>
 
 
-1. R est comme un nouveau téléphone mobile. Il est capable de faire certaines choses lorsque vous l'utilisez pour la première fois, mais il ne sait pas tout faire.
-2. Les packages R sont comme les apps que vous pouvez télécharger dans l'App Store et Google Play.
-1. Pour utiliser un package, comme pour utiliser Instagram, vous devez :
-     1. Le télécharger et l'installer. Vous ne le faites qu'une fois.
-     1. Le charger (en d'autres termes, l'ouvrir) en utilisant la commande `library ()`.
+R est comme un nouveau téléphone mobile. Il est capable de faire certaines choses lorsque vous l'utilisez pour la première fois, mais il ne sait pas tout faire. Les packages R sont comme les apps que vous pouvez télécharger dans l'App Store et Google Play. Pour utiliser un package, comme pour utiliser Instagram, vous devez :
+
+1. Le télécharger et l'installer. Vous ne le faites qu'une fois.
+2. Le charger (en d'autres termes, l'ouvrir) en utilisant la commande `library ()`.
 
 Donc, tout comme vous ne pouvez commencer à partager des photos avec vos amis sur Instagram que si vous installez d'abord l'application et que vous l'ouvrez, vous ne pouvez accéder aux données et fonctions d'un package R que si vous installez d'abord le package et le chargez avec la fonction `library()`. Passons en revue ces 2 étapes.
 
@@ -440,7 +435,7 @@ library(dplyr)
 ```
 
 
-**Note** : Vous devez charger à nouveau chaque package que vous souhaitez utiliser à chaque fois que vous ouvrez une nouvelle session de travail dans RStudio. Ça peut être un peu pénible et c'est une source d'erreur fréquente pour les débutants. Quand vous vouyez un message d'erreur commençant par :
+**Note** : Vous devez charger à nouveau chaque package que vous souhaitez utiliser **à chaque fois que vous ouvrez une nouvelle session de travail dans RStudio**. Ça peut être un peu pénible et c'est une source d'erreur fréquente pour les débutants. Quand vous vouyez un message d'erreur commençant par :
 
 ```
 Error: could not find function...
@@ -462,5 +457,3 @@ Créez un nouveau script que vous nommerez `VotreNomDeFamille.R`. Vous prendrez 
 5. Combien de diamants coûtent $15000 ou plus ?
 6. Cela représente quelle proportion du jeu de données de départ ?
 7. Triez ce tableau par ordre de prix décroissant et affichez les informations des 20 diamants les plus chers.
-
-Déposez votre script sur l'ENT au moins une heure avant votre prochaine séance de travaux pratiques. 
