@@ -341,7 +341,7 @@ Avec ce nouveau tableau `diams`, tapez le code permettant de créer le graphique
 
 ```{r, exodiamonds, tidy=FALSE, warning=FALSE, echo = FALSE, fig.cap="Prix de 5000 diamants en fonction de leur taille en carats et de leur couleur."}
 ggplot(data = diams, mapping = aes(x = carat, y = price)) +
-    geom_point(alpha = 0.5, shape = 4, aes(color = color))
+    geom_point(alpha = 0.5, shape = 4, aes(color = clarity))
 ```
 
 Selon vous, à quoi sont dues les bandes verticales que l'on observe sur ce graphique ?
