@@ -832,6 +832,78 @@ Pour avoir la réponse à toutes ces questions, je vous conseille de lire [ce ch
 
 Néanmoins, avec les deux fonctions `inner_join()` et `left_join()` décrite ici devraient vous permettre de couvrir l'essentiel de vos besoins.
 
+
+----
+
+## Exercices
+
+1. Créez un tableau `delayed` indiquant, pour chaque compagnie aérienne et chaque mois de l'année, le nombre de vols ayant eu un retard supérieur à 30 minutes à l'arrivée à destination. Ce tableau devrait contenir uniquement 3 colonnes :
+
+* `carrier` : la compagnie aérienne
+* `month` : le mois de l'année 2013
+* `n_delayed` : le nombre de vols ayant plus de 30 minutes de retard
+
+2. Créez un tableau `total` indiquant le nombre total de vols affrétés (et non annulés) par chaque compagnie aérienne et chaque mois de l'année. Ce tableau devrait contenir seulement 3 colonnes :
+
+* `carrier` : la compagnie aérienne
+* `month` : le mois de l'année 2013
+* `n_total` : le nombre total de vols arrivés à destination
+
+3. Fusionnez ces 2 tableaux en réalisant la jointure appropriée. Le tableau final, que vous nommerez `carrier_stats` devrait contenir 185 lignes. Si certaines colonnes contiennent des données manquantes, remplacez-les par des 0 à l'aide des fonctions `mutate()` et `na_replace()`.
+
+4. Ajoutez à votre tableau `carrier_stats` une variable `rate` qui contient la proportion de vols arrivés à destination avec plus de 30 minutes de retard, pour chaque compagnie aérienne et chaque mois de l'année.
+
+5. Ajoutez à votre tableau `carrier_stats` le nom complet des compagnies aériennes en réalisant la jointure appropriée avec le tableau `airlines`.
+
+6. Faites un graphique synthétique présentant ces résultats de la façon la plus claire possible
+
+7. Quelle compagnie aérienne semble se comporter très différemment des autres ? À quoi pouvez-vous attribuer ce comportement atypique ?
+
+8. Pour les compagnies affretant un grand nombre de vols chaque année (e.g. `UA`, `B6` et `EV`), quelles sont les périodes où les plus fortes proportions de vols en retard sont observées ? Et les plus faibles ? Quelle(s) hypothèse(s) pouvez-vous formuler pour expliquer ces observations ?
+
+9. Faites un tableau synthétique présentant ces résultats de la façon la plus compacte et claire que possible, afin par exemple de les intégrer à un rapport.
+
+
+```{r include = FALSE}
+# Calcul du nombre de vols en retard (+ de 30 min à l'arrivée) pour chaque compagnie et chaque mois
+delayed <- flights %>% 
+  filter(arr_delay > 30) %>% 
+  group_by(carrier, month) %>% 
+  summarize(n_delayed = n()) %>% 
+  select(carrier, month, n_delayed)
+
+# Calcul du nombre total de vols non annulés pour chaque compagnie et chaque mois
+total <- flights %>% 
+  filter(!is.na(arr_delay)) %>% 
+  group_by(carrier, month) %>% 
+  summarize(n_total = n())
+
+# Création du tableau de synthèse (2 left_join())
+carrier_stats <- total %>% 
+  left_join(delayed) %>% 
+  mutate(n_delayed = replace_na(n_delayed, 0),
+         rate = n_delayed / n_total) %>% 
+  left_join(airlines)
+carrier_stats
+
+# Création du tableau synthétique. Il faut dégrouper le tableau avec ungroup() pour ne pas avoir la variable carrier. J'arrondis aussi à 3 chiffres significatifs.
+carrier_stats %>% 
+  ungroup() %>% 
+  select(name, month, rate) %>% 
+  mutate(rate = round(rate, 3)) %>% 
+  spread(month, rate)
+
+# Création de graphiques de synthèse
+carrier_stats %>% 
+  ggplot(aes(x = factor(month), y = rate, group = 1)) + 
+    geom_line() +
+    geom_point() +
+    facet_wrap(~carrier, ncol=4)
+  
+```
+
+
+
 <!-- ```{r, tidy=FALSE} -->
 <!-- all_flights <- flights %>% -->
 <!--   count(carrier) -->
@@ -876,7 +948,3 @@ Néanmoins, avec les deux fonctions `inner_join()` et `left_join()` décrite ici
 <!--     scale_fill_brewer(palette = "Set1") -->
 
 <!-- ``` -->
-
-
-
-<!-- Diamonds trop gros à la fac -->

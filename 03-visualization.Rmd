@@ -329,10 +329,18 @@ ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, size =
 
 À quoi sert l'argument `stroke` ?
 
-Avec le jeu de données `diamonds`, tapez le code permettant de créer le graphique \@ref(fig:exodiamonds) (Indice : affichez le tableau `diamonds` dans la console afin de voir quelles sont les variables disponibles).
+Avec le jeu de données `diamonds`, tapez les commandes suivantes pour créer un nouveau tableau `diams` contenant moins de lignes (5000 au lieu de près de 54000) :
 
-```{r, exodiamonds, tidy=FALSE, warning=FALSE, echo = FALSE, fig.cap="Prix de 53940 diamants en fonction de leur taille en carats et de leur couleur."}
-ggplot(data = diamonds, mapping = aes(x = carat, y = price)) +
+```{r tidy = FALSE}
+set.seed(4532) # Afin que tout le monde récupère les mêmes lignes
+diams <- diamonds %>% 
+  sample_n(5000)
+```
+
+Avec ce nouveau tableau `diams`, tapez le code permettant de créer le graphique \@ref(fig:exodiamonds) (Indice : affichez le tableau `diams` dans la console afin de voir quelles sont les variables disponibles).
+
+```{r, exodiamonds, tidy=FALSE, warning=FALSE, echo = FALSE, fig.cap="Prix de 5000 diamants en fonction de leur taille en carats et de leur couleur."}
+ggplot(data = diams, mapping = aes(x = carat, y = price)) +
     geom_point(alpha = 0.5, shape = 4, aes(color = color))
 ```
 
