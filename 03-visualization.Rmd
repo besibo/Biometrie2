@@ -332,6 +332,7 @@ ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, size =
 Avec le jeu de données `diamonds`, tapez les commandes suivantes pour créer un nouveau tableau `diams` contenant moins de lignes (5000 au lieu de près de 54000) :
 
 ```{r tidy = FALSE}
+library(dplyr)
 set.seed(4532) # Afin que tout le monde récupère les mêmes lignes
 diams <- diamonds %>% 
   sample_n(5000)
