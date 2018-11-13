@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-10-20">
+<meta name="date" content="2018-11-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,70 +50,44 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    background-color: #ffffff;
-    color: #a0a0a0;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
-div.sourceCode
-  { color: #1f1c1b; background-color: #ffffff; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span. { color: #1f1c1b; } /* Normal */
-code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-code span.an { color: #ca60ca; } /* Annotation */
-code span.at { color: #0057ae; } /* Attribute */
-code span.bn { color: #b08000; } /* BaseN */
-code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #924c9d; } /* Char */
-code span.cn { color: #aa5500; } /* Constant */
-code span.co { color: #898887; } /* Comment */
-code span.cv { color: #0095ff; } /* CommentVar */
-code span.do { color: #607880; } /* Documentation */
-code span.dt { color: #0057ae; } /* DataType */
-code span.dv { color: #b08000; } /* DecVal */
-code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code span.fl { color: #b08000; } /* Float */
-code span.fu { color: #644a9b; } /* Function */
-code span.im { color: #ff5500; } /* Import */
-code span.in { color: #b08000; } /* Information */
-code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code span.op { color: #1f1c1b; } /* Operator */
-code span.ot { color: #006e28; } /* Other */
-code span.pp { color: #006e28; } /* Preprocessor */
-code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-code span.sc { color: #3daee9; } /* SpecialChar */
-code span.ss { color: #ff5500; } /* SpecialString */
-code span.st { color: #bf0303; } /* String */
-code span.va { color: #0057ae; } /* Variable */
-code span.vs { color: #bf0303; } /* VerbatimString */
-code span.wa { color: #bf0303; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -343,7 +317,10 @@ code span.wa { color: #bf0303; } /* Warning */
 </tbody>
 </table>
 <p>À l’université, vous trouverez RStudio dans le menu Windows. Quand vous ouvrez RStudio pour la première fois, vous devriez obtenir une fenêtre qui ressemble à ceci :</p>
-<p><img src="images/rstudio.png" /></p>
+<div class="figure">
+<img src="images/rstudio.png" />
+
+</div>
 <p>Regardez <a href="https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=5">cette vidéo DataCamp</a> pour découvrir les différents panneaux de l’application, en particulier la Console dans laquelle nous executerons très bientôt du code R</p>
 <hr />
 </div>
@@ -356,14 +333,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <h3><span class="header-section-number">2.2.1</span> La console</h3>
 <p>La façon la plus simle d’interagir avec RStudio (mais pas du tout la meilleure !) consiste à taper directement des commandes que R pourra comprendre dans la Console.</p>
 <p>Cliquez dans la console (après le symbole <code>&gt;</code>) et tapez ceci, sans oublier de valider en tapant sur la touche <code>Entrée</code> :</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">8</span></code></pre></div>
 <pre><code>[1] 11</code></pre>
 <p>Félicitations, vous venez de taper votre première instruction R : vous savez maintenant faire des additions !</p>
 </div>
 <div id="le-repertoire-de-travail" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Le répertoire de travail</h3>
 <p>La première commande que vous devriez connaître quand vous travaillez dans R ou RStudio est la suivante :</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getwd</span>()</code></pre></div>
 <p>Si vous tapez cette commande dans la console, RStudio doit vous afficher un emplacement sur votre ordinateur. Cet emplacement est appelé “Répertoire de travail”, ou “Working Directory” en anglais (<code>getwd()</code> est l’abbréviation de “Get Working Directory”).</p>
 <p>Ce répertoire de travail est important : c’est là que seront stockés les tableaux et graphiques que vous déciderez de sauvegarder. C’est là aussi que vous sauvegarderez vos scripts (voir plus bas) qui vous permettront de garder la trace de votre travail et de le reprendre là où vous l’aviez laissé la dernière fois. Enfin, lorsque vous souhaiterez importer des tableaux de données contenus dans des fichiers externes (par exemple, des fichiers Excel), c’est également dans ce répertoire que R tentera de trouver vos données.</p>
 <p>Avant d’aller plus loin je vous conseille donc vivement de :</p>
@@ -376,8 +353,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li>En ligne de commande, dans la console, utilisez la fonction <code>setwd()</code> pour spécifier le chemin de votre nouveau dossier, par exemple :</li>
 </ol></li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># Attention à bien respecter les majuscules et à utiliser les guillemets.</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">setwd</span>(<span class="st">&quot;W:/Rstats&quot;</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Attention à bien respecter les majuscules et à utiliser les guillemets.</span>
+<span class="kw">setwd</span>(<span class="st">&quot;W:/Rstats&quot;</span>)</code></pre></div>
 <p>Il ne vous reste plus qu’à vérifier que le changement a bien été pris en compte en tapant à nouveau <code>getwd()</code> dans la console. Attention, vous devez vous assurer d’être dans le bon répertoire de travail <strong>à chaque nouvelle session</strong> !</p>
 </div>
 <div id="les-scripts" class="section level3">
@@ -400,27 +377,27 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Pour exécuter les commandes du script dans la console, il suffit de placer le curseur sur la ligne contenant la commande et de presser les touches <code>ctrl + enter</code> (ou <code>command + enter</code> sous macOS). Si un message d’erreur s’affiche dans la console, c’est que votre instruction était erronée. Modifiez la directement dans votre script et pressez à nouveau les touches <code>ctrl + enter</code> (ou <code>command + enter</code> sous macOS) pour tenter à nouveau votre chance. Idéalement, votre script ne devrait contenir que des commandes qui fonctionnent et des commentaires expliquant à quoi servent ces commandes.</p>
 <p>À la fin de chaque séance de TEA, vous devrez déposer sur l’ENT le script que vous avez créé durant la séance. Ce script devra porter votre nom de famille et se terminer par l’extension <code>.R</code>. Ainsi, si Jean-Claude Van Damme faisait des statistiques, il devrait déposer sur l’ENT un fichier intitulé <code>VanDamme.R</code> à la fin de chaque séance de TEA.</p>
 <p>Ci-dessous, un exemple de script</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Penser à installer le package ggplot2 si besoin</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co"># install.packages(&quot;ggplot2&quot;)</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co"># Chargement du package</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co"># Mise en méoire des données de qualité de l&#39;air à New-York de mai à septembre 1973</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="kw">data</span>(airquality)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co"># Affichage des premières lignes du tableau de données</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="kw">head</span>(airquality)</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co"># Quelle est la structure de ce tableau ?</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="kw">str</span>(airquality)</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co"># Réalisation d&#39;un graphique présentant la relation entre la concentration en ozone atmosphérique en ppb et la température en degrés Farenheit</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="kw">ggplot</span>(<span class="dt">data =</span> airquality, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Temp, <span class="dt">y =</span> Ozone)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>)</a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co"># On constate une augmentation importante de la concentration d&#39;ozone pour des températures supérieures à 75ºF</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Penser à installer le package ggplot2 si besoin</span>
+<span class="co"># install.packages(&quot;ggplot2&quot;)</span>
+
+<span class="co"># Chargement du package</span>
+<span class="kw">library</span>(ggplot2)
+
+<span class="co"># Mise en méoire des données de qualité de l&#39;air à New-York de mai à septembre 1973</span>
+<span class="kw">data</span>(airquality)
+
+<span class="co"># Affichage des premières lignes du tableau de données</span>
+<span class="kw">head</span>(airquality)
+
+<span class="co"># Quelle est la structure de ce tableau ?</span>
+<span class="kw">str</span>(airquality)
+
+<span class="co"># Réalisation d&#39;un graphique présentant la relation entre la concentration en ozone atmosphérique en ppb et la température en degrés Farenheit</span>
+<span class="kw">ggplot</span>(<span class="dt">data =</span> airquality, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> Temp, <span class="dt">y =</span> Ozone)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;loess&quot;</span>)
+
+<span class="co"># On constate une augmentation importante de la concentration d&#39;ozone pour des températures supérieures à 75ºF</span></code></pre></div>
 <p>Même si vous ne comprenez pas encore les commandes qui figurent dans ce script (ça viendra !), voici ce que vous devez en retenir :</p>
 <ol style="list-style-type: decimal">
 <li>Le script contient plus de lignes de commentaires que de commandes R</li>
@@ -487,66 +464,66 @@ code span.wa { color: #bf0303; } /* Warning */
 <li><code>&lt;=</code> : inférieur ou égal à</li>
 </ul>
 <p>Ainsi, on peut tester si 3 est égal à 5 :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
 <p>La réponse est bien entendu <code>FALSE</code>. Est-ce que 3 est inférieur à 5 ?</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="dv">3</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <p>La réponse est maintenant <code>TRUE</code>. Lorsque l’on utilise un opérateur de comparaison, la réponse est toujours soit vrai (<code>TRUE</code>), soit faux (<code>FALSE</code>).</p>
 <p>Il est aussi possible de comparer des chaînes de charactères :</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="st">&quot;Bonjour&quot;</span> <span class="op">==</span><span class="st"> &quot;Au revoir&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Bonjour&quot;</span> <span class="op">==</span><span class="st"> &quot;Au revoir&quot;</span></code></pre></div>
 <pre><code>[1] FALSE</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="st">&quot;Bonjour&quot;</span> <span class="op">&gt;=</span><span class="st"> &quot;Au revoir&quot;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;Bonjour&quot;</span> <span class="op">&gt;=</span><span class="st"> &quot;Au revoir&quot;</span></code></pre></div>
 <pre><code>[1] TRUE</code></pre>
 <p>Manifestement, “Bonjour” est supérieur ou égal à “Au revoir”. En fait, R utilise l’ordre alphabétique pour comparer les chaînes de caractères. Puisque dans l’alphabet, le “B” de “Bonjour” arrive après le “A” de “Au revoir”, pour R, “Bonjour” est bien supérieur à “Au revoir”.</p>
 <p>Il est également possible d’utiliser ces opérateurs pour comparer un chiffre et un vecteur :</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">tailles_pop1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">112</span>, <span class="dv">28</span>, <span class="dv">86</span>, <span class="dv">14</span>, <span class="dv">154</span>, <span class="dv">73</span>, <span class="dv">63</span>, <span class="dv">48</span>)</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">tailles_pop1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">80</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tailles_pop1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">112</span>, <span class="dv">28</span>, <span class="dv">86</span>, <span class="dv">14</span>, <span class="dv">154</span>, <span class="dv">73</span>, <span class="dv">63</span>, <span class="dv">48</span>)
+tailles_pop1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">80</span></code></pre></div>
 <pre><code>[1]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE</code></pre>
 <p>Ici, l’opérateur nous permet d’identifier quels éléments du vecteur <code>taille_pop1</code> sont supérieurs à 80. Il s’agit des éléments placés en première, troisième et cinquième position.</p>
 <p>Il est aussi possible de comparer 2 vecteurs qui contiennent le même nombre d’éléments :</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">tailles_pop2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">114</span>, <span class="dv">27</span>, <span class="dv">38</span>, <span class="dv">91</span>, <span class="dv">54</span>, <span class="dv">83</span>, <span class="dv">33</span>, <span class="dv">68</span>)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">tailles_pop1 <span class="op">&gt;</span><span class="st"> </span>tailles_pop2</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tailles_pop2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">114</span>, <span class="dv">27</span>, <span class="dv">38</span>, <span class="dv">91</span>, <span class="dv">54</span>, <span class="dv">83</span>, <span class="dv">33</span>, <span class="dv">68</span>)
+tailles_pop1 <span class="op">&gt;</span><span class="st"> </span>tailles_pop2</code></pre></div>
 <pre><code>[1] FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE</code></pre>
 <p>Les comparaisons sont ici faites élément par élément. Ainsi, les observations 2, 3, 5 et 7 du vecteur <code>tailles_pop1</code> sont supérieures aux observations 2, 3, 5 et 7 du vecteur <code>tailles_pop2</code> respectivement.</p>
 <p>Ces vecteurs de vrais/faux sont très utiles car ils peuvent permettre de compter le nombre d’éléments répondant à une certains condition :</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">sum</span>(tailles_pop1 <span class="op">&gt;</span><span class="st"> </span>tailles_pop2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(tailles_pop1 <span class="op">&gt;</span><span class="st"> </span>tailles_pop2)</code></pre></div>
 <pre><code>[1] 4</code></pre>
 <p>Lorsque l’on effectue une opération arithmétique (comme le calcul d’une somme ou d’une moyenne) sur un vecteur de vrais/faux, les <code>TRUE</code> sont remplacés par <code>1</code> et les <code>FALSE</code> par <code>0</code>. La somme nous indique donc le nombre de vrais dans un vecteur de vrais/faux, et la moyenne nous indique la proportion de vrais :</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">mean</span>(tailles_pop1 <span class="op">&gt;</span><span class="st"> </span>tailles_pop2)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(tailles_pop1 <span class="op">&gt;</span><span class="st"> </span>tailles_pop2)</code></pre></div>
 <pre><code>[1] 0.5</code></pre>
 <p><strong>Note</strong> : Attention, si les vecteurs comparés n’ont pas la même taille, un message d’avertissement est affiché :</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">tailles_pop3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">43</span>, <span class="dv">56</span>, <span class="dv">92</span>)</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">tailles_pop1</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tailles_pop3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">43</span>, <span class="dv">56</span>, <span class="dv">92</span>)
+tailles_pop1</code></pre></div>
 <pre><code>[1] 112  28  86  14 154  73  63  48</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">tailles_pop3</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tailles_pop3</code></pre></div>
 <pre><code>[1] 43 56 92</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">tailles_pop3 <span class="op">&gt;</span><span class="st"> </span>tailles_pop1</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tailles_pop3 <span class="op">&gt;</span><span class="st"> </span>tailles_pop1</code></pre></div>
 <pre><code>Warning in tailles_pop3 &gt; tailles_pop1: la taille d&#39;un objet plus long n&#39;est pas
 multiple de la taille d&#39;un objet plus court</code></pre>
 <pre><code>[1] FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE  TRUE</code></pre>
 <p>Dans un cas comme celui là, R va <em>recycler</em> l’objet le plus court, ici <code>tailles_pop3</code> pour qu’une comparaison puisse être faite avec chaque élément de l’objet le plus long (ici, <code>tailles_pop1</code>). Ainsi, 43 est comparé à 112, 56 est comparé à 28 et 92 est comparé à 86. Puisque <code>tailles_pop3</code> ne contient plus d’éléments, ils sont recyclés, dans le même ordre : 43 est comparé à 14, 56 est comparé à 154, et ainsi de suite jusqu’à ce que tous les éléments de <code>tailles_pop1</code> aient été passés en revue.</p>
 <p>Ce type de recyclage est très risqué car il est difficile de savoir ce qui a été comparé avec quoi. En travaillant avec des tableaux plutôt qu’avec des vecteurs, le problème est généralement évité puisque toutes les colonnes d’un <code>data.frame</code> contiennent le même nombre d’éléments.</p>
 <p>Dernière chose concernant les opérateurs de comparaison : la question des données manquantes. Dans R les données manquantes sont symbolisées par cette notation : <code>NA</code>, abréviation de “Not Available”. Le symbole <code>NaN</code> (comme “Not a Number”) est parfois aussi observé lorsque des opérations ont conduit à des indéterminations. Mais c’est plus rare et la plupart du temps, les <code>NaN</code>s peuvent être traités comme les <code>NA</code>s. L’un des problèmes des données manquantes, est qu’il est nécessaire de prendre des précautions pour réaliser des comparaison les impliquants :</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="ot">NA</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">3</span> <span class="op">==</span><span class="st"> </span><span class="ot">NA</span></code></pre></div>
 <pre><code>[1] NA</code></pre>
 <p>On s’attend logiquement à ce que 3 ne soit pas considéré comme égal à <code>NA</code>, et donc, on s’attend à obtenir <code>FALSE</code>. Pourtant, le résultat est <code>NA</code>. La comparaison d’un élément quelconque à une donnée manquante fournit toujours une donnée manquante : la comparaison ne peut pas se faire, R n’a donc rien à retourner. C’est également le cas aussi lorsque l’on compare deux valeurs manquantes :</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="ot">NA</span> <span class="op">==</span><span class="st"> </span><span class="ot">NA</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="ot">NA</span> <span class="op">==</span><span class="st"> </span><span class="ot">NA</span></code></pre></div>
 <pre><code>[1] NA</code></pre>
 <p>C’est en fait assez logique. Imaginons que j’ignore l’âge de Pierre et l’âge de Marie. Il n’y a aucune raison pour que leur âge soit le même, mais il est tout à fait possible qu’il le soit. C’est impossible à déterminer :</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">age_Pierre &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">age_Marie &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb35-3" data-line-number="3">age_Pierre <span class="op">==</span><span class="st"> </span>age_Marie</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">age_Pierre &lt;-<span class="st"> </span><span class="ot">NA</span>
+age_Marie &lt;-<span class="st"> </span><span class="ot">NA</span>
+age_Pierre <span class="op">==</span><span class="st"> </span>age_Marie</code></pre></div>
 <pre><code>[1] NA</code></pre>
 <p>Mais alors comment faire pour savoir si une valeur est manquante puisqu’on ne peut pas utiliser les opérateurs de comparaison ? On utilise la fonction <code>is.na()</code> :</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">is.na</span>(age_Pierre)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(age_Pierre)</code></pre></div>
 <pre><code>[1] TRUE</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">is.na</span>(tailles_pop3)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">is.na</span>(tailles_pop3)</code></pre></div>
 <pre><code>[1] FALSE FALSE FALSE</code></pre>
 <p>D’une façon générale, le point d’exclamation permet de signifier à R que nous souhaitons obtenir le contraire d’une expression :</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="op">!</span><span class="kw">is.na</span>(age_Pierre)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">!</span><span class="kw">is.na</span>(age_Pierre)</code></pre></div>
 <pre><code>[1] FALSE</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="op">!</span><span class="kw">is.na</span>(tailles_pop3)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">!</span><span class="kw">is.na</span>(tailles_pop3)</code></pre></div>
 <pre><code>[1] TRUE TRUE TRUE</code></pre>
 <p>Cette fonction nous sera très utile plus tard pour éliminer toutes les lignes d’un tableau contenant des valeurs manquantes.</p>
 </div>
@@ -617,32 +594,32 @@ multiple de la taille d&#39;un objet plus court</code></pre>
 </table>
 <p>Cette liste va très rapidement s’allonger au fil des séances. Je vous conseille donc vivement de tenir à jour une liste des fonctions décrites, avec une explication de leur fonctionnement et éventuellement un exemple de syntaxe.</p>
 <p>Certaines fonction ont besoin d’arguments (par exemple, la fonction <code>factor()</code>), d’autres peuvent s’en passer (par exemple, la fonction <code>getwd()</code>). Pour apprendre comment utiliser une fonction particulière, pour découvrir quels sont ses arguments possibles, quelle est leur rôle et leur intérêt, la meilleure solution est de consulter l’aide de cette fonction. Il suffit pour cela de taper un <code>?</code> suivi du nom de la fonction :</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">?<span class="kw">factor</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="kw">factor</span>()</code></pre></div>
 <p>Toutes les fonctions et jeux de données disponibles dans R disposent d’un fichier d’aide similaire. Cela peut faire un peu peur au premier abord (tout est en anglais !), mais ces fichiers d’aide ont l’avantage d’être très complets, de fournir des exemples d’utilisation, et ils sont tous construits sur le même modèle. Vous avez donc tout intérêt à vous familiariser avec eux. vous devriez d’ailleurs prendre l’habitude de consulter l’aide de chaque fonction qui vous pose un problème. Par exemple, le logarithme (en base 10) de 100 devrait faire 2, car 100 est égal à 10^2. Pourtant :</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">100</span>)</code></pre></div>
 <pre><code>[1] 4.60517</code></pre>
 <p>Que se passe-t’il ? Pour le savoir, il faut consulter l’aide de la fonction log :</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">?<span class="kw">log</span>()</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="kw">log</span>()</code></pre></div>
 <p>Ce fichier d’aide nous apprend que par défaut, la syntaxe de la fonction <code>log()</code> est la suivante :</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">log</span>(x, <span class="dt">base =</span> <span class="kw">exp</span>(<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(x, <span class="dt">base =</span> <span class="kw">exp</span>(<span class="dv">1</span>))</code></pre></div>
 <p>Par défaut, la base du logarithme est fixée à <code>exp(1)</code>. Nous avons donc calculé un logarithme népérien (en base <em>e</em>). Cette fonction prend donc 2 arguments :</p>
 <ol style="list-style-type: decimal">
 <li><code>x</code> ne possède pas de valeur par défaut : il nous faut obligatoirement fournir quelque chose (la rubrique “Argument” du fichier d’aide nous indique que <code>x</code> doit être un vecteur numérique ou complexe) afin que la fonction puisse calculer un logarithme</li>
 <li><code>base</code> possède un argument par défaut. Si nous ne spécifions pas nous même la valeur de <code>base</code>, elle sera fixée à sa valeur par défaut, c’est à dire <code>exp(1)</code>.</li>
 </ol>
 <p>Pour calculer le logarithme en base 10 de 100, il faut donc taper, au choix, l’une de ces 3 expressions :</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">100</span>, <span class="dt">base =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">x =</span> <span class="dv">100</span>, <span class="dt">base =</span> <span class="dv">10</span>)</code></pre></div>
 <pre><code>[1] 2</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">100</span>, <span class="dt">base =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">100</span>, <span class="dt">base =</span> <span class="dv">10</span>)</code></pre></div>
 <pre><code>[1] 2</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">100</span>, <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">100</span>, <span class="dv">10</span>)</code></pre></div>
 <pre><code>[1] 2</code></pre>
 <p>Le nom des arguments d’une fonction peut être omis tant que ces arguments sont indiqués dans l’ordre attendu par la fonction (cet ordre est celui qui est précisé à la rubrique “Usage” du fichier d’aide de la fonction). Il est possible de modifier l’ordre des arguments d’une fonction, mais il faut alors être parfaitement explicite et utiliser les noms des arguments tels que définis dans le fichier d’aide.</p>
 <p>Ainsi, pour calculer le logarithme en base 10 de 100, on ne peut pas taper :</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">log</span>(<span class="dv">10</span>, <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dv">10</span>, <span class="dv">100</span>)</code></pre></div>
 <pre><code>[1] 0.5</code></pre>
 <p>car cela revient à calculer le logarithme en base 100 de 10. On peut en revanche taper :</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">log</span>(<span class="dt">base =</span> <span class="dv">10</span>, <span class="dt">x =</span> <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">log</span>(<span class="dt">base =</span> <span class="dv">10</span>, <span class="dt">x =</span> <span class="dv">100</span>)</code></pre></div>
 <pre><code>[1] 2</code></pre>
 <hr />
 </div>
@@ -695,8 +672,8 @@ multiple de la taille d&#39;un objet plus court</code></pre>
 <div id="charger-un-package-en-memoire" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Charger un package en mémoire</h3>
 <p>Après avoir installé un package, vous pouvez le charger en utilisant la fonction <code>library()</code>. Par exemple, pour charger <code>ggplot2</code> et <code>dplyr</code> tapez ceci dans la console :</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(dplyr)</code></pre></div>
 <p><strong>Note</strong> : Vous devez charger à nouveau chaque package que vous souhaitez utiliser <strong>à chaque fois que vous ouvrez une nouvelle session de travail dans RStudio</strong>. Ça peut être un peu pénible et c’est une source d’erreur fréquente pour les débutants. Quand vous vouyez un message d’erreur commençant par :</p>
 <pre><code>Error: could not find function...</code></pre>
 <p>rappelez-vous que c’est probablement parce que vous tentez d’utiliser une fonction qui fait partie d’un package que vous n’avez pas chargé. Pour corriger l’erreur, il suffit donc de charger le package approprié avec la commande <code>library()</code>.</p>
@@ -767,7 +744,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

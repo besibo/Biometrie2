@@ -25,7 +25,7 @@
 <meta name="author" content="Benoît Simon-Bouhet">
 
 
-<meta name="date" content="2018-10-20">
+<meta name="date" content="2018-11-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,70 +50,44 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    background-color: #ffffff;
-    color: #a0a0a0;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
-div.sourceCode
-  { color: #1f1c1b; background-color: #ffffff; }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span. { color: #1f1c1b; } /* Normal */
-code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
-code span.an { color: #ca60ca; } /* Annotation */
-code span.at { color: #0057ae; } /* Attribute */
-code span.bn { color: #b08000; } /* BaseN */
-code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
-code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #924c9d; } /* Char */
-code span.cn { color: #aa5500; } /* Constant */
-code span.co { color: #898887; } /* Comment */
-code span.cv { color: #0095ff; } /* CommentVar */
-code span.do { color: #607880; } /* Documentation */
-code span.dt { color: #0057ae; } /* DataType */
-code span.dv { color: #b08000; } /* DecVal */
-code span.er { color: #bf0303; text-decoration: underline; } /* Error */
-code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
-code span.fl { color: #b08000; } /* Float */
-code span.fu { color: #644a9b; } /* Function */
-code span.im { color: #ff5500; } /* Import */
-code span.in { color: #b08000; } /* Information */
-code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
-code span.op { color: #1f1c1b; } /* Operator */
-code span.ot { color: #006e28; } /* Other */
-code span.pp { color: #006e28; } /* Preprocessor */
-code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
-code span.sc { color: #3daee9; } /* SpecialChar */
-code span.ss { color: #ff5500; } /* SpecialString */
-code span.st { color: #bf0303; } /* String */
-code span.va { color: #0057ae; } /* Variable */
-code span.vs { color: #bf0303; } /* VerbatimString */
-code span.wa { color: #bf0303; } /* Warning */
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #ffffff; color: #1f1c1b; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #ffffff; color: #a0a0a0; border-right: 1px solid #a0a0a0; }
+td.sourceCode { padding-left: 5px; }
+pre, code { color: #1f1c1b; background-color: #ffffff; }
+code > span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code > span.dt { color: #0057ae; } /* DataType */
+code > span.dv { color: #b08000; } /* DecVal */
+code > span.bn { color: #b08000; } /* BaseN */
+code > span.fl { color: #b08000; } /* Float */
+code > span.cn { color: #aa5500; } /* Constant */
+code > span.ch { color: #924c9d; } /* Char */
+code > span.sc { color: #3daee9; } /* SpecialChar */
+code > span.st { color: #bf0303; } /* String */
+code > span.vs { color: #bf0303; } /* VerbatimString */
+code > span.ss { color: #ff5500; } /* SpecialString */
+code > span.im { color: #ff5500; } /* Import */
+code > span.co { color: #898887; } /* Comment */
+code > span.do { color: #607880; } /* Documentation */
+code > span.an { color: #ca60ca; } /* Annotation */
+code > span.cv { color: #0095ff; } /* CommentVar */
+code > span.ot { color: #006e28; } /* Other */
+code > span.fu { color: #644a9b; } /* Function */
+code > span.va { color: #0057ae; } /* Variable */
+code > span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #1f1c1b; } /* Operator */
+code > span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code > span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code > span.pp { color: #006e28; } /* Preprocessor */
+code > span.at { color: #0057ae; } /* Attribute */
+code > span.re { color: #0057ae; } /* RegionMarker */
+code > span.in { color: #b08000; } /* Information */
+code > span.wa { color: #bf0303; } /* Warning */
+code > span.al { color: #bf0303; font-weight: bold; } /* Alert */
+code > span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code > span. { color: #1f1c1b; } /* Normal */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -284,9 +258,9 @@ code span.wa { color: #bf0303; } /* Warning */
 <h1><span class="header-section-number">3</span> Explorez votre premier jeu de données</h1>
 <p>Mettons en pratique tout ce que nous avons appris pour commencer à explorer un jeu de données réelles. Les données nous parviennent sous différents formats, des images au texte en passant par les chiffres. Tout au long de ce document, nous nous concentrerons sur les ensembles de données qui peuvent être stockés dans une feuille de calcul, car il s’agit de la manière la plus courante de collecter des données dans de nombreux domaines. N’oubliez pas ce que nous avons appris dans la section <a href="bases.html#objects">2.2.4.1</a> : ces ensembles de données de type “tableurs” sont appelés <code>data.frame</code> dans R, et nous nous concentrerons sur l’utilisation de ces objets tout au long de ce livre.</p>
 <p>Commençons par charger les packages nécessaires pour ce chapitre (cela suppose que vous les ayez déjà installés. Relisez la Section <a href="bases.html#packages">2.3</a> pour plus d’informations sur l’installation et le chargement des packages R si vous ne l’avez pas déjà fait). Au début de chaque chapitre, nous aurons systématiquement besoin de charger quelques packages. Donc n’oubliez pas de les installer au préalable si besoin.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># Pensez à installer ces packages avant de les charger si besoin</span></a>
-<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="kw">library</span>(nycflights13)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Pensez à installer ces packages avant de les charger si besoin</span>
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(nycflights13)</code></pre></div>
 <hr />
 <div id="le-package-nycflights13" class="section level2">
 <h2><span class="header-section-number">3.1</span> Le package <code>nycflights13</code></h2>
@@ -304,7 +278,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="le-data-frame-flights" class="section level2">
 <h2><span class="header-section-number">3.2</span> Le data frame <code>flights</code></h2>
 <p>Nous allons commencer par explorer le jeu de données <code>flights</code> qui est inclus avec le package <code>nycflights13</code> afin de nous faire une idée de sa structure. Dans votre script, tapez la commande suivante et exécutez là dans la console (selon les réglages de RStudio et <em>la largeur de votre console</em>, l’affichage peut varier légèrement) :</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">flights</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights</code></pre></div>
 <pre><code># A tibble: 336,776 x 19
     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
@@ -326,8 +300,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li><code>A tibble: 336,776 x 19</code> : un tibble est un <code>data.frame</code> amélioré. Il a toutes les caractéristiques d’un <code>data.frame</code>, (tapez <code>class(flights)</code> pour vous en convaincre), mais en plus, il a quelques propriétés intéressantes sur lesquelles nous reviendrons plus tard. Ce <code>tibble</code> possède donc :
 <ul>
 <li>336776 lignes</li>
-<li>19 colonnes, qui correspondent aux variables
-Dans un <code>tibble</code>, les observations sont toujours en ligne et les variables en colonnes.</li>
+<li>19 colonnes, qui correspondent aux variables Dans un <code>tibble</code>, les observations sont toujours en ligne et les variables en colonnes.</li>
 </ul></li>
 <li><code>year</code>, <code>month</code>, <code>day</code>, <code>dep_time</code>, <code>sched_dep_time</code>… Sont les noms des colonnes, c’est à dire les variables de ce jeu de données.</li>
 <li>Nous avons ensuite les 10 premières lignes du tableau qui correspondent à 10 vols.</li>
@@ -375,7 +348,7 @@ Dans un <code>tibble</code>, les observations sont toujours en ligne et les vari
 <div id="glimpse" class="section level3">
 <h3><span class="header-section-number">3.3.2</span> <code>glimpse()</code></h3>
 <p>La seconde façon d’explorer les données contenues dans un tableau est d’utiliser la fonction <code>glimpse()</code> après avoir chargé le package <code>dplyr</code> :</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">glimpse</span>(flights)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">glimpse</span>(flights)</code></pre></div>
 <pre><code>Observations: 336,776
 Variables: 19
 $ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013...
@@ -402,7 +375,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <div id="loperateur" class="section level3">
 <h3><span class="header-section-number">3.3.3</span> L’opérateur <code>$</code></h3>
 <p>Enfin, l’opérateur <code>$</code> permet d’accéder à une unique variable grâce à son nom. Par exemple le tableau <code>airlines</code> contient seulement 2 variables :</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">airlines</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airlines</code></pre></div>
 <pre><code># A tibble: 16 x 2
    carrier name                       
    &lt;chr&gt;   &lt;chr&gt;                      
@@ -423,7 +396,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 15 WN      Southwest Airlines Co.     
 16 YV      Mesa Airlines Inc.         </code></pre>
 <p>Nous pouvons accéder à ces variables grâce à leur nom :</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">airlines<span class="op">$</span>name</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airlines<span class="op">$</span>name</code></pre></div>
 <pre><code> [1] &quot;Endeavor Air Inc.&quot;           &quot;American Airlines Inc.&quot;     
  [3] &quot;Alaska Airlines Inc.&quot;        &quot;JetBlue Airways&quot;            
  [5] &quot;Delta Air Lines Inc.&quot;        &quot;ExpressJet Airlines Inc.&quot;   
@@ -433,14 +406,14 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 [13] &quot;US Airways Inc.&quot;             &quot;Virgin America&quot;             
 [15] &quot;Southwest Airlines Co.&quot;      &quot;Mesa Airlines Inc.&quot;         </code></pre>
 <p>Cela nous permet de récupérer les données sous la forme d’un vecteur. Attention toutefois, le tableau <code>flights</code> contient tellement de lignes, que récuppérer une variable grâce à cet opérateur peut rapidement saturer la console. Si, par exemple, vous souhaitez extraire les données relatives aux compagnies aériennes (colonne <code>carrier</code>) du tableau <code>flights</code>, vous pouvez taper ceci :</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">flights<span class="op">$</span>carrier</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights<span class="op">$</span>carrier</code></pre></div>
 <p>Le résultat est pour le moins indigeste ! Lorsqu’un tableau contient de nombreuses lignes, c’est rarement une bonne idée de transformer l’une de ses colonnes en vecteur. Dans la mesure du possible, les données d’un tableau doivent rester dans le tableau.</p>
 </div>
 <div id="les-fichiers-daide" class="section level3">
 <h3><span class="header-section-number">3.3.4</span> Les fichiers d’aide</h3>
 <p>Une fonctionalité particulièrement utile de R est son système d’aide. On peut obtenir de l’aide au sujet de n’importe quelle fonction et de n’importe quel jeu de données en tapant un <code>?</code> immédiatement suivi du nom de la fonction ou de l’objet.</p>
 <p>Par exemple, examinez l’aide du jeu de données <code>flights</code> :</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">?flights</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?flights</code></pre></div>
 <p>Vous devriez absolument prendre l’habitude d’examiner les fichiers d’aide des fonctions ou jeux de données pour lesquels vous avez des questions. Ces fichiers sont très complets, et même s’il peuvent paraître impressionants au premier abord, ils sont tous structurés sur le même modèle et vous aideront à comprendre comment utiliser les fonctions, quels sont les arguments possibles, à quoi ils servent et comment les utiliser.</p>
 <p>Prenez le temps d’examiner le fichier d’aide du jeu de données <code>flights</code>. Avant de passer à la suite, assurez-vous d’avoir compris à quoi correspondent chacune des 19 variables de ce tableau.</p>
 <hr />
@@ -508,7 +481,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');
