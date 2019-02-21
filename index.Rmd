@@ -1,0 +1,85 @@
+--- 
+title: "Travaux Pratiques de Biométrie 2"
+author: "Benoît Simon-Bouhet"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    highlight: kate
+    config:
+      edit: null
+      download: no
+      sharing:
+        twitter: no
+        facebook: no
+        github: yes
+        all: no
+      toc:
+        collapse: subsection
+  # bookdown::pdf_book:
+  #   keep_tex: yes
+  #   dev: 'cairo_pdf'
+url: 'https\://besibo.github.io/Biometrie2/'
+github-repo: "besibo/Biometrie2"
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2."
+---
+
+# Introduction
+
+## Objectifs
+
+Ce livre contient l'ensemble du matériel (contenus, exemples, exercices...) nécessaire à la réalisation des travaux pratiques de biométrie 2.
+
+Ces travaux pratiques ont essentiellement 3 objectifs :
+
+1. Vous faire (re)découvrir les logiciels [R](https://cran.r-project.org) et [Rstudio](https://www.rstudio.com) dans lesquels vous allez passer beaucoup de temps en L3 puis en master. Si vous choisissez une spécialité de master qui implique de traiter des données (c'est-à-dire à peu près toutes les spécialités !) et/ou de communiquer des résultats d'analyses statistiques, alors R et RStudio devraient être les logiciels vers lesquels vous vous tournerez naturellement.
+2. Vous faire prendre conscience de l'importance des visualisations graphiques :
+  - d'une part, pour comprendre à quoi ressemblent les données en votre possession,
+  - d'autre part, pour vous permettre de formuler des hypothèses pertinentes et intéressantes concernant les systèmes que vous étudiez, 
+  - et enfin, pour communiquer efficacement vos trouvailles à un public qui ne connait pas vos données aussi bien que vous (cela inclut évidemment vos enseignants à l'issue de vos stages).  
+  Les données que vous serez amenés à traiter lors de vos stages, ou plus tard, lorsque vous serez en poste, ont souvent été acquises à grands frais, et au prix d'efforts importants. Il est donc de votre responsabilité d'en tirer le maximum. Et ça commence toujours (ou presque), par la réalisation de visualisations graphiques parlantes.
+3. Vous apprendre comment calculer des statistiques descriptives simples, sur plusieurs types de variables, afin de vous mettre dans les meilleures conditions possible pour aborder d'une part les cours de biométrie 3 du second semestre, et d'autre part les comptes-rendus de TP que vous aurez à produire dans d'autres EC. Vos enseigants attendent de vous la plus grande rigueur lorsque vous analysez et présentez des résultats d'analyses statistiques. Ces TP ont pour objectifs de vous fournir les bases nécessaires pour satisfaire ce niveau d'exigence.
+
+
+----
+
+## Organisation
+
+Les séances de travaux pratiques de biométrie 2 durent 1h30 et ont lieu en salle informatique du Pôle Communication Multimédia Réseaux (PCM). Seules 6 heures de TP sont prévues dans la maquette, soit 4 séances de TP. C'est *très peu* ! En fait, c'est très insuffisant pour couvrir correctement la totalité du contenu de cet enseignement. C'est la raison pour laquelle chacune des 3 premières séances de TP est suivie d'**une séance de TEA de 90 minutes**. 
+
+Au début de chaque séance de TP, j'indiquerai un objectif que vous devriez être en mesure d'atteindre en l'espace de 3 heures. Certains iront probablement plus vite et d'autres plus lentement. Lors des séances de TP, je serai disponible pour répondre à chacune de vos questions. À l'issue des 90 minutes de TP, vous changerez de salle (toujours au PCM) et les 90 minutes de TEA commenceront.
+
+Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l'ENT à l'issue de chaque séance de TEA, qu'ils soient terminés ou non. S'ils ne sont pas terminés à l'issue des TEA, vous êtes vivement encourragés à les terminer en dehors des heures de cours. En effet, une correction rapide sera faite lors de la séance de travaux pratiques suivante et nous n'auront que très peu de temps à consacrer à ces corrections. Si vous n'y avez pas sérieusement réfléchi en amont, cela ne vous servira absolument à rien. Pour apprendre à utiliser un logiciel comme R, il faut en effet faire les choses soi-même, "mettre les mains dans le cambouis", se confronter à la difficulté, ne pas avoir peur des messages d'erreurs (il faut d'ailleurs apprendre à les déchiffrer pour comprendre d'où viennent les problèmes), essayer maintes fois, se tromper beaucoup, recommencer, et surtout, ne pas se décourager. Même si ce livre est conçu pour vous faciliter la tâche, l'apprentissage de R est souvent perçu comme une lutte. Mais quand ça fonctionne enfin, c'est extrêmement gratifiant et il n'existe pas à l'heure actuelle de meilleur logiciel pour analyser des données et produire des graphiques de qualité. Vous pouvez me croire sur parôle : j'utilise ce logiciel presque quotidiennement depuis près de 15 ans.
+
+Je m'efforcerai de passer 1 ou 2 fois auprès de vous lors des séances de TEA afin de vous débloquer en cas de problème majeur. Vous pouvez aussi [me contacter par email](mailto:bsimonbo@univ-lr.fr). Toutefois, ce document est fait pour vous permettre d'avancer en autonomie. L'expérience montre que la plupart du temps, il suffit de lire correctement pour obtenir la réponse à ses questions. Je vous encourage également à vous **entraider** : c'est très formateur pour celui qui explique, et celui qui rencontre une difficulté a plus de chance de comprendre si c'est quelqu'un d'autre qui lui explique plutôt que la personne qui a rédigé les instructions mal comprises.
+
+Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyons en TP devra être acquis le jour de l'examen. Utilisez donc le temps du TEA pour vous préparer au mieux. L'apprentissage prend du temps, donc autant s'y mettre sérieusement dès maintenant.
+
+```{r package_bibliography, include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'tidyverse', 'ggplot2', 'gridExtra'
+), 'packages.bib')
+```
+
+
+```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
+options(replace.assign = TRUE, width = 80)
+options(repos = "http://cran.r-project.org/")
+
+library(knitr)
+library(tidyverse)
+
+opts_chunk$set(fig.path = 'figure/', cache.path = 'cache/', tidy = TRUE,
+               fig.align = 'center', out.width = '90%', fig.asp = 0.618,
+               fig.show = 'hold', fig.pos = 'htpb', par = TRUE, comment = NA, cache = TRUE)
+```
+
+
+
+<!-- Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab). -->
+
+<!-- You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015]. -->
