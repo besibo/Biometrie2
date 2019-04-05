@@ -75,8 +75,13 @@ list.of.packages <- c("nycflights13", "gapminder", "knitr", "tidyverse", "gridEx
 new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 if(length(new.packages)) install.packages(new.packages)
 
+library(devtools)
 library(knitr)
 library(tidyverse)
+
+if( !("EDAWR" %in% installed.packages()[,"Package"]) ) {
+  install_github("rstudio/EDAWR")
+}
 
 opts_chunk$set(fig.path = 'figure/', cache.path = 'cache/', tidy = TRUE,
                fig.align = 'center', out.width = '90%', fig.asp = 0.618,
