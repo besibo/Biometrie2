@@ -212,7 +212,8 @@ ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) +
 L'over-plotting est la superposition importante d'une grande quantité d'information sur une zone restreinte d'un graphique. Dans notre cas, nous observons un over-plotting important autour de (0,0). Cet effet est gênant car il est difficile de se faire une idée précise du nombre de points accumulés dans cette zone. La façon la plus simple de régler le problème est de modifier la transparence grâce à l'argument `alpha` de la fonction `geom_point()`. Par défaut, cette valeur est fixée à 1, pour une opacité totale. Une valeur de 0 rend les points totalement transparents, et donc invisibles. Trouver la bonne valeur peut demander de tâtonner une peu :
 
 ```{r tidy=FALSE, warning = FALSE, fig.cap="La même figure, avec des points semi-transparents"}
-ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay)) + 
+ggplot(data = alaska_flights, 
+       mapping = aes(x = dep_delay, y = arr_delay)) + 
   geom_point(alpha = 0.2)
 ```
 
@@ -221,17 +222,19 @@ Notez que :
 - la transparence est additive : plus il y a de points, plus la zone est foncée car les points se superposent et rendent la zone plus opaque.
 - l'argument `alpha = 0.2` n'est pas intégré à l'intérieur d'une fonction `aes()` car il n'est pas associé à une variable : c'est un simple paramètre.
 
-L'over-plotting est souvent rencontré lorsque l'on représente plusieurs nuages de points pour les différentes valeurs d'une variable catégorielle. par exemple, si on transforme les mois de l'année en facteur (`factor(month)`), ont peut regarder s'il existe une relation entre les retards à l'aterrissage et le mois de l'année :
+L'over-plotting est souvent rencontré lorsque l'on représente plusieurs nuages de points pour les différentes valeurs d'une variable catégorielle. par exemple, si on transforme les mois de l'année en facteur (`factor(month)`), on peut regarder s'il existe une relation entre les retards à l'aterrissage et le mois de l'année :
 
 ```{r tidy=FALSE, warning=FALSE, fig.cap="Retards à l'arrivée pour les 12 mois de l'année 2013"}
-ggplot(data = alaska_flights, mapping = aes(x = factor(month), y = arr_delay)) +
+ggplot(data = alaska_flights, 
+       mapping = aes(x = factor(month), y = arr_delay)) +
   geom_point()
 ```
 
 Ici, l'ajout de transparence ne serait pas suffisant. Une autre solution est d'appliquer la mothode dîte de "jittering", ou tremblement. Elle consiste à ajouter un bruit aléatoire horizontal et/ou vertical aux points d'un graphique. Ici, on peut ajouter un léger bruit horizontal afin de disperser un peu les points pour chaque mois de l'année. On n'ajoute pas de bruit vertical car on ne souhaite pas que les valeurs de retard (sur l'axe des `y`) soient altérées :
 
 ```{r jittering, tidy=FALSE, warning=FALSE, fig.cap="Retards à l'arrivée pour les 12 mois de l'année 2013"}
-ggplot(data = alaska_flights, mapping = aes(x = factor(month), y = arr_delay)) +
+ggplot(data = alaska_flights, 
+       mapping = aes(x = factor(month), y = arr_delay)) +
   geom_jitter(width = 0.25)
 ```
 
@@ -240,7 +243,8 @@ On y voit déjà plus clair. L'argument `width` permet de spécifier l'intensit�
 Il est évidemment possible d'ajouter de la transparence : 
 
 ```{r tidy=FALSE, warning=FALSE, fig.cap="Retards à l'arrivée pour les 12 mois de l'année 2013"}
-ggplot(data = alaska_flights, mapping = aes(x = factor(month), y = arr_delay)) +
+ggplot(data = alaska_flights, 
+       mapping = aes(x = factor(month), y = arr_delay)) +
   geom_jitter(width = 0.25, alpha = 0.5)
 ```
 
@@ -316,7 +320,8 @@ Si l'over-plotting est ici très important (c'est pourquoi j'ai utilisé `alpha`
 Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l'ensemble de ces arguments, il est malheureusement très facile d'obtenir des graphiques peu lisibles, ou contenant tellement d'information qu'ils en deviennent difficiles à déchiffrer. Faites preuve de modération :
 
 ```{r, badplot, tidy=FALSE, warning=FALSE, fig.cap="Sometimes, less is more!"}
-ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, size = arr_time)) +
+ggplot(data = alaska_flights, 
+       mapping = aes(x = dep_delay, y = arr_delay, size = arr_time)) +
   geom_point(alpha = 0.6, 
              shape = 22,
              color = "orange",
@@ -408,24 +413,27 @@ small_weather_airports <- weather %>%
          day <= 15)
 ```
 
-Nous pouvons maintenant réaliser un "linegraph" sur lequel une courbe apparaîtra pour chaque aéroport. Pour cela, nous devons associer la variable `origin` à un attribut esthétique des lignes. Par exemple :
+Nous pouvons maintenant réaliser un "linegraph" sur lequel une courbe apparaîtra pour chaque aéroport. Pour cela, nous devons associer la variable `origin` à un attribut esthétique des lignes. Par exemple (figure \@ref(fig:linecolor)) :
 
-```{r linecolor, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013"}
-ggplot(data = small_weather_airports, mapping = aes(x = time_hour, y = temp)) +
+```{r linecolor, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013."}
+ggplot(data = small_weather_airports, 
+       mapping = aes(x = time_hour, y = temp)) +
   geom_line(aes(color = origin))
 ```
 
-Ou bien :
+Ou bien (figure \@ref(fig:linetype)) :
 
-```{r linetype, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013"}
-ggplot(data = small_weather_airports, mapping = aes(x = time_hour, y = temp)) +
+```{r linetype, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013."}
+ggplot(data = small_weather_airports, 
+       mapping = aes(x = time_hour, y = temp)) +
   geom_line(aes(linetype = origin))
 ```
 
-Ou encore :
+Ou encore (figure \@ref(fig:linetypecolor)) :
 
-```{r linetypecolor, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013"}
-ggplot(data = small_weather_airports, mapping = aes(x = time_hour, y = temp)) +
+```{r linetypecolor, tidy=FALSE, fig.cap="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013."}
+ggplot(data = small_weather_airports, 
+       mapping = aes(x = time_hour, y = temp)) +
   geom_line(aes(color = origin, linetype = origin))
 ```
 
@@ -436,7 +444,7 @@ Jusqu'à maintenant, pour spécifier les associations entre certaines variables 
 1. au sein de la fonction `ggplot()`
 2. au sein des fonctions `geom_XXX()`
 
-Comment choisir l'endroit où renseigner `aes()` ? Pour bien comprendre, reprenons l'exemple du graphique \@ref(fig:lineplotgraph) sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j'omets volontairement le nom des arguments `data` et `mapping` dans la fonction `ggplot()`) :
+Comment choisir l'endroit où renseigner `aes()` ? Pour bien comprendre, reprenons l'exemple du graphique \@ref(fig:lineplotgraph) sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent\ (afin de gagner de la place, j'omets volontairement le nom des arguments `data` et `mapping` dans la fonction `ggplot()`) :
 
 ```{r lineplotgraph2, tidy=FALSE, fig.cap="Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013"}
 ggplot(small_weather, aes(x = time_hour, y = temp)) +
@@ -573,18 +581,20 @@ Nous l'avons indiqué plus haut, les `facet`s permettent de scinder le jeux de d
 
 Ainsi, si l'on souhaite connaître la distribution des températures pour chaque mois de l'année 2013, plutôt que de faire ceci :
 
-```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Distribution des températures avec visualisation des données mensuelles."}
+```{r warning=FALSE, tidy=FALSE, message=FALSE, fig.cap="Distribution des températures avec visualisation des données mensuelles.", fig.pos = '!htpb'}
 ggplot(weather, aes(x = temp, fill = factor(month))) +
   geom_histogram(bins = 20, color = "grey30")
 ```
 
 qui produit un graphique certes assez joli, mais difficile à interpréter, mieux vaut faire ceci : 
 
-```{r wrap, warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2, fig.cap="Un exemple d'utilisation de `facet_wrap()`"}
+```{r wrap, warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2, fig.cap='(ref:wrap)', fig.pos = '!htpb'}
 ggplot(weather, aes(x = temp, fill = factor(month))) +
   geom_histogram(bins = 20, color = "grey30") +
   facet_wrap(~factor(month), ncol = 3)
 ```
+
+(ref:wrap) Un exemple d'utilisation de `facet_wrap()`.
 
 La couche supplémentaire créée avec `facet_wrap` permet donc de scinder les données en fonction d'une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole `~` devant la variable que l'on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c'est la raison pour laquelle j'utilise la notation `factor(month)` et non simplement `month`.
 
@@ -594,11 +604,13 @@ Avec la fonction `facet_wrap()`, il est possible d'indiquer à R comment les dif
 
 Une autre fonction nommée `facet_grid()` permet d'agencer des sous-graphiques selon 2 variables catégorielles. Par exemple :
 
-```{r grid, warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2, fig.cap="Un exemple d'utilisation de `facet_grid()`"}
+```{r grid, warning=FALSE, tidy=FALSE, message=FALSE, fig.asp=1.2, fig.cap="(ref:grid)", fig.pos = '!htpb'}
 ggplot(weather, aes(x = temp, fill = factor(month))) +
   geom_histogram(bins = 20, color = "grey30") +
   facet_grid(factor(month) ~ origin)
 ```
+
+(ref:grid) Un exemple d'utilisation de `facet_grid()`.
 
 Ici, nous avons utilisé la variable `month` (transformée en facteur) et la variable `origin` pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible comparer facilement des températures inter-mensuelles au sein d'un aéroport donné (en colonnes), ou de comparer des températures enregistrées le même mois dans des aéroports distincts (en lignes). 
 
@@ -653,10 +665,13 @@ Les différents éléments d'un boxplot, sont les suivants :
 
 On peut également aujouter une encoche autour de la valeur de médiane en ajoutant l'argument `notch = TRUE` à la fonction `geom_boxplot()` : 
 
-```{r notchedboxplot, tidy=FALSE, warning = FALSE, fig.cap="Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés."}
+```{r notchedboxplot, tidy=FALSE, warning = FALSE, fig.cap="(ref:boxplot)"}
 ggplot(weather, aes(x = factor(month), y = temp)) +
   geom_boxplot(notch = TRUE)
 ```
+
+(ref:boxplot) Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés.
+
 
 Comme l'indique la légende de la figure \@ref(fig:notchedboxplot), cette encoche correspond à l'étendue de l'intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d'en avoir la certitude absolue. Le mieux que l'on puisse faire, c'est quantifier l'incertitude. L'intervalle de confiance nous indique qu'il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d'incertitude, ce qui est une bonne chose.  
 Nous reviendrons sur cette notion importante plus tard dans le cursus, car ce type de graphique nous permettra d'anticiper sur les résultats des tests de comparaison de moyennes.
@@ -687,7 +702,7 @@ pl3 <- weather %>%
 grid.arrange(pl1, pl2, pl3, nrow=1)
 ```
 
-Nous avons donc, à gauche un histogramme pour les températures de novembre (j'ai permuté les axes pour que `y` porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d'un nuage de point créé avec `geom_jitter()`. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.
+Nous avons donc, à gauche un histogramme pour les températures de novembre (j'ai permuté les axes pour que `y` porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d'un nuage de point créé avec `geom_jitter()`. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés Farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.
 
 Le nuage de points affiche toutes les données. C'est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s'en trouver compliquée. L'histogramme simplifie les données en les regroupant dans des classes. C'est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l'intervalle de confiance à 95% de la médiane. C'est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure \@ref(fig:notchedboxplot) un peu plus haut), mais qui est forcément moins précise qu'un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l'histogramme. En outre, sur la figure \@ref(fig:notchedboxplot), la tendance générale est très visible : il fait plus chaud en été qu'en hiver (étonnant non ?).
 
@@ -769,10 +784,10 @@ Ordonner les catégories par ordre décroissant est souvent indispensable afin d
 Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aérienne, il nous faut faire appel à plusieurs fonctions du package `dplyr` que nous détaillerons dans le chapitre \@ref(wrangling). Ci-dessous, nous créons un nouveau tableau `carrier_table` contenant le nombre de vols de chaque compagnie aérienne et les compagnies sont ordonnées par nombre de vols décroissants :
 
 ```{r tidy = FALSE}
-carrier_table <- flights %>%   # Pour créer une nouvelle table, on prend flights, puis...
-  group_by(carrier) %>%        # On groupe les données par compagnie aérienne, puis...
-  summarize(nombre = n()) %>%  # On calcule le nombre de vols par compagnie, puis ...
-  arrange(desc(nombre))        # On trie le tableau par nombre de vols décroissant.
+carrier_table <- flights %>%   # On prend flights, puis...
+  group_by(carrier) %>%        # On groupe les données par compagnie, puis...
+  summarize(nombre = n()) %>%  # On calcule le nb de vols par Cie, puis ...
+  arrange(desc(nombre))        # On trie le tableau par nb de vols décroissant
 carrier_table                  # Enfin, on affiche la nouvelle table
 ```
 
@@ -796,7 +811,8 @@ Pour parvenir à nos fins, il faut cette fois avoir recours à la fonction `fct_
 3. l'argument optionnel `.desc` qui permet de préciser si le tri doit être fait en ordre croissant (c'est le cas par défaut) ou décroissant.
 
 ```{r bpcarriersortedcol, tidy=FALSE, warning = FALSE, fig.cap="Nombre de vols par compagnie aérienne au départ de New York en 2013."}
-ggplot(carrier_table, aes(x = fct_reorder(carrier, nombre, .desc = TRUE), y = nombre)) +
+ggplot(carrier_table, aes(x = fct_reorder(carrier, nombre, .desc = TRUE),
+                          y = nombre)) +
   geom_col()
 ```
 
@@ -916,18 +932,20 @@ Le point de départ le plus évident est d'ajouter des labels de qualité. La fo
 Reprenons par exemple le graphique de la figure \@ref(fig:varcolor) :
 
 ```{r, varcolorlabel, tidy=FALSE, warning=FALSE, fig.cap="Association de `color` à une variable catégorielle"}
-ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay, color = factor(month))) +
+ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay, 
+                           color = factor(month))) +
   geom_point()
 ```
 
 Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajoutant la fonction `labs()` sur une nouvelle couche du graphique :
 
 
-```{r, varcolorlabel2, tidy=FALSE, warning=FALSE, fig.cap="Exemple d'utilisation de `labs()`"}
-ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay, color = factor(month))) +
+```{r, varcolorlabel2, tidy=FALSE, warning=FALSE, fig.cap="Exemple d'utilisation de `labs()`."}
+ggplot(alaska_flights, 
+       aes(x = dep_delay, y = arr_delay, color = factor(month))) +
   geom_point() +
-  labs(title = "Relation linéaire positive entre le retard des vols au départ et à l'arrivée",
-       subtitle = "L'essentiel des points est centré sur 0, mais certains retards dépassent 3 heures",
+  labs(title = "Relation linéaire positive entre retard des vols au départ et à l'arrivée",
+       subtitle = "Certains retards dépassent 3 heures",
        caption = "Source : nycflights13",
        x = "Retard au départ de New York (minutes)",
        y = "Retard à l'arrivée à destination (minutes)",
@@ -1036,13 +1054,15 @@ ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
 Dernière chose concernant les couleurs : un choix de fonction `scale_XXX_XXX()` inaproprié est la cause d'erreur la plus fréquente ! Par exemple, si on reprend le code des figures \@ref(fig:varcolor) et \@ref(fig:varcolor2) et que l'on modifie les palettes de couleurs, notez que les fonctions utilisées ne sont pas les mêmes :
 
 ```{r, varcolorviridis, tidy=FALSE, warning=FALSE, fig.cap="Association de `color` à une variable catégorielle"}
-ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, color = factor(month))) +
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, 
+                                            color = factor(month))) +
   geom_point() +
   scale_color_viridis_d()
 ```
 
 ```{r, varcolorviridis2, tidy=FALSE, warning=FALSE, fig.cap="Association de `color` à une variable numérique"}
-ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, color = arr_time)) +
+ggplot(data = alaska_flights, mapping = aes(x = dep_delay, y = arr_delay, 
+                                            color = arr_time)) +
   geom_point() +
   scale_color_viridis_c()
 ```
@@ -1058,45 +1078,49 @@ Si vous ne voulez pas avoir de message d'erreur, attention donc, à choisir la f
 
 L'apparence de tout ce qui ne concerne pas directement les données d'un graphique est sous le contrôle d'un thème. Les thèmes contrôlent l'apparence générale du graphique : quelles polices et tailles de caractères sont utilisées, quel sera l'arrière plan du graphique, faut-il intégrer un quadrillage sous le graphique, et si oui, quelles doivent être ses caractéristiques ?
 
-Il est posible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins. 
+Il est possible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins. 
 
 Reprenons par exemple le code de la figure \@ref(fig:barfacetbrewer) et ajoutons un titre :
 
-```{r theme1, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Utilisation du thème par défaut : `theme_gray()`."}
+```{r theme1, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="(ref:gray)"}
 ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
   geom_bar(color = "black") +
   facet_wrap(~origin, ncol = 1) +
   labs(x = "Compagnie aérienne",
        y = "Nombre de vols",
        fill = "Aéroports de\nNew York",
-       title = "Couverture inégale des aéroports de New York par les compagnies aériennes") +
+       title = "Couverture inégale des aéroports de New York") +
   scale_fill_brewer(palette = "Accent")
 ```
 
+(ref:gray) Utilisation du thème par défaut : `theme_gray()`.
+
 Le thème utilisé par défaut est `theme_gray()`. Il est notamment responsable de l'arrière plan gris et du quadrillage blanc. Pour changer de thème, il suffit d'ajouter une couche au graphique en donnant le nom du nouveau thème :
 
-```{r themebw, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Utilisation du thème `theme_bw()`."}
+```{r themebw, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="(ref:bw)"}
 ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
   geom_bar(color = "black") +
   facet_wrap(~origin, ncol = 1) +
   labs(x = "Compagnie aérienne",
        y = "Nombre de vols",
        fill = "Aéroports de\nNew York",
-       title = "Couverture inégale des aéroports de New York par les compagnies aériennes") +
+       title = "Couverture inégale des aéroports de New York") +
   scale_fill_brewer(palette = "Accent") +
   theme_bw()
 ```
 
+(ref:bw) Utilisation du thème `theme_bw()`.
+
 Les thèmes complets que vous pouvez utiliser sont les suivants :
 
 - `theme_bw()` : fond blanc et quadrillage.
-- `theme_calssic()` : thème classique, avec des axes mais pas de quadrillage
-- `theme_dark()` : fond sombre pour augmenter le contraste
-- `theme_gray()` : thème par défaut : fond gris et quadrillage blanc
-- `theme_light()` : axes et quadrillages discrets
-- `theme_linedraw()` : uniquement des lignes noires
-- `theme_minimal()` : pas d'arrière plan, pas d'axes, quadrillage discret
-- `theme_void()` : theme vide, seuls les objets géométriques restent visibles
+- `theme_classic()` : thème classique, avec des axes mais pas de quadrillage.
+- `theme_dark()` : fond sombre pour augmenter le contraste.
+- `theme_gray()` : thème par défaut : fond gris et quadrillage blanc.
+- `theme_light()` : axes et quadrillages discrets.
+- `theme_linedraw()` : uniquement des lignes noires.
+- `theme_minimal()` : pas d'arrière plan, pas d'axes, quadrillage discret.
+- `theme_void()` : theme vide, seuls les objets géométriques restent visibles.
 
 ```{r thememinimal, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Utilisation du thème minimaliste."}
 ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
@@ -1105,21 +1129,21 @@ ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
   labs(x = "Compagnie aérienne",
        y = "Nombre de vols",
        fill = "Aéroports de\nNew York",
-       title = "Couverture inégale des aéroports de New York par les compagnies aériennes") +
+       title = "Couverture inégale des aéroports de New York") +
   scale_fill_brewer(palette = "Accent") +
   theme_minimal()
 ```
 
-L'argument `base_family` de chaque thème permet de spécifier une police de caractère différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l'ordinateur que vous utilisez. Dans l'exemple de la figure \@ref(fig:themefont) ci-dessous, j'utilise la police "Futura LT Book". Si cette police n'est pas disponible sur votre ordinateur, ce code produira une erreur. Si c'est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.
+L'argument `base_family` de chaque thème permet de spécifier une police de caractères différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l'ordinateur que vous utilisez. Dans l'exemple de la figure \@ref(fig:themefont) ci-dessous, j'utilise la police "Futura LT Book". Si cette police n'est pas disponible sur votre ordinateur, ce code produira une erreur. Si c'est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.
 
-```{r themefont, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Modification de la police de caractère."}
+```{r themefont, fig.asp = 1, tidy=FALSE, warning = FALSE, fig.cap="Modification de la police de caractères."}
 ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
   geom_bar(color = "black") +
   facet_wrap(~origin, ncol = 1) +
   labs(x = "Compagnie aérienne",
        y = "Nombre de vols",
        fill = "Aéroports de\nNew York",
-       title = "Couverture inégale des aéroports de New York par les compagnies aériennes") +
+       title = "Couverture inégale des aéroports de New York") +
   scale_fill_brewer(palette = "Accent") +
   theme_minimal(base_family = "Futura LT Book")
 ```

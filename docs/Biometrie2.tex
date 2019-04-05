@@ -1419,28 +1419,20 @@ En février 2006, un statisticien du nom de Hans Rosling a donné un TED Talk in
 
 Pour l'année 2007, le jeu de données contient des informations pour 142 pays. Examinons les premières lignes de ce jeu de données :
 
-\begin{table}[t]
-
-\caption{\label{tab:unnamed-chunk-35}Les 6 premières lignes du jeu de données `gapminder` pour l'année 2007}
-\centering
-\begin{tabular}{l|l|r|r|r}
-\hline
+\begin{longtable}{llrrr}
+\caption{\label{tab:unnamed-chunk-35}Les 6 premières lignes du jeu de données `gapminder` pour l'année 2007.}\\
+\toprule
 Country & Continent & Life Expectancy & Population & GDP per Capita\\
-\hline
+\midrule
 Afghanistan & Asia & 43.828 & 31889923 & 974.5803\\
-\hline
 Albania & Europe & 76.423 & 3600523 & 5937.0295\\
-\hline
 Algeria & Africa & 72.301 & 33333216 & 6223.3675\\
-\hline
 Angola & Africa & 42.731 & 12420476 & 4797.2313\\
-\hline
 Argentina & Americas & 75.320 & 40301927 & 12779.3796\\
-\hline
+\addlinespace
 Australia & Oceania & 81.235 & 20434176 & 34435.3674\\
-\hline
-\end{tabular}
-\end{table}
+\bottomrule
+\end{longtable}
 
 Pour chaque ligne, les variables suivantes sont décrites :
 
@@ -1701,7 +1693,8 @@ L'over-plotting est la superposition importante d'une grande quantité d'informa
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}\StringTok{ }
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}\StringTok{ }
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1725,11 +1718,12 @@ Notez que :
   l'argument \texttt{alpha\ =\ 0.2} n'est pas intégré à l'intérieur d'une fonction \texttt{aes()} car il n'est pas associé à une variable : c'est un simple paramètre.
 \end{itemize}
 
-L'over-plotting est souvent rencontré lorsque l'on représente plusieurs nuages de points pour les différentes valeurs d'une variable catégorielle. par exemple, si on transforme les mois de l'année en facteur (\texttt{factor(month)}), ont peut regarder s'il existe une relation entre les retards à l'aterrissage et le mois de l'année :
+L'over-plotting est souvent rencontré lorsque l'on représente plusieurs nuages de points pour les différentes valeurs d'une variable catégorielle. par exemple, si on transforme les mois de l'année en facteur (\texttt{factor(month)}), on peut regarder s'il existe une relation entre les retards à l'aterrissage et le mois de l'année :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(month), }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(month), }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -1747,7 +1741,8 @@ Ici, l'ajout de transparence ne serait pas suffisant. Une autre solution est d'a
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(month), }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(month), }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.25}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1767,7 +1762,8 @@ Il est évidemment possible d'ajouter de la transparence :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(month), }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{factor}\NormalTok{(month), }\DataTypeTok{y =}\NormalTok{ arr_delay)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_jitter}\NormalTok{(}\DataTypeTok{width =} \FloatTok{0.25}\NormalTok{, }\DataTypeTok{alpha =} \FloatTok{0.5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1942,7 +1938,8 @@ Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l'ens
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }\DataTypeTok{size =}\NormalTok{ arr_time)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }\DataTypeTok{size =}\NormalTok{ arr_time)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{alpha =} \FloatTok{0.6}\NormalTok{, }
              \DataTypeTok{shape =} \DecValTok{22}\NormalTok{,}
              \DataTypeTok{color =} \StringTok{"orange"}\NormalTok{,}
@@ -2098,11 +2095,12 @@ Reprenons le jeu de données complet \texttt{weather}, et filtrons uniquement le
 \end{Highlighting}
 \end{Shaded}
 
-Nous pouvons maintenant réaliser un ``linegraph'' sur lequel une courbe apparaîtra pour chaque aéroport. Pour cela, nous devons associer la variable \texttt{origin} à un attribut esthétique des lignes. Par exemple :
+Nous pouvons maintenant réaliser un ``linegraph'' sur lequel une courbe apparaîtra pour chaque aéroport. Pour cela, nous devons associer la variable \texttt{origin} à un attribut esthétique des lignes. Par exemple (figure \ref{fig:linecolor}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ small_weather_airports, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ time_hour, }\DataTypeTok{y =}\NormalTok{ temp)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ small_weather_airports, }
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ time_hour, }\DataTypeTok{y =}\NormalTok{ temp)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ origin))}
 \end{Highlighting}
 \end{Shaded}
@@ -2113,14 +2111,15 @@ Nous pouvons maintenant réaliser un ``linegraph'' sur lequel une courbe appara�
 
 }
 
-\caption{Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013}\label{fig:linecolor}
+\caption{Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013.}\label{fig:linecolor}
 \end{figure}
 
-Ou bien :
+Ou bien (figure \ref{fig:linetype}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ small_weather_airports, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ time_hour, }\DataTypeTok{y =}\NormalTok{ temp)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ small_weather_airports, }
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ time_hour, }\DataTypeTok{y =}\NormalTok{ temp)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{linetype =}\NormalTok{ origin))}
 \end{Highlighting}
 \end{Shaded}
@@ -2131,14 +2130,15 @@ Ou bien :
 
 }
 
-\caption{Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013}\label{fig:linetype}
+\caption{Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013.}\label{fig:linetype}
 \end{figure}
 
-Ou encore :
+Ou encore (figure \ref{fig:linetypecolor}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ small_weather_airports, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ time_hour, }\DataTypeTok{y =}\NormalTok{ temp)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ small_weather_airports, }
+       \DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ time_hour, }\DataTypeTok{y =}\NormalTok{ temp)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ origin, }\DataTypeTok{linetype =}\NormalTok{ origin))}
 \end{Highlighting}
 \end{Shaded}
@@ -2149,7 +2149,7 @@ Ou encore :
 
 }
 
-\caption{Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013}\label{fig:linetypecolor}
+\caption{Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013.}\label{fig:linetypecolor}
 \end{figure}
 
 \hypertarget{a-quel-endroit-placer-aes-et-les-arguments-color-size-etc.}{%
@@ -2166,7 +2166,7 @@ Jusqu'à maintenant, pour spécifier les associations entre certaines variables 
   au sein des fonctions \texttt{geom\_XXX()}
 \end{enumerate}
 
-Comment choisir l'endroit où renseigner \texttt{aes()} ? Pour bien comprendre, reprenons l'exemple du graphique \ref{fig:lineplotgraph} sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j'omets volontairement le nom des arguments \texttt{data} et \texttt{mapping} dans la fonction \texttt{ggplot()}) :
+Comment choisir l'endroit où renseigner \texttt{aes()} ? Pour bien comprendre, reprenons l'exemple du graphique \ref{fig:lineplotgraph} sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent~(afin de gagner de la place, j'omets volontairement le nom des arguments \texttt{data} et \texttt{mapping} dans la fonction \texttt{ggplot()}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2481,7 +2481,7 @@ Ainsi, si l'on souhaite connaître la distribution des températures pour chaque
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
 
 {\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-54-1} 
 
@@ -2500,14 +2500,16 @@ qui produit un graphique certes assez joli, mais difficile à interpréter, mieu
 \end{Highlighting}
 \end{Shaded}
 
-\textbackslash{}begin\{figure\}{[}htpb{]}
+\begin{figure}[!htpb]
 
-\{\centering \includegraphics[width=0.9\linewidth]{figure/wrap-1}
+{\centering \includegraphics[width=0.9\linewidth]{figure/wrap-1} 
 
-\}
+}
 
-\textbackslash{}caption\{Un exemple d'utilisation de \texttt{facet\_wrap()}\}\label{fig:wrap}
-\textbackslash{}end\{figure\}
+\caption{Un exemple d'utilisation de \texttt{facet\_wrap()}.}\label{fig:wrap}
+\end{figure}
+
+
 
 La couche supplémentaire créée avec \texttt{facet\_wrap} permet donc de scinder les données en fonction d'une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole \texttt{\textasciitilde{}} devant la variable que l'on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c'est la raison pour laquelle j'utilise la notation \texttt{factor(month)} et non simplement \texttt{month}.
 
@@ -2526,14 +2528,16 @@ Une autre fonction nommée \texttt{facet\_grid()} permet d'agencer des sous-grap
 \end{Highlighting}
 \end{Shaded}
 
-\textbackslash{}begin\{figure\}{[}htpb{]}
+\begin{figure}[!htpb]
 
-\{\centering \includegraphics[width=0.9\linewidth]{figure/grid-1}
+{\centering \includegraphics[width=0.9\linewidth]{figure/grid-1} 
 
-\}
+}
 
-\textbackslash{}caption\{Un exemple d'utilisation de \texttt{facet\_grid()}\}\label{fig:grid}
-\textbackslash{}end\{figure\}
+\caption{Un exemple d'utilisation de \texttt{facet\_grid()}.}\label{fig:grid}
+\end{figure}
+
+
 
 Ici, nous avons utilisé la variable \texttt{month} (transformée en facteur) et la variable \texttt{origin} pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible comparer facilement des températures inter-mensuelles au sein d'un aéroport donné (en colonnes), ou de comparer des températures enregistrées le même mois dans des aéroports distincts (en lignes).
 
@@ -2645,14 +2649,16 @@ On peut également aujouter une encoche autour de la valeur de médiane en ajout
 \end{Highlighting}
 \end{Shaded}
 
-\textbackslash{}begin\{figure\}{[}htpb{]}
+\begin{figure}[htpb]
 
-\{\centering \includegraphics[width=0.9\linewidth]{figure/notchedboxplot-1}
+{\centering \includegraphics[width=0.9\linewidth]{figure/notchedboxplot-1} 
 
-\}
+}
 
-\textbackslash{}caption\{Boxplot des températures mensuelles. Les intervalles de confiance à 95\% de la médiane sont affichés.\}\label{fig:notchedboxplot}
-\textbackslash{}end\{figure\}
+\caption{Boxplot des températures mensuelles. Les intervalles de confiance à 95\% de la médiane sont affichés.}\label{fig:notchedboxplot}
+\end{figure}
+
+
 
 Comme l'indique la légende de la figure \ref{fig:notchedboxplot}, cette encoche correspond à l'étendue de l'intervalle de confiance à 95\% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d'en avoir la certitude absolue. Le mieux que l'on puisse faire, c'est quantifier l'incertitude. L'intervalle de confiance nous indique qu'il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d'incertitude, ce qui est une bonne chose.\\
 Nous reviendrons sur cette notion importante plus tard dans le cursus, car ce type de graphique nous permettra d'anticiper sur les résultats des tests de comparaison de moyennes.
@@ -2671,7 +2677,7 @@ Dernière chose concernant les boxplots : il s'agit d'une représentation graphi
 \caption{Distribution des températures de Novembre 2013}\label{fig:compboxplot}
 \end{figure}
 
-Nous avons donc, à gauche un histogramme pour les températures de novembre (j'ai permuté les axes pour que \texttt{y} porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d'un nuage de point créé avec \texttt{geom\_jitter()}. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.
+Nous avons donc, à gauche un histogramme pour les températures de novembre (j'ai permuté les axes pour que \texttt{y} porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d'un nuage de point créé avec \texttt{geom\_jitter()}. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés Farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.
 
 Le nuage de points affiche toutes les données. C'est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s'en trouver compliquée. L'histogramme simplifie les données en les regroupant dans des classes. C'est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l'intervalle de confiance à 95\% de la médiane. C'est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure \ref{fig:notchedboxplot} un peu plus haut), mais qui est forcément moins précise qu'un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l'histogramme. En outre, sur la figure \ref{fig:notchedboxplot}, la tendance générale est très visible : il fait plus chaud en été qu'en hiver (étonnant non ?).
 
@@ -2906,7 +2912,8 @@ Pour parvenir à nos fins, il faut cette fois avoir recours à la fonction \text
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(carrier_table, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{fct_reorder}\NormalTok{(carrier, nombre, }\DataTypeTok{.desc =} \OtherTok{TRUE}\NormalTok{), }\DataTypeTok{y =}\NormalTok{ nombre)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(carrier_table, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{fct_reorder}\NormalTok{(carrier, nombre, }\DataTypeTok{.desc =} \OtherTok{TRUE}\NormalTok{),}
+                          \DataTypeTok{y =}\NormalTok{ nombre)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -3108,7 +3115,8 @@ Reprenons par exemple le graphique de la figure \ref{fig:varcolor} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(alaska_flights, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(month))) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(alaska_flights, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }
+                           \DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(month))) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -3126,10 +3134,11 @@ Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajo
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(alaska_flights, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(month))) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(alaska_flights, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(month))) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Relation linéaire positive entre le retard des vols au départ et à l'arrivée"}\NormalTok{,}
-       \DataTypeTok{subtitle =} \StringTok{"L'essentiel des points est centré sur 0, mais certains retards dépassent 3 heures"}\NormalTok{,}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title =} \StringTok{"Relation linéaire positive entre retard des vols au départ et à l'arrivée"}\NormalTok{,}
+       \DataTypeTok{subtitle =} \StringTok{"Certains retards dépassent 3 heures"}\NormalTok{,}
        \DataTypeTok{caption =} \StringTok{"Source : nycflights13"}\NormalTok{,}
        \DataTypeTok{x =} \StringTok{"Retard au départ de New York (minutes)"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"Retard à l'arrivée à destination (minutes)"}\NormalTok{,}
@@ -3143,7 +3152,7 @@ Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajo
 
 }
 
-\caption{Exemple d'utilisation de `labs()`}\label{fig:varcolorlabel2}
+\caption{Exemple d'utilisation de `labs()`.}\label{fig:varcolorlabel2}
 \end{figure}
 
 À partir de maintenant, vous devriez systématiquement légender les axes de vos graphiques en n'oubliant pas de préciser les unités, pour tous les graphiques que vous intégrez dans vos rapports, compte-rendus, mémoires, etc.
@@ -3659,7 +3668,8 @@ Dernière chose concernant les couleurs : un choix de fonction \texttt{scale\_XX
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(month))) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }
+                                            \DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(month))) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_color_viridis_d}\NormalTok{()}
 \end{Highlighting}
@@ -3676,7 +3686,8 @@ Dernière chose concernant les couleurs : un choix de fonction \texttt{scale\_XX
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }\DataTypeTok{color =}\NormalTok{ arr_time)) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ alaska_flights, }\DataTypeTok{mapping =} \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }
+                                            \DataTypeTok{color =}\NormalTok{ arr_time)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_color_viridis_c}\NormalTok{()}
 \end{Highlighting}
@@ -3702,7 +3713,7 @@ Si vous ne voulez pas avoir de message d'erreur, attention donc, à choisir la f
 
 L'apparence de tout ce qui ne concerne pas directement les données d'un graphique est sous le contrôle d'un thème. Les thèmes contrôlent l'apparence générale du graphique : quelles polices et tailles de caractères sont utilisées, quel sera l'arrière plan du graphique, faut-il intégrer un quadrillage sous le graphique, et si oui, quelles doivent être ses caractéristiques ?
 
-Il est posible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins.
+Il est possible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins.
 
 Reprenons par exemple le code de la figure \ref{fig:barfacetbrewer} et ajoutons un titre :
 
@@ -3714,19 +3725,21 @@ Reprenons par exemple le code de la figure \ref{fig:barfacetbrewer} et ajoutons 
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Compagnie aérienne"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"Nombre de vols"}\NormalTok{,}
        \DataTypeTok{fill =} \StringTok{"Aéroports de}\CharTok{\textbackslash{}n}\StringTok{New York"}\NormalTok{,}
-       \DataTypeTok{title =} \StringTok{"Couverture inégale des aéroports de New York par les compagnies aériennes"}\NormalTok{) }\OperatorTok{+}
+       \DataTypeTok{title =} \StringTok{"Couverture inégale des aéroports de New York"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette =} \StringTok{"Accent"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbackslash{}begin\{figure\}{[}htpb{]}
+\begin{figure}[htpb]
 
-\{\centering \includegraphics[width=0.9\linewidth]{figure/theme1-1}
+{\centering \includegraphics[width=0.9\linewidth]{figure/theme1-1} 
 
-\}
+}
 
-\textbackslash{}caption\{Utilisation du thème par défaut : \texttt{theme\_gray()}.\}\label{fig:theme1}
-\textbackslash{}end\{figure\}
+\caption{Utilisation du thème par défaut : \texttt{theme\_gray()}.}\label{fig:theme1}
+\end{figure}
+
+
 
 Le thème utilisé par défaut est \texttt{theme\_gray()}. Il est notamment responsable de l'arrière plan gris et du quadrillage blanc. Pour changer de thème, il suffit d'ajouter une couche au graphique en donnant le nom du nouveau thème :
 
@@ -3738,20 +3751,22 @@ Le thème utilisé par défaut est \texttt{theme\_gray()}. Il est notamment resp
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Compagnie aérienne"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"Nombre de vols"}\NormalTok{,}
        \DataTypeTok{fill =} \StringTok{"Aéroports de}\CharTok{\textbackslash{}n}\StringTok{New York"}\NormalTok{,}
-       \DataTypeTok{title =} \StringTok{"Couverture inégale des aéroports de New York par les compagnies aériennes"}\NormalTok{) }\OperatorTok{+}
+       \DataTypeTok{title =} \StringTok{"Couverture inégale des aéroports de New York"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette =} \StringTok{"Accent"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_bw}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\textbackslash{}begin\{figure\}{[}htpb{]}
+\begin{figure}[htpb]
 
-\{\centering \includegraphics[width=0.9\linewidth]{figure/themebw-1}
+{\centering \includegraphics[width=0.9\linewidth]{figure/themebw-1} 
 
-\}
+}
 
-\textbackslash{}caption\{Utilisation du thème \texttt{theme\_bw()}.\}\label{fig:themebw}
-\textbackslash{}end\{figure\}
+\caption{Utilisation du thème \texttt{theme\_bw()}.}\label{fig:themebw}
+\end{figure}
+
+
 
 Les thèmes complets que vous pouvez utiliser sont les suivants :
 
@@ -3760,19 +3775,19 @@ Les thèmes complets que vous pouvez utiliser sont les suivants :
 \item
   \texttt{theme\_bw()} : fond blanc et quadrillage.
 \item
-  \texttt{theme\_calssic()} : thème classique, avec des axes mais pas de quadrillage
+  \texttt{theme\_classic()} : thème classique, avec des axes mais pas de quadrillage.
 \item
-  \texttt{theme\_dark()} : fond sombre pour augmenter le contraste
+  \texttt{theme\_dark()} : fond sombre pour augmenter le contraste.
 \item
-  \texttt{theme\_gray()} : thème par défaut : fond gris et quadrillage blanc
+  \texttt{theme\_gray()} : thème par défaut : fond gris et quadrillage blanc.
 \item
-  \texttt{theme\_light()} : axes et quadrillages discrets
+  \texttt{theme\_light()} : axes et quadrillages discrets.
 \item
-  \texttt{theme\_linedraw()} : uniquement des lignes noires
+  \texttt{theme\_linedraw()} : uniquement des lignes noires.
 \item
-  \texttt{theme\_minimal()} : pas d'arrière plan, pas d'axes, quadrillage discret
+  \texttt{theme\_minimal()} : pas d'arrière plan, pas d'axes, quadrillage discret.
 \item
-  \texttt{theme\_void()} : theme vide, seuls les objets géométriques restent visibles
+  \texttt{theme\_void()} : theme vide, seuls les objets géométriques restent visibles.
 \end{itemize}
 
 \begin{Shaded}
@@ -3783,7 +3798,7 @@ Les thèmes complets que vous pouvez utiliser sont les suivants :
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Compagnie aérienne"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"Nombre de vols"}\NormalTok{,}
        \DataTypeTok{fill =} \StringTok{"Aéroports de}\CharTok{\textbackslash{}n}\StringTok{New York"}\NormalTok{,}
-       \DataTypeTok{title =} \StringTok{"Couverture inégale des aéroports de New York par les compagnies aériennes"}\NormalTok{) }\OperatorTok{+}
+       \DataTypeTok{title =} \StringTok{"Couverture inégale des aéroports de New York"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette =} \StringTok{"Accent"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
 \end{Highlighting}
@@ -3798,7 +3813,7 @@ Les thèmes complets que vous pouvez utiliser sont les suivants :
 \caption{Utilisation du thème minimaliste.}\label{fig:thememinimal}
 \end{figure}
 
-L'argument \texttt{base\_family} de chaque thème permet de spécifier une police de caractère différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l'ordinateur que vous utilisez. Dans l'exemple de la figure \ref{fig:themefont} ci-dessous, j'utilise la police ``Futura LT Book''. Si cette police n'est pas disponible sur votre ordinateur, ce code produira une erreur. Si c'est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.
+L'argument \texttt{base\_family} de chaque thème permet de spécifier une police de caractères différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l'ordinateur que vous utilisez. Dans l'exemple de la figure \ref{fig:themefont} ci-dessous, j'utilise la police ``Futura LT Book''. Si cette police n'est pas disponible sur votre ordinateur, ce code produira une erreur. Si c'est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3808,7 +3823,7 @@ L'argument \texttt{base\_family} de chaque thème permet de spécifier une polic
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Compagnie aérienne"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"Nombre de vols"}\NormalTok{,}
        \DataTypeTok{fill =} \StringTok{"Aéroports de}\CharTok{\textbackslash{}n}\StringTok{New York"}\NormalTok{,}
-       \DataTypeTok{title =} \StringTok{"Couverture inégale des aéroports de New York par les compagnies aériennes"}\NormalTok{) }\OperatorTok{+}
+       \DataTypeTok{title =} \StringTok{"Couverture inégale des aéroports de New York"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{scale_fill_brewer}\NormalTok{(}\DataTypeTok{palette =} \StringTok{"Accent"}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{theme_minimal}\NormalTok{(}\DataTypeTok{base_family =} \StringTok{"Futura LT Book"}\NormalTok{)}
 \end{Highlighting}
@@ -3820,7 +3835,7 @@ L'argument \texttt{base\_family} de chaque thème permet de spécifier une polic
 
 }
 
-\caption{Modification de la police de caractère.}\label{fig:themefont}
+\caption{Modification de la police de caractères.}\label{fig:themefont}
 \end{figure}
 
 Le choix d'un thème et d'une police adaptés doivent vous permettre de faire des graphiques originaux et clairs. Rappelez-vous toujours que vos choix en matière de graphiques doivent avoir pour objectif principal de rendre les tendances plus faciles à décrypter pour un lecteur non familier de vos données. C'est un outil de communication au même titre que n'importe quel paragraphe d'un rapport ou compte-rendu. Et comme pour un paragraphe, la première version d'un graphique est rarement la bonne.

@@ -323,7 +323,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>En février 2006, un statisticien du nom de Hans Rosling a donné un TED Talk intitulé “<a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">The best stats you’we ever seen</a>”. Au cours de cette conférence, Hans Rosling présente des données sur l’économie mondiale, la santé et le développement des pays du monde. Les données sont disponibles <a href="https://www.gapminder.org/tools/#$chart-type=bubbles">sur ce site</a> et dans <a href="https://cran.r-project.org/web/packages/gapminder/index.html">le package <code>gapminder</code></a>.</p>
 <p>Pour l’année 2007, le jeu de données contient des informations pour 142 pays. Examinons les premières lignes de ce jeu de données :</p>
 <table>
-<caption><span id="tab:unnamed-chunk-35">Table 4.1: </span>Les 6 premières lignes du jeu de données <code>gapminder</code> pour l’année 2007</caption>
+<caption><span id="tab:unnamed-chunk-35">Table 4.1: </span>Les 6 premières lignes du jeu de données <code>gapminder</code> pour l’année 2007.</caption>
 <thead>
 <tr class="header">
 <th align="left">Country</th>
@@ -514,7 +514,8 @@ Figure 4.3: Retards à l’arrivée en fonction des retard au décollage pour le
 <div id="over-plotting" class="section level3">
 <h3><span class="header-section-number">4.3.4</span> Over-plotting</h3>
 <p>L’over-plotting est la superposition importante d’une grande quantité d’information sur une zone restreinte d’un graphique. Dans notre cas, nous observons un over-plotting important autour de (0,0). Cet effet est gênant car il est difficile de se faire une idée précise du nombre de points accumulés dans cette zone. La façon la plus simple de régler le problème est de modifier la transparence grâce à l’argument <code>alpha</code> de la fonction <code>geom_point()</code>. Par défaut, cette valeur est fixée à 1, pour une opacité totale. Une valeur de 0 rend les points totalement transparents, et donc invisibles. Trouver la bonne valeur peut demander de tâtonner une peu :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span><span class="st"> </span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-40"></span>
 <img src="figure/unnamed-chunk-40-1.png" alt="La même figure, avec des points semi-transparents" width="90%" />
@@ -527,8 +528,9 @@ Figure 4.4: La même figure, avec des points semi-transparents
 <li>la transparence est additive : plus il y a de points, plus la zone est foncée car les points se superposent et rendent la zone plus opaque.</li>
 <li>l’argument <code>alpha = 0.2</code> n’est pas intégré à l’intérieur d’une fonction <code>aes()</code> car il n’est pas associé à une variable : c’est un simple paramètre.</li>
 </ul>
-<p>L’over-plotting est souvent rencontré lorsque l’on représente plusieurs nuages de points pour les différentes valeurs d’une variable catégorielle. par exemple, si on transforme les mois de l’année en facteur (<code>factor(month)</code>), ont peut regarder s’il existe une relation entre les retards à l’aterrissage et le mois de l’année :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<p>L’over-plotting est souvent rencontré lorsque l’on représente plusieurs nuages de points pour les différentes valeurs d’une variable catégorielle. par exemple, si on transforme les mois de l’année en facteur (<code>factor(month)</code>), on peut regarder s’il existe une relation entre les retards à l’aterrissage et le mois de l’année :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-41"></span>
 <img src="figure/unnamed-chunk-41-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
@@ -537,7 +539,8 @@ Figure 4.5: Retards à l’arrivée pour les 12 mois de l’année 2013
 </p>
 </div>
 <p>Ici, l’ajout de transparence ne serait pas suffisant. Une autre solution est d’appliquer la mothode dîte de “jittering”, ou tremblement. Elle consiste à ajouter un bruit aléatoire horizontal et/ou vertical aux points d’un graphique. Ici, on peut ajouter un léger bruit horizontal afin de disperser un peu les points pour chaque mois de l’année. On n’ajoute pas de bruit vertical car on ne souhaite pas que les valeurs de retard (sur l’axe des <code>y</code>) soient altérées :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.25</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:jittering"></span>
 <img src="figure/jittering-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
@@ -547,7 +550,8 @@ Figure 4.6: Retards à l’arrivée pour les 12 mois de l’année 2013
 </div>
 <p>On y voit déjà plus clair. L’argument <code>width</code> permet de spécifier l’intensité de la dispersion horizontale. Pour ajouter du bruit vertical (ce qui n’est pas souhaitable ici !), on peut ajouter l’argument <code>height</code>. le graphique de la figure <a href="viz.html#fig:jittering">4.6</a> est parfois appelé un “stripchart”. C’est un graphique du type “nuage de points”, mais pour lequel l’une des 2 variables et numérique, et l’autre est catégorielle.</p>
 <p>Il est évidemment possible d’ajouter de la transparence :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(month), <span class="dt">y =</span> arr_delay)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.25</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-42"></span>
 <img src="figure/unnamed-chunk-42-1.png" alt="Retards à l'arrivée pour les 12 mois de l'année 2013" width="90%" />
@@ -636,7 +640,8 @@ Figure 4.15: Association d’une variable continue à la taille des symboles ave
 </div>
 <p>Si l’over-plotting est ici très important (c’est pourquoi j’ai utilisé <code>alpha</code>), on constate néanmoins que les vols avec les retards les plus importants sont presque tous arrivés très tôt dans la journée (“500” signifie 5h00 du matin). Il s’agit probablement de vols qui devaient arriver dans la nuit, avant minuit, et qui sont finalement arrivés en tout début de journée, etnre 00h01 et 5h00 du matin. Comme pour les autres arguments, il est possible d’utiliser <code>size</code> avec une valeur fixe, la même pour tous les symboles, lorsque cet argument n’est pas associé à une variable.</p>
 <p>Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l’ensemble de ces arguments, il est malheureusement très facile d’obtenir des graphiques peu lisibles, ou contenant tellement d’information qu’ils en deviennent difficiles à déchiffrer. Faites preuve de modération :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">size =</span> arr_time)) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">size =</span> arr_time)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.6</span>, 
              <span class="dt">shape =</span> <span class="dv">22</span>,
              <span class="dt">color =</span> <span class="st">&quot;orange&quot;</span>,
@@ -729,31 +734,34 @@ Figure 4.19: Températures horaires à l’aéroport de Newark entre le 1er et l
 <pre class="sourceCode r"><code class="sourceCode r">small_weather_airports &lt;-<span class="st"> </span>weather <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>,
          day <span class="op">&lt;=</span><span class="st"> </span><span class="dv">15</span>)</code></pre>
-<p>Nous pouvons maintenant réaliser un “linegraph” sur lequel une courbe apparaîtra pour chaque aéroport. Pour cela, nous devons associer la variable <code>origin</code> à un attribut esthétique des lignes. Par exemple :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<p>Nous pouvons maintenant réaliser un “linegraph” sur lequel une courbe apparaîtra pour chaque aéroport. Pour cela, nous devons associer la variable <code>origin</code> à un attribut esthétique des lignes. Par exemple (figure <a href="viz.html#fig:linecolor">4.20</a>) :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> origin))</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:linecolor"></span>
-<img src="figure/linecolor-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
+<img src="figure/linecolor-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013." width="90%" />
 <p class="caption">
-Figure 4.20: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+Figure 4.20: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013.
 </p>
 </div>
-<p>Ou bien :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<p>Ou bien (figure <a href="viz.html#fig:linetype">4.21</a>) :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> origin))</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:linetype"></span>
-<img src="figure/linetype-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
+<img src="figure/linetype-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013." width="90%" />
 <p class="caption">
-Figure 4.21: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+Figure 4.21: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013.
 </p>
 </div>
-<p>Ou encore :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
+<p>Ou encore (figure <a href="viz.html#fig:linetypecolor">4.22</a>) :</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> small_weather_airports, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> origin, <span class="dt">linetype =</span> origin))</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:linetypecolor"></span>
-<img src="figure/linetypecolor-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013" width="90%" />
+<img src="figure/linetypecolor-1.png" alt="Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013." width="90%" />
 <p class="caption">
-Figure 4.22: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013
+Figure 4.22: Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013.
 </p>
 </div>
 </div>
@@ -764,7 +772,7 @@ Figure 4.22: Températures horaires des 3 aéroports de New York entre le 1er et
 <li>au sein de la fonction <code>ggplot()</code></li>
 <li>au sein des fonctions <code>geom_XXX()</code></li>
 </ol>
-<p>Comment choisir l’endroit où renseigner <code>aes()</code> ? Pour bien comprendre, reprenons l’exemple du graphique <a href="viz.html#fig:lineplotgraph">4.19</a> sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j’omets volontairement le nom des arguments <code>data</code> et <code>mapping</code> dans la fonction <code>ggplot()</code>) :</p>
+<p>Comment choisir l’endroit où renseigner <code>aes()</code> ? Pour bien comprendre, reprenons l’exemple du graphique <a href="viz.html#fig:lineplotgraph">4.19</a> sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j’omets volontairement le nom des arguments <code>data</code> et <code>mapping</code> dans la fonction <code>ggplot()</code>) :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(small_weather, <span class="kw">aes</span>(<span class="dt">x =</span> time_hour, <span class="dt">y =</span> temp)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
@@ -935,11 +943,12 @@ Figure 4.35: Distribution des températures avec visualisation des données mens
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="kw">factor</span>(month), <span class="dt">ncol =</span> <span class="dv">3</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:wrap"></span>
-<img src="figure/wrap-1.png" alt="Un exemple d'utilisation de `facet_wrap()`" width="90%" />
+<img src="figure/wrap-1.png" alt="Un exemple d’utilisation de facet_wrap()." width="90%" />
 <p class="caption">
-Figure 4.36: Un exemple d’utilisation de <code>facet_wrap()</code>
+Figure 4.36: Un exemple d’utilisation de <code>facet_wrap()</code>.
 </p>
 </div>
+
 <p>La couche supplémentaire créée avec <code>facet_wrap</code> permet donc de scinder les données en fonction d’une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole <code>~</code> devant la variable que l’on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c’est la raison pour laquelle j’utilise la notation <code>factor(month)</code> et non simplement <code>month</code>.</p>
 <p>Avec la fonction <code>facet_wrap()</code>, il est possible d’indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaité avec <code>ncol</code>, soit le nombre de lignes souhaitées avec <code>nrow</code>.</p>
 </div>
@@ -950,11 +959,12 @@ Figure 4.36: Un exemple d’utilisation de <code>facet_wrap()</code>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_grid</span>(<span class="kw">factor</span>(month) <span class="op">~</span><span class="st"> </span>origin)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:grid"></span>
-<img src="figure/grid-1.png" alt="Un exemple d'utilisation de `facet_grid()`" width="90%" />
+<img src="figure/grid-1.png" alt="Un exemple d’utilisation de facet_grid()." width="90%" />
 <p class="caption">
-Figure 4.37: Un exemple d’utilisation de <code>facet_grid()</code>
+Figure 4.37: Un exemple d’utilisation de <code>facet_grid()</code>.
 </p>
 </div>
+
 <p>Ici, nous avons utilisé la variable <code>month</code> (transformée en facteur) et la variable <code>origin</code> pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible comparer facilement des températures inter-mensuelles au sein d’un aéroport donné (en colonnes), ou de comparer des températures enregistrées le même mois dans des aéroports distincts (en lignes).</p>
 <p><code>facet_grid()</code> doit elle aussi être utilisée avec le symbole <code>~</code>. Comme pour les indices d’un tableau, on met à gauche du <code>~</code> la variable qui figurera en lignes, et à droite du <code>~</code> celle qui figurera en colonnes. Les arguments <code>nrow</code> et <code>ncol</code> ne peuvent donc pas être utilisés : c’est le nombre de niveaux de chaque variable catégorielle fournie à <code>facet_grid()</code> qui détermine le nombre de lignes et de colonnes du graphique.</p>
 <p>Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé et en ajoutant des couches une à une sur un graphique, il est posible d’obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des srtuctures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc).</p>
@@ -1018,6 +1028,7 @@ Figure 4.39: Boxplot des températures mensuelles
 Figure 4.40: Boxplot des températures mensuelles. Les intervalles de confiance à 95% de la médiane sont affichés.
 </p>
 </div>
+
 <p>Comme l’indique la légende de la figure <a href="viz.html#fig:notchedboxplot">4.40</a>, cette encoche correspond à l’étendue de l’intervalle de confiance à 95% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d’en avoir la certitude absolue. Le mieux que l’on puisse faire, c’est quantifier l’incertitude. L’intervalle de confiance nous indique qu’il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d’incertitude, ce qui est une bonne chose.<br />
 Nous reviendrons sur cette notion importante plus tard dans le cursus, car ce type de graphique nous permettra d’anticiper sur les résultats des tests de comparaison de moyennes.</p>
 </div>
@@ -1030,7 +1041,7 @@ Nous reviendrons sur cette notion importante plus tard dans le cursus, car ce ty
 Figure 4.41: Distribution des températures de Novembre 2013
 </p>
 </div>
-<p>Nous avons donc, à gauche un histogramme pour les températures de novembre (j’ai permuté les axes pour que <code>y</code> porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d’un nuage de point créé avec <code>geom_jitter()</code>. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.</p>
+<p>Nous avons donc, à gauche un histogramme pour les températures de novembre (j’ai permuté les axes pour que <code>y</code> porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d’un nuage de point créé avec <code>geom_jitter()</code>. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés Farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.</p>
 <p>Le nuage de points affiche toutes les données. C’est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s’en trouver compliquée. L’histogramme simplifie les données en les regroupant dans des classes. C’est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l’intervalle de confiance à 95% de la médiane. C’est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure <a href="viz.html#fig:notchedboxplot">4.40</a> un peu plus haut), mais qui est forcément moins précise qu’un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l’histogramme. En outre, sur la figure <a href="viz.html#fig:notchedboxplot">4.40</a>, la tendance générale est très visible : il fait plus chaud en été qu’en hiver (étonnant non ?).</p>
 </div>
 <div id="pour-conclure" class="section level3">
@@ -1161,7 +1172,8 @@ Figure 4.46: Nombre de vols par compagnie aérienne au départ de New York en 20
 <li>une variable numérique qui permet d’ordonner les catégories (ici, la variable <code>nombre</code> du même tableau)</li>
 <li>l’argument optionnel <code>.desc</code> qui permet de préciser si le tri doit être fait en ordre croissant (c’est le cas par défaut) ou décroissant.</li>
 </ol>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(carrier_table, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(carrier, nombre, <span class="dt">.desc =</span> <span class="ot">TRUE</span>), <span class="dt">y =</span> nombre)) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(carrier_table, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_reorder</span>(carrier, nombre, <span class="dt">.desc =</span> <span class="ot">TRUE</span>),
+                          <span class="dt">y =</span> nombre)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_col</span>()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:bpcarriersortedcol"></span>
 <img src="figure/bpcarriersortedcol-1.png" alt="Nombre de vols par compagnie aérienne au départ de New York en 2013." width="90%" />
@@ -1275,7 +1287,8 @@ Figure 4.52: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 <li>un titre pour les légendes de couleurs, de forme, de taille, etc</li>
 </ul>
 <p>Reprenons par exemple le graphique de la figure <a href="viz.html#fig:varcolor">4.10</a> :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(alaska_flights, <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">color =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(alaska_flights, <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, 
+                           <span class="dt">color =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:varcolorlabel"></span>
 <img src="figure/varcolorlabel-1.png" alt="Association de `color` à une variable catégorielle" width="90%" />
@@ -1284,18 +1297,19 @@ Figure 4.53: Association de <code>color</code> à une variable catégorielle
 </p>
 </div>
 <p>Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajoutant la fonction <code>labs()</code> sur une nouvelle couche du graphique :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(alaska_flights, <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">color =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(alaska_flights, 
+       <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">color =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Relation linéaire positive entre le retard des vols au départ et à l&#39;arrivée&quot;</span>,
-       <span class="dt">subtitle =</span> <span class="st">&quot;L&#39;essentiel des points est centré sur 0, mais certains retards dépassent 3 heures&quot;</span>,
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Relation linéaire positive entre retard des vols au départ et à l&#39;arrivée&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;Certains retards dépassent 3 heures&quot;</span>,
        <span class="dt">caption =</span> <span class="st">&quot;Source : nycflights13&quot;</span>,
        <span class="dt">x =</span> <span class="st">&quot;Retard au départ de New York (minutes)&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Retard à l&#39;arrivée à destination (minutes)&quot;</span>,
        <span class="dt">color =</span> <span class="st">&quot;Mois&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:varcolorlabel2"></span>
-<img src="figure/varcolorlabel2-1.png" alt="Exemple d'utilisation de `labs()`" width="90%" />
+<img src="figure/varcolorlabel2-1.png" alt="Exemple d'utilisation de `labs()`." width="90%" />
 <p class="caption">
-Figure 4.54: Exemple d’utilisation de <code>labs()</code>
+Figure 4.54: Exemple d’utilisation de <code>labs()</code>.
 </p>
 </div>
 <p>À partir de maintenant, vous devriez systématiquement légender les axes de vos graphiques en n’oubliant pas de préciser les unités, pour tous les graphiques que vous intégrez dans vos rapports, compte-rendus, mémoires, etc.</p>
@@ -1732,7 +1746,8 @@ Figure 4.61: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 </p>
 </div>
 <p>Dernière chose concernant les couleurs : un choix de fonction <code>scale_XXX_XXX()</code> inaproprié est la cause d’erreur la plus fréquente ! Par exemple, si on reprend le code des figures <a href="viz.html#fig:varcolor">4.10</a> et <a href="viz.html#fig:varcolor2">4.11</a> et que l’on modifie les palettes de couleurs, notez que les fonctions utilisées ne sont pas les mêmes :</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">color =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, 
+                                            <span class="dt">color =</span> <span class="kw">factor</span>(month))) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:varcolorviridis"></span>
@@ -1741,7 +1756,8 @@ Figure 4.61: Nombre de vols par compagnie aérienne au départ des 3 aéroports 
 Figure 4.62: Association de <code>color</code> à une variable catégorielle
 </p>
 </div>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, <span class="dt">color =</span> arr_time)) <span class="op">+</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> alaska_flights, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> dep_delay, <span class="dt">y =</span> arr_delay, 
+                                            <span class="dt">color =</span> arr_time)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_viridis_c</span>()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:varcolorviridis2"></span>
@@ -1757,7 +1773,7 @@ Figure 4.63: Association de <code>color</code> à une variable numérique
 <div id="les-themes" class="section level3">
 <h3><span class="header-section-number">4.9.3</span> Les thèmes</h3>
 <p>L’apparence de tout ce qui ne concerne pas directement les données d’un graphique est sous le contrôle d’un thème. Les thèmes contrôlent l’apparence générale du graphique : quelles polices et tailles de caractères sont utilisées, quel sera l’arrière plan du graphique, faut-il intégrer un quadrillage sous le graphique, et si oui, quelles doivent être ses caractéristiques ?</p>
-<p>Il est posible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins.</p>
+<p>Il est possible de spécifier chaque élément manuellement. Nous nous contenterons ici de passer en revue quelques thèmes prédéfinis qui devraient couvrir la plupart de vos besoins.</p>
 <p>Reprenons par exemple le code de la figure <a href="viz.html#fig:barfacetbrewer">4.58</a> et ajoutons un titre :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
@@ -1765,14 +1781,15 @@ Figure 4.63: Association de <code>color</code> à une variable numérique
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Compagnie aérienne&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Nombre de vols&quot;</span>,
        <span class="dt">fill =</span> <span class="st">&quot;Aéroports de</span><span class="ch">\n</span><span class="st">New York&quot;</span>,
-       <span class="dt">title =</span> <span class="st">&quot;Couverture inégale des aéroports de New York par les compagnies aériennes&quot;</span>) <span class="op">+</span>
+       <span class="dt">title =</span> <span class="st">&quot;Couverture inégale des aéroports de New York&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Accent&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:theme1"></span>
-<img src="figure/theme1-1.png" alt="Utilisation du thème par défaut : `theme_gray()`." width="90%" />
+<img src="figure/theme1-1.png" alt="Utilisation du thème par défaut : theme_gray()." width="90%" />
 <p class="caption">
 Figure 4.64: Utilisation du thème par défaut : <code>theme_gray()</code>.
 </p>
 </div>
+
 <p>Le thème utilisé par défaut est <code>theme_gray()</code>. Il est notamment responsable de l’arrière plan gris et du quadrillage blanc. Pour changer de thème, il suffit d’ajouter une couche au graphique en donnant le nom du nouveau thème :</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
@@ -1780,25 +1797,26 @@ Figure 4.64: Utilisation du thème par défaut : <code>theme_gray()</code>.
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Compagnie aérienne&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Nombre de vols&quot;</span>,
        <span class="dt">fill =</span> <span class="st">&quot;Aéroports de</span><span class="ch">\n</span><span class="st">New York&quot;</span>,
-       <span class="dt">title =</span> <span class="st">&quot;Couverture inégale des aéroports de New York par les compagnies aériennes&quot;</span>) <span class="op">+</span>
+       <span class="dt">title =</span> <span class="st">&quot;Couverture inégale des aéroports de New York&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Accent&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_bw</span>()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:themebw"></span>
-<img src="figure/themebw-1.png" alt="Utilisation du thème `theme_bw()`." width="90%" />
+<img src="figure/themebw-1.png" alt="Utilisation du thème theme_bw()." width="90%" />
 <p class="caption">
 Figure 4.65: Utilisation du thème <code>theme_bw()</code>.
 </p>
 </div>
+
 <p>Les thèmes complets que vous pouvez utiliser sont les suivants :</p>
 <ul>
 <li><code>theme_bw()</code> : fond blanc et quadrillage.</li>
-<li><code>theme_calssic()</code> : thème classique, avec des axes mais pas de quadrillage</li>
-<li><code>theme_dark()</code> : fond sombre pour augmenter le contraste</li>
-<li><code>theme_gray()</code> : thème par défaut : fond gris et quadrillage blanc</li>
-<li><code>theme_light()</code> : axes et quadrillages discrets</li>
-<li><code>theme_linedraw()</code> : uniquement des lignes noires</li>
-<li><code>theme_minimal()</code> : pas d’arrière plan, pas d’axes, quadrillage discret</li>
-<li><code>theme_void()</code> : theme vide, seuls les objets géométriques restent visibles</li>
+<li><code>theme_classic()</code> : thème classique, avec des axes mais pas de quadrillage.</li>
+<li><code>theme_dark()</code> : fond sombre pour augmenter le contraste.</li>
+<li><code>theme_gray()</code> : thème par défaut : fond gris et quadrillage blanc.</li>
+<li><code>theme_light()</code> : axes et quadrillages discrets.</li>
+<li><code>theme_linedraw()</code> : uniquement des lignes noires.</li>
+<li><code>theme_minimal()</code> : pas d’arrière plan, pas d’axes, quadrillage discret.</li>
+<li><code>theme_void()</code> : theme vide, seuls les objets géométriques restent visibles.</li>
 </ul>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
@@ -1806,7 +1824,7 @@ Figure 4.65: Utilisation du thème <code>theme_bw()</code>.
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Compagnie aérienne&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Nombre de vols&quot;</span>,
        <span class="dt">fill =</span> <span class="st">&quot;Aéroports de</span><span class="ch">\n</span><span class="st">New York&quot;</span>,
-       <span class="dt">title =</span> <span class="st">&quot;Couverture inégale des aéroports de New York par les compagnies aériennes&quot;</span>) <span class="op">+</span>
+       <span class="dt">title =</span> <span class="st">&quot;Couverture inégale des aéroports de New York&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Accent&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:thememinimal"></span>
@@ -1815,20 +1833,20 @@ Figure 4.65: Utilisation du thème <code>theme_bw()</code>.
 Figure 4.66: Utilisation du thème minimaliste.
 </p>
 </div>
-<p>L’argument <code>base_family</code> de chaque thème permet de spécifier une police de caractère différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l’ordinateur que vous utilisez. Dans l’exemple de la figure <a href="viz.html#fig:themefont">4.67</a> ci-dessous, j’utilise la police “Futura LT Book”. Si cette police n’est pas disponible sur votre ordinateur, ce code produira une erreur. Si c’est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.</p>
+<p>L’argument <code>base_family</code> de chaque thème permet de spécifier une police de caractères différente de celle utilisée par défaut. Évidemment, vous ne pourrez utiliser que des polices qui sont disponibles sur l’ordinateur que vous utilisez. Dans l’exemple de la figure <a href="viz.html#fig:themefont">4.67</a> ci-dessous, j’utilise la police “Futura LT Book”. Si cette police n’est pas disponible sur votre ordinateur, ce code produira une erreur. Si c’est le cas, remplacez-la par une police de votre ordinateur. Attention, son nom exact doit être utilisé. Cela signifie bien sûr le respect des espaces, majuscules, etc.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(flights, <span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">fct_infreq</span>(carrier), <span class="dt">fill =</span> origin)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>origin, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Compagnie aérienne&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Nombre de vols&quot;</span>,
        <span class="dt">fill =</span> <span class="st">&quot;Aéroports de</span><span class="ch">\n</span><span class="st">New York&quot;</span>,
-       <span class="dt">title =</span> <span class="st">&quot;Couverture inégale des aéroports de New York par les compagnies aériennes&quot;</span>) <span class="op">+</span>
+       <span class="dt">title =</span> <span class="st">&quot;Couverture inégale des aéroports de New York&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Accent&quot;</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_family =</span> <span class="st">&quot;Futura LT Book&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:themefont"></span>
-<img src="figure/themefont-1.png" alt="Modification de la police de caractère." width="90%" />
+<img src="figure/themefont-1.png" alt="Modification de la police de caractères." width="90%" />
 <p class="caption">
-Figure 4.67: Modification de la police de caractère.
+Figure 4.67: Modification de la police de caractères.
 </p>
 </div>
 <p>Le choix d’un thème et d’une police adaptés doivent vous permettre de faire des graphiques originaux et clairs. Rappelez-vous toujours que vos choix en matière de graphiques doivent avoir pour objectif principal de rendre les tendances plus faciles à décrypter pour un lecteur non familier de vos données. C’est un outil de communication au même titre que n’importe quel paragraphe d’un rapport ou compte-rendu. Et comme pour un paragraphe, la première version d’un graphique est rarement la bonne.</p>
