@@ -51,9 +51,8 @@ Pour plus de détails sur la façon de procéder, vous pouvez consulter [cette v
 
 Puisqu'il est beaucoup plus facile d'utiliser Rstudio pour interagir avec R, nous utiliserons exclusivement l'interface de RStudio. Après l'installation des 2 logiciels, vous disposez de 2 nouveaux logiciels sur votre ordinateur. RStudio ne peut fonctionner sans R, mais nous travaillerons exclusivement dans RStudio :
 
-R: Ne pas ouvrir ceci          |  RStudio: ouvrir ça !
-:-------------------------:|:-------------------------:
-<img src="https://cran.r-project.org/Rlogo.svg" alt="Drawing" style="height: 100px;"/>  |  <img src="https://www.rstudio.com/wp-content/uploads/2014/06/RStudio-Ball.png" alt="Drawing" style="height: 100px;"/>
+- R, ne pas ouvrir ceci : ![](images/Rlogo.png)
+- RStudio, ouvrir ça : ![](images/RStudio-Ball.png)
 
 À l'université, vous trouverez RStudio dans le menu Windows. Quand vous ouvrez RStudio pour la première fois, vous devriez obtenir une fenêtre qui ressemble à ceci :
 
@@ -145,7 +144,8 @@ Ci-dessous, un exemple de script
 # Chargement du package
 library(ggplot2)
 
-# Mise en méoire des données de qualité de l'air à New-York de mai à septembre 1973
+# Mise en mémoire des données de qualité de l'air à New-York de mai à
+# septembre 1973
 data(airquality)
 
 # Affichage des premières lignes du tableau de données
@@ -154,12 +154,14 @@ head(airquality)
 # Quelle est la structure de ce tableau ?
 str(airquality)
 
-# Réalisation d'un graphique présentant la relation entre la concentration en ozone atmosphérique en ppb et la température en degrés Farenheit
+# Réalisation d'un graphique présentant la relation entre la concentration
+# en ozone atmosphérique en ppb et la température en degrés Farenheit
 ggplot(data = airquality, mapping = aes(x = Temp, y = Ozone)) +
   geom_point() +
   geom_smooth(method = "loess")
 
-# On constate une augmentation importante de la concentration d'ozone pour des températures supérieures à 75ºF
+# On constate une augmentation importante de la concentration d'ozone 
+# pour des températures supérieures à 75ºF
 ```
 
 Même si vous ne comprenez pas encore les commandes qui figurent dans ce script (ça viendra !), voici ce que vous devez en retenir :
@@ -395,17 +397,10 @@ Une source de confusion importante pour les nouveaux utilisateurs de R est la no
 * Le package `ggplot2` pour la visualisation des données dans le chapitre \@ref(viz)
 * Le package `dplyr` pour les manipuler des tableaux données dans le chapitre \@ref(wrangling)
 
-Une bonne analogie pour les packages R : ils sont comme les apps que vous téléchargez sur un téléphone portable :
-
-R : Un nouveau téléphone   |  Packages: Apps qu'on peut telécharger
-:-------------------------:|:-------------------------:
-<img src="images/iphone.jpg" alt="Drawing" style="height: 200px;"/>  |  <img src="images/apps.jpg" alt="Drawing" style="height: 200px;"/>
-
-
-R est comme un nouveau téléphone mobile. Il est capable de faire certaines choses lorsque vous l'utilisez pour la première fois, mais il ne sait pas tout faire. Les packages R sont comme les apps que vous pouvez télécharger dans l'App Store et Google Play. Pour utiliser un package, comme pour utiliser Instagram, vous devez :
+Une bonne analogie pour les packages R : ils sont comme les apps que vous téléchargez sur un téléphone portable. R est comme un nouveau téléphone mobile. Il est capable de faire certaines choses lorsque vous l'utilisez pour la première fois, mais il ne sait pas tout faire. Les packages sont comme les apps que vous pouvez télécharger dans l'App Store et Google Play. Pour utiliser un package, comme pour utiliser Instagram, vous devez :
 
 1. Le télécharger et l'installer. Vous ne le faites qu'une fois.
-2. Le charger (en d'autres termes, l'ouvrir) en utilisant la commande `library ()`.
+2. Le charger (en d'autres termes, l'ouvrir) en utilisant la commande `library()` à chaque nouvelle session de travail.
 
 Donc, tout comme vous ne pouvez commencer à partager des photos avec vos amis sur Instagram que si vous installez d'abord l'application et que vous l'ouvrez, vous ne pouvez accéder aux données et fonctions d'un package R que si vous installez d'abord le package et le chargez avec la fonction `library()`. Passons en revue ces 2 étapes.
 

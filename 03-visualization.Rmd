@@ -57,7 +57,7 @@ En février 2006, un statisticien du nom de Hans Rosling a donné un TED Talk in
 
 Pour l'année 2007, le jeu de données contient des informations pour 142 pays. Examinons les premières lignes de ce jeu de données :
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.pos="!h"}
 library(gapminder)
 gapminder_2007 <- gapminder %>% 
   filter(year == 2007) %>% 
@@ -69,7 +69,7 @@ gapminder_2007 <- gapminder %>%
 
 gapminder_2007 %>% 
   head() %>% 
-  knitr::kable(caption = "Les 6 premières lignes du jeu de données `gapminder` pour l'année 2007")
+  knitr::kable(caption = "Les 6 premières lignes du jeu de données `gapminder` pour l'année 2007.", booktabs = TRUE, longtable = TRUE)
 ```
 
 Pour chaque ligne, les variables suivantes sont décrites : 

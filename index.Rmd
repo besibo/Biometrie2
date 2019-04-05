@@ -8,7 +8,6 @@ output:
     highlight: kate
     config:
       edit: null
-      download: no
       sharing:
         twitter: no
         facebook: no
@@ -16,14 +15,16 @@ output:
         all: no
       toc:
         collapse: subsection
-  # bookdown::pdf_book:
-  #   keep_tex: yes
-  #   dev: 'cairo_pdf'
+  bookdown::pdf_book:
+    keep_tex: yes
 url: 'https\://besibo.github.io/Biometrie2/'
 github-repo: "besibo/Biometrie2"
 bibliography: [book.bib, packages.bib]
-biblio-style: apalike
+csl : "my-apa.csl"
+papersize: a4paper
+geometry: "left=3.75cm, right=3.75cm, top=3cm, bottom=3cm"
 link-citations: yes
+urlcolor: "blue"
 description: "Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2."
 ---
 
@@ -67,8 +68,12 @@ knitr::write_bib(c(
 
 
 ```{r setup, include=FALSE, cache=FALSE, results=FALSE, message=FALSE}
-options(replace.assign = TRUE, width = 80)
+options(replace.assign = TRUE, width = 70)
 options(repos = "http://cran.r-project.org/")
+
+list.of.packages <- c("nycflights13", "gapminder", "knitr", "tidyverse", "gridExtra", "devtools", "extrafont", "kableExtra")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
 
 library(knitr)
 library(tidyverse)
