@@ -283,9 +283,11 @@ La température moyenne est donc de `r round(temper[1,1],1)` degrés Farenheit e
 
 La fonction devient particulièrement puissante lorsqu'elle est combinée avec la fonction `group_by()` :
 
-```{r, groupby, echo = FALSE, out.width='65%', fig.align='center', fig.cap="Fonctionnement de `group_by()` travaillant de concert avec `summarise()`, tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+```{r, groupby, echo = FALSE, out.width='65%', fig.align='center', fig.cap="(ref:groupby)"}
 knitr::include_graphics('images/groupby.png')
 ```
+
+(ref:groupby) Fonctionnement de `group_by()` travaillant de concert avec `summarise()`, tiré de la 'cheatsheet' de `dplyr` et `tidyr`.
 
 Comme son nom l'indique, la fonction `group_by()` permet de créer des sous-groupes dans un tableau, afin que le résumé des données soit calculé pour chacun des sous-groupes plutôt que sur l'ensemble du tableau. En ce sens, son fonctionnement est analogue à celui des `facet`s de `ggplot2` qui permettent de scinder les données d'un graphique en plusieurs sous-groupes.
 
@@ -354,8 +356,10 @@ monthly_temp %>%
     geom_linerange(aes(ymin = moyenne - ecart_type, ymax = moyenne + ecart_type)) +
   labs(x = "Mois",
        y = "Température (ºFarenheit)", 
-       title = "Évolution des températures dans 3 aéroports de New York en 2013",
-       subtitle = "Attention : les barres d'erreurs sont les écarts-types.\nIl faut normalement faire figurer les erreurs standard.")
+       title = "Évolution des températures 
+                dans 3 aéroports de New York en 2013",
+       subtitle = "Attention : les barres d'erreurs sont les écarts-types.\n
+                   Il faut normalement faire figurer les erreurs standard.")
 ```
 
 
@@ -384,8 +388,10 @@ monthly_orig_temp %>%
     geom_linerange(aes(ymin = moyenne - ecart_type, ymax = moyenne + ecart_type)) +
   labs(x = "Mois",
        y = "Température (ºFarenheit)", 
-       title = "Évolution des températures dans 3 aéroports de New York en 2013",
-       subtitle = "Attention : les barres d'erreurs sont les écarts-types.\nIl faut normalement faire figurer les erreurs standard.")
+       title = "Évolution des températures 
+                dans 3 aéroports de New York en 2013",
+       subtitle = "Attention : les barres d'erreurs sont les écarts-types.\n
+                   Il faut normalement faire figurer les erreurs standard.")
 ```
 
 Notez que j'utilise maintenant `group = origin` et non plus `group = 1`. Ici, les températures des 3 aéroports sont tellement similaires que les courbes sont difficiles à distinguer. Nous pouvons donc utiliser `facet_wrap()` pour tenter d'améliorer la visualisation :
@@ -399,8 +405,10 @@ monthly_orig_temp %>%
   facet_wrap(~origin, ncol = 1) +
   labs(x = "Mois",
        y = "Température (ºFarenheit)", 
-       title = "Évolution des températures dans 3 aéroports de New York en 2013",
-       subtitle = "Attention : les barres d'erreurs sont les écarts-types.\nIl faut normalement faire figurer les erreurs standard.")
+       title = "Évolution des températures 
+                dans 3 aéroports de New York en 2013",
+       subtitle = "Attention : les barres d'erreurs sont les écarts-types.\n
+                   Il faut normalement faire figurer les erreurs standard.")
 ```
 
 
@@ -749,9 +757,11 @@ popular_dest
 
 ### `inner_join()`
 
-```{r, inner, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Schéma de la fonction `inner_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+```{r, inner, echo = FALSE, out.width='50%', fig.align='center', fig.cap="(ref:innerjoin)"}
 knitr::include_graphics('images/innerjoin.png')
 ```
+
+(ref:innerjoin) Schéma de la fonction `inner_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`.
 
 La fonction `inner_join()` permet de relier des tableaux en ne conservant que les lignes qui sont présentes à la fois dans l'un et dans l'autre. Il faut identifier dans chacun des tableaux une colonne contenant des données en commun, qui servira de guide pour mettre les lignes correctes les unes en face des autres. Ici, nous partons de notre tableau `popular_dest`, qui contient les codes des aéroports dans sa colonne `dest`. Et nous faisons une "jointure interne" avec le tableau `airports` qui contient lui aussi une colonne contenant les codes des aéroports : la variable `faa`.
 
@@ -785,9 +795,11 @@ Certaines lignes ont donc été supprimées car le code aéroport dans `popular_
 
 ### `left_join()`
 
-```{r, left, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Schéma de la fonction `left_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`"}
+```{r, left, echo = FALSE, out.width='50%', fig.align='center', fig.cap="(ref:leftjoin)"}
 knitr::include_graphics('images/leftjoin.png')
 ```
+
+(ref:leftjoin) Schéma de la fonction `left_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`.
 
 Comme indiqué par la figure \@ref(fig:left) ci-dessus, une jointure gauche permet de conserver toutes les lignes du tableau de gauche, et de leur faire correspondre des lignes du second tableau. Si aucune correspondance n'est trouvée dans le second tableau, des données manquantes sont ajoutées sous forme de `NA`s. Voyons ce que cela donne avec le même exemple que précédemment :
 

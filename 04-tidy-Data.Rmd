@@ -33,7 +33,7 @@ install.packages("devtools")
 library(devtools)
 ```
 
-2. Installez le package `EDAWR` depuis le site https://github.com grâce à la fonction `install_github()` du package `devtools` :
+2. Installez le package `EDAWR` grâce à la fonction `install_github()` du package `devtools` :
 
 ```{r eval = FALSE}
 install_github("rstudio/EDAWR")
@@ -134,7 +134,10 @@ gather(data = cases, key = year, value = n_cases, `2011`:`2013`)
 Nous avons bien transformé le tableau de départ en un "tableau rangé" : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d'habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :
 
 ```{r}
-cases_tidy <- gather(data = cases, key = year, value = n_cases, `2011`:`2013`)
+cases_tidy <- gather(data = cases, 
+                     key = year, 
+                     value = n_cases, 
+                     `2011`:`2013`)
 ```
 
 Il nous est maintenant plus facile de manipuler ces données pour en tirer de l'information, grâce à des analyses statistiques ou des représentations graphiques :
@@ -169,14 +172,22 @@ C'est le comportement par défaut de la fonction `gather()` : les anciens titres
 cases <- as_tibble(cases)
 cases
 # On utilise ensuite gather avec l'argument convert = TRUE
-gather(data = cases, key = year, value = n_cases, `2011`:`2013`, convert = TRUE)
+gather(data = cases, 
+       key = year, 
+       value = n_cases,
+       `2011`:`2013`,
+       convert = TRUE)
 ```
 
 On voit ici que la variable `year` est maintenant une colonne numérique (`<int>` : nombres entiers), et non plus une variable de type "character".
 
 ```{r}
 # Et en utilisant factor_key = TRUE...
-gather(data = cases, key = year, value = n_cases, `2011`:`2013`, factor_key = TRUE)
+gather(data = cases, 
+       key = year,
+       value = n_cases, 
+       `2011`:`2013`,
+       factor_key = TRUE)
 ```
 
 On obtient cette fois une variable `year` sous la forme d'un facteur.
@@ -251,7 +262,11 @@ separate(cases_tidy, year, into = c("century", "year"), sep = 2)
 Notez ici que les 2 nouvelles variables sont de type `<chr>`. Si nous souhaitons que ces variables soient considérées comme numériques, nous devons ajouter un argument lorsque nous utilisons `separate()` :
 
 ```{r}
-cases_split <- separate(cases_tidy, year, into = c("century", "year"), sep = 2, convert = TRUE)
+cases_split <- separate(cases_tidy, 
+                        year,
+                        into = c("century", "year"),
+                        sep = 2,
+                        convert = TRUE)
 cases_split
 ```
 

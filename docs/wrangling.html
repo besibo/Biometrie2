@@ -561,11 +561,12 @@ Figure 6.3: Schéma de la fonction <code>summarise()</code> tiré de la ‘cheat
 <h3><span class="header-section-number">6.5.2</span> Intérêt de la fonction <code>group_by()</code></h3>
 <p>La fonction devient particulièrement puissante lorsqu’elle est combinée avec la fonction <code>group_by()</code> :</p>
 <div class="figure" style="text-align: center"><span id="fig:groupby"></span>
-<img src="images/groupby.png" alt="Fonctionnement de `group_by()` travaillant de concert avec `summarise()`, tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="65%" />
+<img src="images/groupby.png" alt="Fonctionnement de group_by() travaillant de concert avec summarise(), tiré de la ‘cheatsheet’ de dplyr et tidyr." width="65%" />
 <p class="caption">
-Figure 6.4: Fonctionnement de <code>group_by()</code> travaillant de concert avec <code>summarise()</code>, tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
+Figure 6.4: Fonctionnement de <code>group_by()</code> travaillant de concert avec <code>summarise()</code>, tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>.
 </p>
 </div>
+
 <p>Comme son nom l’indique, la fonction <code>group_by()</code> permet de créer des sous-groupes dans un tableau, afin que le résumé des données soit calculé pour chacun des sous-groupes plutôt que sur l’ensemble du tableau. En ce sens, son fonctionnement est analogue à celui des <code>facet</code>s de <code>ggplot2</code> qui permettent de scinder les données d’un graphique en plusieurs sous-groupes.</p>
 <p>Pour revenir à l’exemple des températures, imaginons que nous souhaitions calculer les températures moyennes et les écart-types pour chaque mois de l’année. Voilà comment procéder :</p>
 <pre class="sourceCode r"><code class="sourceCode r">weather <span class="op">%&gt;%</span><span class="st"> </span>
@@ -654,8 +655,10 @@ Figure 6.5: Évolution des températures moyenne dans 3 aéroports de New York e
 <span class="st">    </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> moyenne <span class="op">-</span><span class="st"> </span>ecart_type, <span class="dt">ymax =</span> moyenne <span class="op">+</span><span class="st"> </span>ecart_type)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mois&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Température (ºFarenheit)&quot;</span>, 
-       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures dans 3 aéroports de New York en 2013&quot;</span>,
-       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span><span class="st">Il faut normalement faire figurer les erreurs standard.&quot;</span>)</code></pre>
+       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures </span>
+<span class="st">                dans 3 aéroports de New York en 2013&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span>
+<span class="st">                   Il faut normalement faire figurer les erreurs standard.&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:errorbars2"></span>
 <img src="figure/errorbars2-1.png" alt="Évolution des températures moyenne dans 3 aéroports de New York en 2013" width="90%" />
 <p class="caption">
@@ -696,8 +699,10 @@ monthly_orig_temp</code></pre>
 <span class="st">    </span><span class="kw">geom_linerange</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> moyenne <span class="op">-</span><span class="st"> </span>ecart_type, <span class="dt">ymax =</span> moyenne <span class="op">+</span><span class="st"> </span>ecart_type)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mois&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Température (ºFarenheit)&quot;</span>, 
-       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures dans 3 aéroports de New York en 2013&quot;</span>,
-       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span><span class="st">Il faut normalement faire figurer les erreurs standard.&quot;</span>)</code></pre>
+       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures </span>
+<span class="st">                dans 3 aéroports de New York en 2013&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span>
+<span class="st">                   Il faut normalement faire figurer les erreurs standard.&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:errorbars3"></span>
 <img src="figure/errorbars3-1.png" alt="Évolution des températures moyenne dans 3 aéroports de New York en 2013" width="90%" />
 <p class="caption">
@@ -713,8 +718,10 @@ Figure 6.7: Évolution des températures moyenne dans 3 aéroports de New York e
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>origin, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Mois&quot;</span>,
        <span class="dt">y =</span> <span class="st">&quot;Température (ºFarenheit)&quot;</span>, 
-       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures dans 3 aéroports de New York en 2013&quot;</span>,
-       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span><span class="st">Il faut normalement faire figurer les erreurs standard.&quot;</span>)</code></pre>
+       <span class="dt">title =</span> <span class="st">&quot;Évolution des températures </span>
+<span class="st">                dans 3 aéroports de New York en 2013&quot;</span>,
+       <span class="dt">subtitle =</span> <span class="st">&quot;Attention : les barres d&#39;erreurs sont les écarts-types.</span><span class="ch">\n</span>
+<span class="st">                   Il faut normalement faire figurer les erreurs standard.&quot;</span>)</code></pre>
 <div class="figure" style="text-align: center"><span id="fig:errorbars4"></span>
 <img src="figure/errorbars4-1.png" alt="Évolution des températures moyenne dans 3 aéroports de New York en 2013" width="90%" />
 <p class="caption">
@@ -1259,11 +1266,12 @@ popular_dest</code></pre>
 <div id="inner_join" class="section level3">
 <h3><span class="header-section-number">6.9.2</span> <code>inner_join()</code></h3>
 <div class="figure" style="text-align: center"><span id="fig:inner"></span>
-<img src="images/innerjoin.png" alt="Schéma de la fonction `inner_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" />
+<img src="images/innerjoin.png" alt="Schéma de la fonction inner_join() tiré de la ‘cheatsheet’ de dplyr et tidyr." width="50%" />
 <p class="caption">
-Figure 6.14: Schéma de la fonction <code>inner_join()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
+Figure 6.14: Schéma de la fonction <code>inner_join()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>.
 </p>
 </div>
+
 <p>La fonction <code>inner_join()</code> permet de relier des tableaux en ne conservant que les lignes qui sont présentes à la fois dans l’un et dans l’autre. Il faut identifier dans chacun des tableaux une colonne contenant des données en commun, qui servira de guide pour mettre les lignes correctes les unes en face des autres. Ici, nous partons de notre tableau <code>popular_dest</code>, qui contient les codes des aéroports dans sa colonne <code>dest</code>. Et nous faisons une “jointure interne” avec le tableau <code>airports</code> qui contient lui aussi une colonne contenant les codes des aéroports : la variable <code>faa</code>.</p>
 <pre class="sourceCode r"><code class="sourceCode r">inner_popular &lt;-<span class="st"> </span>popular_dest <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">inner_join</span>(airports, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;dest&quot;</span> =<span class="st"> &quot;faa&quot;</span>))
@@ -1316,11 +1324,12 @@ inner_popular</code></pre>
 <div id="left_join" class="section level3">
 <h3><span class="header-section-number">6.9.3</span> <code>left_join()</code></h3>
 <div class="figure" style="text-align: center"><span id="fig:left"></span>
-<img src="images/leftjoin.png" alt="Schéma de la fonction `left_join()` tiré de la 'cheatsheet' de `dplyr` et `tidyr`" width="50%" />
+<img src="images/leftjoin.png" alt="Schéma de la fonction left_join() tiré de la ‘cheatsheet’ de dplyr et tidyr." width="50%" />
 <p class="caption">
-Figure 6.15: Schéma de la fonction <code>left_join()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>
+Figure 6.15: Schéma de la fonction <code>left_join()</code> tiré de la ‘cheatsheet’ de <code>dplyr</code> et <code>tidyr</code>.
 </p>
 </div>
+
 <p>Comme indiqué par la figure <a href="wrangling.html#fig:left">6.15</a> ci-dessus, une jointure gauche permet de conserver toutes les lignes du tableau de gauche, et de leur faire correspondre des lignes du second tableau. Si aucune correspondance n’est trouvée dans le second tableau, des données manquantes sont ajoutées sous forme de <code>NA</code>s. Voyons ce que cela donne avec le même exemple que précédemment :</p>
 <pre class="sourceCode r"><code class="sourceCode r">left_popular &lt;-<span class="st"> </span>popular_dest <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">left_join</span>(airports, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;dest&quot;</span> =<span class="st"> &quot;faa&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span>

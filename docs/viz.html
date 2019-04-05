@@ -1129,10 +1129,10 @@ Figure 4.45: Nombre de vols par compagnie aérienne au départ de New York en 20
 </div>
 <p>Ordonner les catégories par ordre décroissant est souvent indispensable afin de faciliter la lecture du graphique et les comparaisons entre catégories.</p>
 <p>Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aérienne, il nous faut faire appel à plusieurs fonctions du package <code>dplyr</code> que nous détaillerons dans le chapitre <a href="wrangling.html#wrangling">6</a>. Ci-dessous, nous créons un nouveau tableau <code>carrier_table</code> contenant le nombre de vols de chaque compagnie aérienne et les compagnies sont ordonnées par nombre de vols décroissants :</p>
-<pre class="sourceCode r"><code class="sourceCode r">carrier_table &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># Pour créer une nouvelle table, on prend flights, puis...</span>
-<span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span><span class="st">        </span><span class="co"># On groupe les données par compagnie aérienne, puis...</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">nombre =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># On calcule le nombre de vols par compagnie, puis ...</span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(nombre))        <span class="co"># On trie le tableau par nombre de vols décroissant.</span>
+<pre class="sourceCode r"><code class="sourceCode r">carrier_table &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># On prend flights, puis...</span>
+<span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span><span class="st">        </span><span class="co"># On groupe les données par compagnie, puis...</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">nombre =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># On calcule le nb de vols par Cie, puis ...</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(nombre))        <span class="co"># On trie le tableau par nb de vols décroissant</span>
 carrier_table                  <span class="co"># Enfin, on affiche la nouvelle table</span></code></pre>
 <pre><code># A tibble: 16 x 2
    carrier nombre

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  5 APR 2019 15:36
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2018.10.19)  5 APR 2019 16:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1613,7 +1613,7 @@ Overfull \hbox (2.70837pt too wide) detected at line 103
 
 
 Overfull \hbox (2.70837pt too wide) detected at line 106
- []\TU/FuturaLT-Book(0)/m/n/10 157
+ []\TU/FuturaLT-Book(0)/m/n/10 156
  []
 
 
@@ -1848,14 +1848,7 @@ File: figure/exercice-1.pdf Graphic file (type pdf)
 [102]
 File: figure/exercice2-1.pdf Graphic file (type pdf)
 <use figure/exercice2-1.pdf>
-[103] [104]
-Overfull \hbox (16.25978pt too wide) in paragraph at lines 3944--3945
-[]\TU/FuturaLT-Book(0)/m/sc/10 Installez le package \TU/lmtt/m/n/10 EDAWR \TU/F
-uturaLT-Book(0)/m/sc/10 depuis le site [][]$[][][][][] [] [] [] [][][][][][] []
- [][][]$[][] grâce à la fonction \TU/lmtt/m/n/10 install_github()
- []
-
-[105]
+[103] [104] [105]
 File: images/tidy.png Graphic file (type bmp)
 <images/tidy.png>
 [106]
@@ -1911,14 +1904,15 @@ File: figure/errorbars-1.pdf Graphic file (type pdf)
 File: figure/errorbars2-1.pdf Graphic file (type pdf)
 <use figure/errorbars2-1.pdf>
 [141]
-Underfull \vbox (badness 10000) detected at line 5643
- []
-
-[142]
 File: figure/errorbars3-1.pdf Graphic file (type pdf)
 <use figure/errorbars3-1.pdf>
+[142]
 File: figure/errorbars4-1.pdf Graphic file (type pdf)
 <use figure/errorbars4-1.pdf>
+
+Overfull \vbox (1.43324pt too high) detected at line 5697
+ []
+
 [143] [144] [145] [146] [147]
 File: figure/windspeed-1.pdf Graphic file (type pdf)
 <use figure/windspeed-1.pdf>
@@ -1931,23 +1925,35 @@ File: images/mutate.png Graphic file (type bmp)
 [153] [154]
 File: figure/consommation-1.pdf Graphic file (type pdf)
 <use figure/consommation-1.pdf>
+[155]
 File: figure/consommation2-1.pdf Graphic file (type pdf)
 <use figure/consommation2-1.pdf>
 File: images/arrange.png Graphic file (type bmp)
 <images/arrange.png>
-[155] [156] [157] [158] [159] [160]
+[156] [157] [158] [159] [160]
 File: images/innerjoin.png Graphic file (type bmp)
 <images/innerjoin.png>
 [161] [162]
 File: images/leftjoin.png Graphic file (type bmp)
 <images/leftjoin.png>
-[163] [164]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6782.
-[165]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 6782.
+[163] [164] [165]
+Underfull \hbox (badness 1817) in paragraph at lines 6787--6789
+[][]\TU/FuturaLT-Book(0)/m/sc/10 Wickham H, Chang W, Henry L, Pedersen TL, Taka
+hashi K, Wilke C, & Woo K. (2018).
+ []
+
+
+Underfull \hbox (badness 1383) in paragraph at lines 6787--6789
+\TU/FuturaLT-Book(0)/m/it/10 Ggplot2 : Create elegant data visualisations using
+ the grammar of graphics\TU/FuturaLT-Book(0)/m/sc/10 . Retrieved from
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6794.
+[166]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 6794.
 (./Biometrie2.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6782.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6782.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6794.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 6794.
 
 Package rerunfilecheck Info: File `Biometrie2.out' has not changed.
 (rerunfilecheck)             Checksum: 1C54446F18F6E1DA0560F130C778D91A.
@@ -1962,10 +1968,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  26122 strings out of 492970
  485037 string characters out of 6133937
- 644028 words of memory out of 5000000
+ 645175 words of memory out of 5000000
  29732 multiletter control sequences out of 15000+600000
  543087 words of font info for 64 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  60i,9n,118p,10451b,1500s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie2.pdf (165 pages).
+Output written on Biometrie2.pdf (166 pages).

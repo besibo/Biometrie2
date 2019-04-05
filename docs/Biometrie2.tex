@@ -2836,10 +2836,10 @@ Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aér
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{carrier_table <-}\StringTok{ }\NormalTok{flights }\OperatorTok{%>%}\StringTok{   }\CommentTok{# Pour créer une nouvelle table, on prend flights, puis...}
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(carrier) }\OperatorTok{%>%}\StringTok{        }\CommentTok{# On groupe les données par compagnie aérienne, puis...}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{nombre =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}\StringTok{  }\CommentTok{# On calcule le nombre de vols par compagnie, puis ...}
-\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(nombre))        }\CommentTok{# On trie le tableau par nombre de vols décroissant.}
+\NormalTok{carrier_table <-}\StringTok{ }\NormalTok{flights }\OperatorTok{%>%}\StringTok{   }\CommentTok{# On prend flights, puis...}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(carrier) }\OperatorTok{%>%}\StringTok{        }\CommentTok{# On groupe les données par compagnie, puis...}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{nombre =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}\StringTok{  }\CommentTok{# On calcule le nb de vols par Cie, puis ...}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(nombre))        }\CommentTok{# On trie le tableau par nb de vols décroissant}
 \NormalTok{carrier_table                  }\CommentTok{# Enfin, on affiche la nouvelle table}
 \end{Highlighting}
 \end{Shaded}
@@ -3941,7 +3941,7 @@ Outre ces packages classiques, nous aurons aussi besoin du package \texttt{EDAWR
 \setcounter{enumi}{1}
 \tightlist
 \item
-  Installez le package \texttt{EDAWR} depuis le site \url{https://github.com} grâce à la fonction \texttt{install\_github()} du package \texttt{devtools} :
+  Installez le package \texttt{EDAWR} grâce à la fonction \texttt{install\_github()} du package \texttt{devtools} :
 \end{enumerate}
 
 \begin{Shaded}
@@ -5427,14 +5427,16 @@ La température moyenne est donc de 55.3 degrés Farenheit et l'écart-type vaut
 
 La fonction devient particulièrement puissante lorsqu'elle est combinée avec la fonction \texttt{group\_by()} :
 
-\textbackslash{}begin\{figure\}{[}htpb{]}
+\begin{figure}[htpb]
 
-\{\centering \includegraphics[width=0.65\linewidth]{images/groupby}
+{\centering \includegraphics[width=0.65\linewidth]{images/groupby} 
 
-\}
+}
 
-\textbackslash{}caption\{Fonctionnement de \texttt{group\_by()} travaillant de concert avec \texttt{summarise()}, tiré de la `cheatsheet' de \texttt{dplyr} et \texttt{tidyr}\}\label{fig:groupby}
-\textbackslash{}end\{figure\}
+\caption{Fonctionnement de \texttt{group\_by()} travaillant de concert avec \texttt{summarise()}, tiré de la `cheatsheet' de \texttt{dplyr} et \texttt{tidyr}.}\label{fig:groupby}
+\end{figure}
+
+
 
 Comme son nom l'indique, la fonction \texttt{group\_by()} permet de créer des sous-groupes dans un tableau, afin que le résumé des données soit calculé pour chacun des sous-groupes plutôt que sur l'ensemble du tableau. En ce sens, son fonctionnement est analogue à celui des \texttt{facet}s de \texttt{ggplot2} qui permettent de scinder les données d'un graphique en plusieurs sous-groupes.
 
@@ -5577,8 +5579,10 @@ Vous remarquerez que :
 \StringTok{    }\KeywordTok{geom_linerange}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ moyenne }\OperatorTok{-}\StringTok{ }\NormalTok{ecart_type, }\DataTypeTok{ymax =}\NormalTok{ moyenne }\OperatorTok{+}\StringTok{ }\NormalTok{ecart_type)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Mois"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"Température (ºFarenheit)"}\NormalTok{, }
-       \DataTypeTok{title =} \StringTok{"Évolution des températures dans 3 aéroports de New York en 2013"}\NormalTok{,}
-       \DataTypeTok{subtitle =} \StringTok{"Attention : les barres d'erreurs sont les écarts-types.}\CharTok{\textbackslash{}n}\StringTok{Il faut normalement faire figurer les erreurs standard."}\NormalTok{)}
+       \DataTypeTok{title =} \StringTok{"Évolution des températures }
+\StringTok{                dans 3 aéroports de New York en 2013"}\NormalTok{,}
+       \DataTypeTok{subtitle =} \StringTok{"Attention : les barres d'erreurs sont les écarts-types.}\CharTok{\textbackslash{}n}
+\StringTok{                   Il faut normalement faire figurer les erreurs standard."}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5637,8 +5641,10 @@ En plus de la variable \texttt{month}, la tableau \texttt{monthly\_orig\_temp} c
 \StringTok{    }\KeywordTok{geom_linerange}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ moyenne }\OperatorTok{-}\StringTok{ }\NormalTok{ecart_type, }\DataTypeTok{ymax =}\NormalTok{ moyenne }\OperatorTok{+}\StringTok{ }\NormalTok{ecart_type)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Mois"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"Température (ºFarenheit)"}\NormalTok{, }
-       \DataTypeTok{title =} \StringTok{"Évolution des températures dans 3 aéroports de New York en 2013"}\NormalTok{,}
-       \DataTypeTok{subtitle =} \StringTok{"Attention : les barres d'erreurs sont les écarts-types.}\CharTok{\textbackslash{}n}\StringTok{Il faut normalement faire figurer les erreurs standard."}\NormalTok{)}
+       \DataTypeTok{title =} \StringTok{"Évolution des températures }
+\StringTok{                dans 3 aéroports de New York en 2013"}\NormalTok{,}
+       \DataTypeTok{subtitle =} \StringTok{"Attention : les barres d'erreurs sont les écarts-types.}\CharTok{\textbackslash{}n}
+\StringTok{                   Il faut normalement faire figurer les erreurs standard."}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5663,8 +5669,10 @@ Notez que j'utilise maintenant \texttt{group\ =\ origin} et non plus \texttt{gro
 \StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{origin, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Mois"}\NormalTok{,}
        \DataTypeTok{y =} \StringTok{"Température (ºFarenheit)"}\NormalTok{, }
-       \DataTypeTok{title =} \StringTok{"Évolution des températures dans 3 aéroports de New York en 2013"}\NormalTok{,}
-       \DataTypeTok{subtitle =} \StringTok{"Attention : les barres d'erreurs sont les écarts-types.}\CharTok{\textbackslash{}n}\StringTok{Il faut normalement faire figurer les erreurs standard."}\NormalTok{)}
+       \DataTypeTok{title =} \StringTok{"Évolution des températures }
+\StringTok{                dans 3 aéroports de New York en 2013"}\NormalTok{,}
+       \DataTypeTok{subtitle =} \StringTok{"Attention : les barres d'erreurs sont les écarts-types.}\CharTok{\textbackslash{}n}
+\StringTok{                   Il faut normalement faire figurer les erreurs standard."}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6491,14 +6499,16 @@ Lorsque nous avons plusieurs tableaux à disposition, il peut alors être néces
 \hypertarget{inner_join}{%
 \subsubsection{\texorpdfstring{\texttt{inner\_join()}}{inner\_join()}}\label{inner_join}}
 
-\textbackslash{}begin\{figure\}{[}htpb{]}
+\begin{figure}[htpb]
 
-\{\centering \includegraphics[width=0.5\linewidth]{images/innerjoin}
+{\centering \includegraphics[width=0.5\linewidth]{images/innerjoin} 
 
-\}
+}
 
-\textbackslash{}caption\{Schéma de la fonction \texttt{inner\_join()} tiré de la `cheatsheet' de \texttt{dplyr} et \texttt{tidyr}\}\label{fig:inner}
-\textbackslash{}end\{figure\}
+\caption{Schéma de la fonction \texttt{inner\_join()} tiré de la `cheatsheet' de \texttt{dplyr} et \texttt{tidyr}.}\label{fig:inner}
+\end{figure}
+
+
 
 La fonction \texttt{inner\_join()} permet de relier des tableaux en ne conservant que les lignes qui sont présentes à la fois dans l'un et dans l'autre. Il faut identifier dans chacun des tableaux une colonne contenant des données en commun, qui servira de guide pour mettre les lignes correctes les unes en face des autres. Ici, nous partons de notre tableau \texttt{popular\_dest}, qui contient les codes des aéroports dans sa colonne \texttt{dest}. Et nous faisons une ``jointure interne'' avec le tableau \texttt{airports} qui contient lui aussi une colonne contenant les codes des aéroports : la variable \texttt{faa}.
 
@@ -6592,14 +6602,16 @@ Certaines lignes ont donc été supprimées car le code aéroport dans \texttt{p
 \hypertarget{left_join}{%
 \subsubsection{\texorpdfstring{\texttt{left\_join()}}{left\_join()}}\label{left_join}}
 
-\textbackslash{}begin\{figure\}{[}htpb{]}
+\begin{figure}[htpb]
 
-\{\centering \includegraphics[width=0.5\linewidth]{images/leftjoin}
+{\centering \includegraphics[width=0.5\linewidth]{images/leftjoin} 
 
-\}
+}
 
-\textbackslash{}caption\{Schéma de la fonction \texttt{left\_join()} tiré de la `cheatsheet' de \texttt{dplyr} et \texttt{tidyr}\}\label{fig:left}
-\textbackslash{}end\{figure\}
+\caption{Schéma de la fonction \texttt{left\_join()} tiré de la `cheatsheet' de \texttt{dplyr} et \texttt{tidyr}.}\label{fig:left}
+\end{figure}
+
+
 
 Comme indiqué par la figure \ref{fig:left} ci-dessus, une jointure gauche permet de conserver toutes les lignes du tableau de gauche, et de leur faire correspondre des lignes du second tableau. Si aucune correspondance n'est trouvée dans le second tableau, des données manquantes sont ajoutées sous forme de \texttt{NA}s. Voyons ce que cela donne avec le même exemple que précédemment :
 
