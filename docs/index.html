@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Travaux Pratiques de Biométrie 2</title>
-  <meta name="description" content="Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Travaux Pratiques de Biométrie 2" />
   <meta property="og:type" content="book" />
@@ -22,18 +21,18 @@
   <meta name="twitter:description" content="Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2." />
   
 
-<meta name="author" content="Benoît Simon-Bouhet">
+<meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2019-04-05">
+<meta name="date" content="2019-09-08" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
 
-<link rel="next" href="bases.html">
+<link rel="next" href="bases.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -56,7 +55,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -285,7 +283,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="header">
 <h1 class="title">Travaux Pratiques de Biométrie 2</h1>
 <p class="author"><em>Benoît Simon-Bouhet</em></p>
-<p class="date"><em>2019-04-05</em></p>
+<p class="date"><em>2019-09-08</em></p>
 </div>
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
@@ -304,7 +302,7 @@ code span.wa { color: #bf0303; } /* Warning */
 Les données que vous serez amenés à traiter lors de vos stages, ou plus tard, lorsque vous serez en poste, ont souvent été acquises à grands frais, et au prix d’efforts importants. Il est donc de votre responsabilité d’en tirer le maximum. Et ça commence toujours (ou presque), par la réalisation de visualisations graphiques parlantes.</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
-<li>Vous apprendre comment calculer des statistiques descriptives simples, sur plusieurs types de variables, afin de vous mettre dans les meilleures conditions possible pour aborder d’une part les cours de biométrie 3 du second semestre, et d’autre part les comptes-rendus de TP que vous aurez à produire dans d’autres EC. Vos enseigants attendent de vous la plus grande rigueur lorsque vous analysez et présentez des résultats d’analyses statistiques. Ces TP ont pour objectifs de vous fournir les bases nécessaires pour satisfaire ce niveau d’exigence.</li>
+<li>Vous apprendre comment calculer des statistiques descriptives simples, sur plusieurs types de variables, afin de vous mettre dans les meilleures conditions possibles pour aborder d’une part les cours de biométrie 3 du second semestre, et d’autre part les comptes-rendus de TP que vous aurez à produire dans d’autres EC. Vos enseigants attendent de vous la plus grande rigueur lorsque vous analysez et présentez des résultats d’analyses statistiques. Ces TP ont pour objectifs de vous fournir les bases nécessaires pour satisfaire ce niveau d’exigence.</li>
 </ol>
 <hr />
 </div>
@@ -312,7 +310,7 @@ Les données que vous serez amenés à traiter lors de vos stages, ou plus tard,
 <h2><span class="header-section-number">1.2</span> Organisation</h2>
 <p>Les séances de travaux pratiques de biométrie 2 durent 1h30 et ont lieu en salle informatique du Pôle Communication Multimédia Réseaux (PCM). Seules 6 heures de TP sont prévues dans la maquette, soit 4 séances de TP. C’est <em>très peu</em> ! En fait, c’est très insuffisant pour couvrir correctement la totalité du contenu de cet enseignement. C’est la raison pour laquelle chacune des 3 premières séances de TP est suivie d’<strong>une séance de TEA de 90 minutes</strong>.</p>
 <p>Au début de chaque séance de TP, j’indiquerai un objectif que vous devriez être en mesure d’atteindre en l’espace de 3 heures. Certains iront probablement plus vite et d’autres plus lentement. Lors des séances de TP, je serai disponible pour répondre à chacune de vos questions. À l’issue des 90 minutes de TP, vous changerez de salle (toujours au PCM) et les 90 minutes de TEA commenceront.</p>
-<p>Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l’ENT à l’issue de chaque séance de TEA, qu’ils soient terminés ou non. S’ils ne sont pas terminés à l’issue des TEA, vous êtes vivement encourragés à les terminer en dehors des heures de cours. En effet, une correction rapide sera faite lors de la séance de travaux pratiques suivante et nous n’auront que très peu de temps à consacrer à ces corrections. Si vous n’y avez pas sérieusement réfléchi en amont, cela ne vous servira absolument à rien. Pour apprendre à utiliser un logiciel comme R, il faut en effet faire les choses soi-même, “mettre les mains dans le cambouis”, se confronter à la difficulté, ne pas avoir peur des messages d’erreurs (il faut d’ailleurs apprendre à les déchiffrer pour comprendre d’où viennent les problèmes), essayer maintes fois, se tromper beaucoup, recommencer, et surtout, ne pas se décourager. Même si ce livre est conçu pour vous faciliter la tâche, l’apprentissage de R est souvent perçu comme une lutte. Mais quand ça fonctionne enfin, c’est extrêmement gratifiant et il n’existe pas à l’heure actuelle de meilleur logiciel pour analyser des données et produire des graphiques de qualité. Vous pouvez me croire sur parôle : j’utilise ce logiciel presque quotidiennement depuis près de 15 ans.</p>
+<p>Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l’ENT à l’issue de chaque séance de TEA, qu’ils soient terminés ou non. S’ils ne sont pas terminés à l’issue des TEA, vous êtes vivement encourragés à les terminer en dehors des heures de cours. En effet, une correction rapide sera faite lors de la séance de travaux pratiques suivante et nous n’auront que très peu de temps à consacrer à ces corrections. Si vous n’y avez pas sérieusement réfléchi en amont, cela ne vous servira absolument à rien. Pour apprendre à utiliser un logiciel comme R, il faut en effet faire les choses soi-même, “mettre les mains dans le cambouis”, se confronter à la difficulté, ne pas avoir peur des messages d’erreurs (il faut d’ailleurs apprendre à les déchiffrer pour comprendre d’où viennent les problèmes), essayer maintes fois, se tromper beaucoup, recommencer, et surtout, ne pas se décourager. Même si ce livre est conçu pour vous faciliter la tâche, l’apprentissage de R est souvent perçu comme une lutte. Mais quand ça fonctionne enfin, c’est extrêmement gratifiant et il n’existe pas à l’heure actuelle de meilleur logiciel pour analyser des données et produire des graphiques de qualité. Vous pouvez me croire sur parôle : j’utilise ce logiciel presque quotidiennement depuis plus de 15 ans.</p>
 <p>Je m’efforcerai de passer 1 ou 2 fois auprès de vous lors des séances de TEA afin de vous débloquer en cas de problème majeur. Vous pouvez aussi <a href="mailto:bsimonbo@univ-lr.fr">me contacter par email</a>. Toutefois, ce document est fait pour vous permettre d’avancer en autonomie. L’expérience montre que la plupart du temps, il suffit de lire correctement pour obtenir la réponse à ses questions. Je vous encourage également à vous <strong>entraider</strong> : c’est très formateur pour celui qui explique, et celui qui rencontre une difficulté a plus de chance de comprendre si c’est quelqu’un d’autre qui lui explique plutôt que la personne qui a rédigé les instructions mal comprises.</p>
 <p>Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyons en TP devra être acquis le jour de l’examen. Utilisez donc le temps du TEA pour vous préparer au mieux. L’apprentissage prend du temps, donc autant s’y mettre sérieusement dès maintenant.</p>
 <!-- Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab). -->
@@ -375,8 +373,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -111,7 +111,7 @@
 \usepackage{titling}
 
 % Create subtitle command for use in maketitle
-\newcommand{\subtitle}[1]{
+\providecommand{\subtitle}[1]{
   \posttitle{
     \begin{center}\large#1\end{center}
     }
@@ -127,7 +127,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-04-05}
+    \date{2019-09-08}
 
 \usepackage[french]{babel}
 \usepackage{mathspec}  % \usepackage{fontspec}
@@ -186,7 +186,7 @@ Ces travaux pratiques ont essentiellement 3 objectifs :
 \setcounter{enumi}{2}
 \tightlist
 \item
-  Vous apprendre comment calculer des statistiques descriptives simples, sur plusieurs types de variables, afin de vous mettre dans les meilleures conditions possible pour aborder d'une part les cours de biométrie 3 du second semestre, et d'autre part les comptes-rendus de TP que vous aurez à produire dans d'autres EC. Vos enseigants attendent de vous la plus grande rigueur lorsque vous analysez et présentez des résultats d'analyses statistiques. Ces TP ont pour objectifs de vous fournir les bases nécessaires pour satisfaire ce niveau d'exigence.
+  Vous apprendre comment calculer des statistiques descriptives simples, sur plusieurs types de variables, afin de vous mettre dans les meilleures conditions possibles pour aborder d'une part les cours de biométrie 3 du second semestre, et d'autre part les comptes-rendus de TP que vous aurez à produire dans d'autres EC. Vos enseigants attendent de vous la plus grande rigueur lorsque vous analysez et présentez des résultats d'analyses statistiques. Ces TP ont pour objectifs de vous fournir les bases nécessaires pour satisfaire ce niveau d'exigence.
 \end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
@@ -198,7 +198,7 @@ Les séances de travaux pratiques de biométrie 2 durent 1h30 et ont lieu en sal
 
 Au début de chaque séance de TP, j'indiquerai un objectif que vous devriez être en mesure d'atteindre en l'espace de 3 heures. Certains iront probablement plus vite et d'autres plus lentement. Lors des séances de TP, je serai disponible pour répondre à chacune de vos questions. À l'issue des 90 minutes de TP, vous changerez de salle (toujours au PCM) et les 90 minutes de TEA commenceront.
 
-Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l'ENT à l'issue de chaque séance de TEA, qu'ils soient terminés ou non. S'ils ne sont pas terminés à l'issue des TEA, vous êtes vivement encourragés à les terminer en dehors des heures de cours. En effet, une correction rapide sera faite lors de la séance de travaux pratiques suivante et nous n'auront que très peu de temps à consacrer à ces corrections. Si vous n'y avez pas sérieusement réfléchi en amont, cela ne vous servira absolument à rien. Pour apprendre à utiliser un logiciel comme R, il faut en effet faire les choses soi-même, ``mettre les mains dans le cambouis'', se confronter à la difficulté, ne pas avoir peur des messages d'erreurs (il faut d'ailleurs apprendre à les déchiffrer pour comprendre d'où viennent les problèmes), essayer maintes fois, se tromper beaucoup, recommencer, et surtout, ne pas se décourager. Même si ce livre est conçu pour vous faciliter la tâche, l'apprentissage de R est souvent perçu comme une lutte. Mais quand ça fonctionne enfin, c'est extrêmement gratifiant et il n'existe pas à l'heure actuelle de meilleur logiciel pour analyser des données et produire des graphiques de qualité. Vous pouvez me croire sur parôle : j'utilise ce logiciel presque quotidiennement depuis près de 15 ans.
+Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l'ENT à l'issue de chaque séance de TEA, qu'ils soient terminés ou non. S'ils ne sont pas terminés à l'issue des TEA, vous êtes vivement encourragés à les terminer en dehors des heures de cours. En effet, une correction rapide sera faite lors de la séance de travaux pratiques suivante et nous n'auront que très peu de temps à consacrer à ces corrections. Si vous n'y avez pas sérieusement réfléchi en amont, cela ne vous servira absolument à rien. Pour apprendre à utiliser un logiciel comme R, il faut en effet faire les choses soi-même, ``mettre les mains dans le cambouis'', se confronter à la difficulté, ne pas avoir peur des messages d'erreurs (il faut d'ailleurs apprendre à les déchiffrer pour comprendre d'où viennent les problèmes), essayer maintes fois, se tromper beaucoup, recommencer, et surtout, ne pas se décourager. Même si ce livre est conçu pour vous faciliter la tâche, l'apprentissage de R est souvent perçu comme une lutte. Mais quand ça fonctionne enfin, c'est extrêmement gratifiant et il n'existe pas à l'heure actuelle de meilleur logiciel pour analyser des données et produire des graphiques de qualité. Vous pouvez me croire sur parôle : j'utilise ce logiciel presque quotidiennement depuis plus de 15 ans.
 
 Je m'efforcerai de passer 1 ou 2 fois auprès de vous lors des séances de TEA afin de vous débloquer en cas de problème majeur. Vous pouvez aussi \href{mailto:bsimonbo@univ-lr.fr}{me contacter par email}. Toutefois, ce document est fait pour vous permettre d'avancer en autonomie. L'expérience montre que la plupart du temps, il suffit de lire correctement pour obtenir la réponse à ses questions. Je vous encourage également à vous \textbf{entraider} : c'est très formateur pour celui qui explique, et celui qui rencontre une difficulté a plus de chance de comprendre si c'est quelqu'un d'autre qui lui explique plutôt que la personne qui a rédigé les instructions mal comprises.
 
@@ -207,7 +207,7 @@ Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyon
 \hypertarget{bases}{%
 \section{R et RStudio : les bases}\label{bases}}
 
-Avant de commencer à explorer des données dans R, il y a plusieurs concepts clés qu'il faut comprendre premier lieu :
+Avant de commencer à explorer des données dans R, il y a plusieurs concepts clés qu'il faut comprendre en premier lieu :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -220,7 +220,7 @@ Avant de commencer à explorer des données dans R, il y a plusieurs concepts cl
   Que sont les ``packages'' ?
 \end{enumerate}
 
-Même si vous pensez être déjà à l'aise avec ces concepts, lisez attentivement ce chapitre et faites les exercices demandés. Cela vous rafraîchira probablement la mémoire, et il n'est pas impossible que vous appreniez une chose ou deux au passage. Une bonne maîtrise des éléments présentés dans ce chapitre est un effet nécessaire pour aborder sereinement les chapitres suivants, à commencer par le chapitre \ref{dataset}, qui présente quelques jeux de données que nous explorerons en détail dans cet ouvrage.
+Même si vous pensez être déjà à l'aise avec ces concepts, lisez attentivement ce chapitre et faites les exercices demandés. Cela vous rafraîchira probablement la mémoire, et il n'est pas impossible que vous appreniez une chose ou deux au passage. Une bonne maîtrise des éléments présentés dans ce chapitre est en effet nécessaire pour aborder sereinement les chapitres suivants, à commencer par le chapitre \ref{dataset}, qui présente quelques jeux de données que nous explorerons en détail dans cet ouvrage.
 
 Ce chapitre est en grande partie basé sur les 3 ressources suivantes que je vous encourage à consulter si vous souhaitez obtenir plus de détails :
 
@@ -228,11 +228,11 @@ Ce chapitre est en grande partie basé sur les 3 ressources suivantes que je vou
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  L'ouvrage intitulé \href{https://moderndive.com/index.html}{ModernDive}, de Chester Ismay et Albert Y. Kim. Une bonne partie de cet ouvrage est très largement inspirée de cet ouvrage. C'est en anglais, mais c'est un très bon texte d'introduction aux statistiques sous R et RStudio.
+  L'ouvrage intitulé \href{https://moderndive.com/index.html}{ModernDive}, de Chester Ismay et Albert Y. Kim. Une bonne partie de ce livre est très largement inspirée de cet ouvrage. C'est en anglais, mais c'est un très bon texte d'introduction aux statistiques sous R et RStudio.
 \item
   L'ouvrage intitulé \href{https://ismayc.github.io/rbasics-book/}{Getting used to R, RStudio, and R Markdown} de Chester Ismay, comprend des podcasts (en anglais toujours) que vous pouvez suivre en apprenant.
 \item
-  Les tutoriels en ligne de DataCamp. DataCamp est une plateforme de e-learning accessible depuis n'importe quel navigateur internet dont la priorité est l'enseignement des ``data sciences''. Leurs tutoriels vous aideront à apprendre certains des concepts de développés dans ce livre. Avant d'aller plus loin, rendez-vous sur \href{https://www.datacamp.com/}{le site de DataCamp} et créez vous un compte gratuit.
+  Les tutoriels en ligne de DataCamp. DataCamp est une plateforme de e-learning accessible depuis n'importe quel navigateur internet et dont la priorité est l'enseignement des ``data sciences''. Leurs tutoriels vous aideront à apprendre certains des concepts de développés dans ce livre. Avant d'aller plus loin, rendez-vous sur \href{https://www.datacamp.com/}{le site de DataCamp} et créez-vous un compte gratuit.
 \end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
@@ -240,7 +240,7 @@ Ce chapitre est en grande partie basé sur les 3 ressources suivantes que je vou
 \hypertarget{que-sont-r-et-rstudio}{%
 \subsection{Que sont R et RStudio}\label{que-sont-r-et-rstudio}}
 
-Pour l'ensemble de ces TP, j'attends de vous que vous utilisez R \emph{via} RStudio. Les utilisateurs novices confondent souvent les deux. Pour tenter une analogie simple :
+Pour l'ensemble de ces TP, j'attends de vous que vous utilisiez R \emph{via} RStudio. Les utilisateurs novices confondent souvent les deux. Pour tenter une analogie simple :
 
 \begin{itemize}
 \tightlist
@@ -252,7 +252,7 @@ Pour l'ensemble de ces TP, j'attends de vous que vous utilisez R \emph{via} RStu
 
 Si vous n'avez pas de moteur, vous n'irez nulle part. En revanche, un moteur sans tableau de bord est difficile à manœuvrer. Il est en effet beaucoup plus simple de faire avancer une voiture depuis l'habitacle, plutôt qu'en actionnant à la main les cables et leviers du moteur.
 
-En l'occurence, R est un langage de programmation capable de produire des graphiques et de réaliser des analyses statistiques, des plus simples au plus complexes. RStudio est un ``emballage'' qui rend l'utilisation de R plus aisée. RStudio est ce qu'on appelle un IDE : Itegrated Development Environment. On peut utiliser R sans RStudio, mais c'est nettement plus compliqué, nettement moins pratique.
+En l'occurence, R est un langage de programmation capable de produire des graphiques et de réaliser des analyses statistiques, des plus simples aux plus complexes. RStudio est un ``emballage'' qui rend l'utilisation de R plus aisée. RStudio est ce qu'on appelle un IDE : Integrated Development Environment. On peut utiliser R sans RStudio, mais c'est nettement plus compliqué, nettement moins pratique.
 
 \hypertarget{installation-de-r-et-rstudio}{%
 \subsubsection{Installation de R et RStudio}\label{installation-de-r-et-rstudio}}
@@ -271,9 +271,9 @@ Avant tout, vous devez télécharger et installer R et RStudio, dans cet ordre :
 \begin{itemize}
 \tightlist
 \item
-  Note : vous devez installer ce logiciel en premier
+  Vous devez installer ce logiciel en premier.
 \item
-  Cliquez sur le lien de telechargement qui correspond à votre système d'exploitation, puis, sur ``base'', et suivez les instructions
+  Cliquez sur le lien de téléchargement qui correspond à votre système d'exploitation, puis, sur ``base'', et suivez les instructions.
 \end{itemize}
 
 \begin{enumerate}
@@ -287,12 +287,10 @@ Avant tout, vous devez télécharger et installer R et RStudio, dans cet ordre :
 \begin{itemize}
 \tightlist
 \item
-  Cliquez sur ``Download RStudio Desktop''
+  Cliquez sur ``Download RStudio Desktop''.
 \item
-  Choisissez la version gratuite et cliquez sur le lien de télechargement qui correspond à votre système d'exploitation.
+  Choisissez la version gratuite et cliquez sur le lien de téléchargement qui correspond à votre système d'exploitation.
 \end{itemize}
-
-Pour plus de détails sur la façon de procéder, vous pouvez consulter \href{https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=3}{cette vidéo} sur le site de DataCamp. Pour accéder à la vidéo, il est possible que vous deviez vous identifier avec le compte (gratuit) que vous avez créé un peu plus tôt.
 
 \hypertarget{utiliser-r-depuis-rstudio}{%
 \subsubsection{Utiliser R depuis RStudio}\label{utiliser-r-depuis-rstudio}}
@@ -311,7 +309,7 @@ Puisqu'il est beaucoup plus facile d'utiliser Rstudio pour interagir avec R, nou
 
 \includegraphics{images/rstudio.png}
 
-Regardez \href{https://campus.datacamp.com/courses/working-with-the-rstudio-ide-part-1/orientation?ex=5}{cette vidéo DataCamp} pour découvrir les différents panneaux de l'application, en particulier la Console dans laquelle nous executerons très bientôt du code R
+Prenez le temps d'explorer cette interface, cliquez sur les différents onglets, ouvrez les menus, allez faire un tour dans les préférences du logiciel pour découvrir les différents panneaux de l'application, en particulier la Console dans laquelle nous exécuterons très bientôt du code R.
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -386,7 +384,7 @@ Avant d'aller plus loin je vous conseille donc vivement de :
 \end{Highlighting}
 \end{Shaded}
 
-Il ne vous reste plus qu'à vérifier que le changement a bien été pris en compte en tapant à nouveau \texttt{getwd()} dans la console. Attention, vous devez vous assurer d'être dans le bon répertoire de travail \textbf{à chaque nouvelle session} !
+Il ne vous reste plus qu'à vérifier que le changement a bien été pris en compte en tapant à nouveau \texttt{getwd()} dans la console. Attention, vous devrez vous assurer d'être dans le bon répertoire de travail \textbf{à chaque nouvelle session} !
 
 \hypertarget{les-scripts}{%
 \subsubsection{Les scripts}\label{les-scripts}}
@@ -414,9 +412,9 @@ Les avantages de travailler dans un script sont nombreux :
 \item
   Vous pouvez aisément partager votre script pour collaborer avec vos collègues de promo et enseignants.
 \item
-  Vous pouvez documenter votre démarche et les différentes étapes de vos analyses. Vous devez ajouter autant de commentaires que possible. Cela permettra à vos collaborateurs de comprendre ce que vous avez fait. Et cela vous permettra de comprendre ce que vous avez fait il y a 6 mois quand vous vous re-plongerez dans vos analyses dans quelques temps. Si votre démarche vous paraît cohérente maintenant, il n'est en effet pas garanti que vous rappellerez de chaque détail dans 6 mois ou 6 ans.
+  Vous pouvez documenter votre démarche et les différentes étapes de vos analyses. Vous devez ajouter autant de commentaires que possible. Cela permettra à vos collaborateurs de comprendre ce que vous avez fait. Et dans 6 mois, cela vous permettra de comprendre ce que vous avez fait. Si votre démarche vous paraît cohérente aujourd'hui, il n'est en effet pas garanti que vous vous souviendrez de chaque détail quand vous vous re-plongerez dans vos analyses dans quelques temps. Donc aidez-vous vous même en commentant vos scripts dès maintenant.
 \item
-  Un script bien structuré et clair permet de rendre vos analyses répétables. Si vous passez 15 heures à analyser un tableau de données précis, il vous suffira de quelques secondes pour analyser un nouveau jeu de données similaire : vous n'aurez que quelques lignes à modifier dans votre script original pour l'appliquer à de nouvelles données.
+  Un script bien structuré, bien indenté (avec les bons retours à la ligne, des sauts de lignes, des espaces, bref, de l'air) et clair permet de rendre vos analyses répétables. Si vous passez 15 heures à analyser un tableau de données précis, il vous suffira de quelques secondes pour analyser un nouveau jeu de données similaire : vous n'aurez que quelques lignes à modifier dans votre script original pour l'appliquer à de nouvelles données.
 \end{enumerate}
 
 Vous pouvez créer un script en cliquant dans le menu ``File \textgreater{} New File \textgreater{} R Script''. Un nouveau panneau s'ouvre dans l'application. Pensez à sauvegarder immédiatement votre nouveau script. Il faut pour cela lui donner un nom. Vous noterez que par défaut, RStudio propose d'enregistrer votre script dans votre répertoire de travail.
@@ -427,7 +425,7 @@ Pour exécuter les commandes du script dans la console, il suffit de placer le c
 
 À la fin de chaque séance de TEA, vous devrez déposer sur l'ENT le script que vous avez créé durant la séance. Ce script devra porter votre nom de famille et se terminer par l'extension \texttt{.R}. Ainsi, si Jean-Claude Van Damme faisait des statistiques, il devrait déposer sur l'ENT un fichier intitulé \texttt{VanDamme.R} à la fin de chaque séance de TEA.
 
-Ci-dessous, un exemple de script
+Ci-dessous, un exemple de script :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -464,18 +462,18 @@ Même si vous ne comprenez pas encore les commandes qui figurent dans ce script 
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Le script contient plus de lignes de commentaires que de commandes R
+  Le script contient plus de lignes de commentaires que de commandes R.
 \item
-  Chaque étape de l'analyse est décrite en détail
+  Chaque étape de l'analyse est décrite en détail.
 \item
-  On peut ajouter des commentaires afin de décrire les résultats
+  On peut ajouter des commentaires afin de décrire les résultats.
 \item
-  Seules les commandes pertinentes et qui fonctionnent ont été conservées dans ce script
+  Seules les commandes pertinentes et qui fonctionnent ont été conservées dans ce script.
 \item
   Chaque ligne de commentaire commence par \texttt{\#}. Il est ainsi possible de conserver certaines commandes R dans le script, ``pour mémoire'', sans pour autant qu'elle ne soient exécutées. C'est le cas pour la ligne \texttt{\#\ install.packages("ggplot2")}.
 \end{enumerate}
 
-Si j'éxécute ce script dans la console de RStudio (en sélectionnant toutes les lignes et en pressant les touches \texttt{ctrl+enter} ou \texttt{command+enter} sous macOS), voilà ce qui est produit :
+Si j'exécute ce script dans la console de RStudio (en sélectionnant toutes les lignes et en pressant les touches \texttt{ctrl\ +\ enter} ou \texttt{command\ +\ enter} sous macOS), voilà ce qui est produit :
 
 \begin{verbatim}
   Ozone Solar.R Wind Temp Month Day
@@ -502,7 +500,7 @@ Si j'éxécute ce script dans la console de RStudio (en sélectionnant toutes le
 \hypertarget{concepts-de-base-en-programmation-et-terminologie}{%
 \subsubsection{Concepts de base en programmation et terminologie}\label{concepts-de-base-en-programmation-et-terminologie}}
 
-Pour vous présenter les concepts de base et la terminologie de la programmation dont nous aurons besoin dans R, vous allez suivre les tutoriels en ligne suivants, sur le site de DataCamp. Pour chacun des tutoriels, j'indique une liste des concepts de programmation couverts. Notez que dans ce livre, nous utiliserons une police différente pour distinguer le texte normal et les \texttt{commandes-informatiques}.
+Pour vous présenter les concepts de base et la terminologie de la programmation dont nous aurons besoin dans R, vous allez suivre des tutoriels en ligne sur le site de DataCamp. Pour chacun des tutoriels, j'indique une liste des concepts de programmation couverts. Notez que dans ce livre, nous utiliserons une police différente pour distinguer le texte normal et les \texttt{commandes-informatiques}.
 
 Il est important de noter que, bien que ces tutoriels sont d'excellentes introductions, une seule lecture est insuffisante pour un apprentissage en profondeur et une rétention à long terme. Les outils ultimes pour l'apprentissage et la rétention à long terme sont ``l'apprentissage par la pratique'' et ``la répétition''. Outre les exercices demandés dans DataCamp, que vous devez effectuer directement dans votre navigateur, je vous encourage donc à multiplier les essais, directement dans la console de RStudio, ou, de préférence, dans un script que vous annoterez, pour vous assurer que vous avez bien compris chaque partie.
 
@@ -519,11 +517,11 @@ Dans \href{https://www.datacamp.com/community/open-courses/introduction-a-r}{le 
   \begin{itemize}
   \tightlist
   \item
-    La console : l'endroit où vous tapez des commandes
+    La console : l'endroit où vous tapez des commandes.
   \item
-    Les objets : où les valeurs sont stockées, comment assigner des valeurs à des objets
+    Les objets : où les valeurs sont stockées, comment assigner des valeurs à des objets.
   \item
-    Les types de données : entiers, doubles/numériques, charactères et logiques
+    Les types de données : entiers, doubles/numériques, charactères et logiques.
   \end{itemize}
 \item
   \href{https://campus.datacamp.com/courses/introduction-a-r/chapitre-2-les-vecteurs?ex=1}{Chapitre 2 : vecteurs}
@@ -539,7 +537,7 @@ Dans \href{https://www.datacamp.com/community/open-courses/introduction-a-r}{le 
   \begin{itemize}
   \tightlist
   \item
-    Des données catégorielles (et non pas \emph{numériques}) représentés dans R sous forme de \texttt{factor}s.
+    Des données catégorielles (et non pas \emph{numériques}) représentées dans R sous forme de \texttt{factor}s.
   \end{itemize}
 \item
   \href{https://campus.datacamp.com/courses/introduction-a-r/chapitre-5-les-jeux-de-donnees?ex=1}{Chapitre 5 : les jeux de données ou \texttt{data.frame}}
@@ -561,7 +559,7 @@ Comme leur nom l'indique, ils permettent de comparer des valeurs ou des objets. 
 \begin{itemize}
 \tightlist
 \item
-  \texttt{==} : égale à
+  \texttt{==} : égal à
 \item
   \texttt{!=} : différent de
 \item
@@ -622,7 +620,7 @@ Il est aussi possible de comparer des chaînes de charactères :
 [1] TRUE
 \end{verbatim}
 
-Manifestement, ``Bonjour'' est supérieur ou égal à ``Au revoir''. En fait, R utilise l'ordre alphabétique pour comparer les chaînes de caractères. Puisque dans l'alphabet, le ``B'' de ``Bonjour'' arrive après le ``A'' de ``Au revoir'', pour R, ``Bonjour'' est bien supérieur à ``Au revoir''.
+Manifestement, ``Bonjour'' est supérieur ou égal à ``Au revoir''. En fait, R utilise l'ordre alphabétique pour comparer les chaînes de caractères. Puisque dans l'alphabet, le ``B'' de ``Bonjour'' arrive après le ``A'' de ``Au revoir'', pour R, ``Bonjour'' est supérieur à ``Au revoir''.
 
 Il est également possible d'utiliser ces opérateurs pour comparer un chiffre et un vecteur :
 
@@ -637,7 +635,7 @@ Il est également possible d'utiliser ces opérateurs pour comparer un chiffre e
 [1]  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE
 \end{verbatim}
 
-Ici, l'opérateur nous permet d'identifier quels éléments du vecteur \texttt{taille\_pop1} sont supérieurs à 80. Il s'agit des éléments placés en première, troisième et cinquième position.
+Ici, l'opérateur nous permet d'identifier quels éléments du vecteur \texttt{taille\_pop1} sont supérieurs à 80. Il s'agit des éléments placés en première, troisième et cinquième positions.
 
 Il est aussi possible de comparer 2 vecteurs qui contiennent le même nombre d'éléments :
 
@@ -720,7 +718,7 @@ Dans un cas comme celui là, R va \emph{recycler} l'objet le plus court, ici \te
 
 Ce type de recyclage est très risqué car il est difficile de savoir ce qui a été comparé avec quoi. En travaillant avec des tableaux plutôt qu'avec des vecteurs, le problème est généralement évité puisque toutes les colonnes d'un \texttt{data.frame} contiennent le même nombre d'éléments.
 
-Dernière chose concernant les opérateurs de comparaison : la question des données manquantes. Dans R les données manquantes sont symbolisées par cette notation : \texttt{NA}, abréviation de ``Not Available''. Le symbole \texttt{NaN} (comme ``Not a Number'') est parfois aussi observé lorsque des opérations ont conduit à des indéterminations. Mais c'est plus rare et la plupart du temps, les \texttt{NaN}s peuvent être traités comme les \texttt{NA}s. L'un des problèmes des données manquantes, est qu'il est nécessaire de prendre des précautions pour réaliser des comparaison les impliquants :
+Dernière chose concernant les opérateurs de comparaison : la question des données manquantes. Dans R les données manquantes sont symbolisées par cette notation : \texttt{NA}, abréviation de ``Not Available''. Le symbole \texttt{NaN} (comme ``Not a Number'') est parfois aussi observé lorsque des opérations ont conduit à des indéterminations. Mais c'est plus rare et la plupart du temps, les \texttt{NaN}s peuvent être traités comme les \texttt{NA}s. L'un des problèmes des données manquantes est qu'il est nécessaire de prendre des précautions pour réaliser des comparaisons les impliquants :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -832,7 +830,7 @@ Fonction & Pour quoi faire ?\tabularnewline
 
 Cette liste va très rapidement s'allonger au fil des séances. Je vous conseille donc vivement de tenir à jour une liste des fonctions décrites, avec une explication de leur fonctionnement et éventuellement un exemple de syntaxe.
 
-Certaines fonction ont besoin d'arguments (par exemple, la fonction \texttt{factor()}), d'autres peuvent s'en passer (par exemple, la fonction \texttt{getwd()}). Pour apprendre comment utiliser une fonction particulière, pour découvrir quels sont ses arguments possibles, quelle est leur rôle et leur intérêt, la meilleure solution est de consulter l'aide de cette fonction. Il suffit pour cela de taper un \texttt{?} suivi du nom de la fonction :
+Certaines fonctions ont besoin d'arguments (par exemple, la fonction \texttt{factor()}), d'autres peuvent s'en passer (par exemple, la fonction \texttt{getwd()}). Pour apprendre comment utiliser une fonction particulière, pour découvrir quels sont ses arguments possibles, quel est leur rôle et leur intérêt, la meilleure solution est de consulter l'aide de cette fonction. Il suffit pour cela de taper un \texttt{?} suivi du nom de la fonction :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -840,7 +838,7 @@ Certaines fonction ont besoin d'arguments (par exemple, la fonction \texttt{fact
 \end{Highlighting}
 \end{Shaded}
 
-Toutes les fonctions et jeux de données disponibles dans R disposent d'un fichier d'aide similaire. Cela peut faire un peu peur au premier abord (tout est en anglais !), mais ces fichiers d'aide ont l'avantage d'être très complets, de fournir des exemples d'utilisation, et ils sont tous construits sur le même modèle. Vous avez donc tout intérêt à vous familiariser avec eux. vous devriez d'ailleurs prendre l'habitude de consulter l'aide de chaque fonction qui vous pose un problème. Par exemple, le logarithme (en base 10) de 100 devrait faire 2, car 100 est égal à 10\^{}2. Pourtant :
+Toutes les fonctions et jeux de données disponibles dans R disposent d'un fichier d'aide similaire. Cela peut faire un peu peur au premier abord (tout est en anglais !), mais ces fichiers d'aide ont l'avantage d'être très complets, de fournir des exemples d'utilisation, et ils sont tous construits sur le même modèle. Vous avez donc tout intérêt à vous familiariser avec eux. Vous devriez d'ailleurs prendre l'habitude de consulter l'aide de chaque fonction qui vous pose un problème. Par exemple, le logarithme (en base 10) de 100 devrait faire 2, car 100 est égal à 10\^{}2. Pourtant :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -879,7 +877,7 @@ Par défaut, la base du logarithme est fixée à \texttt{exp(1)}. Nous avons don
   \texttt{base} possède un argument par défaut. Si nous ne spécifions pas nous même la valeur de \texttt{base}, elle sera fixée à sa valeur par défaut, c'est à dire \texttt{exp(1)}.
 \end{enumerate}
 
-Pour calculer le logarithme en base 10 de 100, il faut donc taper, au choix, l'une de ces 3 expressions :
+Pour calculer le logarithme de 100 en base 10, il faut donc taper, au choix, l'une de ces 3 expressions :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -911,9 +909,9 @@ Pour calculer le logarithme en base 10 de 100, il faut donc taper, au choix, l'u
 [1] 2
 \end{verbatim}
 
-Le nom des arguments d'une fonction peut être omis tant que ces arguments sont indiqués dans l'ordre attendu par la fonction (cet ordre est celui qui est précisé à la rubrique ``Usage'' du fichier d'aide de la fonction). Il est possible de modifier l'ordre des arguments d'une fonction, mais il faut alors être parfaitement explicite et utiliser les noms des arguments tels que définis dans le fichier d'aide.
+Le nom des arguments d'une fonction peut être omis tant que ses arguments sont indiqués dans l'ordre attendu par la fonction (cet ordre est celui qui est précisé à la rubrique ``Usage'' du fichier d'aide de la fonction). Il est possible de modifier l'ordre des arguments d'une fonction, mais il faut alors être parfaitement explicite et utiliser les noms des arguments tels que définis dans le fichier d'aide.
 
-Ainsi, pour calculer le logarithme en base 10 de 100, on ne peut pas taper :
+Ainsi, pour calculer le logarithme de 100 en base 10, on ne peut pas taper :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -925,7 +923,7 @@ Ainsi, pour calculer le logarithme en base 10 de 100, on ne peut pas taper :
 [1] 0.5
 \end{verbatim}
 
-car cela revient à calculer le logarithme en base 100 de 10. On peut en revanche taper :
+car cela revient à calculer le logarithme de 10 en base 100. On peut en revanche taper :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -942,14 +940,14 @@ car cela revient à calculer le logarithme en base 100 de 10. On peut en revanch
 \hypertarget{packages}{%
 \subsection{Les packages additionels}\label{packages}}
 
-Une source de confusion importante pour les nouveaux utilisateurs de R est la notion de package. Les packages étendent les fonctionnalités de R en fournissant des fonctions, des données et de la documentation supplémentaires et peuvent être téléchargés gratuitement sur Internet. Ils sont écrits par une communauté mondiale d'utilisateurs de R. Par exemple, parmi plus de 13000 packages disponibles à l'heure actuelle, nous utiliseront fréquemment :
+Une source de confusion importante pour les nouveaux utilisateurs de R est la notion de package. Les packages étendent les fonctionnalités de R en fournissant des fonctions, des données et de la documentation supplémentaires et peuvent être téléchargés gratuitement sur Internet. Ils sont écrits par une communauté mondiale d'utilisateurs de R. Par exemple, parmi près de 15000 packages disponibles à l'heure actuelle, nous utiliseront fréquemment :
 
 \begin{itemize}
 \tightlist
 \item
   Le package \texttt{ggplot2} pour la visualisation des données dans le chapitre \ref{viz}
 \item
-  Le package \texttt{dplyr} pour les manipuler des tableaux données dans le chapitre \ref{wrangling}
+  Le package \texttt{dplyr} pour manipuler des tableaux de données dans le chapitre \ref{wrangling}
 \end{itemize}
 
 Une bonne analogie pour les packages R : ils sont comme les apps que vous téléchargez sur un téléphone portable. R est comme un nouveau téléphone mobile. Il est capable de faire certaines choses lorsque vous l'utilisez pour la première fois, mais il ne sait pas tout faire. Les packages sont comme les apps que vous pouvez télécharger dans l'App Store et Google Play. Pour utiliser un package, comme pour utiliser Instagram, vous devez :
@@ -1027,19 +1025,19 @@ Créez un nouveau script que vous nommerez \texttt{VotreNomDeFamille.R}. Vous pr
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Téléchargez (si besoin) et chagez le package \texttt{ggplot2}
+  Téléchargez (si besoin) et chargez le package \texttt{ggplot2}
 \item
   Chargez le jeu de données \texttt{diamonds} grâce à la commande \texttt{data(diamonds)}
 \item
-  Déterminer le nombre de lignes et de colonnes de ce tableau nommé \texttt{diamonds}
+  Déterminez le nombre de lignes et de colonnes de ce tableau nommé \texttt{diamonds}
 \item
-  Créez un nouveau tableau que vous nommerez \texttt{diamants\_chers} qui contiendra uniquement les informations des diamants dont le prix est supérieur ou égal à \$15000
+  Créez un nouveau tableau que vous nommerez \texttt{diamants\_chers} qui contiendra uniquement les informations des diamants dont le prix est supérieur ou égal à \$15000.
 \item
   Combien de diamants coûtent \$15000 ou plus ?
 \item
   Cela représente quelle proportion du jeu de données de départ ?
 \item
-  Triez ce tableau par ordre de prix décroissant et affichez les informations des 20 diamants les plus chers.
+  Triez ce tableau par ordre de prix décroissants et affichez les informations des 20 diamants les plus chers.
 \end{enumerate}
 
 \hypertarget{dataset}{%
@@ -1497,7 +1495,7 @@ Outre les éléments indispensables évoqués ici (\texttt{data}, \texttt{mappin
 \hypertarget{le-package-ggplot2}{%
 \subsubsection{\texorpdfstring{Le package \texttt{ggplot2}}{Le package ggplot2}}\label{le-package-ggplot2}}
 
-Comme indiqué plus haut, le package \texttt{ggplot2} (Wickham et al., \protect\hyperlink{ref-R-ggplot2}{2018}) permet de réaliser des graphiques dans R en respectant les principes de la grammaire des graphiques. Vous avez probablement remarqué que depuis le début de la section \ref{gggraph}, beaucoup de termes sont écrits dans la police réservée au \texttt{code} informatique. C'est parce que les éléments de la grammaire des graphiques sont tous précisés dans la fonction \texttt{ggplot()} qui demande, au grand minimum, que les éléments suivants soient spécifiés :
+Comme indiqué plus haut, le package \texttt{ggplot2} (Wickham et al., \protect\hyperlink{ref-R-ggplot2}{2019}) permet de réaliser des graphiques dans R en respectant les principes de la grammaire des graphiques. Vous avez probablement remarqué que depuis le début de la section \ref{gggraph}, beaucoup de termes sont écrits dans la police réservée au \texttt{code} informatique. C'est parce que les éléments de la grammaire des graphiques sont tous précisés dans la fonction \texttt{ggplot()} qui demande, au grand minimum, que les éléments suivants soient spécifiés :
 
 \begin{itemize}
 \tightlist
@@ -6785,7 +6783,7 @@ Néanmoins, avec les deux fonctions \texttt{inner\_join()} et \texttt{left\_join
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-R-ggplot2}{}%
-\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \& Woo K}. (2018). \emph{Ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
+\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \ldots{} Yutani H}. (2019). \emph{Ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
 
 \leavevmode\hypertarget{ref-wilkinson2005}{}%
 \textsc{Wilkinson L}. (2005). \emph{The grammar of graphics} (2nd ed.). New-York: Springer-Verlag. Retrieved from \url{https://www.springer.com/us/book/9780387245447}
