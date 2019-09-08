@@ -972,7 +972,7 @@ Il y a deux façons d'installer un package. Par example, pour installer le packa
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Le plus simple} : Dans le panneau ``File'' de Rstudio :
+  \textbf{Le plus simple} : Dans le panneau ``Files'' de Rstudio :
 
   \begin{enumerate}
   \def\labelenumii{\alph{enumii})}
@@ -1043,9 +1043,9 @@ Créez un nouveau script que vous nommerez \texttt{VotreNomDeFamille.R}. Vous pr
 \hypertarget{dataset}{%
 \section{Explorez votre premier jeu de données}\label{dataset}}
 
-Mettons en pratique tout ce que nous avons appris pour commencer à explorer un jeu de données réelles. Les données nous parviennent sous différents formats, des images au texte en passant par les chiffres. Tout au long de ce document, nous nous concentrerons sur les ensembles de données qui peuvent être stockés dans une feuille de calcul, car il s'agit de la manière la plus courante de collecter des données dans de nombreux domaines. N'oubliez pas ce que nous avons appris dans la section \ref{objects} : ces ensembles de données de type ``tableurs'' sont appelés \texttt{data.frame} dans R, et nous nous concentrerons sur l'utilisation de ces objets tout au long de ce livre.
+Mettons en pratique tout ce que nous avons appris pour commencer à explorer un jeu de données réel. Les données nous parviennent sous différents formats, des images au texte en passant par les chiffres. Tout au long de ce document, nous nous concentrerons sur les ensembles de données qui peuvent être stockés dans une feuille de calcul, car il s'agit de la manière la plus courante de collecter des données dans de nombreux domaines. N'oubliez pas ce que nous avons appris dans la section \ref{objects} : ces ensembles de données de type ``tableurs'' sont appelés \texttt{data.frame} dans R, et nous nous concentrerons sur l'utilisation de ces objets tout au long de ce livre.
 
-Commençons par charger les packages nécessaires pour ce chapitre (cela suppose que vous les ayez déjà installés. Relisez la Section \ref{packages} pour plus d'informations sur l'installation et le chargement des packages R si vous ne l'avez pas déjà fait). Au début de chaque chapitre, nous aurons systématiquement besoin de charger quelques packages. Donc n'oubliez pas de les installer au préalable si besoin.
+Commençons par charger les packages nécessaires pour ce chapitre (cela suppose que vous les ayez déjà installés ; relisez la section \ref{packages} pour plus d'informations sur l'installation et le chargement des packages R si vous ne l'avez pas déjà fait). Au début de chaque chapitre, nous aurons systématiquement besoin de charger quelques packages. Donc n'oubliez pas de les installer au préalable si besoin.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1060,9 +1060,9 @@ Commençons par charger les packages nécessaires pour ce chapitre (cela suppose
 \hypertarget{le-package-nycflights13}{%
 \subsection{\texorpdfstring{Le package \texttt{nycflights13}}{Le package nycflights13}}\label{le-package-nycflights13}}
 
-Nous avons probablement déjà presque tous pris l'avion. Les grands aéroports contiennent de nombreuses portes d'embarquement, et pour chacune d'elles, des informations sur les vols en partance sont affichées. Par exemple, le numéro du vol, les heures de décollage et d'aterrissage prévues, les retards etc. Dans la mesure du possible, on aime arriver à destination à l'heure. Dans la suite de ce document, on examinera ce jeu de données, notamment afin d'en apprendre plus sur les causes de retard les plus fréquentes.
+Nous avons probablement déjà presque tous pris l'avion. Les grands aéroports contiennent de nombreuses portes d'embarquement, et pour chacune d'elles, des informations sur les vols en partance sont affichées. Par exemple, le numéro du vol, les heures de décollage et d'atterrissage prévues, les retards etc. Dans la mesure du possible, on aime arriver à destination à l'heure. Dans la suite de ce document, on examinera les jeux de données du package \texttt{nycflights13}, notamment afin d'en apprendre plus sur les causes de retard les plus fréquentes.
 
-Ce package contient 5 ``tableaux'' contenant des informations sur chaque vol intérieur qui ayant quitté New York en 2013, soit depuis l'aéroport de Newark Liberty International (EWR), soit depuis l'aéroport Jonh F. Kennedy Intenational (JFK), soit depuis l'aéroport LaGuardia (LGA) :
+Ce package contient 5 ``tableaux'' contenant des informations sur chaque vol intérieur ayant quitté New York en 2013, soit depuis l'aéroport de Newark Liberty International (EWR), soit depuis l'aéroport John F. Kennedy Intenational (JFK), soit depuis l'aéroport LaGuardia (LGA) :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1076,7 +1076,7 @@ Ce package contient 5 ``tableaux'' contenant des informations sur chaque vol int
 \item
   \texttt{weather} : données météorologiques heure par heure (environ 8705 observations) pour chacun des 3 aéroports de New York
 \item
-  \texttt{airports} : noms et localisation géographiques des aéroports desservis (1458 aéroports)
+  \texttt{airports} : noms et localisations géographiques des aéroports desservis (1458 aéroports)
 \end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
@@ -1084,7 +1084,7 @@ Ce package contient 5 ``tableaux'' contenant des informations sur chaque vol int
 \hypertarget{le-data-frame-flights}{%
 \subsection{\texorpdfstring{Le data frame \texttt{flights}}{Le data frame flights}}\label{le-data-frame-flights}}
 
-Nous allons commencer par explorer le jeu de données \texttt{flights} qui est inclus avec le package \texttt{nycflights13} afin de nous faire une idée de sa structure. Dans votre script, tapez la commande suivante et exécutez là dans la console (selon les réglages de RStudio et \emph{la largeur de votre console}, l'affichage peut varier légèrement) :
+Nous allons commencer par explorer le jeu de données \texttt{flights} qui est inclus avec le package \texttt{nycflights13} afin de nous faire une idée de sa structure. Dans votre script, tapez la commande suivante et exécutez la dans la console (selon les réglages de RStudio et \emph{la largeur de votre console}, l'affichage peut varier légèrement) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1125,15 +1125,14 @@ Essayons de décrypter cet affichage :
   \item
     336776 lignes
   \item
-    19 colonnes, qui correspondent aux variables
-    Dans un \texttt{tibble}, les observations sont toujours en ligne et les variables en colonnes.
+    19 colonnes, qui correspondent aux variables. Dans un \texttt{tibble}, les observations sont toujours en ligne et les variables en colonnes.
   \end{itemize}
 \item
-  \texttt{year}, \texttt{month}, \texttt{day}, \texttt{dep\_time}, \texttt{sched\_dep\_time}\ldots{} Sont les noms des colonnes, c'est à dire les variables de ce jeu de données.
+  \texttt{year}, \texttt{month}, \texttt{day}, \texttt{dep\_time}, \texttt{sched\_dep\_time}\ldots{} sont les noms des colonnes, c'est à dire les variables de ce jeu de données.
 \item
   Nous avons ensuite les 10 premières lignes du tableau qui correspondent à 10 vols.
 \item
-  \texttt{...\ with\ 336,766\ rows,\ and\ 11\ more\ variables} : nous indique que 336766 lignes et 11 variables ne logent pas à l'écran. Ces données font toutefois partie intégrante du tableau \texttt{flights}.
+  \texttt{...\ with\ 336,766\ rows,\ and\ 12\ more\ variables}, nous indique que 336766 lignes et 12 variables ne logent pas à l'écran. Ces données font toutefois partie intégrante du tableau \texttt{flights}.
 \item
   le nom et le type de chaque variable qui n'a pas pu être affichée à l'écran
 \end{itemize}
@@ -1147,11 +1146,11 @@ Cette façon d'afficher les tableaux est spécifique des \texttt{tibble}s. Vous 
 \item
   \texttt{\textless{}dbl\textgreater{}} : nombres réels (``doubles'')
 \item
-  \texttt{\textless{}chr\textgreater{}} : charactères
+  \texttt{\textless{}chr\textgreater{}} : caractères (``characters'')
 \item
-  \texttt{\textless{}fct\textgreater{}} : facteurs
+  \texttt{\textless{}fct\textgreater{}} : facteurs (``factors'')
 \item
-  \texttt{\textless{}ord\textgreater{}} : facteurs ordonnés
+  \texttt{\textless{}ord\textgreater{}} : facteurs ordonnés (``ordinals'')
 \item
   \texttt{\textless{}lgl\textgreater{}} : logiques (colonne de vrais/faux : ``logical'')
 \item
@@ -1179,6 +1178,8 @@ Parmi les nombreuses façons d'avoir une idée des données contenues dans un \t
   la fonction \texttt{glimpse()} chargée avec le package \texttt{dplyr}. Elle est très similaire à la fonction \texttt{str()} découverte dans les tutoriels de DataCamp.
 \item
   l'opérateur \texttt{\$} permet d'accéder à une unique variable d'un \texttt{data.frame}.
+\item
+  la fonction \texttt{skim()} du package \texttt{skimr} permet d'obtenir un résumé complet mais très synthétique et visuel des variables d'un \texttt{data.frame}.
 \end{itemize}
 
 \hypertarget{View}{%
@@ -1188,7 +1189,7 @@ Tapez \texttt{View(flights)} dans votre script et exécutez la commande. Un nouv
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
-\textbf{Question } : à quoi correspond chacune des lignes de ce tableau ?
+\textbf{Question } : à quoi correspondent chacune des lignes de ce tableau ?
 
 \begin{itemize}
 \tightlist
@@ -1307,10 +1308,94 @@ Cela nous permet de récupérer les données sous la forme d'un vecteur. Attenti
 
 Le résultat est pour le moins indigeste ! Lorsqu'un tableau contient de nombreuses lignes, c'est rarement une bonne idée de transformer l'une de ses colonnes en vecteur. Dans la mesure du possible, les données d'un tableau doivent rester dans le tableau.
 
+\hypertarget{skim}{%
+\subsubsection{\texorpdfstring{\texttt{skim()}}{skim()}}\label{skim}}
+
+Pour utiliser la fonction \texttt{skim()}, vous devez au préalable installer le package \texttt{skimr} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"skimr"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ce package est un peu ``expérimental'' et il se peut que l'installation pose problème. Si un message d'erreur apparaît lors de l'installation, procédez comme suit :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Quittez RStudio (sans oublier de sauvegarder votre travail au préalable)
+\item
+  Relancez RStudio et dans la console, tapez ceci :
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"rlang"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Tentez d'installer \texttt{skimr} à nouveau.
+\item
+  Exécutez à nouveau votre script afin de retrouver votre travail dans l'état où il était avant de quitter RStudio.
+\end{enumerate}
+
+Si l'installation de \texttt{skimr} s'est bien passée, vous pouvez maintenant taper ceci :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(skimr)}
+\KeywordTok{skim}\NormalTok{(flights)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Skim summary statistics
+ n obs: 336776 
+ n variables: 19 
+
+-- Variable type:character -----------------------------------------------------------------------
+ variable missing complete      n min max empty n_unique
+  carrier       0   336776 336776   2   2     0       16
+     dest       0   336776 336776   3   3     0      105
+   origin       0   336776 336776   3   3     0        3
+  tailnum    2512   334264 336776   5   6     0     4043
+
+-- Variable type:integer -------------------------------------------------------------------------
+       variable missing complete      n    mean      sd   p0  p25  p50  p75 p100     hist
+       arr_time    8713   328063 336776 1502.05  533.26    1 1104 1535 1940 2400 ▁▁▃▇▆▆▇▆
+            day       0   336776 336776   15.71    8.77    1    8   16   23   31 ▇▇▇▇▆▇▇▇
+       dep_time    8255   328521 336776 1349.11  488.28    1  907 1401 1744 2400 ▁▁▇▆▆▇▆▂
+         flight       0   336776 336776 1971.92 1632.47    1  553 1496 3465 8500 ▇▅▂▃▂▁▁▁
+          month       0   336776 336776    6.55    3.41    1    4    7   10   12 ▇▅▇▃▅▇▅▇
+ sched_arr_time       0   336776 336776 1536.38  497.46    1 1124 1556 1945 2359 ▁▁▂▇▆▇▇▆
+ sched_dep_time       0   336776 336776 1344.25  467.34  106  906 1359 1729 2359 ▁▃▇▆▆▇▇▂
+           year       0   336776 336776 2013       0    2013 2013 2013 2013 2013 ▁▁▁▇▁▁▁▁
+
+-- Variable type:numeric -------------------------------------------------------------------------
+  variable missing complete      n    mean     sd  p0 p25 p50  p75 p100     hist
+  air_time    9430   327346 336776  150.69  93.69  20  82 129  192  695 ▇▇▂▃▁▁▁▁
+ arr_delay    9430   327346 336776    6.9   44.63 -86 -17  -5   14 1272 ▇▁▁▁▁▁▁▁
+ dep_delay    8255   328521 336776   12.64  40.21 -43  -5  -2   11 1301 ▇▁▁▁▁▁▁▁
+  distance       0   336776 336776 1039.91 733.23  17 502 872 1389 4983 ▆▇▂▂▁▁▁▁
+      hour       0   336776 336776   13.18   4.66   1   9  13   17   23 ▁▃▇▆▅▇▇▂
+    minute       0   336776 336776   26.23  19.3    0   8  29   44   59 ▇▂▃▃▅▂▃▅
+
+-- Variable type:POSIXct -------------------------------------------------------------------------
+  variable missing complete      n        min        max     median n_unique
+ time_hour       0   336776 336776 2013-01-01 2013-12-31 2013-07-03     6936
+\end{verbatim}
+
 \hypertarget{les-fichiers-daide}{%
 \subsubsection{Les fichiers d'aide}\label{les-fichiers-daide}}
 
-Une fonctionalité particulièrement utile de R est son système d'aide. On peut obtenir de l'aide au sujet de n'importe quelle fonction et de n'importe quel jeu de données en tapant un \texttt{?} immédiatement suivi du nom de la fonction ou de l'objet.
+Une fonctionalité particulièrement utile de R est son système d'aide. On peut obtenir de l'aide au sujet de n'importe quelle fonction et de n'importe quel jeu de données en tapant un ``\texttt{?}'' immédiatement suivi du nom de la fonction ou de l'objet.
 
 Par exemple, examinez l'aide du jeu de données \texttt{flights} :
 
@@ -1320,7 +1405,7 @@ Par exemple, examinez l'aide du jeu de données \texttt{flights} :
 \end{Highlighting}
 \end{Shaded}
 
-Vous devriez absolument prendre l'habitude d'examiner les fichiers d'aide des fonctions ou jeux de données pour lesquels vous avez des questions. Ces fichiers sont très complets, et même s'il peuvent paraître impressionants au premier abord, ils sont tous structurés sur le même modèle et vous aideront à comprendre comment utiliser les fonctions, quels sont les arguments possibles, à quoi ils servent et comment les utiliser.
+Vous devriez absolument prendre l'habitude d'examiner les fichiers d'aide des fonctions ou jeux de données pour lesquels vous avez des questions. Ces fichiers sont très complets, et même s'il peuvent paraître impressionnants au premier abord, ils sont tous structurés sur le même modèle et vous aideront à comprendre comment utiliser les fonctions, quels sont les arguments possibles, à quoi ils servent et comment les utiliser.
 
 Prenez le temps d'examiner le fichier d'aide du jeu de données \texttt{flights}. Avant de passer à la suite, assurez-vous d'avoir compris à quoi correspondent chacune des 19 variables de ce tableau.
 
@@ -1343,7 +1428,19 @@ Consultez l'aide du jeu de données \texttt{diamonds} du package \texttt{ggplot2
   En quoi la variable \texttt{depth} est-elle différente de la variable \texttt{z} ?
 \end{itemize}
 
-Consultez l'aide du package \texttt{nycflights13} en tapant \texttt{help(package="nycflights13")}. Consultez l'aide des 5 jeux de données de ce package. À quoi correspond la variable \texttt{visib} ? Dans quel tableau se trouve-t'elle ? Combien de lignes possède ce tableau ?
+Consultez l'aide du package \texttt{nycflights13} en tapant \texttt{help(package="nycflights13")}.
+
+\begin{itemize}
+\tightlist
+\item
+  Consultez l'aide des 5 jeux de données de ce package.
+\item
+  À quoi correspond la variable \texttt{visib} ?
+\item
+  Dans quel tableau se trouve-t'elle ?
+\item
+  Combien de lignes possède ce tableau ?
+\end{itemize}
 
 \hypertarget{viz}{%
 \section{\texorpdfstring{Visualiser des données avec \texttt{ggplot2}}{Visualiser des données avec ggplot2}}\label{viz}}
@@ -1354,7 +1451,7 @@ Après la découverte des bases du langage R, nous abordons maintenant les parti
 
 La visualisation des données est en outre un excellent point de départ quand on découvre la programmation sous R, car ses bénéfices sont clairs et immédiats : vous pouvez créer des graphiques élégants et informatifs qui vous aident à comprendre les données. Dans ce chapitre, vous allez donc plonger dans l'art de la visualisation des données, en apprenant la structure de base des graphiques réalisés avec \texttt{ggplot2} qui permettent de transformer des données numériques et catégorielles en graphiques.
 
-Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet souvent nécessaire de transformer les données pour produire des représentations plus parlantes. Ainsi, dans les chapitres \ref{tidyr} et \ref{wrangling}, vous découvrirez les verbes clés qui vous permettront de sélectionner des variables importantes, de filtrer les observations clés, de créer de nouvelles variables, de calculer des résumés, d'associer des tableaux ou de les remettre en forme.
+Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet souvent nécessaire de transformer les données pour produire des représentations plus parlantes. Ainsi, dans les chapitres \ref{tidyr} et \ref{wrangling}, vous découvrirez les verbes clés qui vous permettront de sélectionner des variables importantes, de filtrer des observations, de créer de nouvelles variables, de calculer des résumés, d'associer des tableaux ou de les remettre en forme.
 
 Ce n'est qu'en combinant les transformations de données et représentations graphiques d'une part, avec votre curiosité et votre esprit critique d'autre part, que vous serez véritablement en mesure de réaliser une analyse exploratoire utile de vos données. C'est la seule façon d'identifier des questions intéressantes et pertinentes sur vos données, afin de tenter d'y répondre par les analyses statistiques et la modélisation par la suite.
 
@@ -1384,7 +1481,7 @@ Comme nous le verrons, les graphiques nous aident également à repérer les ten
 \hypertarget{gggraph}{%
 \subsection{La grammaire des graphiques}\label{gggraph}}
 
-Les lettres \texttt{gg} du package \texttt{ggplot} sont l'abbréviation de ``grammar of graphics'' : la grammaire des graphiques. De la même manière que nous construisons des phrases en respectant des règles grammaticales précises (usage des noms, des verbes, des sujets et adjectifs\ldots{}), la grammaire des graphiques établit un certain nombre de règles permettant de construire des graphiques : elle précise les composants d'un graphique en suivant le cadre théorique défini par Wilkinson (\protect\hyperlink{ref-wilkinson2005}{2005}).
+Les lettres \texttt{gg} du package \texttt{ggplot2} sont l'abréviation de ``\textbf{g}rammar of \textbf{g}raphics'' : la grammaire des graphiques. De la même manière que nous construisons des phrases en respectant des règles grammaticales précises (usage des noms, des verbes, des sujets et adjectifs\ldots{}), la grammaire des graphiques établit un certain nombre de règles permettant de construire des graphiques : elle précise les composants d'un graphique en suivant le cadre théorique défini par Wilkinson (\protect\hyperlink{ref-wilkinson2005}{2005}).
 
 \hypertarget{elements-de-la-grammaire}{%
 \subsubsection{Éléments de la grammaire}\label{elements-de-la-grammaire}}
@@ -1403,7 +1500,7 @@ Pour clarifier, on peut disséquer un graphique en 3 éléments essentiels :
 \item
   \texttt{data} : le jeu de données contenant les variables que l'on va associer à des objets géométriques
 \item
-  \texttt{geom} : les objets géométriques en question. Cela fait référence aux types d'objets que l'on peut observer sur le graphiques (des points, des lignes, des barres, etc)
+  \texttt{geom} : les objets géométriques en question. Cela fait référence aux types d'objets que l'on peut observer sur le graphique (des points, des lignes, des barres, etc.)
 \item
   \texttt{aes} : les attributs esthétiques des objets géométriques présents sur le graphique. Par exemple, la position sur les axes \texttt{x} et \texttt{y}, la couleur, la taille, la transparence, la forme, etc. Chacun de ces attributs esthétiques peut-être associé à une variable de notre jeu de données.
 \end{enumerate}
@@ -1418,7 +1515,7 @@ En février 2006, un statisticien du nom de Hans Rosling a donné un TED Talk in
 Pour l'année 2007, le jeu de données contient des informations pour 142 pays. Examinons les premières lignes de ce jeu de données :
 
 \begin{longtable}{llrrr}
-\caption{\label{tab:unnamed-chunk-35}Les 6 premières lignes du jeu de données `gapminder` pour l'année 2007.}\\
+\caption{\label{tab:unnamed-chunk-38}Les 6 premières lignes du jeu de données `gapminder` pour l'année 2007.}\\
 \toprule
 Country & Continent & Life Expectancy & Population & GDP per Capita\\
 \midrule
@@ -1456,7 +1553,7 @@ Examinons maintenant la figure \ref{fig:gapmind} qui représente ces variables p
 
 }
 
-\caption{Espérance de vie en fonction du PIB par habitant en 2007}\label{fig:gapmind}
+\caption{Espérance de vie en fonction du PIB par habitant en 2007.}\label{fig:gapmind}
 \end{figure}
 
 Si on décrypte ce graphique du point de vue de la grammaire des graphiques, on voit que :
@@ -1531,7 +1628,7 @@ Dans le cadre de ce cours, nous nous limiterons aux 5 types de graphiques suivan
 
 C'est probablement le plus simple des 5 types de graphiques cités plus haut. Il s'agit de graphiques bi-variés pour lesquels une variable est associée à l'axe des abscisses, et une autre est associée à l'axe des ordonnées. Comme pour le graphique présenté à la figure \ref{fig:gapmind} ci-dessus, d'autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme\ldots{}).
 
-Nous allons ici nous intéresser à la relation qui existe entre :
+Ici, dans le jeu de données \texttt{flights}, nous allons nous intéresser à la relation qui existe entre :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1539,10 +1636,10 @@ Nous allons ici nous intéresser à la relation qui existe entre :
 \item
   \texttt{dep\_delay} : le retard des vols au décollage, que nous placerons sur l'axe des ``x''
 \item
-  \texttt{arr\_delay} : le retard des mêmes vols à l'aterrissage, que nous placerons sur l'axe des ``y''
+  \texttt{arr\_delay} : le retard des mêmes vols à l'atterrissage, que nous placerons sur l'axe des ``y''
 \end{enumerate}
 
-Afin d'avoir un jeu de données plus facile à utiliser, nous nous contenterons de visualiser les vols d'Alaska Airlines, donc le code de compagnie aérienne est \texttt{"AS"}.
+Afin d'avoir un jeu de données plus facile à utiliser, nous nous contenterons de visualiser les vols d'Alaska Airlines, dont le code de compagnie aérienne est \texttt{"AS"}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1556,7 +1653,7 @@ Il est normal que vous ne compreniez pas encore les commandes ci-dessus : elles 
 \hypertarget{la-couche-de-base-la-fonction-ggplot}{%
 \subsubsection{\texorpdfstring{La couche de base : la fonction \texttt{ggplot()}}{La couche de base : la fonction ggplot()}}\label{la-couche-de-base-la-fonction-ggplot}}
 
-La fonction \texttt{ggplot()} permet d'établir la première base du graphique. C'est grâce à cette fonction que l'on précise quel jeu de données utiliser et quelle variables placer sur les axes :
+La fonction \texttt{ggplot()} permet d'établir la première base du graphique. C'est grâce à cette fonction que l'on précise quel jeu de données utiliser et quelles variables placer sur les axes :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1566,11 +1663,11 @@ La fonction \texttt{ggplot()} permet d'établir la première base du graphique. 
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-37-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-40-1} 
 
 }
 
-\caption{Un graphique sans `geom`}\label{fig:unnamed-chunk-37}
+\caption{Un graphique sans `geom`.}\label{fig:unnamed-chunk-40}
 \end{figure}
 
 Ce graphique est pour le moins vide : c'est normal, nous n'avons pas encore spécifié la couche contenant l'objet géométrique que nous souhaitons utiliser.
@@ -1591,16 +1688,16 @@ Les nuages de points sont créés par la fonction \texttt{geom\_point()} :
 Warning: Removed 5 rows containing missing values (geom_point).
 \end{verbatim}
 
-\begin{figure}[htpb]
+\begin{figure}[!htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-38-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/points-1} 
 
 }
 
-\caption{Retards à l'arrivée en fonction des retard au décollage pour les vols d'Alaska Airline au départ de New York City en 2013}\label{fig:unnamed-chunk-38}
+\caption{Retards à l'arrivée en fonction des retards au décollage pour les vols d'Alaska Airlines au départ de New York City en 2013.}\label{fig:points}
 \end{figure}
 
-Plusieurs choses importantes sont à remarquer ici :
+Plusieurs choses importantes sont à remarquer sur la figure \ref{fig:points} :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1677,7 +1774,7 @@ Quelques remarques concernant les couches :
 \item
   Quelles variables (pas nécessairement dans le tableau \texttt{alaska\_flights}) pourraient avoir une corrélation négative (relation négative) avec \texttt{dep\_delay} ? Pourquoi ? Rappelez-vous que nous étudions ici des variables numériques.
 \item
-  Selon vous, pourquoi tant de points sont-il regroupés près de (0, 0) ? À quoi le point (0,0) correspond-il pour les vols d'Alaska Airline ?
+  Selon vous, pourquoi tant de points sont-il regroupés près de (0, 0) ? À quoi le point (0,0) correspond-il pour les vols d'Alaska Airlines ?
 \item
   Citez les éléments de ce graphique/de ces données qui vous sautent le plus aux yeux ?
 \item
@@ -1687,7 +1784,7 @@ Quelques remarques concernant les couches :
 \hypertarget{over-plotting}{%
 \subsubsection{Over-plotting}\label{over-plotting}}
 
-L'over-plotting est la superposition importante d'une grande quantité d'information sur une zone restreinte d'un graphique. Dans notre cas, nous observons un over-plotting important autour de (0,0). Cet effet est gênant car il est difficile de se faire une idée précise du nombre de points accumulés dans cette zone. La façon la plus simple de régler le problème est de modifier la transparence grâce à l'argument \texttt{alpha} de la fonction \texttt{geom\_point()}. Par défaut, cette valeur est fixée à 1, pour une opacité totale. Une valeur de 0 rend les points totalement transparents, et donc invisibles. Trouver la bonne valeur peut demander de tâtonner une peu :
+L'over-plotting est la superposition importante d'une grande quantité d'information sur une zone restreinte d'un graphique. Dans notre cas, nous observons un over-plotting important autour de (0,0). Cet effet est gênant car il est difficile de se faire une idée précise du nombre de points accumulés dans cette zone. La façon la plus simple de régler le problème est de modifier la transparence des points grâce à l'argument \texttt{alpha} de la fonction \texttt{geom\_point()}. Par défaut, cette valeur est fixée à 1, pour une opacité totale. Une valeur de 0 rend les points totalement transparents, et donc invisibles. Trouver la bonne valeur peut demander de tâtonner un peu. Le code suivant produit la figure \ref{fig:transparent} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1699,24 +1796,24 @@ L'over-plotting est la superposition importante d'une grande quantité d'informa
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-40-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/transparent-1} 
 
 }
 
-\caption{La même figure, avec des points semi-transparents}\label{fig:unnamed-chunk-40}
+\caption{La même figure, avec des points semi-transparents.}\label{fig:transparent}
 \end{figure}
 
-Notez que :
+Sur cette figure, notez que :
 
 \begin{itemize}
 \tightlist
 \item
   la transparence est additive : plus il y a de points, plus la zone est foncée car les points se superposent et rendent la zone plus opaque.
 \item
-  l'argument \texttt{alpha\ =\ 0.2} n'est pas intégré à l'intérieur d'une fonction \texttt{aes()} car il n'est pas associé à une variable : c'est un simple paramètre.
+  l'argument \texttt{alpha\ =} n'est pas intégré à l'intérieur d'une fonction \texttt{aes()} car ici, il n'est pas associé à une variable : c'est un simple paramètre.
 \end{itemize}
 
-L'over-plotting est souvent rencontré lorsque l'on représente plusieurs nuages de points pour les différentes valeurs d'une variable catégorielle. par exemple, si on transforme les mois de l'année en facteur (\texttt{factor(month)}), on peut regarder s'il existe une relation entre les retards à l'aterrissage et le mois de l'année :
+L'over-plotting est souvent rencontré lorsque l'on représente plusieurs nuages de points pour les différentes valeurs d'une variable catégorielle. Par exemple, si on transforme la variable \texttt{month} en facteur (\texttt{factor(month)}), on peut regarder s'il existe une relation entre les retards à l'atterrissage et le mois de l'année :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1728,14 +1825,14 @@ L'over-plotting est souvent rencontré lorsque l'on représente plusieurs nuages
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-41-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/transpfactor-1} 
 
 }
 
-\caption{Retards à l'arrivée pour les 12 mois de l'année 2013}\label{fig:unnamed-chunk-41}
+\caption{Retards à l'arrivée pour les 12 mois de l'année 2013.}\label{fig:transpfactor}
 \end{figure}
 
-Ici, l'ajout de transparence ne serait pas suffisant. Une autre solution est d'appliquer la mothode dîte de ``jittering'', ou tremblement. Elle consiste à ajouter un bruit aléatoire horizontal et/ou vertical aux points d'un graphique. Ici, on peut ajouter un léger bruit horizontal afin de disperser un peu les points pour chaque mois de l'année. On n'ajoute pas de bruit vertical car on ne souhaite pas que les valeurs de retard (sur l'axe des \texttt{y}) soient altérées :
+Ici (figure \ref{fig:transpfactor}), l'ajout de transparence ne serait pas suffisant. Une autre solution est d'appliquer la méthode dîte du ``jittering'', ou tremblement. Elle consiste à ajouter un bruit aléatoire horizontal et/ou vertical aux points d'un graphique. Ici, on peut ajouter un léger bruit horizontal afin de disperser un peu les points pour chaque mois de l'année. On n'ajoute pas de bruit vertical car on ne souhaite pas que les valeurs de retard (sur l'axe des \texttt{y}) soient altérées :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1751,10 +1848,10 @@ Ici, l'ajout de transparence ne serait pas suffisant. Une autre solution est d'a
 
 }
 
-\caption{Retards à l'arrivée pour les 12 mois de l'année 2013}\label{fig:jittering}
+\caption{Retards à l'arrivée pour les 12 mois de l'année 2013.}\label{fig:jittering}
 \end{figure}
 
-On y voit déjà plus clair. L'argument \texttt{width} permet de spécifier l'intensité de la dispersion horizontale. Pour ajouter du bruit vertical (ce qui n'est pas souhaitable ici !), on peut ajouter l'argument \texttt{height}. le graphique de la figure \ref{fig:jittering} est parfois appelé un ``stripchart''. C'est un graphique du type ``nuage de points'', mais pour lequel l'une des 2 variables et numérique, et l'autre est catégorielle.
+On y voit déjà plus clair. L'argument \texttt{width} permet de spécifier l'intensité de la dispersion horizontale. Pour ajouter du bruit vertical (ce qui n'est pas souhaitable ici !), on peut ajouter l'argument \texttt{height}. Le graphique de la figure \ref{fig:jittering} est parfois appelé un ``stripchart''. C'est un graphique du type ``nuage de points'', mais pour lequel l'une des 2 variables est numérique, et l'autre est catégorielle.
 
 Il est évidemment possible d'ajouter de la transparence :
 
@@ -1772,7 +1869,7 @@ Il est évidemment possible d'ajouter de la transparence :
 
 }
 
-\caption{Retards à l'arrivée pour les 12 mois de l'année 2013}\label{fig:unnamed-chunk-42}
+\caption{Retards à l'arrivée pour les 12 mois de l'année 2013.}\label{fig:unnamed-chunk-42}
 \end{figure}
 
 \hypertarget{couleur-taille-et-forme}{%
@@ -1780,7 +1877,7 @@ Il est évidemment possible d'ajouter de la transparence :
 
 L'argument \texttt{color} (ou \texttt{colour}, les deux orthographes fonctionnent) permet de spécifier la couleur des points. L'argument \texttt{size} permet de spécifier la taille des points. L'argument \texttt{shape} permet de spécifier la forme utilisée en guise de symbole. Ces 3 arguments peuvent être utilisés comme des paramètres, pour modifier l'ensemble des points d'un graphique. Mais ils peuvent aussi être associés à une variable, pour apporter une information supplémentaire.
 
-Comparez les deux graphiques suivants :
+Comparez les deux graphiques suivants (figures \ref{fig:rightcolor} et \ref{fig:wrongcolor}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1795,7 +1892,7 @@ Comparez les deux graphiques suivants :
 
 }
 
-\caption{Utilisation correcte de `color`}\label{fig:rightcolor}
+\caption{Utilisation correcte de `color`.}\label{fig:rightcolor}
 \end{figure}
 
 \begin{Shaded}
@@ -1811,7 +1908,7 @@ Comparez les deux graphiques suivants :
 
 }
 
-\caption{Utilisation incorrecte de `color`}\label{fig:wrongcolor}
+\caption{Utilisation incorrecte de `color`.}\label{fig:wrongcolor}
 \end{figure}
 
 Le code qui permet de produire la figure \ref{fig:rightcolor} fait un usage correct de l'argument \texttt{color}. On demande des points de couleur bleue, les points apparaîssent bleus. La figure \ref{fig:wrongcolor} en revanche ne produit pas le résultat attendu. Puisque nous avons mis l'argument \texttt{color} à l'intérieur de la fonction \texttt{aes()}, R s'attend à ce que la couleur soit associée à une variable. Puisqu'aucune variable ne s'appelle ``blue'', R utilise la couleur par défaut. Pour associer la couleur des points à une variable, nous devons fournir un nom de variable valide :
@@ -1829,7 +1926,7 @@ Le code qui permet de produire la figure \ref{fig:rightcolor} fait un usage corr
 
 }
 
-\caption{Association de `color` à une variable catégorielle}\label{fig:varcolor}
+\caption{Association de `color` à une variable catégorielle.}\label{fig:varcolor}
 \end{figure}
 
 Ici, l'utilisation de la couleur est correcte. Elle est associée à une variable catégorielle, et chaque valeur possible du vecteur \texttt{month} se voit donc attribuer une couleur différente.
@@ -1847,7 +1944,7 @@ Ici, l'utilisation de la couleur est correcte. Elle est associée à une variabl
 
 }
 
-\caption{Association de `color` à une variable numérique}\label{fig:varcolor2}
+\caption{Association de `color` à une variable numérique.}\label{fig:varcolor2}
 \end{figure}
 
 De la même façon, la couleur des points est ici associée à une variable continue (l'heure d'arrivée des vols). Les points se voient donc attribuer une couleur choisie le long d'un gradient.
@@ -1867,12 +1964,12 @@ La même approche peut être utilisée pour spécifier la forme des symboles ave
 
 }
 
-\caption{Association de `shape` à un facteur}\label{fig:shapeplot}
+\caption{Association de `shape` à un facteur.}\label{fig:shapeplot}
 \end{figure}
 
 Vous noterez que seuls les 6 premiers niveaux d'un facteur se voient attribuer une forme automatiquement. Au delà de 6 symboles différents sur un même graphique, le résultat est souvent illisible. Il est possible d'ajouter plus de 6 symboles, mais cela demande de modifier la légende manuellement et concrètement nous n'en aurons jamais besoin. Lorsque plus de 6 séries doivent être distinguées, d'autres solutions bien plus pertinentes (par exemple les \texttt{factet}s) devraient être utilisées.
 
-Comme pour la couleur, il est possible d'e spécifier'utiliser l'argument \texttt{shape} en tant que paramètre du graphique sans l'associer à une variable. Il faut alors fournir un code compris entre 0 et 24 :
+Comme pour la couleur, il est possible d'utiliser l'argument \texttt{shape} en tant que paramètre du graphique sans l'associer à une variable. Il faut alors fournir un code compris entre 0 et 24 :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1887,12 +1984,12 @@ Comme pour la couleur, il est possible d'e spécifier'utiliser l'argument \textt
 
 }
 
-\caption{Utilisation de `shape` en tant que paramètre}\label{fig:shapeplot2}
+\caption{Utilisation de `shape` en tant que paramètre.}\label{fig:shapeplot2}
 \end{figure}
 
 Notez qu'ici, \texttt{ggplot()} ne crée pas de légende : tous les points ont le même symbole, ce symbole n'est pas associé à une variable, une légende est donc inutile.
 
-Parmis les valeur possibles pour \texttt{shape}, les symboles 21 à 24 sont des symboles dont on peut spécifier séparément la couleur du contour, avec \texttt{color} et la couleur du fond avec \texttt{fill} :
+Parmi les valeurs possibles pour \texttt{shape}, les symboles 21 à 24 sont des symboles dont on peut spécifier séparément la couleur de contour, avec \texttt{color} et la couleur de fond avec \texttt{fill} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1907,12 +2004,12 @@ Parmis les valeur possibles pour \texttt{shape}, les symboles 21 à 24 sont des 
 
 }
 
-\caption{Utilisation de `shape`, `color` et `fill`}\label{fig:shapecolorplot}
+\caption{Utilisation de `shape`, `color` et `fill`.}\label{fig:shapecolorplot}
 \end{figure}
 
 N'hésitez pas à zoomer pour bien observer les points et comprendre ce qui se passe. Un conseil, faites des choix raisonnables ! Trop de couleurs n'est pas forcément souhaitable.
 
-Enfin, on peut ajuster la taille des symboles avec l'argument \texttt{size}. Tout comme il n'est pas possible d'associer une variable continue à \texttt{shape}, et il n'est pas conseillé d'associer une variable catégorielle nominale (c'est à dire un facteur non ordonné) à \texttt{size}. Associer une variable continue est en ravanche parfois utile :
+Enfin, on peut ajuster la taille des symboles avec l'argument \texttt{size}. Tout comme il n'est pas possible d'associer une variable continue à \texttt{shape}, il n'est pas conseillé d'associer une variable catégorielle nominale (c'est-à-dire un facteur non ordonné) à \texttt{size}. Associer une variable continue est en ravanche parfois utile :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1927,12 +2024,12 @@ Enfin, on peut ajuster la taille des symboles avec l'argument \texttt{size}. Tou
 
 }
 
-\caption{Association d'une variable continue à la taille des symboles avec l'argument `size`}\label{fig:sizeplot}
+\caption{Association d'une variable continue à la taille des symboles avec l'argument `size`.}\label{fig:sizeplot}
 \end{figure}
 
-Si l'over-plotting est ici très important (c'est pourquoi j'ai utilisé \texttt{alpha}), on constate néanmoins que les vols avec les retards les plus importants sont presque tous arrivés très tôt dans la journée (``500'' signifie 5h00 du matin). Il s'agit probablement de vols qui devaient arriver dans la nuit, avant minuit, et qui sont finalement arrivés en tout début de journée, etnre 00h01 et 5h00 du matin. Comme pour les autres arguments, il est possible d'utiliser \texttt{size} avec une valeur fixe, la même pour tous les symboles, lorsque cet argument n'est pas associé à une variable.
+Si l'over-plotting est ici très important (c'est pourquoi j'ai utilisé \texttt{alpha}), on constate néanmoins que les vols avec les retards les plus importants sont presque tous arrivés très tôt dans la journée (``500'' signifie 5h00 du matin). Il s'agit probablement de vols qui devaient arriver dans la nuit, avant minuit, et qui sont finalement arrivés en tout début de journée, entre 00h01 et 5h00 du matin. Comme pour les autres arguments, il est possible d'utiliser \texttt{size} avec une valeur fixe, la même pour tous les symboles, lorsque cet argument n'est pas associé à une variable.
 
-Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l'ensemble de ces arguments, il est malheureusement très facile d'obtenir des graphiques peu lisibles, ou contenant tellement d'information qu'ils en deviennent difficiles à déchiffrer. Faites preuve de modération :
+Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l'ensemble de ces arguments, il est malheureusement très facile d'obtenir des graphiques peu lisibles, ou contenant tellement d'informations qu'ils en deviennent difficiles à déchiffrer. Faites preuve de modération :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1958,9 +2055,13 @@ Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l'ens
 \hypertarget{exercices-3}{%
 \subsubsection{Exercices}\label{exercices-3}}
 
-À quoi sert l'argument \texttt{stroke} ?
-
-Avec le jeu de données \texttt{diamonds}, tapez les commandes suivantes pour créer un nouveau tableau \texttt{diams} contenant moins de lignes (5000 au lieu de près de 54000) :
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  À quoi sert l'argument \texttt{stroke} ?
+\item
+  Avec le jeu de données \texttt{diamonds}, tapez les commandes suivantes pour créer un nouveau tableau \texttt{diams} contenant moins de lignes (5000 au lieu de près de 54000) :
+\end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1971,7 +2072,13 @@ Avec le jeu de données \texttt{diamonds}, tapez les commandes suivantes pour cr
 \end{Highlighting}
 \end{Shaded}
 
-Avec ce nouveau tableau \texttt{diams}, tapez le code permettant de créer le graphique \ref{fig:exodiamonds} (Indice : affichez le tableau \texttt{diams} dans la console afin de voir quelles sont les variables disponibles).
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Avec ce nouveau tableau \texttt{diams}, tapez le code permettant de créer le graphique \ref{fig:exodiamonds} (Indice : affichez le tableau \texttt{diams} dans la console afin de voir quelles sont les variables disponibles).
+\end{enumerate}
 
 \begin{figure}[htpb]
 
@@ -1979,10 +2086,16 @@ Avec ce nouveau tableau \texttt{diams}, tapez le code permettant de créer le gr
 
 }
 
-\caption{Prix de 5000 diamants en fonction de leur taille en carats et de leur couleur.}\label{fig:exodiamonds}
+\caption{Prix de 5000 diamants en fonction de leur taille en carats et de leur clarté.}\label{fig:exodiamonds}
 \end{figure}
 
-Selon vous, à quoi sont dues les bandes verticales que l'on observe sur ce graphique ?
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Selon vous, à quoi sont dues les bandes verticales que l'on observe sur ce graphique ?
+\end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2021,7 +2134,7 @@ Concentrons nous maintenant sur le tableau \texttt{weather} du package \texttt{n
 #   time_hour <dttm>
 \end{verbatim}
 
-Nous allons nous intéresser à la variable \texttt{temp}, qui contient un enregistrement de température pour chaque heure de chaque jour de 2013 pour les 3 aéroports de New York. Cela représente une grande quantité de données, aussi, nous nous limiterons aux températures observées entre le 1er et le 15 janvier, pour l'aéroport Newark uniquement.
+Nous allons nous intéresser à la variable \texttt{temp}, qui contient un enregistrement de température pour chaque heure de chaque jour de 2013 pour les 3 aéroports de New York. Cela représente une grande quantité de données, aussi, nous nous limiterons aux températures observées entre le premier et le 15 janvier, pour l'aéroport Newark uniquement.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2032,7 +2145,7 @@ Nous allons nous intéresser à la variable \texttt{temp}, qui contient un enreg
 \end{Highlighting}
 \end{Shaded}
 
-La fonction \texttt{filter()} fonctionne sur le même principe que la fonction \texttt{subset()} vue lors du premier TP. Ici, nous demandons à R de créer un nouveau tableau de données, nommé \texttt{small\_weather}, qui ne contiendra que les lignes correspondant à \texttt{origin\ ==\ "EWR"}, et \texttt{month\ ==\ 1}, et \texttt{day\ \textless{}=\ 15}, c'est à dire les données météorologiques de l'aéroport de Newark pour les 15 premiers jours de janvier 2013.
+La fonction \texttt{filter()} fonctionne sur le même principe que la fonction \texttt{subset()} découverte dans les tutoriels de DataCamp. Ici, nous demandons à R de créer un nouveau tableau de données, nommé \texttt{small\_weather}, qui ne contiendra que les lignes correspondant à \texttt{origin\ ==\ "EWR"}, \texttt{month\ ==\ 1} et \texttt{day\ \textless{}=\ 15}, c'est à dire les données météorologiques de l'aéroport de Newark pour les 15 premiers jours de janvier 2013.
 
 \hypertarget{exercice}{%
 \subsubsection{Exercice}\label{exercice}}
@@ -2057,12 +2170,12 @@ Les line graphs sont produits de la même façon que les nuages de points. Seul 
 
 }
 
-\caption{Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013}\label{fig:linegraph}
+\caption{Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013.}\label{fig:linegraph}
 \end{figure}
 
 Très logiquement, on observe des oscillations plus ou moins régulières qui correspondent à l'alternance jour/nuit. Notez l'échelle de l'axe des ordonnées : les températures sont enregistrées en degrés Farenheit.
 
-Nous connaissons maintenant 2 types d'objets \texttt{geom}étriques : les points les les lignes. il est tout à fait possible d'ajouter plusieurs couches à un graphique, chacune d'elle correspondant à un objet \texttt{geom}étrique différent :
+Nous connaissons maintenant 2 types d'objets \texttt{geom}étriques : les points et les lignes. Il est tout à fait possible d'ajouter plusieurs couches à un graphique, chacune d'elle correspondant à un objet \texttt{geom}étrique différent (voir figure \ref{fig:lineplotgraph}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2078,7 +2191,7 @@ Nous connaissons maintenant 2 types d'objets \texttt{geom}étriques : les points
 
 }
 
-\caption{Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013}\label{fig:lineplotgraph}
+\caption{Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013.}\label{fig:lineplotgraph}
 \end{figure}
 
 Enfin, comme pour les points, il est possible de spécifier plusieurs caractéristiques esthétiques des lignes, soit en les associant à des variables, au sein de la fonction \texttt{aes()}, soit en les utilisant en guise de paramètres pour modifier l'aspect général. Les arguments les plus classiques sont une fois de plus \texttt{color} (ou \texttt{colour}) pour modifier la couleur des lignes, \texttt{linetype} pour modifier le type de lignes (continues, pointillées, tirets, etc), et \texttt{size} pour modifier l'épaisseur des lignes.
@@ -2164,7 +2277,7 @@ Jusqu'à maintenant, pour spécifier les associations entre certaines variables 
   au sein des fonctions \texttt{geom\_XXX()}
 \end{enumerate}
 
-Comment choisir l'endroit où renseigner \texttt{aes()} ? Pour bien comprendre, reprenons l'exemple du graphique \ref{fig:lineplotgraph} sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent~(afin de gagner de la place, j'omets volontairement le nom des arguments \texttt{data} et \texttt{mapping} dans la fonction \texttt{ggplot()}) :
+Comment choisir l'endroit où renseigner \texttt{aes()} ? Pour bien comprendre, reprenons l'exemple du graphique \ref{fig:lineplotgraph} sur lequel nous avions ajouté 2 couches contenant chacune un objet géométrique différent (afin de gagner de la place, j'omets volontairement le nom des arguments \texttt{data} et \texttt{mapping} dans la fonction \texttt{ggplot()}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2180,7 +2293,7 @@ Comment choisir l'endroit où renseigner \texttt{aes()} ? Pour bien comprendre, 
 
 }
 
-\caption{Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013}\label{fig:lineplotgraph2}
+\caption{Températures horaires à l'aéroport de Newark entre le 1er et le 15 janvier 2013.}\label{fig:lineplotgraph2}
 \end{figure}
 
 Voyons ce qui se passe si on associe la variable \texttt{wind\_speed} à l'esthétique \texttt{color}, à plusieurs endroits du code ci-dessus. Comparez les trois syntaxes et observez les différences entre les 3 graphiques obtenus :
@@ -2199,7 +2312,7 @@ Voyons ce qui se passe si on associe la variable \texttt{wind\_speed} à l'esth�
 
 }
 
-\caption{Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013}\label{fig:wind}
+\caption{Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013. La couleur de la ligne et des points renseigne sur la vitesse du vent.}\label{fig:wind}
 \end{figure}
 
 \begin{Shaded}
@@ -2216,7 +2329,7 @@ Voyons ce qui se passe si on associe la variable \texttt{wind\_speed} à l'esth�
 
 }
 
-\caption{Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013}\label{fig:wind2}
+\caption{Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013. La couleur de la ligne renseigne sur la vitesse du vent.}\label{fig:wind2}
 \end{figure}
 
 \begin{Shaded}
@@ -2233,7 +2346,7 @@ Voyons ce qui se passe si on associe la variable \texttt{wind\_speed} à l'esth�
 
 }
 
-\caption{Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013}\label{fig:wind3}
+\caption{Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013. La couleur des points renseigne sur la vitesse du vent.}\label{fig:wind3}
 \end{figure}
 
 Vous l'aurez compris, lorsque l'on spécifie \texttt{aes()} à l'intérieur de la fonction \texttt{ggplot()}, les associations de variables et d'esthétiques sont appliquées à tous les objets géométriques, donc à toutes les autres couches. En revanche, quand \texttt{aes()} est spécifié dans une couche donnée, les réglages ne s'appliquent qu'à cette couche spécifique.
@@ -2254,10 +2367,10 @@ En l'occurence, si le même réglage est spécifié dans la fonction \texttt{ggp
 
 }
 
-\caption{Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013}\label{fig:wind4}
+\caption{Températures horaires et vitesse du vent à l'aéroport de Newark entre le 1er et le 15 janvier 2013.}\label{fig:wind4}
 \end{figure}
 
-il est ainsi possible de spécifier des éléments esthétiques qui s'appliqueront à toutes les couches d'un graphique, et d'autres qui ne s'appliqueront qu'à une couche spécifique, qu'à un objet géométrique particulier.
+Il est ainsi possible de spécifier des éléments esthétiques qui s'appliqueront à toutes les couches d'un graphique, et d'autres qui ne s'appliqueront qu'à une couche spécifique, qu'à un objet géométrique particulier.
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2288,7 +2401,7 @@ Si on reprend le jeu de données \texttt{weather}, on peut par exemple s'intére
 
 }
 
-\caption{Histogramme des températures enregistrées en 2013 dans les 3 aéroports de New York}\label{fig:unnamed-chunk-47}
+\caption{Histogramme des températures enregistrées en 2013 dans les 3 aéroports de New York.}\label{fig:unnamed-chunk-47}
 \end{figure}
 
 On observe plusieurs choses :
@@ -2297,13 +2410,13 @@ On observe plusieurs choses :
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  La distribution semble globalement bimodale avec un pic autour de 36-37 degrés farenheit (2 à 3 ºC) et un autre autour de 65-70 degrés farenheit (18-21 ºC).
+  La distribution semble globalement bimodale avec un pic autour de 36-37 degrés Farenheit (2 à 3 ºC) et un autre autour de 65-70 degrés Farenheit (18-21 ºC).
 \item
-  Les températures ont varié de 12 degrés farenheit (-11ºC) à 100 degrés farenheit (près de 38ºC).
+  Les températures ont varié entre 12 degrés Farenheit (-11ºC) et 100 degrés Farenheit (près de 38ºC).
 \item
-  R nous avertit qu'une valeur non finie n'a pas pu être intégrée
+  R nous avertit qu'une valeur non finie n'a pas pu être intégrée.
 \item
-  R nou indique qu'il a choisi de représenter 30 classes de températures (\texttt{bins\ =\ 30}). C'est la valeur par défaut. R nous conseille de choisir une valeur plus appropriée.
+  R nous indique qu'il a choisi de représenter 30 classes de températures (\texttt{bins\ =\ 30}). C'est la valeur par défaut. R nous conseille de choisir une valeur plus appropriée.
 \end{enumerate}
 
 Comme pour les nuages de points utilisant les symboles 21 à 24, il est possible de spécifier la couleur de remplissage des barres avec l'argument \texttt{fill} et la couleur du contour des barres avec l'argument \texttt{color} :
@@ -2327,7 +2440,7 @@ Comme pour les nuages de points utilisant les symboles 21 à 24, il est possible
 \hypertarget{la-taille-des-classes}{%
 \subsubsection{La taille des classes}\label{la-taille-des-classes}}
 
-Par défaut, R choisit arbitrairement de représenter 30 classes. Ce n'est que rarement le bon choix, et il est souvent nécessaire de tâtonner pour trouver le nombre de classes : celui qui permet d'avoir une idée correcte de la distribution des données.
+Par défaut, R choisit arbitrairement de représenter 30 classes. Ce n'est que rarement le bon choix, et il est souvent nécessaire de tâtonner pour trouver le nombre de classes approprié : celui qui permet d'avoir une idée correcte de la distribution des données.
 
 Il est possible d'ajuster les caractéristiques des classes de l'histogramme de l'une des 3 façons suivantes :
 
@@ -2335,11 +2448,11 @@ Il est possible d'ajuster les caractéristiques des classes de l'histogramme de 
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  en ajustant le nombre de classes avec \texttt{bins}
+  En ajustant le nombre de classes avec \texttt{bins}.
 \item
-  en précisant la largeur des classes avec \texttt{binwidth}
+  En précisant la largeur des classes avec \texttt{binwidth}.
 \item
-  en fournissant manuellement les limites des classes avec \texttt{breaks}
+  En fournissant manuellement les limites des classes avec \texttt{breaks}.
 \end{enumerate}
 
 \begin{Shaded}
@@ -2355,10 +2468,10 @@ Il est possible d'ajuster les caractéristiques des classes de l'histogramme de 
 
 }
 
-\caption{Modification du nombre de classes}\label{fig:unnamed-chunk-49}
+\caption{Modification du nombre de classes.}\label{fig:unnamed-chunk-49}
 \end{figure}
 
-Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n'est pas aussi lisse qu'elle en avait l'air. L'ajout d'une couche supplémentaire avec la fonction \texttt{geom\_rug()} (``a rug'' est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu'on pouvait le croire :
+Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la distribution n'est pas aussi lisse qu'elle en avait l'air. L'ajout d'une couche supplémentaire avec la fonction \texttt{geom\_rug()} (``a rug'' est un tapis en français) permet de prendre conscience que les données de température ne sont pas aussi continues qu'on pouvait le croire (figure \ref{fig:rughist}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2370,11 +2483,11 @@ Ici, augmenter le nombre de classes à 60 permet de prendre conscience que la di
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-50-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/rughist-1} 
 
 }
 
-\caption{Ajout des données brutes sous forme de 'tapis' (`rug`) sous l'histogramme.}\label{fig:unnamed-chunk-50}
+\caption{Ajout des données brutes sous forme de 'tapis' (`rug`) sous l'histogramme.}\label{fig:rughist}
 \end{figure}
 
 Notez la transparence importante utilisée pour \texttt{geom\_rug()}. On constate que la précision des relevés de température n'est en fait que de quelques dixièmes de degrés.
@@ -2390,14 +2503,16 @@ On peut également modifier la largeur des classes avec \texttt{binwidth} :
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-51-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-50-1} 
 
 }
 
-\caption{Modification de la largeur des classes avec `binwidth`}\label{fig:unnamed-chunk-51}
+\caption{Modification de la largeur des classes avec `binwidth`.}\label{fig:unnamed-chunk-50}
 \end{figure}
 
-Ici chaque catégorie recouvre 10 degrés farenheit, ce qui est probablement trop large puisque la bimodalité de la distribution est devenue presque invisible. Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l'argument \texttt{breaks} :
+Ici, chaque catégorie recouvre 10 degrés Farenheit, ce qui est probablement trop large puisque la bimodalité de la distribution est devenue presque invisible.
+
+Enfin, il est possible de déterminer manuellement les limites des classes souhaitées avec l'argument \texttt{breaks} (figure \ref{fig:irregclasses}) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2408,14 +2523,14 @@ Ici chaque catégorie recouvre 10 degrés farenheit, ce qui est probablement tro
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-52-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/irregclasses-1} 
 
 }
 
-\caption{Spécification manuelle des limites de classes de tailles (classes irrégulières)}\label{fig:unnamed-chunk-52}
+\caption{Spécification manuelle des limites de classes de tailles (classes irrégulières).}\label{fig:irregclasses}
 \end{figure}
 
-Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n'ont pas la même largeur. Cela rend l'interprétation difficile. Il est donc vivement conseillé, pour spécifier \texttt{breaks}, de créer des suites régulières, comme avec la fonction \texttt{seq()} par exemple (consultez son fichier d'aide et les exemples !) :
+Vous constatez ici que les choix effectués ne sont pas très pertinents : toutes les classes n'ont pas la même largeur. Cela rend l'interprétation difficile. Il est donc vivement conseillé, pour spécifier \texttt{breaks}, de créer des suites régulières, comme avec la fonction \texttt{seq()} (consultez son fichier d'aide et les exemples) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2442,10 +2557,10 @@ Vous constatez ici que les choix effectués ne sont pas très pertinents : toute
 
 }
 
-\caption{Un exemple d'utilisation de l'argument `break`}\label{fig:break}
+\caption{Un exemple d'utilisation de l'argument `breaks`.}\label{fig:break}
 \end{figure}
 
-Il est important que toute la gamme des valeurs de \texttt{temp} soit couverte par les limites des classes que nous avons définies, sinon, certaines valeurs sont omises et l'histogramme est donc incomplet/incorrect. Une façon de s'en assurer est d'afficher les résumé des données pour la colonne \texttt{temp} du jeu de données \texttt{weather} :
+Il est important que toute la gamme des valeurs de \texttt{temp} soit couverte par les limites des classes que nous avons définies, sinon, certaines valeurs sont omises et l'histogramme est donc incomplet/incorrect. Une façon de s'en assurer est d'afficher le résumé des données pour la colonne \texttt{temp} du jeu de données \texttt{weather} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2458,7 +2573,7 @@ Il est important que toute la gamme des valeurs de \texttt{temp} soit couverte p
   10.94   39.92   55.40   55.26   69.98  100.04       1 
 \end{verbatim}
 
-On voit ici que les températures varien de 10.94 à 100.04 degrés farenheit. Les classes que nous avons définies couvrent une plage de température plus large (de 10 à 105). Toutes les données sont donc bien intégrées à l'histogramme.
+On voit ici que les températures varient de 10.94 à 100.04 degrés Farenheit. Les classes que nous avons définies couvrent une plage de températures plus large (de 10 à 105). Toutes les données sont donc bien intégrées à l'histogramme.
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2468,7 +2583,7 @@ On voit ici que les températures varien de 10.94 à 100.04 degrés farenheit. L
 \hypertarget{facet_wrap}{%
 \subsubsection{\texorpdfstring{\texttt{facet\_wrap()}}{facet\_wrap()}}\label{facet_wrap}}
 
-Nous l'avons indiqué plus haut, les \texttt{facet}s permettent de scinder le jeux de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous-groupes.
+Nous l'avons indiqué plus haut, les \texttt{facet}s permettent de scinder le jeu de données en plusieurs sous-groupes et de faire un graphique pour chacun des sous-groupes.
 
 Ainsi, si l'on souhaite connaître la distribution des températures pour chaque mois de l'année 2013, plutôt que de faire ceci :
 
@@ -2479,13 +2594,13 @@ Ainsi, si l'on souhaite connaître la distribution des températures pour chaque
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}[!htpb]
+\begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-54-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-52-1} 
 
 }
 
-\caption{Distribution des températures avec visualisation des données mensuelles.}\label{fig:unnamed-chunk-54}
+\caption{Distribution des températures avec visualisation des données mensuelles.}\label{fig:unnamed-chunk-52}
 \end{figure}
 
 qui produit un graphique certes assez joli, mais difficile à interpréter, mieux vaut faire ceci :
@@ -2498,7 +2613,7 @@ qui produit un graphique certes assez joli, mais difficile à interpréter, mieu
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}[!htpb]
+\begin{figure}[htpb]
 
 {\centering \includegraphics[width=0.9\linewidth]{figure/wrap-1} 
 
@@ -2509,9 +2624,9 @@ qui produit un graphique certes assez joli, mais difficile à interpréter, mieu
 
 
 
-La couche supplémentaire créée avec \texttt{facet\_wrap} permet donc de scinder les données en fonction d'une variable. Attention à la syntaxe ; il ne faut pas oublier le symbole \texttt{\textasciitilde{}} devant la variable que l'on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c'est la raison pour laquelle j'utilise la notation \texttt{factor(month)} et non simplement \texttt{month}.
+La couche supplémentaire créée avec \texttt{facet\_wrap()} permet donc de scinder les données en fonction d'une variable. Attention à la syntaxe : il ne faut pas oublier le symbole ``\texttt{\textasciitilde{}}'' devant la variable que l'on souhaite utiliser pour scinder les données. Il va sans dire que la variable utilisée doit être catégorielle et non continue, c'est la raison pour laquelle j'utilise la notation \texttt{factor(month)} et non simplement \texttt{month}.
 
-Avec la fonction \texttt{facet\_wrap()}, il est possible d'indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaité avec \texttt{ncol}, soit le nombre de lignes souhaitées avec \texttt{nrow}.
+Avec la fonction \texttt{facet\_wrap()}, il est possible d'indiquer à R comment les différents graphiques doivent être agencés en spécifiant soit le nombre de colonnes souhaité avec \texttt{ncol}, soit le nombre de lignes souhaité avec \texttt{nrow}.
 
 \hypertarget{facet_grid}{%
 \subsubsection{\texorpdfstring{\texttt{facet\_grid()}}{facet\_grid()}}\label{facet_grid}}
@@ -2526,7 +2641,7 @@ Une autre fonction nommée \texttt{facet\_grid()} permet d'agencer des sous-grap
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}[!htpb]
+\begin{figure}[htpb]
 
 {\centering \includegraphics[width=0.9\linewidth]{figure/grid-1} 
 
@@ -2537,11 +2652,11 @@ Une autre fonction nommée \texttt{facet\_grid()} permet d'agencer des sous-grap
 
 
 
-Ici, nous avons utilisé la variable \texttt{month} (transformée en facteur) et la variable \texttt{origin} pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible comparer facilement des températures inter-mensuelles au sein d'un aéroport donné (en colonnes), ou de comparer des températures enregistrées le même mois dans des aéroports distincts (en lignes).
+Ici, nous avons utilisé la variable \texttt{month} (transformée en facteur) et la variable \texttt{origin} pour créer un histogramme pour chaque combinaison des modalités de ces 2 variables. Il est donc possible de comparer facilement des températures inter-mensuelles au sein d'un aéroport donné (en colonnes), ou de comparer des températures enregistrées le même mois dans des aéroports distincts (en lignes).
 
-\texttt{facet\_grid()} doit elle aussi être utilisée avec le symbole \texttt{\textasciitilde{}}. Comme pour les indices d'un tableau, on met à gauche du \texttt{\textasciitilde{}} la variable qui figurera en lignes, et à droite du \texttt{\textasciitilde{}} celle qui figurera en colonnes. Les arguments \texttt{nrow} et \texttt{ncol} ne peuvent donc pas être utilisés : c'est le nombre de niveaux de chaque variable catégorielle fournie à \texttt{facet\_grid()} qui détermine le nombre de lignes et de colonnes du graphique.
+\texttt{facet\_grid()} doit elle aussi être utilisée avec le symbole ``\texttt{\textasciitilde{}}''. Comme pour les indices d'un tableau, on met à gauche du ``\texttt{\textasciitilde{}}'' la variable qui figurera en lignes, et à droite du \texttt{\textasciitilde{}} celle qui figurera en colonnes. Les arguments \texttt{nrow} et \texttt{ncol} ne peuvent donc pas être utilisés : c'est le nombre de niveaux de chaque variable catégorielle fournie à \texttt{facet\_grid()} qui détermine le nombre de lignes et de colonnes du graphique.
 
-Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé et en ajoutant des couches une à une sur un graphique, il est posible d'obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des srtuctures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc).
+Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé et en ajoutant des couches une à une sur un graphique, il est posible d'obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des structures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc.).
 
 \hypertarget{exercices-4}{%
 \subsubsection{Exercices}\label{exercices-4}}
@@ -2552,7 +2667,7 @@ Examinez la figure \ref{fig:grid}.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Quels éléments nouveaux ce graphiques nous apprend-il par rapport au graphique \ref{fig:break} ci-dessus ? Comment le ``\texttt{facet}ing'' nous aide-t'il à visualiser les relations entre 2 (ou 3) variables ?
+  Quels éléments nouveaux ce graphique nous apprend-il par rapport au graphique \ref{fig:break} ci-dessus ? Comment le ``\texttt{facet}ing'' nous aide-t'il à visualiser les relations entre 2 (ou 3) variables ?
 \item
   À quoi correspondent les numéros 1 à 12 ?
 \item
@@ -2560,7 +2675,7 @@ Examinez la figure \ref{fig:grid}.
 \item
   À quoi correspondent les chiffres 0, 100, 200, 300 ?
 \item
-  Observez les échelles des axes \texttt{x} et \texttt{y} pour chaque sous graphique. Qu'on-t'elles de particulier ? En quoi est-ce utile ?
+  Observez les échelles des axes \texttt{x} et \texttt{y} pour chaque sous graphique. Qu'ont-elles de particulier ? En quoi est-ce utile ?
 \item
   La variabilité des températures est-elle plus importante entre les aéroports, entre les mois, ou au sein des mois ? Expliquez votre réflexion.
 \end{enumerate}
@@ -2592,11 +2707,11 @@ Warning: Removed 1 rows containing non-finite values (stat_boxplot).
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-55-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-53-1} 
 
 }
 
-\caption{Un boxplot for peu utile...}\label{fig:unnamed-chunk-55}
+\caption{Un boxplot fort peu utile...}\label{fig:unnamed-chunk-53}
 \end{figure}
 
 Comme précédemment, R nous avertit qu'une observation n'a pas été intégrée (en raison d'une donnée manquante). Mais il nous dit aussi que \texttt{x} (pour nous, la variable \texttt{month}) est continue, et que nous avons probablement oublié de spécifier des groupes.
@@ -2612,11 +2727,11 @@ En effet, les boxplots sont généralement utilisés pour examiner la distributi
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-56-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-54-1} 
 
 }
 
-\caption{Boxplot des températures mensuelles}\label{fig:unnamed-chunk-56}
+\caption{Boxplot des températures mensuelles.}\label{fig:unnamed-chunk-54}
 \end{figure}
 
 Les différents éléments d'un boxplot, sont les suivants :
@@ -2624,15 +2739,15 @@ Les différents éléments d'un boxplot, sont les suivants :
 \begin{itemize}
 \tightlist
 \item
-  la limite inférieure de la boîte correspond au premier quartile : 25\% des données de l'échantillon sont situées sous cette valeur
+  La limite inférieure de la boîte correspond au premier quartile : 25\% des données de l'échantillon sont situées au-dessous de cette valeur.
 \item
-  la limite supérieure de la boîte correspond au troisième quartile : 25\% des données de l'échantillon sont situées au-dessus de cette valeur
+  La limite supérieure de la boîte correspond au troisième quartile : 25\% des données de l'échantillon sont situées au-dessus de cette valeur.
 \item
-  le segment épais à l'intérieur de la boîte corrspond au second quartile : c'est la médiane de l'échantillon. 50\% des données de l'échantillon sont situées au dessus de cette valeur, et 50\% au dessous.
+  Le segment épais à l'intérieur de la boîte correspond au second quartile : c'est la médiane de l'échantillon. 50\% des données de l'échantillon sont situées au-dessus de cette valeur, et 50\% au-dessous.
 \item
-  la hauteur de la boîte correspond à ce que l'on appelle l'étendue inter-quartile ou Inter Quartile Range (IQR) en anglais. On trouve dans cette boîte 50\% des observations de l'échantillon. C'est une mesure de la dispersion des 50\% des données les plus centrales. Une boîte plus allongée indique donc une plus grande dispersion.
+  La hauteur de la boîte correspond à ce que l'on appelle l'étendue inter-quartile ou Inter Quartile Range (IQR) en anglais. On trouve dans cette boîte 50\% des observations de l'échantillon. C'est une mesure de la dispersion des 50\% des données les plus centrales. Une boîte plus allongée indique donc une plus grande dispersion.
 \item
-  les moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au-dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s'étendent jusqu'aux valeurs minimales et maximales de l'échantillon, mais elles ne peuvent en aucun cas s'étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l'IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés ``outliers''. Ce sont des points qui s'éloignent du centre de la distribution de façon importante puisqu'ils sont au-delà de 1,5 fois l'IQR de part et d'autres du premier ou du troisième quartile. Il peut s'agir d'anomalies de mesure, d'anomalies de saisie de données, ou tout simplement, d'enregistrement tout à fait valides mais extrêmes. J'attire votre attention sur le fait que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d'étendre les moustaches jusqu'à 1,8 fois l'IQR (ou 2, ou 2,5). Nous observerions alors beaucoup moins d'outliers. D'une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante. Et dans tous les cas, l'examen attentif des outliers est utile car il nous permet d'en apprendre plus sur le comportement extrême de certaines observations.
+  Les moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au-dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s'étendent jusqu'aux valeurs minimales et maximales de l'échantillon, mais elles ne peuvent en aucun cas s'étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l'IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés ``outliers''. Ce sont des points qui s'éloignent du centre de la distribution de façon importante puisqu'ils sont au-delà de 1,5 fois l'IQR de part et d'autre du premier ou du troisième quartile. Il peut s'agir d'anomalies de mesures, d'anomalies de saisie des données, ou tout simplement, d'enregistrements tout à fait valides mais extrêmes. J'attire votre attention sur le fait que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d'étendre les moustaches jusqu'à 1,8 fois l'IQR (ou 2, ou 2,5). Nous observerions alors beaucoup moins d'outliers. D'une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante. Et dans tous les cas, l'examen attentif des outliers est utile car il nous permet d'en apprendre plus sur le comportement extrême de certaines observations.
 \end{itemize}
 
 \hypertarget{lintervalle-de-confiance-a-95-de-la-mediane}{%
@@ -2658,13 +2773,13 @@ On peut également aujouter une encoche autour de la valeur de médiane en ajout
 
 
 
-Comme l'indique la légende de la figure \ref{fig:notchedboxplot}, cette encoche correspond à l'étendue de l'intervalle de confiance à 95\% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d'en avoir la certitude absolue. Le mieux que l'on puisse faire, c'est quantifier l'incertitude. L'intervalle de confiance nous indique qu'il ya de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) a de bonnes chances de se trouver dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. il y a donc peu d'incertitude, ce qui est une bonne chose.\\
+Comme l'indique la légende de la figure \ref{fig:notchedboxplot}, cette encoche correspond à l'étendue de l'intervalle de confiance à 95\% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d'en avoir la certitude absolue. Le mieux que l'on puisse faire, c'est quantifier l'incertitude. L'intervalle de confiance nous indique qu'il y a de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) se trouve dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. Il y a donc peu d'incertitude, ce qui est une bonne chose.\\
 Nous reviendrons sur cette notion importante plus tard dans le cursus, car ce type de graphique nous permettra d'anticiper sur les résultats des tests de comparaison de moyennes.
 
 \hypertarget{une-autre-facon-dexaminer-des-distributions}{%
 \subsubsection{Une autre façon d'examiner des distributions}\label{une-autre-facon-dexaminer-des-distributions}}
 
-Dernière chose concernant les boxplots : il s'agit d'une représentation graphique très proche de l'histogramme. Pour vous en convaincre, je représente à la figure \ref{fig:compboxplot} ci-dessous uniquement les temperatures du mois de novembre, avec 3 types d'objets géométriques différents : un histogramme, un boxplot, et un nuage de points.
+Dernière chose concernant les boxplots : il s'agit d'une représentation graphique très proche de l'histogramme. Pour vous en convaincre, je représente à la figure \ref{fig:compboxplot} ci-dessous uniquement les températures du mois de novembre, avec 3 types d'objets géométriques différents : un histogramme, un boxplot, et un nuage de points.
 
 \begin{figure}[htpb]
 
@@ -2672,10 +2787,10 @@ Dernière chose concernant les boxplots : il s'agit d'une représentation graphi
 
 }
 
-\caption{Distribution des températures de Novembre 2013}\label{fig:compboxplot}
+\caption{Distribution des températures de Novembre 2013.}\label{fig:compboxplot}
 \end{figure}
 
-Nous avons donc, à gauche un histogramme pour les températures de novembre (j'ai permuté les axes pour que \texttt{y} porte la température pour les 3 graphiques), au centre, un boxplot pour ces mêmes données, et à droite, les données brutes, sous la forme d'un nuage de point créé avec \texttt{geom\_jitter()}. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés Farenheit. Au-delà de cette fourchette (au-dessus comme en-dessous) les observations sont plus rares.
+Nous avons donc, à gauche les données brutes, sous la forme d'un nuage de points créé avec \texttt{geom\_jitter()}, au centre, un histogramme pour les températures de novembre, créé avec \texttt{geom\_histogram()} (j'ai permuté les axes pour que \texttt{y} porte la température pour les 3 graphiques) et à droite, un boxplot pour ces mêmes données, créé avec \texttt{geom\_boxplot()}. On voit bien que ces 3 représentations graphiques sont similaires. Toutes rendent compte du fait que les températures de Novembre sont majoritairement comprises entre 35 et 52 degrés Farenheit. Au-delà de cette fourchette (au-dessus comme en dessous) les observations sont plus rares.
 
 Le nuage de points affiche toutes les données. C'est donc lui le plus complet mais pas forcément le plus lisible. Les points sont en effet très nombreux et la lecture du graphique peut s'en trouver compliquée. L'histogramme simplifie les données en les regroupant dans des classes. C'est une sorte de résumé des données. On constate cependant toujours la présence de 2 pics qui correspondent aux zones plus denses du nuage de points. Le boxplot enfin synthétise encore plus ces données. Elles sont résumées par 7 valeurs seulement : le minimum, le maximum, les 3 quartiles, et les bornes de l'intervalle de confiance à 95\% de la médiane. C'est une représentation très synthétique qui nous permet de comparer beaucoup de catégories côte à côte (voir la figure \ref{fig:notchedboxplot} un peu plus haut), mais qui est forcément moins précise qu'un histogramme. Vous noterez toutefois que la boîte du boxplot recouvre en grande partie la zone des 2 pics de l'histogramme. En outre, sur la figure \ref{fig:notchedboxplot}, la tendance générale est très visible : il fait plus chaud en été qu'en hiver (étonnant non ?).
 
@@ -2771,9 +2886,9 @@ Notez que les figures \ref{fig:barplot} et \ref{fig:barplotcol} sont absolument 
 \begin{itemize}
 \tightlist
 \item
-  le code qui génère la figure \ref{fig:barplot} utilise le jeu de données \texttt{fruits}, et n'associe pas de variable à l'axe des ordonnées : dans la fonction \texttt{aes()}, seule la variable associée à \texttt{x} est précisée. C'est la fonction \texttt{geom\_bar()} qui calcule automatiquement les abondances (ou fréquences) pour chaque catégorie de la variable \texttt{fruit}. La variable \texttt{count} est ainsi générée automatiquement et associée à \texttt{y}.
+  Le code qui génère la figure \ref{fig:barplot} utilise le jeu de données \texttt{fruits}, et n'associe pas de variable à l'axe des ordonnées : dans la fonction \texttt{aes()}, seule la variable associée à \texttt{x} est précisée. C'est la fonction \texttt{geom\_bar()} qui calcule automatiquement les abondances (ou fréquences) pour chaque catégorie de la variable \texttt{fruit}. La variable \texttt{count} est ainsi générée automatiquement et associée à \texttt{y}.
 \item
-  le code qui génère la figure \ref{fig:barplotcol} utilise le jeu de données \texttt{fruits\_counted}. Ici, la variable \texttt{nombre} est associée à l'axe des \texttt{y} grâce à la fonction \texttt{aes()}. La fonction \texttt{geom\_col()} a besoin de 2 variables (une variable catégorielle pour l'axe des \texttt{x} et une numérique pour l'axe des \texttt{y}) pour fonctionner.
+  Le code qui génère la figure \ref{fig:barplotcol} utilise le jeu de données \texttt{fruits\_counted}. Ici, la variable \texttt{nombre} est associée à l'axe des \texttt{y} grâce à la fonction \texttt{aes()}. La fonction \texttt{geom\_col()} a besoin de 2 variables (une variable catégorielle pour l'axe des \texttt{x} et une numérique pour l'axe des \texttt{y}) pour fonctionner.
 \end{itemize}
 
 Autrement dit, lorsque vous souhaiterez créer un diagramme bâtons, il faudra donc au préalable vérifier de quel type de données vous disposez pour choisir l'objet géométrique approprié :
@@ -2786,8 +2901,8 @@ Autrement dit, lorsque vous souhaiterez créer un diagramme bâtons, il faudra d
   Si votre variable catégorielle est pré-comptée dans votre tableau de données, il faut utiliser \texttt{geom\_col()} et associer explicitement les comptages à l'aesthétique \texttt{y} du graphique.
 \end{itemize}
 
-\hypertarget{un-example-concret}{%
-\subsubsection{Un example concret}\label{un-example-concret}}
+\hypertarget{un-exemple-concret}{%
+\subsubsection{Un exemple concret}\label{un-exemple-concret}}
 
 Revenons à \texttt{nycflights13}. Imaginons que nous souhaitions connaître le nombre de vols affrétés par chaque compagnie aérienne au départ de New York en 2013. Dans le jeu de données \texttt{flights}, la variable \texttt{carrier} nous indique à quelle compagnie aérienne appartiennent chacun des 336776 vols ayant quitté New York en 2013. Une façon simple de représenter ces données est donc la suivante :
 
@@ -2830,14 +2945,14 @@ Il est généralement plus utile de trier les catégories par ordre décroissant
 
 Ordonner les catégories par ordre décroissant est souvent indispensable afin de faciliter la lecture du graphique et les comparaisons entre catégories.
 
-Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aérienne, il nous faut faire appel à plusieurs fonctions du package \texttt{dplyr} que nous détaillerons dans le chapitre \ref{wrangling}. Ci-dessous, nous créons un nouveau tableau \texttt{carrier\_table} contenant le nombre de vols de chaque compagnie aérienne et les compagnies sont ordonnées par nombre de vols décroissants :
+Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aérienne, il nous faut faire appel à plusieurs fonctions du package \texttt{dplyr} que nous détaillerons dans le chapitre \ref{wrangling}. Ci-dessous, nous créons un nouveau tableau \texttt{carrier\_table} contenant le nombre de vols de chaque compagnie aérienne et les compagnies sont ordonnées par nombres de vols décroissants :
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{carrier_table <-}\StringTok{ }\NormalTok{flights }\OperatorTok{%>%}\StringTok{   }\CommentTok{# On prend flights, puis...}
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(carrier) }\OperatorTok{%>%}\StringTok{        }\CommentTok{# On groupe les données par compagnie, puis...}
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{nombre =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}\StringTok{  }\CommentTok{# On calcule le nb de vols par Cie, puis ...}
-\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(nombre))        }\CommentTok{# On trie le tableau par nb de vols décroissant}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(nombre))        }\CommentTok{# On trie par nb de vols décroissants ...}
 \NormalTok{carrier_table                  }\CommentTok{# Enfin, on affiche la nouvelle table}
 \end{Highlighting}
 \end{Shaded}
@@ -2864,7 +2979,7 @@ Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aér
 16 OO          32
 \end{verbatim}
 
-Ici, la table a été triée par nombre de vols décroissants. Mais attention, \textbf{les niveaux} du facteur \texttt{carrier} n'ont pas été modifiés :
+Ici, la table a été triée par nombres de vols décroissants. Mais attention, \textbf{les niveaux} du facteur \texttt{carrier} n'ont pas été modifiés :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2901,16 +3016,16 @@ Pour parvenir à nos fins, il faut cette fois avoir recours à la fonction \text
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  la variable catégorielle dont on souhaite réordonner les niveaux (ici, la variable \texttt{carrier} du tableau \texttt{carrier\_table})
+  La variable catégorielle dont on souhaite réordonner les niveaux (ici, la variable \texttt{carrier} du tableau \texttt{carrier\_table}).
 \item
-  une variable numérique qui permet d'ordonner les catégories (ici, la variable \texttt{nombre} du même tableau)
+  Une variable numérique qui permet d'ordonner les catégories (ici, la variable \texttt{nombre} du même tableau).
 \item
-  l'argument optionnel \texttt{.desc} qui permet de préciser si le tri doit être fait en ordre croissant (c'est le cas par défaut) ou décroissant.
+  L'argument optionnel \texttt{.desc} qui permet de préciser si le tri doit être fait en ordre croissant (c'est le cas par défaut) ou décroissant.
 \end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(carrier_table, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{fct_reorder}\NormalTok{(carrier, nombre, }\DataTypeTok{.desc =} \OtherTok{TRUE}\NormalTok{),}
+\KeywordTok{ggplot}\NormalTok{(carrier_table, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{fct_reorder}\NormalTok{(carrier, nombre, }\DataTypeTok{.desc =} \OtherTok{TRUE}\NormalTok{), }
                           \DataTypeTok{y =}\NormalTok{ nombre)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_col}\NormalTok{()}
 \end{Highlighting}
@@ -2925,7 +3040,7 @@ Pour parvenir à nos fins, il faut cette fois avoir recours à la fonction \text
 \caption{Nombre de vols par compagnie aérienne au départ de New York en 2013.}\label{fig:bpcarriersortedcol}
 \end{figure}
 
-Vous voyez donc que selon le type de données dont vous disposez (soit un tableau comme \texttt{flights}, avec toutes les observations, soit un tableau beaucou plus compact comme \texttt{carrier\_table}), la démarche permettant de produire un diagramme bâton, dans lequel les catégories seront triées, sera différente.
+Vous voyez donc que selon le type de données dont vous disposez (soit un tableau comme \texttt{flights}, avec toutes les observations, soit un tableau beaucoup plus compact comme \texttt{carrier\_table}), la démarche permettant de produire un diagramme bâtons, dans lequel les catégories seront triées, sera différente.
 
 \hypertarget{exercices-5}{%
 \subsubsection{Exercices}\label{exercices-5}}
@@ -2938,17 +3053,17 @@ Vous voyez donc que selon le type de données dont vous disposez (soit un tablea
 \item
   Pourquoi les histogrammes sont-ils inadaptés pour visualiser des données catégorielles ?
 \item
-  Quel est le nom de la companie pour laquelle le plus grand nombre de vols ont quitté New York en 2013 (je veux connaître son nom, pas juste son code) ? Où se trouve cette information ?
+  Quel est le nom de la compagnie pour laquelle le plus grand nombre de vols ont quitté New York en 2013 (je veux connaître son nom, pas juste son code) ? Où se trouve cette information ?
 \item
-  Quel est le nom de la companie pour laquelle le plus petit nombre de vols ont quitté New York en 2013 (je veux connaître son nom, pas juste son code) ? Où se trouve cette information ?
+  Quel est le nom de la compagnie pour laquelle le plus petit nombre de vols ont quitté New York en 2013 (je veux connaître son nom, pas juste son code) ? Où se trouve cette information ?
 \end{enumerate}
 
 \hypertarget{eviter-a-tout-prix-les-diagrammes-circulaires}{%
 \subsubsection{Éviter à tout prix les diagrammes circulaires}\label{eviter-a-tout-prix-les-diagrammes-circulaires}}
 
-À mon grand désarroi, l'un des graphiques les plus utilisé pour représenter la distribution d'une variable catégorielle est le diagramme circulaire (ou diagramme camembert, ou piechart en anglais). C'est presque toujours la plus mauvaise visualisation possible. Je vous demande de l'éviter à tout prix. Notre cerveau n'est en effet pas correctement équipé pour comparer des angles. Ainsi, par exemple, nous avons naturellement tendance à surestimer les angles supérieurs à 90º, et à sous-estimer les angles inférieurs à 90º. En d'autres termes, il est difficile pour les humains de comparer des grandeurs sur des diagrammes circulaires.
+À mon grand désarroi, l'un des graphiques les plus utilisé pour représenter la distribution d'une variable catégorielle est le diagramme circulaire (ou diagramme camembert, piechart en anglais). C'est presque toujours la plus mauvaise visualisation possible. Je vous demande de l'éviter à tout prix. Notre cerveau n'est en effet pas correctement équipé pour comparer des angles. Ainsi, par exemple, nous avons naturellement tendance à surestimer les angles supérieurs à 90º, et à sous-estimer les angles inférieurs à 90º. En d'autres termes, il est difficile pour les humains de comparer des grandeurs sur des diagrammes circulaires.
 
-À titre d'exemple, examinez ce diagramme, qui reprend les même chiffres que précédemment, et tentez de répondre aux questions suivantes :
+À titre d'exemple, examinez ce diagramme, qui reprend les mêmes chiffres que précédemment, et tentez de répondre aux questions suivantes :
 
 \begin{figure}[htpb]
 
@@ -2956,7 +3071,7 @@ Vous voyez donc que selon le type de données dont vous disposez (soit un tablea
 
 }
 
-\caption{Nombre de vols par compagnie aérienne au départ de New York en 2013}\label{fig:piechart}
+\caption{Nombre de vols par compagnie aérienne au départ de New York en 2013.}\label{fig:piechart}
 \end{figure}
 
 \begin{itemize}
@@ -2966,7 +3081,7 @@ Vous voyez donc que selon le type de données dont vous disposez (soit un tablea
 \item
   Quelle est la troisième compagnie aérienne la plus importante en terme de nombre de vols au départ de New York en 2013 ?
 \item
-  Combien de companies aériennes ont moins de vols que United Airlines (\texttt{UA}) ?
+  Combien de compagnies aériennes ont moins de vols que United Airlines (\texttt{UA}) ?
 \end{itemize}
 
 Il est difficile (voir impossible) de répondre précisément à ces questions avec le diagramme circulaire de la figure \ref{fig:piechart}, alors qu'il est très simple d'obtenir des réponses précises avec un diagramme bâtons tel que présenté à la figure \ref{fig:bpcarriersortedcol} (vérifiez-le !).
@@ -2980,14 +3095,14 @@ Il y a généralement 3 façons de procéder pour comparer la distribution de 2 
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Faire un graphique empilé
+  Faire un graphique empilé.
 \item
-  Faire un graphique juxtaposé
+  Faire un graphique juxtaposé.
 \item
-  Utiliser les \texttt{facet}s
+  Utiliser les \texttt{facet}s.
 \end{enumerate}
 
-Supposons par exemple que nous devions visualiser le nombre de vol de chaque compagnie aérienne, au départ de chacun des 3 aéroports de New York : John F. Kennedy (\texttt{JFK}), Newark (\texttt{EWR}) et La Guardia (LGA).
+Supposons par exemple que nous devions visualiser le nombre de vols de chaque compagnie aérienne, au départ de chacun des 3 aéroports de New York : John F. Kennedy (\texttt{JFK}), Newark (\texttt{EWR}) et La Guardia (\texttt{LGA}). Voyons comment procéder avec chacune des 3 méthodes énoncées ci-dessus.
 
 \hypertarget{graphique-empile}{%
 \paragraph{Graphique empilé}\label{graphique-empile}}
@@ -3012,7 +3127,7 @@ La méthode la plus simple est celle du graphique empilé :
 
 Notez qu'il s'agit du même code que celui utilisé pour la figure \ref{fig:bpcarriersorted}, à une différence près : l'ajout de \texttt{fill\ =\ origin} dans la fonction \texttt{aes()}, qui permet d'associer l'aéroport d'origine à la couleur de remplissage des barres. \texttt{fill} est associé à une variable (ici, elle est catégorielle), il est donc indispensable de faire figurer cet argument à l'intérieur de la fonction \texttt{aes()}. Quand on associe une variable à une caractéristique esthétique du graphique, on fait toujours figurer le code à l'intérieur de la fonction \texttt{aes()} (comme quand on associe une variable aux axes du graphique par exemple).
 
-À mon sens, le graphique peut gagner en lisibilité si on ajoute une couleur pour le contour des barres :
+À mon sens, le graphique gagne en lisibilité si on ajoute une couleur pour le contour des barres :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3057,7 +3172,7 @@ Une variation sur le même thème consiste, non plus à empiler les barres de co
 
 Passer d'un graphique empilé à un graphique juxtaposé est donc très simple : il suffit d'ajouter l'argument \texttt{position\ =\ "dodge"} à la fonction \texttt{geom\_bar()}.
 
-Là encore, la lecture de ces graphiques est souvent difficile car la comparaison des catégories qui figurent sur l'axe des \texttt{x} n'est pas immédiate. Elle est en outre rendue plus difficile par le fait que toutes les barres n'ont pas la même largeur. Par exemple, sur la figure \ref{fig:dodge}, les 8 premières compagnies aériennes déservent les 3 aéroports de New York, mais les 2 suivantes (\texttt{WN} et \texttt{VX}) n'en déservent que 2, et les autres compagnie, qu'un seul. Puisque sur un barplot, seule la hauteur des barres compte, il faut prendre garde à ne pas se laisser influencer par la largeur des barres qui pourrait fausser notre perception.
+Là encore, la lecture de ces graphiques est souvent difficile car la comparaison des catégories qui figurent sur l'axe des \texttt{x} n'est pas immédiate. Elle est en outre rendue plus difficile par le fait que toutes les barres n'ont pas la même largeur. Par exemple, sur la figure \ref{fig:dodge}, les 8 premières compagnies aériennes déservent les 3 aéroports de New York, mais les 2 suivantes (\texttt{WN} et \texttt{VX}) n'en déservent que 2, et les autres compagnies, qu'un seul. Puisque sur un barplot, seule la hauteur des barres compte, il faut prendre garde à ne pas se laisser influencer par la largeur des barres qui pourraient fausser notre perception.
 
 \hypertarget{utilisation-des-facets}{%
 \paragraph{\texorpdfstring{Utilisation des \texttt{facet}s}{Utilisation des facets}}\label{utilisation-des-facets}}
@@ -3088,7 +3203,8 @@ Ici, chaque graphique permet de comparer les compagnies aériennes au sein de l'
 \hypertarget{de-lexploration-a-lexposition}{%
 \subsection{De l'exploration à l'exposition}\label{de-lexploration-a-lexposition}}
 
-Vous savez maintenant comment produire une grande variété de graphiques, permettant d'explorer vos données, de visualiser le comportement d'une ou plusieurs variables, et de mettre en évidence des tendances, des relations entre variables numérique et/ou catégorielles. Afin de rendre vos graphiques plus présentables dans un rapport, il ne vous reste plus qu'à vous familiariser avec quelques fonctions permettant d'annoter correctement vos graphiques et d'en modifier les légendes si nécessaire.
+Vous savez maintenant comment produire une grande variété de graphiques, permettant d'explorer vos données, de visualiser le comportement d'une ou plusieurs variables, et de mettre en évidence des tendances, des relations entre variables numériques et/ou catégorielles. Outre les objets géométriques décrits jusqu'ici, \texttt{ggplot2} contient de nombreuses possibilités supplémentaires pour créer des graphiques parlants et originaux. Je ne peux donc que vous encourager à explorer par vous même les autres possibilités de ce package.
+Lorsque vous produisez un graphique parlant et permettant de véhiculer un message clair, vous devez ensuite rendre vos graphiques plus présentables afin de les intégrer dans un rapport ou une présentation. Cette section vous permettra de vous familiariser avec quelques fonctions permettant d'annoter correctement vos graphiques et d'en modifier les légendes si nécessaire.
 
 \hypertarget{les-labels}{%
 \subsubsection{Les labels}\label{les-labels}}
@@ -3098,23 +3214,23 @@ Le point de départ le plus évident est d'ajouter des labels de qualité. La fo
 \begin{itemize}
 \tightlist
 \item
-  un titre : il doit résumer les résultats les plus importants
+  Un titre : il doit résumer les résultats les plus importants.
 \item
-  un sous-titre : il permet de donner quelques détails supplémentaires
+  Un sous-titre : il permet de donner quelques détails supplémentaires.
 \item
-  une légende : souvent utilisée pour présenter la source des données du graphique
+  Une légende : souvent utilisée pour présenter la source des données du graphique.
 \item
-  un titre pour chaque axe : permet de préciser les variables portées par les axes et leurs unités
+  Un titre pour chaque axe : permet de préciser les variables portées par les axes et leurs unités.
 \item
-  un titre pour les légendes de couleurs, de forme, de taille, etc
+  Un titre pour les légendes de couleurs, de forme, de taille, etc.
 \end{itemize}
 
 Reprenons par exemple le graphique de la figure \ref{fig:varcolor} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{ggplot}\NormalTok{(alaska_flights, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }
-                           \DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(month))) }\OperatorTok{+}
+\KeywordTok{ggplot}\NormalTok{(alaska_flights, }
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ dep_delay, }\DataTypeTok{y =}\NormalTok{ arr_delay, }\DataTypeTok{color =} \KeywordTok{factor}\NormalTok{(month))) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
@@ -3125,7 +3241,7 @@ Reprenons par exemple le graphique de la figure \ref{fig:varcolor} :
 
 }
 
-\caption{Association de `color` à une variable catégorielle}\label{fig:varcolorlabel}
+\caption{Association de `color` à une variable catégorielle.}\label{fig:varcolorlabel}
 \end{figure}
 
 Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajoutant la fonction \texttt{labs()} sur une nouvelle couche du graphique :
@@ -3158,7 +3274,7 @@ Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajo
 \hypertarget{les-echelles}{%
 \subsubsection{Les échelles}\label{les-echelles}}
 
-Tous les aspects des graphiques que vous produisez peuvent être édités. C'est notamment le cas des échelles. Qu'il s'agisse de modifier l'étendue des axes, la densité du quadrillage, la position des tirets sur les axes, le nom des catégories figurant sur les axes ou dans les légendes ou encore les couleurs utilisées pour différentes catégories d'objets géométriques, tout est possible dans \texttt{ggplot2}.
+Tous les détails des graphiques que vous produisez peuvent être édités. C'est notamment le cas des échelles. Qu'il s'agisse de modifier l'étendue des axes, la densité du quadrillage, la position des tirets sur les axes, le nom des catégories figurant sur les axes ou dans les légendes ou encore les couleurs utilisées pour différentes catégories d'objets géométriques, tout est possible dans \texttt{ggplot2}.
 
 Nous n'avons pas le temps ici d'aborder toutes ces questions en détail. Je vous encourage donc à consulter l'ouvrage en ligne intitulé \href{http://r4ds.had.co.nz/}{R for data science}, et en particulier \href{http://r4ds.had.co.nz/graphics-for-communication.html\#scales}{son chapitre dédié aux échelles}, si vous avez besoin d'apporter des modifications à vos graphiques et que vous ne trouvez pas comment faire dans cet ouvrage.
 
@@ -3184,14 +3300,14 @@ Je vais ici uniquement détailler la façon de procéder pour modifier les coule
 \caption{Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.}\label{fig:barfacetbis}
 \end{figure}
 
-Notez que le caractère spécial \texttt{\textbackslash{}n} permet de forcer un retour à la ligne. Ici, les 3 couleurs de remplissage (\texttt{fill}) utilisées pour différencier les 3 aéroports de New York ont été choisies par défaut par \texttt{ggplot2}. Il est possible de modifier ces couleurs de plusieurs façons :
+Notez que le caractère spécial ``\texttt{\textbackslash{}n}'' permet de forcer un retour à la ligne. Ici, les 3 couleurs de remplissage (\texttt{fill}) utilisées pour différencier les 3 aéroports de New York ont été choisies par défaut par \texttt{ggplot2}. Il est possible de modifier ces couleurs de plusieurs façons :
 
 \begin{itemize}
 \tightlist
 \item
-  en utilisant d'autres palettes de couleurs prédéfinies
+  En utilisant d'autres palettes de couleurs prédéfinies.
 \item
-  en utilisant des couleurs choisies manuellement
+  En utilisant des couleurs choisies manuellement.
 \end{itemize}
 
 Toutes les fonctions permettant d'altérer les légendes commencent par \texttt{scale\_}. Vient ensuite le nom de l'esthétique que l'on souhaite modifier (ici \texttt{fill\_}) et enfin, le nom d'une fonction à appliquer. Les possibilités sont nombreuses et vous pouvez en avoir un aperçu en tapant le début du nom de la fonction et en parcourant la liste proposée par RStudio sous le curseur.
@@ -3219,7 +3335,7 @@ Par exemple, pour utiliser des niveaux de gris plutôt que les couleurs, il suff
 \caption{Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.}\label{fig:barfacetgray}
 \end{figure}
 
-Le package \texttt{RColorBrewer} propose une large gamme de palettes de couleurs :
+Le package \texttt{RColorBrewer} propose une large gamme de palettes de couleurs (figure \ref{fig:brew} :
 
 \begin{figure}[htpb]
 
@@ -3227,7 +3343,7 @@ Le package \texttt{RColorBrewer} propose une large gamme de palettes de couleurs
 
 }
 
-\caption{Toutes les palettes de couleur du package `RColorBrewer`}\label{fig:RcolorbrewerPalettes}
+\caption{Toutes les palettes de couleur du package `RColorBrewer`.}(\#fig:brew, RcolorbrewerPalettes)
 \end{figure}
 
 \texttt{ggplot2} permet d'appliquer ces palettes très simplement :
@@ -3253,7 +3369,7 @@ Le package \texttt{RColorBrewer} propose une large gamme de palettes de couleurs
 \caption{Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.}\label{fig:barfacetbrewer}
 \end{figure}
 
-De même, le package \texttt{viridis} propose une palette de couleur intéressante qui maximise le contraste et facilite la disrimination des catégories pour les daltoniens. Là encore, \texttt{ggplot2} nous donne accès à cette palette :
+De même, le package \texttt{viridis} propose une palette de couleurs intéressante qui maximise le contraste et facilite la discrimination des catégories pour les daltoniens. Là encore, \texttt{ggplot2} nous donne accès à cette palette :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3276,7 +3392,7 @@ De même, le package \texttt{viridis} propose une palette de couleur intéressan
 \caption{Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.}\label{fig:barfacetviridis}
 \end{figure}
 
-Enfin, si les palettes de couleur ne convienent pas, il est toujours possible de spécifier manuellement les couleurs souhaitées. R propose un accès rapide à 657 noms de couleurs. Pour afficher leurs noms, il suffit de taper :
+Enfin, si les palettes de couleurs ne convienent pas, il est toujours possible de spécifier manuellement les couleurs souhaitées. R propose un accès rapide à 657 noms de couleurs. Pour les afficher, il suffit de taper :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3639,7 +3755,7 @@ Pour savoir à quelle couleur correspond chaque nom, le plus simple est probable
 \caption{Nombre de vols par compagnie aérienne au départ des 3 aéroports de New York en 2013.}\label{fig:barfacetmanual}
 \end{figure}
 
-Outre ces 657 couleurs qui disposent d'un nom spécifique, il est possible de spécifier les couleurs en utilisant des codes hexadécimaux et des codes rgb (red, green, blue). De nombreux sites permettent de choisir n'importe quelle couleur dans une palette qui en compte des millions et d'obtenir de tels code. \href{https://www.color-hex.com}{Ce site} permet de le faire très simplement :
+Outre ces 657 couleurs qui disposent d'un nom spécifique, il est possible de spécifier les couleurs en utilisant des codes hexadécimaux et des codes rgb (red, green, blue). De nombreux sites permettent de choisir n'importe quelle couleur dans une palette qui en compte des millions et d'obtenir de tels codes. \href{https://www.color-hex.com}{Ce site} permet de le faire très simplement :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3679,7 +3795,7 @@ Dernière chose concernant les couleurs : un choix de fonction \texttt{scale\_XX
 
 }
 
-\caption{Association de `color` à une variable catégorielle}\label{fig:varcolorviridis}
+\caption{Association de `color` à une variable catégorielle.}\label{fig:varcolorviridis}
 \end{figure}
 
 \begin{Shaded}
@@ -3697,14 +3813,14 @@ Dernière chose concernant les couleurs : un choix de fonction \texttt{scale\_XX
 
 }
 
-\caption{Association de `color` à une variable numérique}\label{fig:varcolorviridis2}
+\caption{Association de `color` à une variable numérique.}\label{fig:varcolorviridis2}
 \end{figure}
 
 Pour les 2 figures \ref{fig:varcolorviridis} et \ref{fig:varcolorviridis2}, j'utilise la palette de couleur \texttt{viridis}. Pour ces 2 graphiques, c'est la couleur des points qui change. Puisque cette couleur est spécifiée avec l'esthétique \texttt{color} et non plus \texttt{fill}, la fonction utilisée est \texttt{scale\_color\_XXX()} et non plus \texttt{scale\_fill\_XXX()}.
 
-Enfin, pour la figure \ref{fig:varcolorviridis}, c'est une variable catégorielle qui est associée à l'esthétique de couleur (\texttt{factor(month)}). La fonction utilisée pour modifier les couleurs doit donc en tenir compte : le \texttt{\_d} à la fin de \texttt{scale\_color\_viridis\_d()} signifie ``discrete'', c'est-à-dire ``discontinue''. À l'inverse, pour le graphique \ref{fig:varcolorviridis2}, c'est une variable numérique continue qui est associée à l'esthétique de couleur (\texttt{arr\_time}). La fonction utilisée pour modifier les couleurs en est le reflet : le \texttt{\_c} à la fin de \texttt{scale\_color\_viridis\_c()} est l'abbréviation de ``continuous'', c'est-à-dire ``continue''.
+Enfin, pour la figure \ref{fig:varcolorviridis}, c'est une variable catégorielle qui est associée à l'esthétique de couleur (\texttt{factor(month)}). La fonction utilisée pour modifier les couleurs doit donc en tenir compte : le \texttt{\_d} à la fin de \texttt{scale\_color\_viridis\_d()} signifie ``discrete'', c'est-à-dire ``discontinue''. À l'inverse, pour le graphique \ref{fig:varcolorviridis2}, c'est une variable numérique continue qui est associée à l'esthétique de couleur (\texttt{arr\_time}). La fonction utilisée pour modifier les couleurs en est le reflet : le \texttt{\_c} à la fin de \texttt{scale\_color\_viridis\_c()} est l'abréviation de ``continuous'', c'est-à-dire ``continue''.
 
-Si vous ne voulez pas avoir de message d'erreur, attention donc, à choisir la fonction \texttt{scale\_XXX\_XXX()} appropriée. Pour cela, aidez-vous de l'aide que RStudio vous apporte en tapant les premières lettres de la fonction et en parcourant la liste des fonctions proposées dans le menu déroullant qui apparait sous votre curseur.
+Si vous ne voulez pas avoir de message d'erreur, attention donc, à choisir la fonction \texttt{scale\_XXX\_XXX()} appropriée. Pour cela, aidez-vous de l'aide que RStudio vous apporte en tapant les premières lettres de la fonction et en parcourant la liste des fonctions proposées dans le menu déroullant qui apparaît sous votre curseur.
 
 \hypertarget{les-themes}{%
 \subsubsection{Les thèmes}\label{les-themes}}
@@ -3868,11 +3984,11 @@ Quelques indices :
 \begin{itemize}
 \tightlist
 \item
-  les couleurs utilisées sont celles de la palette \texttt{Set1} du package \texttt{RColorBrewer}
+  Les couleurs utilisées sont celles de la palette \texttt{Set1} du package \texttt{RColorBrewer}.
 \item
-  les variables utilisées sont \texttt{origin}, \texttt{air\_time} et \texttt{distance}
+  Les variables utilisées sont \texttt{origin}, \texttt{air\_time} et \texttt{distance}.
 \item
-  la transparence des symboles est fixée à \texttt{0.8}
+  La transparence des symboles est fixée à \texttt{0.8}.
 \end{itemize}
 
 Toujours avec ce jeu de données \texttt{small-flights}, tapez les commandes permettant de produire le graphique ci-dessous :
@@ -3884,9 +4000,9 @@ Quelques indices :
 \begin{itemize}
 \tightlist
 \item
-  les couleurs utilisées sont celles de la palettes \texttt{Accent} du package \texttt{RColorBrewer}
+  Les couleurs utilisées sont celles de la palettes \texttt{Accent} du package \texttt{RColorBrewer}.
 \item
-  les variables utilisées sont \texttt{month}, \texttt{carrier} et \texttt{origin}
+  Les variables utilisées sont \texttt{month}, \texttt{carrier} et \texttt{origin}.
 \end{itemize}
 
 \hypertarget{tidyr}{%
@@ -5027,11 +5143,11 @@ Voilà comment traduire cela avec le pipe :
 
 \begin{figure}[htpb]
 
-{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-94-1} 
+{\centering \includegraphics[width=0.9\linewidth]{figure/unnamed-chunk-92-1} 
 
 }
 
-\caption{Notre premier graphique, produit grâce au pipe}\label{fig:unnamed-chunk-94}
+\caption{Notre premier graphique, produit grâce au pipe}\label{fig:unnamed-chunk-92}
 \end{figure}
 
 Notez bien qu'ici, aucun objet intermédiaire n'a été créé. Notez également que le premier argument de la fonction \texttt{ggplot()} a disparu : le pipe a fourni automatiquement à \texttt{ggplot()} les données générées au préalable (les données \texttt{flights} filtrées grâce à la fonction \texttt{filter()}).

@@ -407,7 +407,7 @@ Donc, tout comme vous ne pouvez commencer à partager des photos avec vos amis s
 
 Il y a deux façons d'installer un package. Par example, pour installer le package `ggplot2` :
 
-1. **Le plus simple** : Dans le panneau "File" de Rstudio :
+1. **Le plus simple** : Dans le panneau "Files" de Rstudio :
     a) Cliquez sur l'onglet "Packages"
     a) Cliquez sur "Install"
     a) Tapez le nom du package dans le champ "Packages (separate multiple with space or comma):" Pour notre exemple, tapez `ggplot2`
