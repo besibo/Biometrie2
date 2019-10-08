@@ -721,12 +721,12 @@ Comme nous venons de le voir, les histogrammes et les boîtes à moustaches perm
 Une difficulté, toutefois, concerne la façon dont les données sont présentées : est-ce que la variable d'intérêt est "pré-comptée" ou non ? Par exemple, le code ci-dessous crée 2 `data.frame` qui représentent la même collection de fruits : 3 pommes et 2 oranges :
 
 ```{r}
-fruits <- data_frame(
+fruits <- tibble(
   fruit = c("pomme", "pomme", "pomme", "orange", "orange")
 )
 fruits
 
-fruits_counted <- data_frame(
+fruits_counted <- tibble(
   fruit = c("pomme", "orange"),
   nombre = c(3, 2)
 )

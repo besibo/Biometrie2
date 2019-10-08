@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2019-09-08" />
+<meta name="date" content="2019-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -290,30 +290,30 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="prerek" class="section level2">
 <h2><span class="header-section-number">5.1</span> Prérequis</h2>
 <p>Dans ce chapitre, nous aurons besoin des packages suivants :</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">library</span>(tidyr)</a>
-<a class="sourceLine" id="cb168-2" title="2"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb168-3" title="3"><span class="kw">library</span>(nycflights13)</a>
-<a class="sourceLine" id="cb168-4" title="4"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb168-5" title="5"><span class="kw">library</span>(readxl)</a>
-<a class="sourceLine" id="cb168-6" title="6"><span class="kw">library</span>(readr)</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">library</span>(tidyr)</a>
+<a class="sourceLine" id="cb166-2" title="2"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb166-3" title="3"><span class="kw">library</span>(nycflights13)</a>
+<a class="sourceLine" id="cb166-4" title="4"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb166-5" title="5"><span class="kw">library</span>(readxl)</a>
+<a class="sourceLine" id="cb166-6" title="6"><span class="kw">library</span>(readr)</a></code></pre></div>
 <p>Comme d’habitude, si vous recevez des messages d’erreur, c’est probablement parce que le package que vous essayez de charger en mémoire n’a pas été installé au préalable. Consultez la section <a href="bases.html#packages">2.3</a> si vous ne savez plus comment procéder.</p>
 <p>Outre ces packages classiques, nous aurons aussi besoin du package <code>EDAWR</code> qui n’est pas disponible sur les serveurs habituels de R. Pour l’installer, on procède de la façon suivante :</p>
 <ol style="list-style-type: decimal">
 <li>Installez et chargez en mémoire le package <code>devtools</code> :</li>
 </ol>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</a>
-<a class="sourceLine" id="cb169-2" title="2"><span class="kw">library</span>(devtools)</a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</a>
+<a class="sourceLine" id="cb167-2" title="2"><span class="kw">library</span>(devtools)</a></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>Installez le package <code>EDAWR</code> grâce à la fonction <code>install_github()</code> du package <code>devtools</code> :</li>
 </ol>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="kw">install_github</span>(<span class="st">&quot;rstudio/EDAWR&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">install_github</span>(<span class="st">&quot;rstudio/EDAWR&quot;</span>)</a></code></pre></div>
 <p>Attention, sur les ordinateurs de l’université cette procédure ne fonctionne pas toujours. Si vous rencontrez des difficultés, suivez les instructions décrites à la fin de cette section <a href="tidyr.html#prerek">5.1</a></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Chargez le package <code>EDAWR</code> de la façon habituelle :</li>
 </ol>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" title="1"><span class="kw">library</span>(EDAWR)</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" title="1"><span class="kw">library</span>(EDAWR)</a></code></pre></div>
 <p>Le package <code>EDAWR</code> contient plusieurs jeux de données dont nous allons nous servir pour illustrer les questions liées au format des tableaux de données. Pour en avoir la liste, vous pouvez taper :</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1"><span class="kw">data</span>(<span class="dt">package =</span> <span class="st">&quot;EDAWR&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1"><span class="kw">data</span>(<span class="dt">package =</span> <span class="st">&quot;EDAWR&quot;</span>)</a></code></pre></div>
 <p><strong>En cas de problème pour installer le package <code>EDAWR</code> sur les ordinateurs de l’université.</strong></p>
 <p>Vous pouvez télécharger manuellement les 4 jeux de données dont nous aurons besoin grâce à ces 4 liens :</p>
 <ul>
@@ -342,7 +342,7 @@ Figure 5.1: La définition des ‘données rangées’, d’après <a href="http
 </div>
 <p>Malheureusement, les données peuvent être présentées sous de nombreux formats qui ne respectent pas ces règles de base. La modification des tableaux est donc souvent un préambule nécessaire à toute analyse statistique ou représentation graphique.</p>
 <p>Par exemple, examinez le tableau <code>cases</code> du package <code>EDAWR</code>, qui présente le nombre de cas de tuberculose dans 3 pays en 2011, 2012 et 2013.</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" title="1">cases</a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" title="1">cases</a></code></pre></div>
 <pre><code>  country  2011  2012  2013
 1      FR  7000  6900  7000
 2      DE  5800  6000  6200
@@ -373,7 +373,7 @@ Figure 5.2: Position des variables dans le tableau <code>cases</code> du package
 <li><code>value</code> : le nom d’une nouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Nous appelerons cette variables <code>n_cases</code> car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc).</li>
 <li>la liste des colonnes du tableau initial qui doivent être rassemblées (“gather” signifie rassembler en anglais), ici, les colonnes 2, 3 et 4 (on pourra les noter <code>2:4</code> ou, en utilisant leur nom, <code>&quot;2011&quot;:&quot;2013&quot;</code>).</li>
 </ol>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1"><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" title="1"><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>)</a></code></pre></div>
 <pre><code>  country year n_cases
 1      FR 2011    7000
 2      DE 2011    5800
@@ -385,17 +385,17 @@ Figure 5.2: Position des variables dans le tableau <code>cases</code> du package
 8      DE 2013    6200
 9      US 2013   13000</code></pre>
 <p>Nous avons bien transformé le tableau de départ en un “tableau rangé” : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d’habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1">cases_tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1">cases_tidy &lt;-<span class="st"> </span><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>)</a></code></pre></div>
 <p>Il nous est maintenant plus facile de manipuler ces données pour en tirer de l’information, grâce à des analyses statistiques ou des représentations graphiques :</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1"><span class="kw">ggplot</span>(cases_tidy, <span class="kw">aes</span>(<span class="dt">x =</span> country, <span class="dt">y =</span> n_cases, <span class="dt">fill =</span> year)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb178-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb178-3" title="3"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Accent&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb178-4" title="4"><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_family =</span> <span class="st">&quot;Futura LT Book&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb178-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Pays&quot;</span>,</a>
-<a class="sourceLine" id="cb178-6" title="6">       <span class="dt">y =</span> <span class="st">&quot;Nombre de cas&quot;</span>,</a>
-<a class="sourceLine" id="cb178-7" title="7">       <span class="dt">fill =</span> <span class="st">&quot;Année&quot;</span>,</a>
-<a class="sourceLine" id="cb178-8" title="8">       <span class="dt">title =</span> <span class="st">&quot;Évolution du nombre de cas de tuberculose entre 2011 et 2013&quot;</span>,</a>
-<a class="sourceLine" id="cb178-9" title="9">       <span class="dt">subtitle =</span> <span class="st">&quot;DE : Allemagne, FR : France, US : États-Unis&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1"><span class="kw">ggplot</span>(cases_tidy, <span class="kw">aes</span>(<span class="dt">x =</span> country, <span class="dt">y =</span> n_cases, <span class="dt">fill =</span> year)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb176-2" title="2"><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb176-3" title="3"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Accent&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb176-4" title="4"><span class="st">  </span><span class="kw">theme_minimal</span>(<span class="dt">base_family =</span> <span class="st">&quot;Futura LT Book&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb176-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Pays&quot;</span>,</a>
+<a class="sourceLine" id="cb176-6" title="6">       <span class="dt">y =</span> <span class="st">&quot;Nombre de cas&quot;</span>,</a>
+<a class="sourceLine" id="cb176-7" title="7">       <span class="dt">fill =</span> <span class="st">&quot;Année&quot;</span>,</a>
+<a class="sourceLine" id="cb176-8" title="8">       <span class="dt">title =</span> <span class="st">&quot;Évolution du nombre de cas de tuberculose entre 2011 et 2013&quot;</span>,</a>
+<a class="sourceLine" id="cb176-9" title="9">       <span class="dt">subtitle =</span> <span class="st">&quot;DE : Allemagne, FR : France, US : États-Unis&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:casesbarplot"></span>
 <img src="figure/casesbarplot-1.png" alt="Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2013." width="90%" />
 <p class="caption">
@@ -404,7 +404,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 </div>
 <p>On constate ici qu’entre 2011 et 2013, le nombre de cas de tuberculose a légèrement augmenté en Allemagne, est resté stable en France, et a diminué aux États-Unis.</p>
 <p>Notez ici que la variable <code>year</code> de notre nouveau tableau est considérée comme une variable catégorielle et non comme une variable numérique. On peut le voir en transformant notre tableau en tibble avec <code>as_tibble()</code>, ou en utilisant la fonction <code>str()</code> déjà décrite plus tôt :</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="kw">str</span>(cases_tidy)</a></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1"><span class="kw">str</span>(cases_tidy)</a></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   9 obs. of  3 variables:
  $ country: chr  &quot;FR&quot; &quot;DE&quot; &quot;US&quot; &quot;FR&quot; ...
  $ year   : chr  &quot;2011&quot; &quot;2011&quot; &quot;2011&quot; &quot;2012&quot; ...
@@ -414,17 +414,17 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 <li><code>convert = TRUE</code> : permet de transformer automatiquement la variable <code>key</code> en variable numérique ou logique (vrais/faux) selon le type de données qu’elle contient</li>
 <li><code>factor_key = TRUE</code> : permet de transformer automatiquement la variable <code>key</code> en facteur. Les niveaux du nouveau facteur seront ordonnés dans le même sens que les colonnes du tableau de départ.</li>
 </ol>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="co"># On commence par transformer `cases` en tibble</span></a>
-<a class="sourceLine" id="cb181-2" title="2">cases &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(cases)</a>
-<a class="sourceLine" id="cb181-3" title="3">cases</a></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1"><span class="co"># On commence par transformer `cases` en tibble</span></a>
+<a class="sourceLine" id="cb179-2" title="2">cases &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(cases)</a>
+<a class="sourceLine" id="cb179-3" title="3">cases</a></code></pre></div>
 <pre><code># A tibble: 3 x 4
   country `2011` `2012` `2013`
   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 1 FR        7000   6900   7000
 2 DE        5800   6000   6200
 3 US       15000  14000  13000</code></pre>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="co"># On utilise ensuite gather avec l&#39;argument convert = TRUE</span></a>
-<a class="sourceLine" id="cb183-2" title="2"><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1"><span class="co"># On utilise ensuite gather avec l&#39;argument convert = TRUE</span></a>
+<a class="sourceLine" id="cb181-2" title="2"><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code># A tibble: 9 x 3
   country  year n_cases
   &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;
@@ -438,8 +438,8 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 8 DE       2013    6200
 9 US       2013   13000</code></pre>
 <p>On voit ici que la variable <code>year</code> est maintenant une colonne numérique (<code>&lt;int&gt;</code> : nombres entiers), et non plus une variable de type “character”.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1"><span class="co"># Et en utilisant factor_key = TRUE...</span></a>
-<a class="sourceLine" id="cb185-2" title="2"><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>, <span class="dt">factor_key =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1"><span class="co"># Et en utilisant factor_key = TRUE...</span></a>
+<a class="sourceLine" id="cb183-2" title="2"><span class="kw">gather</span>(<span class="dt">data =</span> cases, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases, <span class="st">`</span><span class="dt">2011</span><span class="st">`</span><span class="op">:</span><span class="st">`</span><span class="dt">2013</span><span class="st">`</span>, <span class="dt">factor_key =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code># A tibble: 9 x 3
   country year  n_cases
   &lt;chr&gt;   &lt;fct&gt;   &lt;dbl&gt;
@@ -458,7 +458,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 <h3><span class="header-section-number">5.2.2</span> La fonction <code>spread()</code></h3>
 <p>La fonction <code>spread()</code> permet de réaliser l’opération inverse de <code>gather()</code>. Elle “disperse” une unique colonne catégorielle en plusieurs colonnes.</p>
 <p>Reprenons par exemple notre tableau <code>cases_tidy</code> :</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1">cases_tidy</a></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1">cases_tidy</a></code></pre></div>
 <pre><code>  country year n_cases
 1      FR 2011    7000
 2      DE 2011    5800
@@ -475,16 +475,16 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 <li><code>key</code> : le nom de la variable contenant les catégories qui devront être transformées en colonnes (ici, <code>year</code>)</li>
 <li><code>value</code> : le nom de la variable contenant les valeurs qui devront remplir les nouvelles colonnes (ici, <code>n_cases</code>)</li>
 </ol>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1"><span class="kw">spread</span>(cases_tidy, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases)</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1"><span class="kw">spread</span>(cases_tidy, <span class="dt">key =</span> year, <span class="dt">value =</span> n_cases)</a></code></pre></div>
 <pre><code>  country  2011  2012  2013
 1      DE  5800  6000  6200
 2      FR  7000  6900  7000
 3      US 15000 14000 13000</code></pre>
 <p>Cette fonction sera donc rarement utilisée puisqu’elle ne permet pas d’obtenir des “tableaux rangés”. Toutefois, elle pourra vous être utile pour présenter des résultats sous forme synthétique. Prenons un exemple avec le jeu de données <code>flights</code>. Imaginons que vous deviez créer un tableau <code>n_vols</code> présentant, pour chacun des 3 aéroports de New York, le nombre de vols affrétés par chaque compagnie aérienne en 2013. Une possibilité serait de taper ceci :</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1">n_vols &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb191-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(origin, carrier) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb191-3" title="3"><span class="st">  </span><span class="kw">count</span>()</a>
-<a class="sourceLine" id="cb191-4" title="4">n_vols</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1">n_vols &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb189-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(origin, carrier) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb189-3" title="3"><span class="st">  </span><span class="kw">count</span>()</a>
+<a class="sourceLine" id="cb189-4" title="4">n_vols</a></code></pre></div>
 <pre><code># A tibble: 35 x 3
 # Groups:   origin, carrier [35]
    origin carrier     n
@@ -501,7 +501,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 10 EWR    US       4405
 # … with 25 more rows</code></pre>
 <p>Les commandes permettant de produire ce tableau seront expliquées dans le chapitre <a href="wrangling.html#wrangling">6</a>. On peut cependant constater ici que ce tableau contient 35 lignes et 3 colonnes. Il s’agit bien d’un “tableau rangé” parfaitement adapté pour faire des statistiques et des visualisation graphiques, mais son format n’est pas terrible si notre objectif est de le faire figurer dans un rapport. La solution : utiliser <code>spread()</code> :</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="kw">spread</span>(n_vols, <span class="dt">key =</span> origin, <span class="dt">value =</span> n)</a></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="kw">spread</span>(n_vols, <span class="dt">key =</span> origin, <span class="dt">value =</span> n)</a></code></pre></div>
 <pre><code># A tibble: 16 x 4
 # Groups:   carrier [16]
    carrier   EWR   JFK   LGA
@@ -524,7 +524,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 16 YV         NA    NA   601</code></pre>
 <p>Ce nouveau tableau contient maintenant 16 lignes (une par compagnie aérienne), et 4 colonnes : une pour la variable <code>carrier</code>, et 3 pour la variable <code>origin</code>, soit une colonne pour chacun des 3 aéroports de New York. On parle de tableau au format large (par opposition au “tableau rangé”, dit “format long”). Cela rend la présentation dans un rapport plus aisée.</p>
 <p>Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (<code>AS</code>) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique <code>NA</code>. Or, <code>NA</code> signifie “Not Available”, autrement dit : données manquantes. Ici, il ne s’agit pas du tout de données manquantes. Cela signifie simplement qu’aucun vol d’Alaska Airline n’a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l’argument <code>fill</code> :</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="kw">spread</span>(n_vols, <span class="dt">key =</span> origin, <span class="dt">value =</span> n, <span class="dt">fill =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="kw">spread</span>(n_vols, <span class="dt">key =</span> origin, <span class="dt">value =</span> n, <span class="dt">fill =</span> <span class="dv">0</span>)</a></code></pre></div>
 <pre><code># A tibble: 16 x 4
 # Groups:   carrier [16]
    carrier   EWR   JFK   LGA
@@ -550,8 +550,8 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 <div id="les-fonctions-separate-et-unite" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> Les fonctions <code>separate()</code> et <code>unite()</code></h3>
 <p>Ces fonctions sont complémentaires : tout comme <code>gather()</code> et <code>spread()</code>, elles effectuent 2 opérations opposées. Reprenons le jeu de données <code>cases_tidy</code> (que nous transformons au préalable en tibble pour mieux voir ce qui se passe) :</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1">cases_tidy &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(cases_tidy)</a>
-<a class="sourceLine" id="cb197-2" title="2">cases_tidy</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1">cases_tidy &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(cases_tidy)</a>
+<a class="sourceLine" id="cb195-2" title="2">cases_tidy</a></code></pre></div>
 <pre><code># A tibble: 9 x 3
   country year  n_cases
   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
@@ -565,7 +565,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 8 DE      2013     6200
 9 US      2013    13000</code></pre>
 <p>Imaginons que nous ayons besoin de séparer les données de la colonne <code>year</code> en 2 variables : le siècle d’une part, et l’année d’autre part. La fonction <code>separate()</code> permet de faire exactement cela :</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">separate</span>(cases_tidy, year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="kw">separate</span>(cases_tidy, year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="dt">sep =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code># A tibble: 9 x 4
   country century year  n_cases
   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
@@ -585,9 +585,9 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 <li><code>sep</code> peut prendre plusieurs formes. Lorsqu’on utilise un nombre, ce nombre correspond à la position de la coupure dans la variable d’origine. Ici, la variable d’origine a été coupée après le second caractère. Il est aussi possible d’utiliser un symbole. Par exemple, certaines variables contiennent des tirets <code>-</code> ou des slash <code>\</code>. Utiliser ces caractères en guise de séparateur permet de couper les variables à ce niveau là. Nous en verrons un exemple plus tard.</li>
 </ol>
 <p>Notez ici que les 2 nouvelles variables sont de type <code>&lt;chr&gt;</code>. Si nous souhaitons que ces variables soient considérées comme numériques, nous devons ajouter un argument lorsque nous utilisons <code>separate()</code> :</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1">cases_split &lt;-<span class="st"> </span><span class="kw">separate</span>(cases_tidy, year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), </a>
-<a class="sourceLine" id="cb201-2" title="2">    <span class="dt">sep =</span> <span class="dv">2</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb201-3" title="3">cases_split</a></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1">cases_split &lt;-<span class="st"> </span><span class="kw">separate</span>(cases_tidy, year, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), </a>
+<a class="sourceLine" id="cb199-2" title="2">    <span class="dt">sep =</span> <span class="dv">2</span>, <span class="dt">convert =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb199-3" title="3">cases_split</a></code></pre></div>
 <pre><code># A tibble: 9 x 4
   country century  year n_cases
   &lt;chr&gt;     &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
@@ -602,7 +602,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 9 US           20    13   13000</code></pre>
 <p>Notre nouvel objet <code>cases_split</code> contient maintenant 2 nouvelles colonnes de nombres entiers, l’une contenant le siècle, l’autre contenant l’année</p>
 <p>La fonction <code>unite()</code> fait exactement le contraire : elle fusionne 2 colonnes existantes en accolant leurs contenus (et en ajoutant un séparateur) :</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="kw">unite</span>(cases_split, new, century, year)</a></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" title="1"><span class="kw">unite</span>(cases_split, new, century, year)</a></code></pre></div>
 <pre><code># A tibble: 9 x 3
   country new   n_cases
   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
@@ -616,7 +616,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 8 DE      20_13    6200
 9 US      20_13   13000</code></pre>
 <p>La colonne <code>new</code> a été créée par la fusion des colonnes <code>century</code> et <code>year</code> du tableau <code>cases_split</code>. Si l’on souhaite supprimer le tiret, il nous faut le spécifier explicitement :</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1"><span class="kw">unite</span>(cases_split, new, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1"><span class="kw">unite</span>(cases_split, new, century, year, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <pre><code># A tibble: 9 x 3
   country new   n_cases
   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
@@ -705,9 +705,9 @@ Figure 5.6: Les bons réglages pour ce fichier
 <li>La zone <code>Data Preview</code> est mise à jour. Cela permet de s’assurer que les changements effectués ont bien les effets escomptés</li>
 <li>La zone <code>Code Preview</code> est mise à jour. Cela permet de copier-coller dans un script les commandes permettant d’importer correctement les données. Ici, voilà le code que nous devons ajouter à notre script :</li>
 </ol>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" title="1">dauphin &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/dauphin.xls&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;*&quot;</span>, <span class="dt">skip =</span> <span class="dv">9</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" title="1">dauphin &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/dauphin.xls&quot;</span>, <span class="dt">na =</span> <span class="st">&quot;*&quot;</span>, <span class="dt">skip =</span> <span class="dv">9</span>)</a></code></pre></div>
 <p>La commande <code>library(readxl)</code> est inutile puisque nous l’avons déjà saisie au début de ce chapitre. Nous disposons maintenant d’un nouvel objet nommé <code>dauphin</code>. Il est stocké sous la forme d’un <code>tibble</code> :</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1">dauphin</a></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1">dauphin</a></code></pre></div>
 <pre><code># A tibble: 93 x 9
    `N°`  Sexe  `Statut reprodu… `Taille en cm` `Age en années`
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                     &lt;dbl&gt;           &lt;dbl&gt;
@@ -724,9 +724,9 @@ Figure 5.6: Les bons réglages pour ce fichier
 # … with 83 more rows, and 4 more variables: `Cd (mg.kg-1)` &lt;dbl&gt;,
 #   `Cu (mg.kg-1)` &lt;dbl&gt;, `Hg (mg.kg-1)` &lt;dbl&gt;, Organe &lt;chr&gt;</code></pre>
 <p>Notez toutefois que les noms de colonnes complexes sont toujours présents. Avec de tels noms, les variables ne seront pas faciles à manipuler et les risques d’erreurs de frappes seront nombreux. Nous avons tout intérêt à les modifier à l’aide de la fonction <code>names()</code> :</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1"><span class="kw">names</span>(dauphin) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Sexe&quot;</span>, <span class="st">&quot;Statut&quot;</span>, <span class="st">&quot;Taille&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Cd&quot;</span>, <span class="st">&quot;Cu&quot;</span>, </a>
-<a class="sourceLine" id="cb210-2" title="2">    <span class="st">&quot;Hg&quot;</span>, <span class="st">&quot;Organe&quot;</span>)</a>
-<a class="sourceLine" id="cb210-3" title="3">dauphin</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1"><span class="kw">names</span>(dauphin) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Sexe&quot;</span>, <span class="st">&quot;Statut&quot;</span>, <span class="st">&quot;Taille&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Cd&quot;</span>, <span class="st">&quot;Cu&quot;</span>, </a>
+<a class="sourceLine" id="cb208-2" title="2">    <span class="st">&quot;Hg&quot;</span>, <span class="st">&quot;Organe&quot;</span>)</a>
+<a class="sourceLine" id="cb208-3" title="3">dauphin</a></code></pre></div>
 <pre><code># A tibble: 93 x 9
    ID        Sexe  Statut Taille   Age     Cd    Cu    Hg Organe
    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
@@ -790,8 +790,8 @@ Figure 5.10: Les données, dans un format correct, permettant l’importation
 </p>
 </div>
 <p>Nous n’avons plus qu’à copier-coller dans notre script le code généré automatiquement en bas à droite de la fenêtre (comme précédemment, la ligne <code>library(readr)</code> est inutile : nous avons déjà chargé ce package en début de chapitre).</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1">dauphin2 &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/dauphin.csv&quot;</span>, <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">escape_double =</span> <span class="ot">FALSE</span>, </a>
-<a class="sourceLine" id="cb212-2" title="2">    <span class="dt">locale =</span> <span class="kw">locale</span>(<span class="dt">decimal_mark =</span> <span class="st">&quot;,&quot;</span>), <span class="dt">trim_ws =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" title="1">dauphin2 &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/dauphin.csv&quot;</span>, <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">escape_double =</span> <span class="ot">FALSE</span>, </a>
+<a class="sourceLine" id="cb210-2" title="2">    <span class="dt">locale =</span> <span class="kw">locale</span>(<span class="dt">decimal_mark =</span> <span class="st">&quot;,&quot;</span>), <span class="dt">trim_ws =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>Parsed with column specification:
 cols(
   Id = col_double(),
@@ -811,7 +811,7 @@ cols(
 <li>R indique de quelle façon les colonnes ont été “parsées”, autrement dit, R indique quelles fonctions ont été utilisées pour reconnaître le type des données présentes dans chaque colonne.</li>
 </ol>
 <p>Toutes les fonctions permettant d’importer des données n’ont pas nécessairement le même comportement. Ainsi, si l’on compare les objets importés depuis le fichier tableur (<code>dauphin</code>) et depuis le fichier texte brut (<code>dauphin2</code>), le type de certaines variables est différent :</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1">dauphin</a></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" title="1">dauphin</a></code></pre></div>
 <pre><code># A tibble: 93 x 9
    ID        Sexe  Statut Taille   Age     Cd    Cu    Hg Organe
    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
@@ -826,7 +826,7 @@ cols(
  9 Numéro 9  m     imm       222    NA   0.09  9.5   2.89 foie  
 10 Numéro 10 m     imm       412     9  85.6   5.42 NA    rein  
 # … with 83 more rows</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1">dauphin2</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" title="1">dauphin2</a></code></pre></div>
 <pre><code># A tibble: 93 x 9
       Id Sexe  Statut Taille   Age     Cd    Cu    Hg Organe
    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
@@ -842,9 +842,9 @@ cols(
 10    10 m     imm       412     9  85.6   5.42 NA    rein  
 # … with 83 more rows</code></pre>
 <p>En particulier les variables <code>Taille</code> et <code>Age</code> sont considérées comme réelles dans <code>dauphin</code> mais comme entières (ce qui semble plus logique) dans <code>dauphin2</code>. Afin d’éviter les confusions dans la suite du document, nous allons supprimer <code>dauphin2</code> en tapant :</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" title="1"><span class="kw">rm</span>(dauphin2)</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" title="1"><span class="kw">rm</span>(dauphin2)</a></code></pre></div>
 <p>Taper <code>dauphin2</code> dans la console devrait maintenant produire une erreur :</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" title="1">dauphin2</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" title="1">dauphin2</a></code></pre></div>
 <pre><code>Error in eval(expr, envir, enclos): objet &#39;dauphin2&#39; introuvable</code></pre>
 </div>
 <div id="exercices-8" class="section level3">
