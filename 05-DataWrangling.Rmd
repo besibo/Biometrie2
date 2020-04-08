@@ -447,8 +447,7 @@ Comme avec `group_by()`, il est bien sûr possible d'utiliser `count()` avec plu
 
 ```{r, tidy=FALSE}
 weather %>% 
-  group_by(origin, month) %>% 
-  summarise(nombre = n())
+  count(origin, month)
 ```
 
 
