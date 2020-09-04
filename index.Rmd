@@ -21,7 +21,7 @@ url: 'https\://besibo.github.io/Biometrie2/'
 github-repo: "besibo/Biometrie2"
 bibliography: [book.bib, packages.bib]
 csl : "my-apa.csl"
-papersize: a4paper
+papersize: a4
 geometry: "left=3.75cm, right=3.75cm, top=3cm, bottom=3cm"
 link-citations: yes
 urlcolor: "blue"

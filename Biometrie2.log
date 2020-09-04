@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.6)  4 SEP 2020 14:36
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.6)  4 SEP 2020 14:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -843,10 +843,6 @@ ne 133.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/lmtt/m/n --> TU/FiraCode-Regular(1)/b/n on input li
 ne 133.
-
-LaTeX Warning: Unused global option(s):
-    [a4paperpaper].
-
 (./Biometrie2.aux)
 \openout1 = `Biometrie2.aux'.
 
@@ -1442,16 +1438,16 @@ LaTeX Info: Redefining \nameref on input line 139.
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
 * driver: xetex
-* paper: <default>
+* paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(106.69783pt, 400.89934pt, 106.69783pt)
-* v-part:(T,H,B)=(85.35826pt, 624.25346pt, 85.35826pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=400.89934pt
-* \textheight=624.25346pt
+* h-part:(L,W,R)=(106.69783pt, 384.11221pt, 106.69783pt)
+* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=384.11221pt
+* \textheight=674.33032pt
 * \oddsidemargin=34.42784pt
 * \evensidemargin=34.42784pt
 * \topmargin=-23.91173pt
@@ -1459,7 +1455,7 @@ LaTeX Info: Redefining \nameref on input line 139.
 * \headsep=25.0pt
 * \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=65.0pt
+* \marginparwidth=57.0pt
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
@@ -1551,75 +1547,65 @@ LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/m/n' will be
 LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/b/n' will be
 (Font)              scaled to size 8.50006pt on input line 31.
 
-Overfull \hbox (2.97997pt too wide) detected at line 75
- []\TU/FuturaLT-Book(0)/m/n/10 103
- []
-
-
-Overfull \hbox (2.97997pt too wide) detected at line 77
- []\TU/FuturaLT-Book(0)/m/n/10 106
- []
-
-
 Overfull \hbox (2.97997pt too wide) detected at line 78
- []\TU/FuturaLT-Book(0)/m/n/10 107
+ []\TU/FuturaLT-Book(0)/m/n/10 100
+ []
+
+
+Overfull \hbox (2.97997pt too wide) detected at line 83
+ []\TU/FuturaLT-Book(0)/m/n/10 110
+ []
+
+
+Overfull \hbox (2.97997pt too wide) detected at line 89
+ []\TU/FuturaLT-Book(0)/m/n/10 121
  []
 
 [1
 
 ]
-Overfull \hbox (2.97997pt too wide) detected at line 83
- []\TU/FuturaLT-Book(0)/m/n/10 118
- []
-
-
-Overfull \hbox (2.97997pt too wide) detected at line 89
- []\TU/FuturaLT-Book(0)/m/n/10 129
- []
-
-
 Overfull \hbox (2.97997pt too wide) detected at line 90
- []\TU/FuturaLT-Book(0)/m/n/10 130
+ []\TU/FuturaLT-Book(0)/m/n/10 121
  []
 
 
 Overfull \hbox (2.97997pt too wide) detected at line 91
- []\TU/FuturaLT-Book(0)/m/n/10 132
+ []\TU/FuturaLT-Book(0)/m/n/10 123
  []
 
 
 Overfull \hbox (2.97997pt too wide) detected at line 92
- []\TU/FuturaLT-Book(0)/m/n/10 132
+ []\TU/FuturaLT-Book(0)/m/n/10 124
  []
 
 
 Overfull \hbox (2.97997pt too wide) detected at line 96
- []\TU/FuturaLT-Book(0)/m/n/10 138
+ []\TU/FuturaLT-Book(0)/m/n/10 129
  []
 
 
 Overfull \hbox (2.97997pt too wide) detected at line 103
- []\TU/FuturaLT-Book(0)/m/n/10 151
+ []\TU/FuturaLT-Book(0)/m/n/10 142
  []
 
 
 Overfull \hbox (2.97997pt too wide) detected at line 104
- []\TU/FuturaLT-Book(0)/m/n/10 155
+ []\TU/FuturaLT-Book(0)/m/n/10 145
  []
 
 
 Overfull \hbox (2.97997pt too wide) detected at line 107
- []\TU/FuturaLT-Book(0)/m/n/10 158
+ []\TU/FuturaLT-Book(0)/m/n/10 148
  []
 
 
 Overfull \hbox (2.97997pt too wide) detected at line 108
- []\TU/FuturaLT-Book(0)/m/n/10 162
+ []\TU/FuturaLT-Book(0)/m/n/10 152
  []
 
 
 Overfull \hbox (2.97997pt too wide) detected at line 112
- []\TU/FuturaLT-Book(0)/m/n/10 167
+ []\TU/FuturaLT-Book(0)/m/n/10 157
  []
 
 )
@@ -1628,27 +1614,25 @@ Overfull \hbox (2.97997pt too wide) detected at line 112
 
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/b/n' will be
 (Font)              scaled to size 12.0pt on input line 151.
-[2]
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/it' will be
 (Font)              scaled to size 10.0pt on input line 191.
-[3] [4]
+[2] [3] [4]
 File: images/Rlogo.png Graphic file (type bmp)
 <images/Rlogo.png>
-[5]
 File: images/RStudio-Ball.png Graphic file (type bmp)
 <images/RStudio-Ball.png>
 File: images/rstudio.png Graphic file (type bmp)
 <images/rstudio.png>
-[6] [7] [8] [9]
+[5] [6] [7] [8] [9]
 File: figure/unnamed-chunk-5-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-5-1.pdf>
-[10] [11] [12] [13] [14] [15] [16] [17] [18]
+[10] [11] [12] [13] [14] [15] [16] [17]
 LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/b/n' will be
 (Font)              scaled to size 10.20007pt on input line 1055.
-[19] [20] [21] [22] [23] [24] [25]
+[18] [19] [20] [21] [22] [23]
 LaTeX Font Info:    Font shape `TU/FiraCode-Regular(0)/b/n' will be
 (Font)              scaled to size 12.24008pt on input line 1403.
-[26] [27]
+[24] [25]
 
 LaTeX Font Warning: Font shape `TU/FuturaLT-Book(0)/m/sc' undefined
 (Font)              using `TU/FuturaLT-Book(0)/m/n' instead on input line 1475.
@@ -1656,302 +1640,298 @@ LaTeX Font Warning: Font shape `TU/FuturaLT-Book(0)/m/sc' undefined
 
 LaTeX Font Info:    Font shape `TU/FuturaLT-Book(0)/m/sc' will be
 (Font)              scaled to size 10.0pt on input line 1475.
+[26]
 File: figure/gapmind-1.pdf Graphic file (type pdf)
 <use figure/gapmind-1.pdf>
-[28] [29] [30]
+[27] [28]
 File: figure/unnamed-chunk-40-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-40-1.pdf>
+[29]
 File: figure/points-1.pdf Graphic file (type pdf)
 <use figure/points-1.pdf>
-[31]
-Underfull \hbox (badness 3209) in paragraph at lines 1683--1685
+
+Underfull \hbox (badness 1132) in paragraph at lines 1683--1685
 []\TU/FuturaLT-Book(0)/m/sc/10 le nom du tableau contenant les données grâce à 
 l’argument \TU/FiraCode-Regular(0)/m/n/10 data =
  []
 
-[32] [33]
+[30]
+Underfull \hbox (badness 1158) in paragraph at lines 1730--1732
+[]\TU/FuturaLT-Book(0)/m/sc/10 Donnez une raison pratique expliquant pourquoi l
+es variables \TU/FiraCode-Regular(0)/m/n/10 dep_delay \TU/FuturaLT-Book(0)/m/sc
+/10 et
+ []
+
+[31]
 File: figure/transparent-1.pdf Graphic file (type pdf)
 <use figure/transparent-1.pdf>
 File: figure/transpfactor-1.pdf Graphic file (type pdf)
 <use figure/transpfactor-1.pdf>
-[34]
 File: figure/jittering-1.pdf Graphic file (type pdf)
 <use figure/jittering-1.pdf>
+[32] [33]
 File: figure/unnamed-chunk-42-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-42-1.pdf>
-[35] [36]
 File: figure/rightcolor-1.pdf Graphic file (type pdf)
 <use figure/rightcolor-1.pdf>
 File: figure/wrongcolor-1.pdf Graphic file (type pdf)
 <use figure/wrongcolor-1.pdf>
+[34] [35]
 File: figure/varcolor-1.pdf Graphic file (type pdf)
 <use figure/varcolor-1.pdf>
 File: figure/varcolor2-1.pdf Graphic file (type pdf)
 <use figure/varcolor2-1.pdf>
-[37] [38]
 File: figure/shapeplot-1.pdf Graphic file (type pdf)
 <use figure/shapeplot-1.pdf>
+[36] [37]
 File: figure/shapeplot2-1.pdf Graphic file (type pdf)
 <use figure/shapeplot2-1.pdf>
 File: figure/shapecolorplot-1.pdf Graphic file (type pdf)
 <use figure/shapecolorplot-1.pdf>
-[39] [40]
 File: figure/sizeplot-1.pdf Graphic file (type pdf)
 <use figure/sizeplot-1.pdf>
-[41]
+[38] [39]
 File: figure/badplot-1.pdf Graphic file (type pdf)
 <use figure/badplot-1.pdf>
 File: figure/exodiamonds-1.pdf Graphic file (type pdf)
 <use figure/exodiamonds-1.pdf>
-[42] [43] [44]
-Underfull \hbox (badness 1043) in paragraph at lines 2110--2111
-[]\TU/FuturaLT-Book(0)/m/sc/10 Avec \TU/FiraCode-Regular(0)/m/n/10 View()\TU/Fu
-turaLT-Book(0)/m/sc/10 , consultez le tableau nouvellement créé. Expliquez pour
-quoi la variable
- []
-
+[40] [41]
 File: figure/linegraph-1.pdf Graphic file (type pdf)
 <use figure/linegraph-1.pdf>
-[45]
 File: figure/lineplotgraph-1.pdf Graphic file (type pdf)
 <use figure/lineplotgraph-1.pdf>
+[42] [43]
 File: figure/linecolor-1.pdf Graphic file (type pdf)
 <use figure/linecolor-1.pdf>
-[46]
 File: figure/linetype-1.pdf Graphic file (type pdf)
 <use figure/linetype-1.pdf>
+[44]
 File: figure/linetypecolor-1.pdf Graphic file (type pdf)
 <use figure/linetypecolor-1.pdf>
-[47] [48]
 File: figure/lineplotgraph2-1.pdf Graphic file (type pdf)
 <use figure/lineplotgraph2-1.pdf>
+
+Overfull \vbox (1.43852pt too high) detected at line 2264
+ []
+
+[45] [46]
 File: figure/wind-1.pdf Graphic file (type pdf)
 <use figure/wind-1.pdf>
 File: figure/wind2-1.pdf Graphic file (type pdf)
 <use figure/wind2-1.pdf>
 File: figure/wind3-1.pdf Graphic file (type pdf)
 <use figure/wind3-1.pdf>
-[49] [50]
 File: figure/wind4-1.pdf Graphic file (type pdf)
 <use figure/wind4-1.pdf>
-[51]
+[47] [48]
 File: figure/unnamed-chunk-47-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-47-1.pdf>
+[49]
 File: figure/unnamed-chunk-48-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-48-1.pdf>
-[52] [53]
 File: figure/unnamed-chunk-49-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-49-1.pdf>
 File: figure/rughist-1.pdf Graphic file (type pdf)
 <use figure/rughist-1.pdf>
-[54]
+[50] [51]
 File: figure/unnamed-chunk-50-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-50-1.pdf>
+[52]
 File: figure/irregclasses-1.pdf Graphic file (type pdf)
 <use figure/irregclasses-1.pdf>
 File: figure/break-1.pdf Graphic file (type pdf)
 <use figure/break-1.pdf>
-[55] [56] [57]
+[53]
 File: figure/unnamed-chunk-52-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-52-1.pdf>
 File: figure/wrap-1.pdf Graphic file (type pdf)
 <use figure/wrap-1.pdf>
-[58] [59]
+[54]
 File: figure/grid-1.pdf Graphic file (type pdf)
 <use figure/grid-1.pdf>
-[60]
+[55] [56] [57]
 File: figure/unnamed-chunk-53-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-53-1.pdf>
-[61]
+[58]
 File: figure/unnamed-chunk-54-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-54-1.pdf>
-[62]
+[59]
 File: figure/notchedboxplot-1.pdf Graphic file (type pdf)
 <use figure/notchedboxplot-1.pdf>
-[63]
+[60]
 File: figure/compboxplot-1.pdf Graphic file (type pdf)
 <use figure/compboxplot-1.pdf>
-[64] [65]
+[61] [62]
 File: figure/barplot-1.pdf Graphic file (type pdf)
 <use figure/barplot-1.pdf>
 File: figure/barplotcol-1.pdf Graphic file (type pdf)
 <use figure/barplotcol-1.pdf>
-[66] [67]
+[63]
 File: figure/bpcarrier-1.pdf Graphic file (type pdf)
 <use figure/bpcarrier-1.pdf>
 File: figure/bpcarriersorted-1.pdf Graphic file (type pdf)
 <use figure/bpcarriersorted-1.pdf>
-[68] [69] [70]
+[64] [65] [66]
 File: figure/bpcarriercol-1.pdf Graphic file (type pdf)
 <use figure/bpcarriercol-1.pdf>
 File: figure/bpcarriersortedcol-1.pdf Graphic file (type pdf)
 <use figure/bpcarriersortedcol-1.pdf>
-[71]
+[67]
 File: figure/piechart-1.pdf Graphic file (type pdf)
 <use figure/piechart-1.pdf>
-[72] [73]
+[68]
 File: figure/stacked-1.pdf Graphic file (type pdf)
 <use figure/stacked-1.pdf>
+[69]
 File: figure/stacked2-1.pdf Graphic file (type pdf)
 <use figure/stacked2-1.pdf>
-[74] [75]
 File: figure/dodge-1.pdf Graphic file (type pdf)
 <use figure/dodge-1.pdf>
-[76]
+[70] [71]
 File: figure/barfacet-1.pdf Graphic file (type pdf)
 <use figure/barfacet-1.pdf>
-[77]
+[72]
 File: figure/varcolorlabel-1.pdf Graphic file (type pdf)
 <use figure/varcolorlabel-1.pdf>
 File: figure/varcolorlabel2-1.pdf Graphic file (type pdf)
 <use figure/varcolorlabel2-1.pdf>
-[78] [79]
+[73] [74]
 File: figure/barfacetbis-1.pdf Graphic file (type pdf)
 <use figure/barfacetbis-1.pdf>
-[80] [81]
 File: figure/barfacetgray-1.pdf Graphic file (type pdf)
 <use figure/barfacetgray-1.pdf>
 
-LaTeX Warning: Reference `fig:brew' on page 82 undefined on input line 3303.
+LaTeX Warning: Reference `fig:brew' on page 75 undefined on input line 3303.
 
 File: images/brewer.png Graphic file (type bmp)
 <images/brewer.png>
-[82] [83]
+[75] [76] [77]
 File: figure/barfacetbrewer-1.pdf Graphic file (type pdf)
 <use figure/barfacetbrewer-1.pdf>
 File: figure/barfacetviridis-1.pdf Graphic file (type pdf)
 <use figure/barfacetviridis-1.pdf>
-[84] [85] [86] [87] [88] [89] [90] [91] [92] [93]
+[78] [79] [80] [81] [82] [83] [84] [85] [86] [87]
 File: figure/barfacetmanual-1.pdf Graphic file (type pdf)
 <use figure/barfacetmanual-1.pdf>
 File: figure/barfacethex-1.pdf Graphic file (type pdf)
 <use figure/barfacethex-1.pdf>
+[88] [89] [90]
 File: figure/varcolorviridis-1.pdf Graphic file (type pdf)
 <use figure/varcolorviridis-1.pdf>
-[94] [95] [96]
 File: figure/varcolorviridis2-1.pdf Graphic file (type pdf)
 <use figure/varcolorviridis2-1.pdf>
-[97]
+[91]
 File: figure/theme1-1.pdf Graphic file (type pdf)
 <use figure/theme1-1.pdf>
-
-Underfull \vbox (badness 2343) detected at line 3837
- []
-
-[98] [99]
+[92] [93]
 File: figure/themebw-1.pdf Graphic file (type pdf)
 <use figure/themebw-1.pdf>
-[100]
+[94]
 File: figure/thememinimal-1.pdf Graphic file (type pdf)
 <use figure/thememinimal-1.pdf>
-[101]
+[95]
 File: figure/themefont-1.pdf Graphic file (type pdf)
 <use figure/themefont-1.pdf>
-[102]
+[96]
 File: figure/exercice-1.pdf Graphic file (type pdf)
 <use figure/exercice-1.pdf>
-[103]
 File: figure/exercice2-1.pdf Graphic file (type pdf)
 <use figure/exercice2-1.pdf>
-[104] [105] [106]
+[97] [98] [99]
 File: images/tidy.png Graphic file (type bmp)
 <images/tidy.png>
-[107]
+[100]
 File: images/gather.png Graphic file (type bmp)
 <images/gather.png>
-[108] [109]
+[101] [102]
 File: figure/casesbarplot-1.pdf Graphic file (type pdf)
 <use figure/casesbarplot-1.pdf>
-[110]
 
-LaTeX Warning: Reference `mutate' on page 111 undefined on input line 4254.
+LaTeX Warning: Reference `mutate' on page 103 undefined on input line 4254.
 
-[111] [112] [113] [114] [115] [116] [117] [118] [119]
+[103] [104] [105] [106] [107] [108] [109] [110] [111]
 File: images/import.png Graphic file (type bmp)
 <images/import.png>
 File: images/import2.png Graphic file (type bmp)
 <images/import2.png>
-[120]
 File: images/import3.png Graphic file (type bmp)
 <images/import3.png>
-[121] [122] [123]
+[112] [113] [114] [115]
 File: images/importcsv1.png Graphic file (type bmp)
 <images/importcsv1.png>
 File: images/importcsv2.png Graphic file (type bmp)
 <images/importcsv2.png>
+[116]
 File: images/importcsv3.png Graphic file (type bmp)
 <images/importcsv3.png>
-[124] [125]
 File: images/importcsv4.png Graphic file (type bmp)
 <images/importcsv4.png>
-[126]
-Underfull \hbox (badness 1092) in paragraph at lines 4930--4932
-\TU/FuturaLT-Book(0)/m/sc/10 d’autres fonctions selon le format de vos données 
-(par exemple \TU/FiraCode-Regular(0)/m/n/10 read_csv() \TU/FuturaLT-Book(0)/m/s
-c/10 et
- []
-
-[127]
+[117] [118]
 File: figure/exercicedauphin-1.pdf Graphic file (type pdf)
 <use figure/exercicedauphin-1.pdf>
-[128] [129] [130]
+[119] [120] [121]
 File: figure/unnamed-chunk-92-1.pdf Graphic file (type pdf)
 <use figure/unnamed-chunk-92-1.pdf>
-[131]
+[122] [123]
 File: images/filter.png Graphic file (type bmp)
 <images/filter.png>
-[132] [133] [134] [135] [136] [137]
+[124] [125] [126] [127] [128]
 File: images/summarizearrow.png Graphic file (type bmp)
 <images/summarizearrow.png>
 File: images/summarize.png Graphic file (type bmp)
 <images/summarize.png>
-[138]
+[129]
 File: images/groupby.png Graphic file (type bmp)
 <images/groupby.png>
-[139] [140] [141]
+[130] [131] [132]
 File: figure/errorbars-1.pdf Graphic file (type pdf)
 <use figure/errorbars-1.pdf>
-[142]
+[133]
 File: figure/errorbars2-1.pdf Graphic file (type pdf)
 <use figure/errorbars2-1.pdf>
-[143] [144]
+[134]
 File: figure/errorbars3-1.pdf Graphic file (type pdf)
 <use figure/errorbars3-1.pdf>
-[145]
+[135]
 File: figure/errorbars4-1.pdf Graphic file (type pdf)
 <use figure/errorbars4-1.pdf>
-[146] [147] [148] [149]
+[136] [137] [138] [139] [140]
 File: figure/windspeed-1.pdf Graphic file (type pdf)
 <use figure/windspeed-1.pdf>
-[150]
 File: images/select.png Graphic file (type bmp)
 <images/select.png>
-[151] [152] [153] [154]
+[141] [142] [143] [144]
 File: images/mutate.png Graphic file (type bmp)
 <images/mutate.png>
-[155] [156] [157]
+
+Underfull \hbox (badness 2111) in paragraph at lines 6304--6305
+[]\TU/FuturaLT-Book(0)/m/sc/10 Voyons un exemple. Nous commençons par créer un 
+nouveau jeu de données
+ []
+
+[145] [146] [147]
 File: figure/consommation-1.pdf Graphic file (type pdf)
 <use figure/consommation-1.pdf>
 File: figure/consommation2-1.pdf Graphic file (type pdf)
 <use figure/consommation2-1.pdf>
 File: images/arrange.png Graphic file (type bmp)
 <images/arrange.png>
-[158] [159] [160] [161] [162]
-File: images/innerjoin.png Graphic file (type bmp)
-<images/innerjoin.png>
-[163] [164]
-File: images/leftjoin.png Graphic file (type bmp)
-<images/leftjoin.png>
-[165] [166]
-Underfull \hbox (badness 3449) in paragraph at lines 6869--6871
-[]\TU/FuturaLT-Book(0)/m/sc/10 Quelles sont les autres possibilités de jointure
-s (\TU/FiraCode-Regular(0)/m/n/10 right_join()\TU/FuturaLT-Book(0)/m/sc/10 , \T
-U/FiraCode-Regular(0)/m/n/10 outer_join()\TU/FuturaLT-Book(0)/m/sc/10 ,
+[148] [149] [150] [151]
+Underfull \hbox (badness 2538) in paragraph at lines 6609--6609
+[]\TU/FuturaLT-Book(0)/b/n/12 Associer plusieurs tableaux avec \TU/FiraCode-Reg
+ular(0)/b/n/12 left_join() \TU/FuturaLT-Book(0)/b/n/12 et \TU/FiraCode-Regular(
+0)/b/n/12 in-
  []
 
-[167]
+[152]
+File: images/innerjoin.png Graphic file (type bmp)
+<images/innerjoin.png>
+[153] [154]
+File: images/leftjoin.png Graphic file (type bmp)
+<images/leftjoin.png>
+[155] [156]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 6948.
-[168]
+[157]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 6948.
 (./Biometrie2.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 6948.
@@ -1968,12 +1948,12 @@ LaTeX Warning: There were undefined references.
 ### semi simple group (level 1) entered at line 133 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 23766 strings out of 479418
- 421752 string characters out of 5884586
- 909613 words of memory out of 5000000
- 40797 multiletter control sequences out of 15000+600000
+ 23765 strings out of 479418
+ 421727 string characters out of 5884586
+ 910505 words of memory out of 5000000
+ 40796 multiletter control sequences out of 15000+600000
  538917 words of font info for 93 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 59i,9n,121p,1481b,8478s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,9n,121p,1481b,8474s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Biometrie2.pdf (168 pages).
+Output written on Biometrie2.pdf (157 pages).
