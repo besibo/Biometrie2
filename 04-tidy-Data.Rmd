@@ -116,28 +116,31 @@ knitr::include_graphics('images/gather.png')
 
 Donc même si nous disposons ici d'un tableau rectangulaire classique, nous sommes bien loin du format des données rangées.
 
-### La fonction `gather()`
+### La fonction `pivot_longer()`
 
-Afin de transformer les données non rangées du tableau `cases` en données rangées, nous allons utiliser la fonction `gather()` du package `tidyr`. Avant d'aller plus loin, essayez d'imaginer à quoi le tableau rangé devrait ressembler.
+Afin de transformer les données non rangées du tableau `cases` en données rangées, nous allons utiliser la fonction `pivot_longer()` du package `tidyr`. Avant d'aller plus loin, essayez d'imaginer à quoi le tableau rangé devrait ressembler.
 
-La fonction `gather()` prend 4 arguments :
+La fonction `pivot_longer()` prend 4 arguments :
 
 1. `data` : le nom du tableau de données que l'on souhaite "ranger".
-2. `key` : le nom d'une nouvelle variable qui contiendra les en-têtes des colonnes qui constituent la seconde variable. Ici, nous nommerons cette seconde variable `year` car elle devra contenir les années 2011, 2012 et 2013.
-3. `value` : le nom d'une nouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Nous appelerons cette variables `n_cases` car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc).
-4. la liste des colonnes du tableau initial qui doivent être rassemblées ("gather" signifie rassembler en anglais), ici, les colonnes 2, 3 et 4 (on pourra les noter `2:4` ou, en utilisant leur nom, `"2011":"2013"`).
+2. `cols` : La liste des colonnes du tableau initial que l'on souhaite rassembler en 2 nouvelles variables. Ici, les colonnes 2, 3 et 4 (on pourra les noter `2:4` ou, en utilisant leur nom, `"2011":"2013"`).
+3. `names_to` : le nom d'une nouvelle variable qui contiendra les en-têtes des colonnes qui constituent la seconde variable. Ici, nous nommerons cette seconde variable `year` car elle devra contenir les années 2011, 2012 et 2013.
+4. `values_to` : le nom d'une nouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Nous appelerons cette variables `n_cases` car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc).
 
-```{r}
-gather(data = cases, key = year, value = n_cases, `2011`:`2013`)
+```{r tidy=FALSE}
+pivot_longer(data = cases, 
+             cols = `2011`:`2013`, 
+             names_to = "year", 
+             values_to = "n_cases")
 ```
 
 Nous avons bien transformé le tableau de départ en un "tableau rangé" : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d'habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :
 
-```{r}
-cases_tidy <- gather(data = cases, 
-                     key = year, 
-                     value = n_cases, 
-                     `2011`:`2013`)
+```{r tidy=FALSE}
+cases_tidy <- pivot_longer(data = cases, 
+                           cols = `2011`:`2013`, 
+                           names_to = "year", 
+                           values_to = "n_cases")
 ```
 
 Il nous est maintenant plus facile de manipuler ces données pour en tirer de l'information, grâce à des analyses statistiques ou des représentations graphiques :
@@ -156,46 +159,45 @@ ggplot(cases_tidy, aes(x = country, y = n_cases, fill = year)) +
 
 On constate ici qu'entre 2011 et 2013, le nombre de cas de tuberculose a légèrement augmenté en Allemagne, est resté stable en France, et a diminué aux États-Unis.
 
-Notez ici que la variable `year` de notre nouveau tableau est considérée comme une variable catégorielle et non comme une variable numérique. On peut le voir en transformant notre tableau en tibble avec `as_tibble()`, ou en utilisant la fonction `str()` déjà décrite plus tôt :
+Notez ici que la variable `year` de notre nouveau tableau est considérée comme une variable de type "chaîne de caractères" et non comme une variable numérique. On peut le voir en affichant notre tableau en tapant son nom, ou en utilisant la fonction `str()` déjà décrite plus tôt :
 
 ```{r}
 str(cases_tidy)
 ```
 
-C'est le comportement par défaut de la fonction `gather()` : les anciens titres de colonnes sont convertis en chaînes de caractères. Il y a 2 alternatives possibles, que l'on peut spécifier grâce à 2 arguments supplémentaires de la fonction `gather()` :
+C'est le comportement par défaut de la fonction `pivot_longer()` : les anciens titres de colonnes sont convertis en chaînes de caractères. Si ce comportement n'est pas souhaitable, il y a 2 alternatives possibles :
 
-1. `convert = TRUE` : permet de transformer automatiquement la variable `key` en variable numérique ou logique (vrais/faux) selon le type de données qu'elle contient
-2. `factor_key = TRUE` : permet de transformer automatiquement la variable `key` en facteur. Les niveaux du nouveau facteur seront ordonnés dans le même sens que les colonnes du tableau de départ.
+1. utiliser les arguments `names_transform` et/ou `values_transform` de la fonction `pivot_longer()`. Cela permet de spécifier comment transformer les variables nouvellement créées au moment de leur création.
+2. utiliser les fonctions `mutate()` et `as.numeric()` ou `as.integer()` après avoir modifié le tableau de départ avec `pivot_longer()`. Cette façon de faire sera décrite dans la partie \@ref(mutate).
 
-```{r}
-# On commence par transformer `cases` en tibble
-cases <- as_tibble(cases)
-cases
-# On utilise ensuite gather avec l'argument convert = TRUE
-gather(data = cases, 
-       key = year, 
-       value = n_cases,
-       `2011`:`2013`,
-       convert = TRUE)
+
+```{r tidy=FALSE}
+# On commence par afficher `cases`
+cases 
+
+# On utilise ensuite pivot_longer avec l'argument 
+# names_transform pour transformer year en facteur
+pivot_longer(data = cases, 
+             cols = `2011`:`2013`, 
+             names_to = "year", 
+             values_to = "n_cases",
+             names_transform = list(year = as.integer))
+```
+On voit ici que la variable `year` est maintenant une colonne numérique (`<int>` : nombres entiers), et non plus une variable de type "character". En utilisant `as.numeric()` au lieu de `as.integer()`, on aurait transformé la variable `year` en `<dbl>` (nombre réel au lieu de nombre entier), ce qui ici, reviendrait exactement au même.
+
+De la même façon, on peut avoir besoin de presenter la colonne `year` sous la forme d'un facteur :
+
+```{r tidy=FALSE}
+pivot_longer(data = cases, 
+             cols = `2011`:`2013`, 
+             names_to = "year", 
+             values_to = "n_cases",
+             names_transform = list(year = as.factor))
 ```
 
-On voit ici que la variable `year` est maintenant une colonne numérique (`<int>` : nombres entiers), et non plus une variable de type "character".
+### La fonction `pivot_wider()` {#spread}
 
-```{r}
-# Et en utilisant factor_key = TRUE...
-gather(data = cases, 
-       key = year,
-       value = n_cases, 
-       `2011`:`2013`,
-       factor_key = TRUE)
-```
-
-On obtient cette fois une variable `year` sous la forme d'un facteur.
-
-
-### La fonction `spread()` {#spread}
-
-La fonction `spread()` permet de réaliser l'opération inverse de `gather()`. Elle "disperse" une unique colonne catégorielle en plusieurs colonnes.
+La fonction `pivot_wider()` permet de réaliser l'opération inverse de `pivot_longer()`. Elle "disperse" une unique colonne catégorielle en plusieurs colonnes, le tableau obtenue est donc plus large ("wider") que le tableau de départ.
 
 Reprenons par exemple notre tableau `cases_tidy` :
 
@@ -203,14 +205,16 @@ Reprenons par exemple notre tableau `cases_tidy` :
 cases_tidy
 ```
 
-La fonction `spread()` prend 3 arguments :
+La fonction `pivot_wider()` prend 3 arguments :
 
-1. Le nom du tableau contenant les données (ici, `cases_tidy`)
-2. `key` : le nom de la variable contenant les catégories qui devront être transformées en colonnes (ici, `year`)
-3. `value` : le nom de la variable contenant les valeurs qui devront remplir les nouvelles colonnes (ici, `n_cases`)
+1. Le nom du tableau contenant les données (ici, `cases_tidy`).
+2. `names_from` : le nom de la variable contenant les catégories qui devront être transformées en colonnes (ici, `year`).
+3. `values_from` : le nom de la variable contenant les valeurs qui devront remplir les nouvelles colonnes (ici, `n_cases`).
 
-```{r}
-spread(cases_tidy, key = year, value = n_cases)
+```{r tidy=FALSE}
+pivot_wider(data = cases_tidy, 
+            names_from = year, 
+            values_from = n_cases)
 ```
 
 Cette fonction sera donc rarement utilisée puisqu'elle ne permet pas d'obtenir des "tableaux rangés". Toutefois, elle pourra vous être utile pour présenter des résultats sous forme synthétique. Prenons un exemple avec le jeu de données `flights`. Imaginons que vous deviez créer un tableau `n_vols` présentant, pour chacun des 3 aéroports de New York, le nombre de vols affrétés par chaque compagnie aérienne en 2013. Une possibilité serait de taper ceci :
@@ -222,22 +226,26 @@ n_vols <- flights %>%
 n_vols
 ```
 
-Les commandes permettant de produire ce tableau seront expliquées dans le chapitre \@ref(wrangling). On peut cependant constater ici que ce tableau contient 35 lignes et 3 colonnes. Il s'agit bien d'un "tableau rangé" parfaitement adapté pour faire des statistiques et des visualisation graphiques, mais son format n'est pas terrible si notre objectif est de le faire figurer dans un rapport. La solution : utiliser `spread()` :
+Les commandes permettant de produire ce tableau seront expliquées dans le chapitre \@ref(wrangling). On peut cependant constater ici que ce tableau contient 35 lignes et 3 colonnes. Il s'agit bien d'un "tableau rangé" parfaitement adapté pour faire des statistiques et des visualisations graphiques, mais son format n'est pas terrible si notre objectif est de le faire figurer dans un rapport. La solution : utiliser `pivot_wider()` :
 
-```{r}
-spread(n_vols, key = origin, value = n)
+```{r tidy=FALSE}
+pivot_wider(n_vols, 
+            names_from = origin, 
+            values_from = n)
 ```
 
 Ce nouveau tableau contient maintenant 16 lignes (une par compagnie aérienne), et 4 colonnes : une pour la variable `carrier`, et 3 pour la variable `origin`, soit une colonne pour chacun des 3 aéroports de New York. On parle de tableau au format large (par opposition au "tableau rangé", dit "format long"). Cela rend la présentation dans un rapport plus aisée. 
 
-Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (`AS`) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique `NA`. Or, `NA` signifie "Not Available", autrement dit : données manquantes. Ici, il ne s'agit pas du tout de données manquantes. Cela signifie simplement qu'aucun vol d'Alaska Airline n'a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l'argument `fill` :
+Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (`AS`) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique `NA`. Or, `NA` signifie "Not Available", autrement dit : données manquantes. Ici, il ne s'agit pas du tout de données manquantes. Cela signifie simplement qu'aucun vol d'Alaska Airline n'a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l'argument `values_fill` :
 
-```{r}
-spread(n_vols, key = origin, value = n, fill = 0)
+```{r tidy=FALSE}
+pivot_wider(n_vols, 
+            names_from = origin, 
+            values_from = n, 
+            values_fill = 0)
 ```
 
-D'autres arguments existent. **Je vous encourage vivement** à consulter l'aide des fonctions `gather()` et `spread()` et à faire des essais.
-
+D'autres arguments existent. **Je vous encourage vivement** à consulter l'aide des fonctions `pivot_longer()` et `pivot_wider()` et à faire des essais.
 
 ### Les fonctions `separate()` et `unite()`
 

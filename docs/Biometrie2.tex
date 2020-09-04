@@ -1,38 +1,53 @@
-\documentclass[a4paperpaper,]{article}
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
+%
+\documentclass[
+  a4paperpaper,
+]{article}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Travaux Pratiques de Biométrie 2},
+  pdfauthor={Benoît Simon-Bouhet},
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=Blue,
+  urlcolor=blue,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=3.75cm, right=3.75cm, top=3cm, bottom=3cm]{geometry}
-\usepackage{hyperref}
-\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
-\hypersetup{unicode=true,
-            pdftitle={Travaux Pratiques de Biométrie 2},
-            pdfauthor={Benoît Simon-Bouhet},
-            colorlinks=true,
-            linkcolor=Maroon,
-            citecolor=Blue,
-            urlcolor=blue,
-            breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -74,6 +89,14 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.75,0.01,0.01}{#1}}
 \usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -83,59 +106,20 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{5}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-%%% Use protect on footnotes to avoid problems with footnotes in titles
-\let\rmarkdownfootnote\footnote%
-\def\footnote{\protect\rmarkdownfootnote}
-
-%%% Change title format to be more compact
-\usepackage{titling}
-
-% Create subtitle command for use in maketitle
-\providecommand{\subtitle}[1]{
-  \posttitle{
-    \begin{center}\large#1\end{center}
-    }
-}
-
-\setlength{\droptitle}{-2em}
-
-  \title{Travaux Pratiques de Biométrie 2}
-    \pretitle{\vspace{\droptitle}\centering\huge}
-  \posttitle{\par}
-    \author{Benoît Simon-Bouhet}
-    \preauthor{\centering\large\emph}
-  \postauthor{\par}
-      \predate{\centering\large\emph}
-  \postdate{\par}
-    \date{2019-10-08}
-
 \usepackage[french]{babel}
-\usepackage{mathspec}  % \usepackage{fontspec}
+\usepackage{fontspec}
 % \usepackage{natbib}
 
-\setallmainfonts[Ligatures = TeX,
-                 ItalicFont={ArcherPro-MediumItalic}]{ArcherPro-Medium}
-\setmonofont[Scale=0.85]{FiraCode-Regular}
+% \setallmainfonts[Ligatures = TeX,
+                 % ItalicFont={ArcherPro-MediumItalic}]{ArcherPro-Medium}
 
 \usepackage{setspace,booktabs,rotating,placeins,hvfloat,textcomp}
 
@@ -144,14 +128,19 @@
 \usepackage{enumitem}
 \usepackage{longtable}
 
-\setallmainfonts[Ligatures = TeX]{FuturaLT-Book}
+\setmainfont[Ligatures = TeX]{FuturaLT-Book}
+\setmonofont[Scale=0.85]{FiraCode-Regular}
 \onehalfspace
+
+\title{Travaux Pratiques de Biométrie 2}
+\author{Benoît Simon-Bouhet}
+\date{2020-09-04}
 
 \begin{document}
 \maketitle
 
 {
-\hypersetup{linkcolor=black}
+\hypersetup{linkcolor=}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
@@ -161,7 +150,7 @@
 \hypertarget{objectifs}{%
 \subsection{Objectifs}\label{objectifs}}
 
-Ce livre contient l'ensemble du matériel (contenus, exemples, exercices\ldots{}) nécessaire à la réalisation des travaux pratiques de biométrie 2.
+Ce livre contient l'ensemble du matériel (contenus, exemples, exercices\ldots) nécessaire à la réalisation des travaux pratiques de biométrie 2.
 
 Ces travaux pratiques ont essentiellement 3 objectifs :
 
@@ -181,7 +170,7 @@ Ces travaux pratiques ont essentiellement 3 objectifs :
 \item
   d'autre part, pour vous permettre de formuler des hypothèses pertinentes et intéressantes concernant les systèmes que vous étudiez,
 \item
-  et enfin, pour communiquer efficacement vos trouvailles à un public qui ne connait pas vos données aussi bien que vous (cela inclut évidemment vos enseignants à l'issue de vos stages).\\
+  et enfin, pour communiquer efficacement vos trouvailles à un public qui ne connaît pas vos données aussi bien que vous (cela inclut évidemment vos enseignants à l'issue de vos stages).\\
   Les données que vous serez amenés à traiter lors de vos stages, ou plus tard, lorsque vous serez en poste, ont souvent été acquises à grands frais, et au prix d'efforts importants. Il est donc de votre responsabilité d'en tirer le maximum. Et ça commence toujours (ou presque), par la réalisation de visualisations graphiques parlantes.
 \end{itemize}
 
@@ -193,20 +182,21 @@ Ces travaux pratiques ont essentiellement 3 objectifs :
   Vous apprendre comment calculer des statistiques descriptives simples, sur plusieurs types de variables, afin de vous mettre dans les meilleures conditions possibles pour aborder d'une part les cours de biométrie 3 du second semestre, et d'autre part les comptes-rendus de TP que vous aurez à produire dans d'autres EC. Vos enseigants attendent de vous la plus grande rigueur lorsque vous analysez et présentez des résultats d'analyses statistiques. Ces TP ont pour objectifs de vous fournir les bases nécessaires pour satisfaire ce niveau d'exigence.
 \end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{organisation}{%
 \subsection{Organisation}\label{organisation}}
 
-Les séances de travaux pratiques de biométrie 2 durent 1h30 et ont lieu en salle informatique du Pôle Communication Multimédia Réseaux (PCM). Seules 6 heures de TP sont prévues dans la maquette, soit 4 séances de TP. C'est \emph{très peu} ! En fait, c'est très insuffisant pour couvrir correctement la totalité du contenu de cet enseignement. C'est la raison pour laquelle chacune des 3 premières séances de TP est suivie d'\textbf{une séance de TEA de 90 minutes}.
+Les séances de travaux pratiques de biométrie 2 durent 1h30 et ont lieu en salle informatique, soit au Pôle Communication Multimédia Réseaux (PCM), soit à la MSI (Maison des Sciences pour l'Ingénieur, salle 217). Vous pourrez utiliser les ordinateurs de l'université si vous n'avez pas d'ordinateur personnel, mais je ne peux que vous encourager à utiliser ou vos propres machines : lors de vos stages et pour rédiger vos comptes-rendus de TP, vous utiliserez le plus souvent vos propres ordinateurs, autant prendres dès maintenant de bonnes habitudes.\\
+Seules 6 heures de TP sont prévues dans la maquette, soit 4 séances de TP. C'est \emph{très peu} ! En fait, c'est très insuffisant pour couvrir correctement la totalité du contenu de cet enseignement. C'est la raison pour laquelle chacune des 3 premières séances de TP est suivie d'\textbf{une séance de TEA de 90 minutes}.
 
-Au début de chaque séance de TP, j'indiquerai un objectif que vous devriez être en mesure d'atteindre en l'espace de 3 heures. Certains iront probablement plus vite et d'autres plus lentement. Lors des séances de TP, je serai disponible pour répondre à chacune de vos questions. À l'issue des 90 minutes de TP, vous changerez de salle (toujours au PCM) et les 90 minutes de TEA commenceront.
+Au début de chaque séance de TP, j'indiquerai un objectif que vous devriez être en mesure d'atteindre en l'espace de 3 heures. Certains iront probablement plus vite et d'autres plus lentement. Lors des séances de TP, je serai disponible pour répondre à chacune de vos questions. À l'issue des 90 minutes de TP, et compte tenu de la situation sanitaire, vous serez libérés et vous pourrez ainsi soit trouver une autre salle à l'université, soit rentrer chez vous pour effectuer les 90 minutes de TEA prévues.
 
-Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l'ENT à l'issue de chaque séance de TEA, qu'ils soient terminés ou non. S'ils ne sont pas terminés à l'issue des TEA, vous êtes vivement encourragés à les terminer en dehors des heures de cours. En effet, une correction rapide sera faite lors de la séance de travaux pratiques suivante et nous n'auront que très peu de temps à consacrer à ces corrections. Si vous n'y avez pas sérieusement réfléchi en amont, cela ne vous servira absolument à rien. Pour apprendre à utiliser un logiciel comme R, il faut en effet faire les choses soi-même, ``mettre les mains dans le cambouis'', se confronter à la difficulté, ne pas avoir peur des messages d'erreurs (il faut d'ailleurs apprendre à les déchiffrer pour comprendre d'où viennent les problèmes), essayer maintes fois, se tromper beaucoup, recommencer, et surtout, ne pas se décourager. Même si ce livre est conçu pour vous faciliter la tâche, l'apprentissage de R est souvent perçu comme une lutte. Mais quand ça fonctionne enfin, c'est extrêmement gratifiant et il n'existe pas à l'heure actuelle de meilleur logiciel pour analyser des données et produire des graphiques de qualité. Vous pouvez me croire sur parôle : j'utilise ce logiciel presque quotidiennement depuis plus de 15 ans.
+Pendant le TEA, vous devrez continuer la lecture de ce livre et terminer les exercices demandés. Les exercices devront être déposés sur l'ENT à l'issue de chaque séance de TEA, qu'ils soient terminés ou non. Si la séance de TEA ne vous suffit pas pour aller au bout des exercices, vous êtes vivement encouragés à les terminer en dehors des heures de cours. En effet, une correction rapide sera faite lors de la séance de travaux pratiques suivante et nous n'auront que très peu de temps à consacrer à ces corrections. Si vous n'y avez pas sérieusement réfléchi en amont, cela ne vous servira absolument à rien. Pour apprendre à utiliser un logiciel comme R, il faut en effet faire les choses soi-même, ``mettre les mains dans le cambouis'', se confronter à la difficulté, ne pas avoir peur des messages d'erreurs (il faut d'ailleurs apprendre à les déchiffrer pour comprendre d'où viennent les problèmes), essayer maintes fois, se tromper beaucoup, recommencer, et surtout, ne pas se décourager. Même si ce livre est conçu pour vous faciliter la tâche, l'apprentissage de R est souvent perçu comme une lutte. Mais quand ça fonctionne enfin, c'est extrêmement gratifiant et il n'existe pas à l'heure actuelle de meilleur logiciel pour analyser des données et produire des graphiques de qualité. Vous pouvez me croire sur parole : j'utilise ce logiciel presque quotidiennement depuis plus de 15 ans.
 
-Je m'efforcerai de passer 1 ou 2 fois auprès de vous lors des séances de TEA afin de vous débloquer en cas de problème majeur. Vous pouvez aussi \href{mailto:bsimonbo@univ-lr.fr}{me contacter par email}. Toutefois, ce document est fait pour vous permettre d'avancer en autonomie. L'expérience montre que la plupart du temps, il suffit de lire correctement pour obtenir la réponse à ses questions. Je vous encourage également à vous \textbf{entraider} : c'est très formateur pour celui qui explique, et celui qui rencontre une difficulté a plus de chance de comprendre si c'est quelqu'un d'autre qui lui explique plutôt que la personne qui a rédigé les instructions mal comprises.
+En cas de blocage pendant les TEA ou en dehors des heures de cours, n'hésitez pas à \href{mailto:bsimonbo@univ-lr.fr}{me contacter par email} en indiquant clairement à quel endroit se situe votre problème. Toutefois, ce document est fait pour vous permettre d'avancer en autonomie et vous ne devriez normalement pas avoir beaucou besoin de moi si votre lecture de ce document est attentive. L'expérience montre en effet que la plupart du temps, il suffit de lire correctement les paragraphes précédents et/ou suivants pour obtenir la réponse à ses questions. Je vous encourage également à vous \textbf{entraider} : c'est très formateur pour celui qui explique, et celui qui rencontre une difficulté a plus de chance de comprendre si c'est quelqu'un d'autre qui lui explique plutôt que la personne qui a rédigé les instructions mal comprises.
 
-Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyons en TP devra être acquis le jour de l'examen. Utilisez donc le temps du TEA pour vous préparer au mieux. L'apprentissage prend du temps, donc autant s'y mettre sérieusement dès maintenant.
+Enfin, les exercices demandés ne seront pas notés, mais tout ce que nous voyons en TP devra être acquis le jour de l'examen. Utilisez donc le temps du TEA pour vous préparer au mieux. L'apprentissage prend du temps, autant vous y mettre sérieusement dès maintenant.
 
 \hypertarget{bases}{%
 \section{R et RStudio : les bases}\label{bases}}
@@ -239,7 +229,7 @@ Ce chapitre est en grande partie basé sur les 3 ressources suivantes que je vou
   Les tutoriels en ligne de DataCamp. DataCamp est une plateforme de e-learning accessible depuis n'importe quel navigateur internet et dont la priorité est l'enseignement des ``data sciences''. Leurs tutoriels vous aideront à apprendre certains des concepts de développés dans ce livre. Avant d'aller plus loin, rendez-vous sur \href{https://www.datacamp.com/}{le site de DataCamp} et créez-vous un compte gratuit.
 \end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{que-sont-r-et-rstudio}{%
 \subsection{Que sont R et RStudio}\label{que-sont-r-et-rstudio}}
@@ -315,7 +305,7 @@ Puisqu'il est beaucoup plus facile d'utiliser Rstudio pour interagir avec R, nou
 
 Prenez le temps d'explorer cette interface, cliquez sur les différents onglets, ouvrez les menus, allez faire un tour dans les préférences du logiciel pour découvrir les différents panneaux de l'application, en particulier la Console dans laquelle nous exécuterons très bientôt du code R.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{code}{%
 \subsection{Comment exécuter du code R ?}\label{code}}
@@ -343,8 +333,8 @@ Cliquez dans la console (après le symbole \texttt{\textgreater{}}) et tapez cec
 
 Félicitations, vous venez de taper votre première instruction R : vous savez maintenant faire des additions !
 
-\hypertarget{le-repertoire-de-travail}{%
-\subsubsection{Le répertoire de travail}\label{le-repertoire-de-travail}}
+\hypertarget{le-ruxe9pertoire-de-travail}{%
+\subsubsection{Le répertoire de travail}\label{le-ruxe9pertoire-de-travail}}
 
 La première commande que vous devriez connaître quand vous travaillez dans R ou RStudio est la suivante :
 
@@ -939,7 +929,7 @@ car cela revient à calculer le logarithme de 10 en base 100. On peut en revanch
 [1] 2
 \end{verbatim}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{packages}{%
 \subsection{Les packages additionels}\label{packages}}
@@ -998,8 +988,8 @@ En procédant de l'une ou l'autre façon, installez également les packages suiv
 
 \textbf{Note} : un package doit être installé une fois seulement, sauf si une version plus récente est disponible et que vous souhaitez mettre à jour ce package.
 
-\hypertarget{charger-un-package-en-memoire}{%
-\subsubsection{Charger un package en mémoire}\label{charger-un-package-en-memoire}}
+\hypertarget{charger-un-package-en-muxe9moire}{%
+\subsubsection{Charger un package en mémoire}\label{charger-un-package-en-muxe9moire}}
 
 Après avoir installé un package, vous pouvez le charger en utilisant la fonction \texttt{library()}. Par exemple, pour charger \texttt{ggplot2} et \texttt{dplyr} tapez ceci dans la console :
 
@@ -1018,7 +1008,7 @@ Error: could not find function...
 
 rappelez-vous que c'est probablement parce que vous tentez d'utiliser une fonction qui fait partie d'un package que vous n'avez pas chargé. Pour corriger l'erreur, il suffit donc de charger le package approprié avec la commande \texttt{library()}.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{exercices}{%
 \subsection{Exercices}\label{exercices}}
@@ -1059,7 +1049,7 @@ Commençons par charger les packages nécessaires pour ce chapitre (cela suppose
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{le-package-nycflights13}{%
 \subsection{\texorpdfstring{Le package \texttt{nycflights13}}{Le package nycflights13}}\label{le-package-nycflights13}}
@@ -1083,7 +1073,7 @@ Ce package contient 5 ``tableaux'' contenant des informations sur chaque vol int
   \texttt{airports} : noms et localisations géographiques des aéroports desservis (1458 aéroports)
 \end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{le-data-frame-flights}{%
 \subsection{\texorpdfstring{Le data frame \texttt{flights}}{Le data frame flights}}\label{le-data-frame-flights}}
@@ -1167,7 +1157,7 @@ Cette façon d'afficher les tableaux est spécifique des \texttt{tibble}s. Vous 
 
 Cette façon d'afficher le contenu d'un tableau permet d'y voir (beaucoup) plus clair que l'affichage classique d'un \texttt{data.frame}. Malheureusement, ce n'est pas toujours suffisant. Voyons quelles sont les autres méthodes permettant d'explorer un \texttt{data.frame}.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{explorer-un-data.frame}{%
 \subsection{\texorpdfstring{Explorer un \texttt{data.frame}}{Explorer un data.frame}}\label{explorer-un-data.frame}}
@@ -1191,7 +1181,7 @@ Parmi les nombreuses façons d'avoir une idée des données contenues dans un \t
 
 Tapez \texttt{View(flights)} dans votre script et exécutez la commande. Un nouvel onglet contenant ce qui ressemble à un tableaur doit s'ouvrir.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \textbf{Question } : à quoi correspondent chacune des lignes de ce tableau ?
 
@@ -1207,7 +1197,7 @@ Tapez \texttt{View(flights)} dans votre script et exécutez la commande. Un nouv
   D. aux données de plusieurs vols
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Ici, vous pouvez donc explorer la totalité du tableau, passer chaque variable en revue, et même appliquer des filtres pour ne visualiser qu'une partie des données. Par exemple, essayez de déterminer combien de vols ont décollé de l'aéroport JFK le 12 février.
 
@@ -1225,8 +1215,8 @@ La seconde façon d'explorer les données contenues dans un tableau est d'utilis
 \end{Shaded}
 
 \begin{verbatim}
-Observations: 336,776
-Variables: 19
+Rows: 336,776
+Columns: 19
 $ year           <int> 2013, 2013, 2013, 2013, 2013, 2013, 2013, ...
 $ month          <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
 $ day            <int> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
@@ -1250,8 +1240,8 @@ $ time_hour      <dttm> 2013-01-01 05:00:00, 2013-01-01 05:00:00,...
 
 Ici, les premières observations sont présentées en lignes pour chaque variable du jeu de données. Là encore, le type de chaque variable est précisé. Essayez d'identifier 3 variables catégorielles. À quoi correspondent-elles ? En quoi sont-elles différentes des variables numériques ?
 
-\hypertarget{loperateur}{%
-\subsubsection{\texorpdfstring{L'opérateur \texttt{\$}}{L'opérateur \$}}\label{loperateur}}
+\hypertarget{lopuxe9rateur}{%
+\subsubsection{\texorpdfstring{L'opérateur \texttt{\$}}{L'opérateur \$}}\label{lopuxe9rateur}}
 
 Enfin, l'opérateur \texttt{\$} permet d'accéder à une unique variable grâce à son nom. Par exemple le tableau \texttt{airlines} contient seulement 2 variables :
 
@@ -1359,43 +1349,6 @@ Si l'installation de \texttt{skimr} s'est bien passée, vous pouvez maintenant t
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Skim summary statistics
- n obs: 336776 
- n variables: 19 
-
--- Variable type:character ---------------------------------------------------
- variable missing complete      n min max empty n_unique
-  carrier       0   336776 336776   2   2     0       16
-     dest       0   336776 336776   3   3     0      105
-   origin       0   336776 336776   3   3     0        3
-  tailnum    2512   334264 336776   5   6     0     4043
-
--- Variable type:integer -----------------------------------------------------
-       variable missing complete      n    mean      sd   p0  p25  p50  p75 p100     hist
-       arr_time    8713   328063 336776 1502.05  533.26    1 1104 1535 1940 2400 ▁▁▃▇▆▆▇▆
-            day       0   336776 336776   15.71    8.77    1    8   16   23   31 ▇▇▇▇▆▇▇▇
-       dep_time    8255   328521 336776 1349.11  488.28    1  907 1401 1744 2400 ▁▁▇▆▆▇▆▂
-         flight       0   336776 336776 1971.92 1632.47    1  553 1496 3465 8500 ▇▅▂▃▂▁▁▁
-          month       0   336776 336776    6.55    3.41    1    4    7   10   12 ▇▅▇▃▅▇▅▇
- sched_arr_time       0   336776 336776 1536.38  497.46    1 1124 1556 1945 2359 ▁▁▂▇▆▇▇▆
- sched_dep_time       0   336776 336776 1344.25  467.34  106  906 1359 1729 2359 ▁▃▇▆▆▇▇▂
-           year       0   336776 336776 2013       0    2013 2013 2013 2013 2013 ▁▁▁▇▁▁▁▁
-
--- Variable type:numeric -----------------------------------------------------
-  variable missing complete      n    mean     sd  p0 p25 p50  p75 p100     hist
-  air_time    9430   327346 336776  150.69  93.69  20  82 129  192  695 ▇▇▂▃▁▁▁▁
- arr_delay    9430   327346 336776    6.9   44.63 -86 -17  -5   14 1272 ▇▁▁▁▁▁▁▁
- dep_delay    8255   328521 336776   12.64  40.21 -43  -5  -2   11 1301 ▇▁▁▁▁▁▁▁
-  distance       0   336776 336776 1039.91 733.23  17 502 872 1389 4983 ▆▇▂▂▁▁▁▁
-      hour       0   336776 336776   13.18   4.66   1   9  13   17   23 ▁▃▇▆▅▇▇▂
-    minute       0   336776 336776   26.23  19.3    0   8  29   44   59 ▇▂▃▃▅▂▃▅
-
--- Variable type:POSIXct -----------------------------------------------------
-  variable missing complete      n        min        max     median n_unique
- time_hour       0   336776 336776 2013-01-01 2013-12-31 2013-07-03     6936
-\end{verbatim}
-
 \hypertarget{les-fichiers-daide}{%
 \subsubsection{Les fichiers d'aide}\label{les-fichiers-daide}}
 
@@ -1413,7 +1366,7 @@ Vous devriez absolument prendre l'habitude d'examiner les fichiers d'aide des fo
 
 Prenez le temps d'examiner le fichier d'aide du jeu de données \texttt{flights}. Avant de passer à la suite, assurez-vous d'avoir compris à quoi correspondent chacune des 19 variables de ce tableau.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{exercices-1}{%
 \subsection{Exercices}\label{exercices-1}}
@@ -1459,10 +1412,10 @@ Toutefois, la visualisation seule ne suffit généralement pas. Il est en effet 
 
 Ce n'est qu'en combinant les transformations de données et représentations graphiques d'une part, avec votre curiosité et votre esprit critique d'autre part, que vous serez véritablement en mesure de réaliser une analyse exploratoire utile de vos données. C'est la seule façon d'identifier des questions intéressantes et pertinentes sur vos données, afin de tenter d'y répondre par les analyses statistiques et la modélisation par la suite.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{prerequis}{%
-\subsection{Prérequis}\label{prerequis}}
+\hypertarget{pruxe9requis}{%
+\subsection{Prérequis}\label{pruxe9requis}}
 
 Dans ce chapitre, nous aurons besoin des packages suivants :
 
@@ -1480,15 +1433,15 @@ Au niveau le plus élémentaire, les graphiques permettent de comprendre comment
 
 Comme nous le verrons, les graphiques nous aident également à repérer les tendances extrêmes et les valeurs aberrantes dans nos données. Nous verrons aussi qu'une façon de faire, assez classique, consiste à comparer la distribution d'une variable quantitative pour les différents niveaux d'une variable catégorielle.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{gggraph}{%
 \subsection{La grammaire des graphiques}\label{gggraph}}
 
-Les lettres \texttt{gg} du package \texttt{ggplot2} sont l'abréviation de ``\textbf{g}rammar of \textbf{g}raphics'' : la grammaire des graphiques. De la même manière que nous construisons des phrases en respectant des règles grammaticales précises (usage des noms, des verbes, des sujets et adjectifs\ldots{}), la grammaire des graphiques établit un certain nombre de règles permettant de construire des graphiques : elle précise les composants d'un graphique en suivant le cadre théorique défini par Wilkinson (\protect\hyperlink{ref-wilkinson2005}{2005}).
+Les lettres \texttt{gg} du package \texttt{ggplot2} sont l'abréviation de ``\textbf{g}rammar of \textbf{g}raphics'' : la grammaire des graphiques. De la même manière que nous construisons des phrases en respectant des règles grammaticales précises (usage des noms, des verbes, des sujets et adjectifs\ldots), la grammaire des graphiques établit un certain nombre de règles permettant de construire des graphiques : elle précise les composants d'un graphique en suivant le cadre théorique défini par Wilkinson (\protect\hyperlink{ref-wilkinson2005}{2005}).
 
-\hypertarget{elements-de-la-grammaire}{%
-\subsubsection{Éléments de la grammaire}\label{elements-de-la-grammaire}}
+\hypertarget{uxe9luxe9ments-de-la-grammaire}{%
+\subsubsection{Éléments de la grammaire}\label{uxe9luxe9ments-de-la-grammaire}}
 
 En bref, la grammaire des graphiques nous dit que :
 
@@ -1518,7 +1471,7 @@ En février 2006, un statisticien du nom de Hans Rosling a donné un TED Talk in
 
 Pour l'année 2007, le jeu de données contient des informations pour 142 pays. Examinons les premières lignes de ce jeu de données :
 
-\begin{longtable}{llrrr}
+\begin{longtable}[t]{llrrr}
 \caption{\label{tab:unnamed-chunk-38}Les 6 premières lignes du jeu de données `gapminder` pour l'année 2007.}\\
 \toprule
 Country & Continent & Life Expectancy & Population & GDP per Capita\\
@@ -1576,8 +1529,8 @@ Si on décrypte ce graphique du point de vue de la grammaire des graphiques, on 
 
 Ici, l'objet géométrique (ou \texttt{geom}) qui représente les données est le point. Les données (ou \texttt{data}) sont contenues dans le tableau \texttt{gapminder} et chacune de ces variables est associée (\texttt{mapping}) aux caractéristiques esthétiques des points.
 
-\hypertarget{autres-elements-de-la-grammaire-des-graphiques}{%
-\subsubsection{Autres éléments de la grammaire des graphiques}\label{autres-elements-de-la-grammaire-des-graphiques}}
+\hypertarget{autres-uxe9luxe9ments-de-la-grammaire-des-graphiques}{%
+\subsubsection{Autres éléments de la grammaire des graphiques}\label{autres-uxe9luxe9ments-de-la-grammaire-des-graphiques}}
 
 Outre les éléments indispensables évoqués ici (\texttt{data}, \texttt{mapping}, \texttt{aes}, et \texttt{geom}), il existe d'autres aspects de la grammaire des graphiques qui permettent de contrôler l'aspect des graphiques. Ils ne sont pas toujours indispensables. Nous en verrons néanmoins quelque-uns particulièrement utiles :
 
@@ -1596,7 +1549,7 @@ Outre les éléments indispensables évoqués ici (\texttt{data}, \texttt{mappin
 \hypertarget{le-package-ggplot2}{%
 \subsubsection{\texorpdfstring{Le package \texttt{ggplot2}}{Le package ggplot2}}\label{le-package-ggplot2}}
 
-Comme indiqué plus haut, le package \texttt{ggplot2} (Wickham et al., \protect\hyperlink{ref-R-ggplot2}{2019}) permet de réaliser des graphiques dans R en respectant les principes de la grammaire des graphiques. Vous avez probablement remarqué que depuis le début de la section \ref{gggraph}, beaucoup de termes sont écrits dans la police réservée au \texttt{code} informatique. C'est parce que les éléments de la grammaire des graphiques sont tous précisés dans la fonction \texttt{ggplot()} qui demande, au grand minimum, que les éléments suivants soient spécifiés :
+Comme indiqué plus haut, le package \texttt{ggplot2} (Wickham et al., \protect\hyperlink{ref-R-ggplot2}{2020}) permet de réaliser des graphiques dans R en respectant les principes de la grammaire des graphiques. Vous avez probablement remarqué que depuis le début de la section \ref{gggraph}, beaucoup de termes sont écrits dans la police réservée au \texttt{code} informatique. C'est parce que les éléments de la grammaire des graphiques sont tous précisés dans la fonction \texttt{ggplot()} qui demande, au grand minimum, que les éléments suivants soient spécifiés :
 
 \begin{itemize}
 \tightlist
@@ -1625,12 +1578,12 @@ Dans le cadre de ce cours, nous nous limiterons aux 5 types de graphiques suivan
   les diagrammes bâtons
 \end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{clouds}{%
 \subsection{Les nuages de points}\label{clouds}}
 
-C'est probablement le plus simple des 5 types de graphiques cités plus haut. Il s'agit de graphiques bi-variés pour lesquels une variable est associée à l'axe des abscisses, et une autre est associée à l'axe des ordonnées. Comme pour le graphique présenté à la figure \ref{fig:gapmind} ci-dessus, d'autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme\ldots{}).
+C'est probablement le plus simple des 5 types de graphiques cités plus haut. Il s'agit de graphiques bi-variés pour lesquels une variable est associée à l'axe des abscisses, et une autre est associée à l'axe des ordonnées. Comme pour le graphique présenté à la figure \ref{fig:gapmind} ci-dessus, d'autres variables peuvent être associées à des caractéristiques esthétiques des points (transparence, taille, couleur, forme\ldots).
 
 Ici, dans le jeu de données \texttt{flights}, nous allons nous intéresser à la relation qui existe entre :
 
@@ -1676,8 +1629,8 @@ La fonction \texttt{ggplot()} permet d'établir la première base du graphique. 
 
 Ce graphique est pour le moins vide : c'est normal, nous n'avons pas encore spécifié la couche contenant l'objet géométrique que nous souhaitons utiliser.
 
-\hypertarget{ajout-dune-couche-supplementaire-lobjet-geometrique}{%
-\subsubsection{Ajout d'une couche supplémentaire : l'objet géométrique}\label{ajout-dune-couche-supplementaire-lobjet-geometrique}}
+\hypertarget{ajout-dune-couche-suppluxe9mentaire-lobjet-guxe9omuxe9trique}{%
+\subsubsection{Ajout d'une couche supplémentaire : l'objet géométrique}\label{ajout-dune-couche-suppluxe9mentaire-lobjet-guxe9omuxe9trique}}
 
 Les nuages de points sont créés par la fonction \texttt{geom\_point()} :
 
@@ -2101,13 +2054,13 @@ Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l'ens
   Selon vous, à quoi sont dues les bandes verticales que l'on observe sur ce graphique ?
 \end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{les-graphiques-en-lignes}{%
 \subsection{Les graphiques en lignes}\label{les-graphiques-en-lignes}}
 
-\hypertarget{un-nouveau-jeu-de-donnees}{%
-\subsubsection{Un nouveau jeu de données}\label{un-nouveau-jeu-de-donnees}}
+\hypertarget{un-nouveau-jeu-de-donnuxe9es}{%
+\subsubsection{Un nouveau jeu de données}\label{un-nouveau-jeu-de-donnuxe9es}}
 
 Les graphiques en ligne, ou ``linegraphs'' sont généralement utilisés lorsque l'axe des \texttt{x} porte une information \textbf{temporelle}, et l'axe des \texttt{y} une autre variable numérique. Le temps est une variable naturellement ordonnée : les jours, semaines, mois, années, se suivent naturellement. Les graphiques en lignes devraient être évités lorsqu'il n'y a pas une organisation séquentielle évidente de la variable portée par l'axe des \texttt{x}.
 
@@ -2122,7 +2075,7 @@ Concentrons nous maintenant sur le tableau \texttt{weather} du package \texttt{n
 \begin{verbatim}
 # A tibble: 26,115 x 15
    origin  year month   day  hour  temp  dewp humid wind_dir
-   <chr>  <dbl> <dbl> <int> <int> <dbl> <dbl> <dbl>    <dbl>
+   <chr>  <int> <int> <int> <int> <dbl> <dbl> <dbl>    <dbl>
  1 EWR     2013     1     1     1  39.0  26.1  59.4      270
  2 EWR     2013     1     1     2  39.0  27.0  61.6      250
  3 EWR     2013     1     1     3  39.0  28.0  64.4      240
@@ -2267,8 +2220,8 @@ Ou encore (figure \ref{fig:linetypecolor}) :
 \caption{Températures horaires des 3 aéroports de New York entre le 1er et le 15 janvier 2013.}\label{fig:linetypecolor}
 \end{figure}
 
-\hypertarget{a-quel-endroit-placer-aes-et-les-arguments-color-size-etc.}{%
-\subsubsection{\texorpdfstring{À quel endroit placer \texttt{aes()} et les arguments \texttt{color}, \texttt{size}, etc. ?}{À quel endroit placer aes() et les arguments color, size, etc. ?}}\label{a-quel-endroit-placer-aes-et-les-arguments-color-size-etc.}}
+\hypertarget{uxe0-quel-endroit-placer-aes-et-les-arguments-color-size-etc.}{%
+\subsubsection{\texorpdfstring{À quel endroit placer \texttt{aes()} et les arguments \texttt{color}, \texttt{size}, etc. ?}{À quel endroit placer aes() et les arguments color, size, etc. ?}}\label{uxe0-quel-endroit-placer-aes-et-les-arguments-color-size-etc.}}
 
 Jusqu'à maintenant, pour spécifier les associations entre certaines variables et les caractéristiques esthétiques d'un graphique, nous avons été amenés à utiliser la fonction \texttt{aes()} à 2 endroits distincts :
 
@@ -2376,7 +2329,7 @@ En l'occurence, si le même réglage est spécifié dans la fonction \texttt{ggp
 
 Il est ainsi possible de spécifier des éléments esthétiques qui s'appliqueront à toutes les couches d'un graphique, et d'autres qui ne s'appliqueront qu'à une couche spécifique, qu'à un objet géométrique particulier.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{histogram}{%
 \subsection{Les histogrammes}\label{histogram}}
@@ -2579,7 +2532,7 @@ Il est important que toute la gamme des valeurs de \texttt{temp} soit couverte p
 
 On voit ici que les températures varient de 10.94 à 100.04 degrés Farenheit. Les classes que nous avons définies couvrent une plage de températures plus large (de 10 à 105). Toutes les données sont donc bien intégrées à l'histogramme.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{facets}{%
 \subsection{\texorpdfstring{Les \texttt{facet}s}{Les facets}}\label{facets}}
@@ -2684,13 +2637,13 @@ Examinez la figure \ref{fig:grid}.
   La variabilité des températures est-elle plus importante entre les aéroports, entre les mois, ou au sein des mois ? Expliquez votre réflexion.
 \end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{les-boites-a-moustaches-ou-boxplots}{%
-\subsection{Les boîtes à moustaches ou boxplots}\label{les-boites-a-moustaches-ou-boxplots}}
+\hypertarget{les-bouxeetes-uxe0-moustaches-ou-boxplots}{%
+\subsection{Les boîtes à moustaches ou boxplots}\label{les-bouxeetes-uxe0-moustaches-ou-boxplots}}
 
-\hypertarget{creation-de-boxplots-et-informations-apportees}{%
-\subsubsection{Création de boxplots et informations apportées}\label{creation-de-boxplots-et-informations-apportees}}
+\hypertarget{cruxe9ation-de-boxplots-et-informations-apportuxe9es}{%
+\subsubsection{Création de boxplots et informations apportées}\label{cruxe9ation-de-boxplots-et-informations-apportuxe9es}}
 
 Commençons par créer un boxplot pour comparer les températures mensuelles comme nous l'avons fait plus haut avec des histogrammes :
 
@@ -2754,8 +2707,8 @@ Les différents éléments d'un boxplot, sont les suivants :
   Les moustaches correspondent à des valeurs qui sont en dessous du premier quartile (pour la moustache du bas) et au-dessus du troisième quartile (pour la moustache du haut). La règle utilisée dans R est que ces moustaches s'étendent jusqu'aux valeurs minimales et maximales de l'échantillon, mais elles ne peuvent en aucun cas s'étendre au-delà de 1,5 fois la hauteur de la boîte (1,5 fois l'IQR) vers le haut et le bas. Si des points apparaissent au-delà des moustaches (vers le haut ou le bas), ces points sont appelés ``outliers''. Ce sont des points qui s'éloignent du centre de la distribution de façon importante puisqu'ils sont au-delà de 1,5 fois l'IQR de part et d'autre du premier ou du troisième quartile. Il peut s'agir d'anomalies de mesures, d'anomalies de saisie des données, ou tout simplement, d'enregistrements tout à fait valides mais extrêmes. J'attire votre attention sur le fait que la définition de ces outliers est relativement arbitraire. Nous pourrions faire le choix d'étendre les moustaches jusqu'à 1,8 fois l'IQR (ou 2, ou 2,5). Nous observerions alors beaucoup moins d'outliers. D'une façons générale, la longueur des moustaches renseigne sur la variabilité des données en dehors de la zone centrale. Plus elles sont longues, plus la variabilité est importante. Et dans tous les cas, l'examen attentif des outliers est utile car il nous permet d'en apprendre plus sur le comportement extrême de certaines observations.
 \end{itemize}
 
-\hypertarget{lintervalle-de-confiance-a-95-de-la-mediane}{%
-\subsubsection{L'intervalle de confiance à 95\% de la médiane}\label{lintervalle-de-confiance-a-95-de-la-mediane}}
+\hypertarget{lintervalle-de-confiance-uxe0-95-de-la-muxe9diane}{%
+\subsubsection{L'intervalle de confiance à 95\% de la médiane}\label{lintervalle-de-confiance-uxe0-95-de-la-muxe9diane}}
 
 On peut également aujouter une encoche autour de la valeur de médiane en ajoutant l'argument \texttt{notch\ =\ TRUE} à la fonction \texttt{geom\_boxplot()} :
 
@@ -2780,8 +2733,8 @@ On peut également aujouter une encoche autour de la valeur de médiane en ajout
 Comme l'indique la légende de la figure \ref{fig:notchedboxplot}, cette encoche correspond à l'étendue de l'intervalle de confiance à 95\% de la médiane. Pour chaque échantillon, nous espérons que la médiane calculée soit le reflet fidèle de la vraie valeur de médiane de la population. Mais il sera toujours impossible d'en avoir la certitude absolue. Le mieux que l'on puisse faire, c'est quantifier l'incertitude. L'intervalle de confiance nous indique qu'il y a de bonnes chances que la vraie valeur de médiane de la population générale (qui restera à jamais inconnue) se trouve dans cet intervalle. Ici, les encoches sont très étroites car les données sont abondantes. Il y a donc peu d'incertitude, ce qui est une bonne chose.\\
 Nous reviendrons sur cette notion importante plus tard dans le cursus, car ce type de graphique nous permettra d'anticiper sur les résultats des tests de comparaison de moyennes.
 
-\hypertarget{une-autre-facon-dexaminer-des-distributions}{%
-\subsubsection{Une autre façon d'examiner des distributions}\label{une-autre-facon-dexaminer-des-distributions}}
+\hypertarget{une-autre-fauxe7on-dexaminer-des-distributions}{%
+\subsubsection{Une autre façon d'examiner des distributions}\label{une-autre-fauxe7on-dexaminer-des-distributions}}
 
 Dernière chose concernant les boxplots : il s'agit d'une représentation graphique très proche de l'histogramme. Pour vous en convaincre, je représente à la figure \ref{fig:compboxplot} ci-dessous uniquement les températures du mois de novembre, avec 3 types d'objets géométriques différents : un histogramme, un boxplot, et un nuage de points.
 
@@ -2803,10 +2756,10 @@ Le nuage de points affiche toutes les données. C'est donc lui le plus complet m
 
 Les boîtes à moustaches permettent donc de comparer et contraster la distribution d'\textbf{une variable quantitative} pour plusieurs niveaux d'\textbf{une variable catégorielle}. On peut voir où la médiane tombe dans les différents groupes en observant la position de la ligne centrale dans la boîte. Pour avoir une idée de la dispersion de la variable au sein de chaque groupe, regardez à la fois la hauteur de la boîte et la longueur des moustaches. Quand les moustaches s'étendent loin de la boîte mais que la boîte est petite, cela signifie que la variabilité des valeurs proches du centre de la distribution est beaucoup plus faible que la variabilité des valeurs extrêmes. Enfin, les valeurs extrêmes ou aberrantes sont encore plus faciles à détecter avec une boîte à moustaches qu'avec un histogramme.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{les-diagrammes-batons}{%
-\subsection{Les diagrammes bâtons}\label{les-diagrammes-batons}}
+\hypertarget{les-diagrammes-buxe2tons}{%
+\subsection{Les diagrammes bâtons}\label{les-diagrammes-buxe2tons}}
 
 Comme nous venons de le voir, les histogrammes et les boîtes à moustaches permettent de visualiser la distribution d'une \textbf{variable numérique continue}. Nous aurons aussi souvent besoin de visualiser la distribution d'une \textbf{variable catégorielle}. C'est une tâche plus simple qui consiste à compter combien d'éléments tombent dans chacune des catégories de la variable catégorielle. Le meilleur moyen de visualiser de telles données de comptage (\emph{aka} fréquences) est de réaliser un diagramme bâtons, autrement appelé \textbf{barplot} ou \textbf{barchart}.
 
@@ -2845,8 +2798,8 @@ Une difficulté, toutefois, concerne la façon dont les données sont présenté
 2 orange      2
 \end{verbatim}
 
-\hypertarget{representation-graphique-avec-geom_bar-et-geom_col}{%
-\subsubsection{\texorpdfstring{Représentation graphique avec \texttt{geom\_bar} et \texttt{geom\_col}}{Représentation graphique avec geom\_bar et geom\_col}}\label{representation-graphique-avec-geom_bar-et-geom_col}}
+\hypertarget{repruxe9sentation-graphique-avec-geom_bar-et-geom_col}{%
+\subsubsection{\texorpdfstring{Représentation graphique avec \texttt{geom\_bar} et \texttt{geom\_col}}{Représentation graphique avec geom\_bar et geom\_col}}\label{repruxe9sentation-graphique-avec-geom_bar-et-geom_col}}
 
 Pour visualiser les données non pré-comptées, on utilise \texttt{geom\_bar()} :
 
@@ -2956,6 +2909,15 @@ Si nous souhaitons connaître le nombre de vols précis de chaque compagnie aér
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(carrier) }\OperatorTok{%>%}\StringTok{        }\CommentTok{# On groupe les données par compagnie, puis...}
 \StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{nombre =} \KeywordTok{n}\NormalTok{()) }\OperatorTok{%>%}\StringTok{  }\CommentTok{# On calcule le nb de vols par Cie, puis ...}
 \StringTok{  }\KeywordTok{arrange}\NormalTok{(}\KeywordTok{desc}\NormalTok{(nombre))        }\CommentTok{# On trie par nb de vols décroissants ...}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{carrier_table                  }\CommentTok{# Enfin, on affiche la nouvelle table}
 \end{Highlighting}
 \end{Shaded}
@@ -2995,7 +2957,7 @@ Ici, la table a été triée par nombres de vols décroissants. Mais attention, 
 Levels: 9E AA AS B6 DL EV F9 FL HA MQ OO UA US VX WN YV
 \end{verbatim}
 
-Le premier niveau est toujours \texttt{9E}, puis \texttt{AA}, puis \texttt{AS}, et non l'ordre du tableau nouvellement créé (\texttt{UA}, puis \texttt{B6}, puis \texttt{EV}\ldots{}) car les niveaux sont toujours triés par ordre alphabétique. La conséquence est que faire un barplot avec ces données et la fonction \texttt{geom\_col()} ne permet pas d'ordonner les catégories correctement :
+Le premier niveau est toujours \texttt{9E}, puis \texttt{AA}, puis \texttt{AS}, et non l'ordre du tableau nouvellement créé (\texttt{UA}, puis \texttt{B6}, puis \texttt{EV}\ldots) car les niveaux sont toujours triés par ordre alphabétique. La conséquence est que faire un barplot avec ces données et la fonction \texttt{geom\_col()} ne permet pas d'ordonner les catégories correctement :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3061,8 +3023,8 @@ Vous voyez donc que selon le type de données dont vous disposez (soit un tablea
   Quel est le nom de la compagnie pour laquelle le plus petit nombre de vols ont quitté New York en 2013 (je veux connaître son nom, pas juste son code) ? Où se trouve cette information ?
 \end{enumerate}
 
-\hypertarget{eviter-a-tout-prix-les-diagrammes-circulaires}{%
-\subsubsection{Éviter à tout prix les diagrammes circulaires}\label{eviter-a-tout-prix-les-diagrammes-circulaires}}
+\hypertarget{uxe9viter-uxe0-tout-prix-les-diagrammes-circulaires}{%
+\subsubsection{Éviter à tout prix les diagrammes circulaires}\label{uxe9viter-uxe0-tout-prix-les-diagrammes-circulaires}}
 
 À mon grand désarroi, l'un des graphiques les plus utilisé pour représenter la distribution d'une variable catégorielle est le diagramme circulaire (ou diagramme camembert, piechart en anglais). C'est presque toujours la plus mauvaise visualisation possible. Je vous demande de l'éviter à tout prix. Notre cerveau n'est en effet pas correctement équipé pour comparer des angles. Ainsi, par exemple, nous avons naturellement tendance à surestimer les angles supérieurs à 90º, et à sous-estimer les angles inférieurs à 90º. En d'autres termes, il est difficile pour les humains de comparer des grandeurs sur des diagrammes circulaires.
 
@@ -3080,7 +3042,7 @@ Vous voyez donc que selon le type de données dont vous disposez (soit un tablea
 \begin{itemize}
 \tightlist
 \item
-  Comparez les compagnies ExpressJet Airlines (\texttt{EV}) et US Airways (\texttt{US}). De combien de fois la part de \texttt{EV} est-elle supérieure à celle d'\texttt{US} ? (2 fois, 3 fois, 1.2 fois ?\ldots{})
+  Comparez les compagnies ExpressJet Airlines (\texttt{EV}) et US Airways (\texttt{US}). De combien de fois la part de \texttt{EV} est-elle supérieure à celle d'\texttt{US} ? (2 fois, 3 fois, 1.2 fois ?\ldots)
 \item
   Quelle est la troisième compagnie aérienne la plus importante en terme de nombre de vols au départ de New York en 2013 ?
 \item
@@ -3089,8 +3051,8 @@ Vous voyez donc que selon le type de données dont vous disposez (soit un tablea
 
 Il est difficile (voir impossible) de répondre précisément à ces questions avec le diagramme circulaire de la figure \ref{fig:piechart}, alors qu'il est très simple d'obtenir des réponses précises avec un diagramme bâtons tel que présenté à la figure \ref{fig:bpcarriersortedcol} (vérifiez-le !).
 
-\hypertarget{comparer-2-variables-categorielles-avec-un-diagramme-baton}{%
-\subsubsection{Comparer 2 variables catégorielles avec un diagramme bâton}\label{comparer-2-variables-categorielles-avec-un-diagramme-baton}}
+\hypertarget{comparer-2-variables-catuxe9gorielles-avec-un-diagramme-buxe2ton}{%
+\subsubsection{Comparer 2 variables catégorielles avec un diagramme bâton}\label{comparer-2-variables-catuxe9gorielles-avec-un-diagramme-buxe2ton}}
 
 Il y a généralement 3 façons de procéder pour comparer la distribution de 2 variables catégorielles avec un diagramme bâtons :
 
@@ -3107,8 +3069,8 @@ Il y a généralement 3 façons de procéder pour comparer la distribution de 2 
 
 Supposons par exemple que nous devions visualiser le nombre de vols de chaque compagnie aérienne, au départ de chacun des 3 aéroports de New York : John F. Kennedy (\texttt{JFK}), Newark (\texttt{EWR}) et La Guardia (\texttt{LGA}). Voyons comment procéder avec chacune des 3 méthodes énoncées ci-dessus.
 
-\hypertarget{graphique-empile}{%
-\paragraph{Graphique empilé}\label{graphique-empile}}
+\hypertarget{graphique-empiluxe9}{%
+\paragraph{Graphique empilé}\label{graphique-empiluxe9}}
 
 La méthode la plus simple est celle du graphique empilé :
 
@@ -3152,8 +3114,8 @@ Notez que contrairement à \texttt{fill}, cette couleur de countour est un param
 
 Bien que ces graphiques empilés soient très simples à réaliser, ils sont parfois difficiles à lire. En particulier, il n'est pas toujours aisé de comparer les hauteurs des différentes couleurs (qui correspondent ici aux nombres de vols issus de chaque aéroport) entre barres différentes (qui correspondent ici aux compagnies aériennes).
 
-\hypertarget{graphique-juxtapose}{%
-\paragraph{Graphique juxtaposé}\label{graphique-juxtapose}}
+\hypertarget{graphique-juxtaposuxe9}{%
+\paragraph{Graphique juxtaposé}\label{graphique-juxtaposuxe9}}
 
 Une variation sur le même thème consiste, non plus à empiler les barres de couleur les unes sur les autres, mais à les juxtaposer :
 
@@ -3201,10 +3163,10 @@ La meilleure alternative est probablement l'utilisation de \texttt{facet}s que n
 
 Ici, chaque graphique permet de comparer les compagnies aériennes au sein de l'un des aéroports de New York, et puisque l'ordre des compagnies aériennes est le même sur l'axe des \texttt{x} des 3 graphiques, une lecture verticale permet de comparer aisément le nombre de vols qu'une compagnie donnée a affrété dans chacun des 3 aéroports de New York.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{de-lexploration-a-lexposition}{%
-\subsection{De l'exploration à l'exposition}\label{de-lexploration-a-lexposition}}
+\hypertarget{de-lexploration-uxe0-lexposition}{%
+\subsection{De l'exploration à l'exposition}\label{de-lexploration-uxe0-lexposition}}
 
 Vous savez maintenant comment produire une grande variété de graphiques, permettant d'explorer vos données, de visualiser le comportement d'une ou plusieurs variables, et de mettre en évidence des tendances, des relations entre variables numériques et/ou catégorielles. Outre les objets géométriques décrits jusqu'ici, \texttt{ggplot2} contient de nombreuses possibilités supplémentaires pour créer des graphiques parlants et originaux. Je ne peux donc que vous encourager à explorer par vous même les autres possibilités de ce package.
 Lorsque vous produisez un graphique parlant et permettant de véhiculer un message clair, vous devez ensuite rendre vos graphiques plus présentables afin de les intégrer dans un rapport ou une présentation. Cette section vous permettra de vous familiariser avec quelques fonctions permettant d'annoter correctement vos graphiques et d'en modifier les légendes si nécessaire.
@@ -3274,8 +3236,8 @@ Nous pouvons ajouter sur ce graphique les éléments précisés plus haut en ajo
 
 À partir de maintenant, vous devriez systématiquement légender les axes de vos graphiques en n'oubliant pas de préciser les unités, pour tous les graphiques que vous intégrez dans vos rapports, compte-rendus, mémoires, etc.
 
-\hypertarget{les-echelles}{%
-\subsubsection{Les échelles}\label{les-echelles}}
+\hypertarget{les-uxe9chelles}{%
+\subsubsection{Les échelles}\label{les-uxe9chelles}}
 
 Tous les détails des graphiques que vous produisez peuvent être édités. C'est notamment le cas des échelles. Qu'il s'agisse de modifier l'étendue des axes, la densité du quadrillage, la position des tirets sur les axes, le nom des catégories figurant sur les axes ou dans les légendes ou encore les couleurs utilisées pour différentes catégories d'objets géométriques, tout est possible dans \texttt{ggplot2}.
 
@@ -3825,8 +3787,8 @@ Enfin, pour la figure \ref{fig:varcolorviridis}, c'est une variable catégoriell
 
 Si vous ne voulez pas avoir de message d'erreur, attention donc, à choisir la fonction \texttt{scale\_XXX\_XXX()} appropriée. Pour cela, aidez-vous de l'aide que RStudio vous apporte en tapant les premières lettres de la fonction et en parcourant la liste des fonctions proposées dans le menu déroullant qui apparaît sous votre curseur.
 
-\hypertarget{les-themes}{%
-\subsubsection{Les thèmes}\label{les-themes}}
+\hypertarget{les-thuxe8mes}{%
+\subsubsection{Les thèmes}\label{les-thuxe8mes}}
 
 L'apparence de tout ce qui ne concerne pas directement les données d'un graphique est sous le contrôle d'un thème. Les thèmes contrôlent l'apparence générale du graphique : quelles polices et tailles de caractères sont utilisées, quel sera l'arrière plan du graphique, faut-il intégrer un quadrillage sous le graphique, et si oui, quelles doivent être ses caractéristiques ?
 
@@ -3959,7 +3921,7 @@ Le choix d'un thème et d'une police adaptés doivent vous permettre de faire de
 
 Vous devriez donc maintenant être bien armés pour produire 95\% des graphiques dont vous aurez besoin tout au long de votre cursus universitaire. Toutefois, un point important a pour l'instant été omis : l'ajout de barres d'erreurs sur vos graphiques. Nous verrons comment faire cela un peu plus tard, après avoir appris à manipuler efficacement des tableaux de données avec les packages \texttt{tidyr} et \texttt{dplyr}.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{exercices-6}{%
 \subsection{Exercices}\label{exercices-6}}
@@ -4017,7 +3979,7 @@ Dans ce chapitre, nous allons aller plus loin en présentant le concept de ``tid
 
 Jusqu'à maintenant, vous avez utilisé des données qui étaient déjà dans ce format (c'est le cas des données contenues dans \texttt{flights} ou dans \texttt{diamonds} par exemple). Pourtant, la plupart du temps, les données que vous manipulerez dans R seront importées depuis un tableur dans lequel vous ou vos collaborateurs en aurez fait la saisie. S'assurer que les données importées manuellement dans R sont correctement ``nettoyées'' et mises en forme de ``tidy data'' est indispensable pour éviter les problèmes lors de la réalisation de graphiques (voir chapitre \ref{viz}) comme lors de la manipulation des données pour en tirer de l'information statistique pertinente (ce que nous verrons au chapitre \ref{wrangling}).
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{prerek}{%
 \subsection{Prérequis}\label{prerek}}
@@ -4109,7 +4071,7 @@ Vous pouvez télécharger manuellement les 4 jeux de données dont nous aurons b
 
 Une fois téléchargés, les données contenues dans ces 4 fichiers peuvent être importées dans RStudio en cliquant sur \texttt{File\ \textgreater{}\ Open\ File...}, puis en sélectionnant un à un chacun des fichiers. Pour chaque fichier un nouvel objet doit apparaître dans votre environnement de travail (onglet \texttt{Environnement}, dans le panneau en haut à droite de RStudio). L'inconvénient de cette méthode est que les fichiers d'aide de ces jeux de données ne seront pas disponibles dans RStudio. Vous pouvez toutefois en consulter une version brute (non mise en forme) \href{https://github.com/rstudio/EDAWR/tree/master/man}{en cliquant ici}.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{cest-quoi-des-tidy-data}{%
 \subsection{C'est quoi des ``tidy data'' ?}\label{cest-quoi-des-tidy-data}}
@@ -4184,12 +4146,12 @@ Autrement dit, les variables peuvent être visualisées de la façon suivante :
 
 Donc même si nous disposons ici d'un tableau rectangulaire classique, nous sommes bien loin du format des données rangées.
 
-\hypertarget{la-fonction-gather}{%
-\subsubsection{\texorpdfstring{La fonction \texttt{gather()}}{La fonction gather()}}\label{la-fonction-gather}}
+\hypertarget{la-fonction-pivot_longer}{%
+\subsubsection{\texorpdfstring{La fonction \texttt{pivot\_longer()}}{La fonction pivot\_longer()}}\label{la-fonction-pivot_longer}}
 
-Afin de transformer les données non rangées du tableau \texttt{cases} en données rangées, nous allons utiliser la fonction \texttt{gather()} du package \texttt{tidyr}. Avant d'aller plus loin, essayez d'imaginer à quoi le tableau rangé devrait ressembler.
+Afin de transformer les données non rangées du tableau \texttt{cases} en données rangées, nous allons utiliser la fonction \texttt{pivot\_longer()} du package \texttt{tidyr}. Avant d'aller plus loin, essayez d'imaginer à quoi le tableau rangé devrait ressembler.
 
-La fonction \texttt{gather()} prend 4 arguments :
+La fonction \texttt{pivot\_longer()} prend 4 arguments :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4197,37 +4159,45 @@ La fonction \texttt{gather()} prend 4 arguments :
 \item
   \texttt{data} : le nom du tableau de données que l'on souhaite ``ranger''.
 \item
-  \texttt{key} : le nom d'une nouvelle variable qui contiendra les en-têtes des colonnes qui constituent la seconde variable. Ici, nous nommerons cette seconde variable \texttt{year} car elle devra contenir les années 2011, 2012 et 2013.
+  \texttt{cols} : La liste des colonnes du tableau initial que l'on souhaite rassembler en 2 nouvelles variables. Ici, les colonnes 2, 3 et 4 (on pourra les noter \texttt{2:4} ou, en utilisant leur nom, \texttt{"2011":"2013"}).
 \item
-  \texttt{value} : le nom d'une nouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Nous appelerons cette variables \texttt{n\_cases} car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc).
+  \texttt{names\_to} : le nom d'une nouvelle variable qui contiendra les en-têtes des colonnes qui constituent la seconde variable. Ici, nous nommerons cette seconde variable \texttt{year} car elle devra contenir les années 2011, 2012 et 2013.
 \item
-  la liste des colonnes du tableau initial qui doivent être rassemblées (``gather'' signifie rassembler en anglais), ici, les colonnes 2, 3 et 4 (on pourra les noter \texttt{2:4} ou, en utilisant leur nom, \texttt{"2011":"2013"}).
+  \texttt{values\_to} : le nom d'une nouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Nous appelerons cette variables \texttt{n\_cases} car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc).
 \end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{gather}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases, }\DataTypeTok{key =}\NormalTok{ year, }\DataTypeTok{value =}\NormalTok{ n_cases, }\StringTok{`}\DataTypeTok{2011}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2013}\StringTok{`}\NormalTok{)}
+\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases, }
+             \DataTypeTok{cols =} \StringTok{`}\DataTypeTok{2011}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2013}\StringTok{`}\NormalTok{, }
+             \DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{, }
+             \DataTypeTok{values_to =} \StringTok{"n_cases"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-  country year n_cases
-1      FR 2011    7000
-2      DE 2011    5800
-3      US 2011   15000
-4      FR 2012    6900
-5      DE 2012    6000
-6      US 2012   14000
-7      FR 2013    7000
-8      DE 2013    6200
-9      US 2013   13000
+# A tibble: 9 x 3
+  country year  n_cases
+  <chr>   <chr>   <dbl>
+1 FR      2011     7000
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
+5 DE      2012     6000
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
+9 US      2013    13000
 \end{verbatim}
 
 Nous avons bien transformé le tableau de départ en un ``tableau rangé'' : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d'habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{cases_tidy <-}\StringTok{ }\KeywordTok{gather}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases, }\DataTypeTok{key =}\NormalTok{ year, }\DataTypeTok{value =}\NormalTok{ n_cases, }\StringTok{`}\DataTypeTok{2011}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2013}\StringTok{`}\NormalTok{)}
+\NormalTok{cases_tidy <-}\StringTok{ }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases, }
+                           \DataTypeTok{cols =} \StringTok{`}\DataTypeTok{2011}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2013}\StringTok{`}\NormalTok{, }
+                           \DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{, }
+                           \DataTypeTok{values_to =} \StringTok{"n_cases"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4258,7 +4228,7 @@ Il nous est maintenant plus facile de manipuler ces données pour en tirer de l'
 
 On constate ici qu'entre 2011 et 2013, le nombre de cas de tuberculose a légèrement augmenté en Allemagne, est resté stable en France, et a diminué aux États-Unis.
 
-Notez ici que la variable \texttt{year} de notre nouveau tableau est considérée comme une variable catégorielle et non comme une variable numérique. On peut le voir en transformant notre tableau en tibble avec \texttt{as\_tibble()}, ou en utilisant la fonction \texttt{str()} déjà décrite plus tôt :
+Notez ici que la variable \texttt{year} de notre nouveau tableau est considérée comme une variable de type ``chaîne de caractères'' et non comme une variable numérique. On peut le voir en affichant notre tableau en tapant son nom, ou en utilisant la fonction \texttt{str()} déjà décrite plus tôt :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4267,44 +4237,46 @@ Notez ici que la variable \texttt{year} de notre nouveau tableau est considéré
 \end{Shaded}
 
 \begin{verbatim}
-'data.frame':   9 obs. of  3 variables:
- $ country: chr  "FR" "DE" "US" "FR" ...
- $ year   : chr  "2011" "2011" "2011" "2012" ...
- $ n_cases: num  7000 5800 15000 6900 6000 14000 7000 6200 13000
+tibble [9 x 3] (S3: tbl_df/tbl/data.frame)
+ $ country: chr [1:9] "FR" "FR" "FR" "DE" ...
+ $ year   : chr [1:9] "2011" "2012" "2013" "2011" ...
+ $ n_cases: num [1:9] 7000 6900 7000 5800 6000 6200 15000 14000 13000
 \end{verbatim}
 
-C'est le comportement par défaut de la fonction \texttt{gather()} : les anciens titres de colonnes sont convertis en chaînes de caractères. Il y a 2 alternatives possibles, que l'on peut spécifier grâce à 2 arguments supplémentaires de la fonction \texttt{gather()} :
+C'est le comportement par défaut de la fonction \texttt{pivot\_longer()} : les anciens titres de colonnes sont convertis en chaînes de caractères. Si ce comportement n'est pas souhaitable, il y a 2 alternatives possibles :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \texttt{convert\ =\ TRUE} : permet de transformer automatiquement la variable \texttt{key} en variable numérique ou logique (vrais/faux) selon le type de données qu'elle contient
+  utiliser les arguments \texttt{names\_transform} et/ou \texttt{values\_transform} de la fonction \texttt{pivot\_longer()}. Cela permet de spécifier comment transformer les variables nouvellement créées au moment de leur création.
 \item
-  \texttt{factor\_key\ =\ TRUE} : permet de transformer automatiquement la variable \texttt{key} en facteur. Les niveaux du nouveau facteur seront ordonnés dans le même sens que les colonnes du tableau de départ.
+  utiliser les fonctions \texttt{mutate()} et \texttt{as.numeric()} ou \texttt{as.integer()} après avoir modifié le tableau de départ avec \texttt{pivot\_longer()}. Cette façon de faire sera décrite dans la partie \ref{mutate}.
 \end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# On commence par transformer `cases` en tibble}
-\NormalTok{cases <-}\StringTok{ }\KeywordTok{as_tibble}\NormalTok{(cases)}
-\NormalTok{cases}
+\CommentTok{# On commence par afficher `cases`}
+\NormalTok{cases }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-# A tibble: 3 x 4
-  country `2011` `2012` `2013`
-  <chr>    <dbl>  <dbl>  <dbl>
-1 FR        7000   6900   7000
-2 DE        5800   6000   6200
-3 US       15000  14000  13000
+  country  2011  2012  2013
+1      FR  7000  6900  7000
+2      DE  5800  6000  6200
+3      US 15000 14000 13000
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# On utilise ensuite gather avec l'argument convert = TRUE}
-\KeywordTok{gather}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases, }\DataTypeTok{key =}\NormalTok{ year, }\DataTypeTok{value =}\NormalTok{ n_cases, }\StringTok{`}\DataTypeTok{2011}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2013}\StringTok{`}\NormalTok{, }\DataTypeTok{convert =} \OtherTok{TRUE}\NormalTok{)}
+\CommentTok{# On utilise ensuite pivot_longer avec l'argument }
+\CommentTok{# names_transform pour transformer year en facteur}
+\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases, }
+             \DataTypeTok{cols =} \StringTok{`}\DataTypeTok{2011}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2013}\StringTok{`}\NormalTok{, }
+             \DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{, }
+             \DataTypeTok{values_to =} \StringTok{"n_cases"}\NormalTok{,}
+             \DataTypeTok{names_transform =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{year =}\NormalTok{ as.integer))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4313,22 +4285,27 @@ C'est le comportement par défaut de la fonction \texttt{gather()} : les anciens
   country  year n_cases
   <chr>   <int>   <dbl>
 1 FR       2011    7000
-2 DE       2011    5800
-3 US       2011   15000
-4 FR       2012    6900
+2 FR       2012    6900
+3 FR       2013    7000
+4 DE       2011    5800
 5 DE       2012    6000
-6 US       2012   14000
-7 FR       2013    7000
-8 DE       2013    6200
+6 DE       2013    6200
+7 US       2011   15000
+8 US       2012   14000
 9 US       2013   13000
 \end{verbatim}
 
-On voit ici que la variable \texttt{year} est maintenant une colonne numérique (\texttt{\textless{}int\textgreater{}} : nombres entiers), et non plus une variable de type ``character''.
+On voit ici que la variable \texttt{year} est maintenant une colonne numérique (\texttt{\textless{}int\textgreater{}} : nombres entiers), et non plus une variable de type ``character''. En utilisant \texttt{as.numeric()} au lieu de \texttt{as.integer()}, on aurait transformé la variable \texttt{year} en \texttt{\textless{}dbl\textgreater{}} (nombre réel au lieu de nombre entier), ce qui ici, reviendrait exactement au même.
+
+De la même façon, on peut avoir besoin de presenter la colonne \texttt{year} sous la forme d'un facteur :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Et en utilisant factor_key = TRUE...}
-\KeywordTok{gather}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases, }\DataTypeTok{key =}\NormalTok{ year, }\DataTypeTok{value =}\NormalTok{ n_cases, }\StringTok{`}\DataTypeTok{2011}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2013}\StringTok{`}\NormalTok{, }\DataTypeTok{factor_key =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases, }
+             \DataTypeTok{cols =} \StringTok{`}\DataTypeTok{2011}\StringTok{`}\OperatorTok{:}\StringTok{`}\DataTypeTok{2013}\StringTok{`}\NormalTok{, }
+             \DataTypeTok{names_to =} \StringTok{"year"}\NormalTok{, }
+             \DataTypeTok{values_to =} \StringTok{"n_cases"}\NormalTok{,}
+             \DataTypeTok{names_transform =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{year =}\NormalTok{ as.factor))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4337,22 +4314,20 @@ On voit ici que la variable \texttt{year} est maintenant une colonne numérique 
   country year  n_cases
   <chr>   <fct>   <dbl>
 1 FR      2011     7000
-2 DE      2011     5800
-3 US      2011    15000
-4 FR      2012     6900
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
 5 DE      2012     6000
-6 US      2012    14000
-7 FR      2013     7000
-8 DE      2013     6200
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
 9 US      2013    13000
 \end{verbatim}
 
-On obtient cette fois une variable \texttt{year} sous la forme d'un facteur.
-
 \hypertarget{spread}{%
-\subsubsection{\texorpdfstring{La fonction \texttt{spread()}}{La fonction spread()}}\label{spread}}
+\subsubsection{\texorpdfstring{La fonction \texttt{pivot\_wider()}}{La fonction pivot\_wider()}}\label{spread}}
 
-La fonction \texttt{spread()} permet de réaliser l'opération inverse de \texttt{gather()}. Elle ``disperse'' une unique colonne catégorielle en plusieurs colonnes.
+La fonction \texttt{pivot\_wider()} permet de réaliser l'opération inverse de \texttt{pivot\_longer()}. Elle ``disperse'' une unique colonne catégorielle en plusieurs colonnes, le tableau obtenue est donc plus large (``wider'') que le tableau de départ.
 
 Reprenons par exemple notre tableau \texttt{cases\_tidy} :
 
@@ -4363,42 +4338,48 @@ Reprenons par exemple notre tableau \texttt{cases\_tidy} :
 \end{Shaded}
 
 \begin{verbatim}
-  country year n_cases
-1      FR 2011    7000
-2      DE 2011    5800
-3      US 2011   15000
-4      FR 2012    6900
-5      DE 2012    6000
-6      US 2012   14000
-7      FR 2013    7000
-8      DE 2013    6200
-9      US 2013   13000
+# A tibble: 9 x 3
+  country year  n_cases
+  <chr>   <chr>   <dbl>
+1 FR      2011     7000
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
+5 DE      2012     6000
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
+9 US      2013    13000
 \end{verbatim}
 
-La fonction \texttt{spread()} prend 3 arguments :
+La fonction \texttt{pivot\_wider()} prend 3 arguments :
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Le nom du tableau contenant les données (ici, \texttt{cases\_tidy})
+  Le nom du tableau contenant les données (ici, \texttt{cases\_tidy}).
 \item
-  \texttt{key} : le nom de la variable contenant les catégories qui devront être transformées en colonnes (ici, \texttt{year})
+  \texttt{names\_from} : le nom de la variable contenant les catégories qui devront être transformées en colonnes (ici, \texttt{year}).
 \item
-  \texttt{value} : le nom de la variable contenant les valeurs qui devront remplir les nouvelles colonnes (ici, \texttt{n\_cases})
+  \texttt{values\_from} : le nom de la variable contenant les valeurs qui devront remplir les nouvelles colonnes (ici, \texttt{n\_cases}).
 \end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{spread}\NormalTok{(cases_tidy, }\DataTypeTok{key =}\NormalTok{ year, }\DataTypeTok{value =}\NormalTok{ n_cases)}
+\KeywordTok{pivot_wider}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ cases_tidy, }
+            \DataTypeTok{names_from =}\NormalTok{ year, }
+            \DataTypeTok{values_from =}\NormalTok{ n_cases)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-  country  2011  2012  2013
-1      DE  5800  6000  6200
-2      FR  7000  6900  7000
-3      US 15000 14000 13000
+# A tibble: 3 x 4
+  country `2011` `2012` `2013`
+  <chr>    <dbl>  <dbl>  <dbl>
+1 FR        7000   6900   7000
+2 DE        5800   6000   6200
+3 US       15000  14000  13000
 \end{verbatim}
 
 Cette fonction sera donc rarement utilisée puisqu'elle ne permet pas d'obtenir des ``tableaux rangés''. Toutefois, elle pourra vous être utile pour présenter des résultats sous forme synthétique. Prenons un exemple avec le jeu de données \texttt{flights}. Imaginons que vous deviez créer un tableau \texttt{n\_vols} présentant, pour chacun des 3 aéroports de New York, le nombre de vols affrétés par chaque compagnie aérienne en 2013. Une possibilité serait de taper ceci :
@@ -4430,11 +4411,13 @@ Cette fonction sera donc rarement utilisée puisqu'elle ne permet pas d'obtenir 
 # ... with 25 more rows
 \end{verbatim}
 
-Les commandes permettant de produire ce tableau seront expliquées dans le chapitre \ref{wrangling}. On peut cependant constater ici que ce tableau contient 35 lignes et 3 colonnes. Il s'agit bien d'un ``tableau rangé'' parfaitement adapté pour faire des statistiques et des visualisation graphiques, mais son format n'est pas terrible si notre objectif est de le faire figurer dans un rapport. La solution : utiliser \texttt{spread()} :
+Les commandes permettant de produire ce tableau seront expliquées dans le chapitre \ref{wrangling}. On peut cependant constater ici que ce tableau contient 35 lignes et 3 colonnes. Il s'agit bien d'un ``tableau rangé'' parfaitement adapté pour faire des statistiques et des visualisations graphiques, mais son format n'est pas terrible si notre objectif est de le faire figurer dans un rapport. La solution : utiliser \texttt{pivot\_wider()} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{spread}\NormalTok{(n_vols, }\DataTypeTok{key =}\NormalTok{ origin, }\DataTypeTok{value =}\NormalTok{ n)}
+\KeywordTok{pivot_wider}\NormalTok{(n_vols, }
+            \DataTypeTok{names_from =}\NormalTok{ origin, }
+            \DataTypeTok{values_from =}\NormalTok{ n)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4449,25 +4432,28 @@ Les commandes permettant de produire ce tableau seront expliquées dans le chapi
  4 B6       6557 42076  6002
  5 DL       4342 20701 23067
  6 EV      43939  1408  8826
- 7 F9         NA    NA   685
- 8 FL         NA    NA  3260
- 9 HA         NA   342    NA
-10 MQ       2276  7193 16928
-11 OO          6    NA    26
-12 UA      46087  4534  8044
-13 US       4405  2995 13136
-14 VX       1566  3596    NA
-15 WN       6188    NA  6087
+ 7 MQ       2276  7193 16928
+ 8 OO          6    NA    26
+ 9 UA      46087  4534  8044
+10 US       4405  2995 13136
+11 VX       1566  3596    NA
+12 WN       6188    NA  6087
+13 HA         NA   342    NA
+14 F9         NA    NA   685
+15 FL         NA    NA  3260
 16 YV         NA    NA   601
 \end{verbatim}
 
 Ce nouveau tableau contient maintenant 16 lignes (une par compagnie aérienne), et 4 colonnes : une pour la variable \texttt{carrier}, et 3 pour la variable \texttt{origin}, soit une colonne pour chacun des 3 aéroports de New York. On parle de tableau au format large (par opposition au ``tableau rangé'', dit ``format long''). Cela rend la présentation dans un rapport plus aisée.
 
-Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (\texttt{AS}) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique \texttt{NA}. Or, \texttt{NA} signifie ``Not Available'', autrement dit : données manquantes. Ici, il ne s'agit pas du tout de données manquantes. Cela signifie simplement qu'aucun vol d'Alaska Airline n'a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l'argument \texttt{fill} :
+Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (\texttt{AS}) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique \texttt{NA}. Or, \texttt{NA} signifie ``Not Available'', autrement dit : données manquantes. Ici, il ne s'agit pas du tout de données manquantes. Cela signifie simplement qu'aucun vol d'Alaska Airline n'a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l'argument \texttt{values\_fill} :
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{spread}\NormalTok{(n_vols, }\DataTypeTok{key =}\NormalTok{ origin, }\DataTypeTok{value =}\NormalTok{ n, }\DataTypeTok{fill =} \DecValTok{0}\NormalTok{)}
+\KeywordTok{pivot_wider}\NormalTok{(n_vols, }
+            \DataTypeTok{names_from =}\NormalTok{ origin, }
+            \DataTypeTok{values_from =}\NormalTok{ n, }
+            \DataTypeTok{values_fill =} \DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4475,26 +4461,26 @@ Notez également que certaines compagnies aériennes ne desservent pas tous les 
 # A tibble: 16 x 4
 # Groups:   carrier [16]
    carrier   EWR   JFK   LGA
-   <chr>   <dbl> <dbl> <dbl>
+   <chr>   <int> <int> <int>
  1 9E       1268 14651  2541
  2 AA       3487 13783 15459
  3 AS        714     0     0
  4 B6       6557 42076  6002
  5 DL       4342 20701 23067
  6 EV      43939  1408  8826
- 7 F9          0     0   685
- 8 FL          0     0  3260
- 9 HA          0   342     0
-10 MQ       2276  7193 16928
-11 OO          6     0    26
-12 UA      46087  4534  8044
-13 US       4405  2995 13136
-14 VX       1566  3596     0
-15 WN       6188     0  6087
+ 7 MQ       2276  7193 16928
+ 8 OO          6     0    26
+ 9 UA      46087  4534  8044
+10 US       4405  2995 13136
+11 VX       1566  3596     0
+12 WN       6188     0  6087
+13 HA          0   342     0
+14 F9          0     0   685
+15 FL          0     0  3260
 16 YV          0     0   601
 \end{verbatim}
 
-D'autres arguments existent. \textbf{Je vous encourage vivement} à consulter l'aide des fonctions \texttt{gather()} et \texttt{spread()} et à faire des essais.
+D'autres arguments existent. \textbf{Je vous encourage vivement} à consulter l'aide des fonctions \texttt{pivot\_longer()} et \texttt{pivot\_wider()} et à faire des essais.
 
 \hypertarget{les-fonctions-separate-et-unite}{%
 \subsubsection{\texorpdfstring{Les fonctions \texttt{separate()} et \texttt{unite()}}{Les fonctions separate() et unite()}}\label{les-fonctions-separate-et-unite}}
@@ -4513,13 +4499,13 @@ Ces fonctions sont complémentaires : tout comme \texttt{gather()} et \texttt{sp
   country year  n_cases
   <chr>   <chr>   <dbl>
 1 FR      2011     7000
-2 DE      2011     5800
-3 US      2011    15000
-4 FR      2012     6900
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
 5 DE      2012     6000
-6 US      2012    14000
-7 FR      2013     7000
-8 DE      2013     6200
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
 9 US      2013    13000
 \end{verbatim}
 
@@ -4536,13 +4522,13 @@ Imaginons que nous ayons besoin de séparer les données de la colonne \texttt{y
   country century year  n_cases
   <chr>   <chr>   <chr>   <dbl>
 1 FR      20      11       7000
-2 DE      20      11       5800
-3 US      20      11      15000
-4 FR      20      12       6900
+2 FR      20      12       6900
+3 FR      20      13       7000
+4 DE      20      11       5800
 5 DE      20      12       6000
-6 US      20      12      14000
-7 FR      20      13       7000
-8 DE      20      13       6200
+6 DE      20      13       6200
+7 US      20      11      15000
+8 US      20      12      14000
 9 US      20      13      13000
 \end{verbatim}
 
@@ -4574,13 +4560,13 @@ Notez ici que les 2 nouvelles variables sont de type \texttt{\textless{}chr\text
   country century  year n_cases
   <chr>     <int> <int>   <dbl>
 1 FR           20    11    7000
-2 DE           20    11    5800
-3 US           20    11   15000
-4 FR           20    12    6900
+2 FR           20    12    6900
+3 FR           20    13    7000
+4 DE           20    11    5800
 5 DE           20    12    6000
-6 US           20    12   14000
-7 FR           20    13    7000
-8 DE           20    13    6200
+6 DE           20    13    6200
+7 US           20    11   15000
+8 US           20    12   14000
 9 US           20    13   13000
 \end{verbatim}
 
@@ -4599,13 +4585,13 @@ La fonction \texttt{unite()} fait exactement le contraire : elle fusionne 2 colo
   country new   n_cases
   <chr>   <chr>   <dbl>
 1 FR      20_11    7000
-2 DE      20_11    5800
-3 US      20_11   15000
-4 FR      20_12    6900
+2 FR      20_12    6900
+3 FR      20_13    7000
+4 DE      20_11    5800
 5 DE      20_12    6000
-6 US      20_12   14000
-7 FR      20_13    7000
-8 DE      20_13    6200
+6 DE      20_13    6200
+7 US      20_11   15000
+8 US      20_12   14000
 9 US      20_13   13000
 \end{verbatim}
 
@@ -4622,13 +4608,13 @@ La colonne \texttt{new} a été créée par la fusion des colonnes \texttt{centu
   country new   n_cases
   <chr>   <chr>   <dbl>
 1 FR      2011     7000
-2 DE      2011     5800
-3 US      2011    15000
-4 FR      2012     6900
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
 5 DE      2012     6000
-6 US      2012    14000
-7 FR      2013     7000
-8 DE      2013     6200
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
 9 US      2013    13000
 \end{verbatim}
 
@@ -4648,13 +4634,13 @@ Examinez les tableaux \texttt{rates}, \texttt{storms} et \texttt{population} du 
   Si non, transformez-les en ``tableaux rangés''.
 \end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{importer-des-donnees-depuis-un-tableur}{%
-\subsection{Importer des données depuis un tableur}\label{importer-des-donnees-depuis-un-tableur}}
+\hypertarget{importer-des-donnuxe9es-depuis-un-tableur}{%
+\subsection{Importer des données depuis un tableur}\label{importer-des-donnuxe9es-depuis-un-tableur}}
 
-\hypertarget{les-regles-de-base}{%
-\subsubsection{Les règles de base}\label{les-regles-de-base}}
+\hypertarget{les-ruxe8gles-de-base}{%
+\subsubsection{Les règles de base}\label{les-ruxe8gles-de-base}}
 
 Jusqu'à maintenant, nous avons travaillé exclusivement avec des jeux de données déjà disponibles dans R. La plupart du temps, les données sur lesquelles vous devrez travailler devront au préalable être importées dans R, à partir de fichiers issus de tableurs. De tels fichiers se présentent généralement sous l'un des 2 formats suivants :
 
@@ -4662,7 +4648,7 @@ Jusqu'à maintenant, nous avons travaillé exclusivement avec des jeux de donné
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  fichiers au format ``.csv'' : il s'agit d'un format de fichier dit ``texte brut'', c'est à dire qu'il peut être ouvert avec n'importe quel éditeur de texte, y compris le bloc notes de Windows. L'extension ``.csv'' est l'abbréviation de Comma Separated Values, autrement dit, dans ce type de fichiers, les colonnes sont séparées par des virgules. Cela peut poser problème en France puisque le symbole des décimales est souvent aussi la virgule (et non le point comme dans les pays anglo-saxons). Le séparateur de colonnes utilisé en France dans les fichiers \texttt{.csv} est alors souvent le point-virgule. Il est possible de créer des fichiers \texttt{.csv} à partir de n'importe quel tableur en choisissant \texttt{Fichier\ \textgreater{}\ Exporter...} ou \texttt{Fichier\ \textgreater{}\ Enregistrer\ sous...} puis en sélectionnant le format approprié (les dénomminations sont variables selon les logiciels : format texte brut, format csv, plain text, etc\ldots{}).
+  fichiers au format ``.csv'' : il s'agit d'un format de fichier dit ``texte brut'', c'est à dire qu'il peut être ouvert avec n'importe quel éditeur de texte, y compris le bloc notes de Windows. L'extension ``.csv'' est l'abbréviation de Comma Separated Values, autrement dit, dans ce type de fichiers, les colonnes sont séparées par des virgules. Cela peut poser problème en France puisque le symbole des décimales est souvent aussi la virgule (et non le point comme dans les pays anglo-saxons). Le séparateur de colonnes utilisé en France dans les fichiers \texttt{.csv} est alors souvent le point-virgule. Il est possible de créer des fichiers \texttt{.csv} à partir de n'importe quel tableur en choisissant \texttt{Fichier\ \textgreater{}\ Exporter...} ou \texttt{Fichier\ \textgreater{}\ Enregistrer\ sous...} puis en sélectionnant le format approprié (les dénomminations sont variables selon les logiciels : format texte brut, format csv, plain text, etc\ldots).
 \item
   fichiers au format tableur : \texttt{.xls} ou \texttt{.xlsx} pour Excel, \texttt{.calc} pour Open Office.
 \end{enumerate}
@@ -5026,6 +5012,10 @@ Error in eval(expr, envir, enclos): objet 'dauphin2' introuvable
   Produisez le graphique ci-dessous :
 \end{enumerate}
 
+\begin{verbatim}
+`geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
 \begin{center}\includegraphics[width=0.9\linewidth]{figure/exercicedauphin-1} \end{center}
 
 Indice : les droites de régression avec les intervalles de confiance sont ajoutés grâce à la fonction \texttt{geom\_smooth(method\ =\ "lm")}
@@ -5063,8 +5053,8 @@ Dans ces colonnes aux noms composés, les nombres de cas de tuberculose sont rap
 \hypertarget{wrangling}{%
 \section{\texorpdfstring{Tripatouiller les données avec \texttt{dplyr}}{Tripatouiller les données avec dplyr}}\label{wrangling}}
 
-\hypertarget{pre-requis}{%
-\subsection{Pré-requis}\label{pre-requis}}
+\hypertarget{pruxe9-requis}{%
+\subsection{Pré-requis}\label{pruxe9-requis}}
 
 Nous abordons ici une étape essentielle de toute analyse de données : la manipulation de tableaux, la sélection de lignes, de colonnes, la création de nouvelles variables, etc. Bien souvent, les données brutes que nous importons dans R ne sont pas utiles en l'état. Il nous faut parfois sélectionner seulement certaines lignes pour travailler sur une petite partie du jeu de données. Il nous faut parfois modifier des variables existantes (pour modifier les unités par exemple) ou en créer de nouvelles à partir des variables existantes. Nous avons aussi très souvent besoin de constituer des groupes et d'obtenir des statistiques descriptives pour chaque groupe (moyenne, écart-type, erreur type, etc). Nous verrons dans ce chapitre comment faire tout cela grâce au package \texttt{dplyr} qui fournit un cadre cohérent et des fonctions simples permettant d'effectuer tous les tripatouillages de données dont nous pourrons avoir besoin.
 
@@ -5078,10 +5068,10 @@ Dans ce chapitre, nous aurons besoin des packages suivants :
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{le-pipe}{%
-\subsection{\texorpdfstring{Le pipe \texttt{\%\textgreater{}\%}}{Le pipe \%\textgreater{}\%}}\label{le-pipe}}
+\subsection{\texorpdfstring{Le pipe \texttt{\%\textgreater{}\%}}{Le pipe \%\textgreater\%}}\label{le-pipe}}
 
 Avant d'entrer dans le vif du sujet, je souhaite introduire ici la notion de ``pipe'' (prononcer à l'anglo-saxonne). Le pipe est un opérateur que nous avons déjà vu apparaître à plusieurs reprises dans les chapitres précédents sans expliquer son fonctionnement.
 
@@ -5159,10 +5149,10 @@ Comme pour le \texttt{+} de \texttt{ggplot2}, il est conseillé de placer un seu
 
 Toutes les commandes que nous utiliserons à partir de maintenant reposeront sur le pipe puisqu'il permet de rendre le code plus lisible.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{les-verbes-du-tripatouillage-de-donnees}{%
-\subsection{Les verbes du tripatouillage de données}\label{les-verbes-du-tripatouillage-de-donnees}}
+\hypertarget{les-verbes-du-tripatouillage-de-donnuxe9es}{%
+\subsection{Les verbes du tripatouillage de données}\label{les-verbes-du-tripatouillage-de-donnuxe9es}}
 
 Nous allons ici nous concentrer sur les fonctions les plus couramment utilisées pour manipuler et résumer des données. Nous verrons 6 verbes principaux, chacun correspondant à une fonction précise de \texttt{dplyr}. Chaque section de ce chapitre sera consacrée à la présentation d'un exemple utilisant un ou plusieurs de ces verbes.
 
@@ -5189,7 +5179,7 @@ Toutes ces fonctions, tous ces verbes, sont utilisés de la mêma façon : on pr
 
 Enfin, gardez en tête qu'il existe beaucoup plus de fonctions dans \texttt{dplyr} que les 6 que nous allons détailler ici. Nous verrons parfois quelques variantes, mais globalement, maîtriser ces 6 fonctions simples devrait vous permettre de conduire une très large gamme de manipulations de données, et ainsi vous faciliter la vie pour la production de graphiques et l'analyse statistique de vos données.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{filtrer-des-lignes-avec-filter}{%
 \subsection{\texorpdfstring{Filtrer des lignes avec \texttt{filter()}}{Filtrer des lignes avec filter()}}\label{filtrer-des-lignes-avec-filter}}
@@ -5462,10 +5452,10 @@ Ici, toutes les lignes du tableau dont la variable \texttt{dest} est égale à u
 [1] TRUE
 \end{verbatim}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{creer-des-resumes-avec-summarise-et-group_by}{%
-\subsection{\texorpdfstring{Créer des résumés avec \texttt{summarise()} et \texttt{group\_by()}}{Créer des résumés avec summarise() et group\_by()}}\label{creer-des-resumes-avec-summarise-et-group_by}}
+\hypertarget{cruxe9er-des-ruxe9sumuxe9s-avec-summarise-et-group_by}{%
+\subsection{\texorpdfstring{Créer des résumés avec \texttt{summarise()} et \texttt{group\_by()}}{Créer des résumés avec summarise() et group\_by()}}\label{cruxe9er-des-ruxe9sumuxe9s-avec-summarise-et-group_by}}
 
 \hypertarget{principe-de-la-fonction-summarise}{%
 \subsubsection{\texorpdfstring{Principe de la fonction \texttt{summarise()}}{Principe de la fonction summarise()}}\label{principe-de-la-fonction-summarise}}
@@ -5514,7 +5504,7 @@ Les fonctions \texttt{mean()} et \texttt{sd()} permettent de calculer une moyenn
 \begin{verbatim}
 # A tibble: 1 x 15
   origin  year month   day  hour  temp  dewp humid wind_dir wind_speed
-  <chr>  <dbl> <dbl> <int> <int> <dbl> <dbl> <dbl>    <dbl>      <dbl>
+  <chr>  <int> <int> <int> <int> <dbl> <dbl> <dbl>    <dbl>      <dbl>
 1 EWR     2013     8    22     9    NA    NA    NA      320       12.7
 # ... with 5 more variables: wind_gust <dbl>, precip <dbl>,
 #   pressure <dbl>, visib <dbl>, time_hour <dttm>
@@ -5539,8 +5529,8 @@ Pour obtenir les valeurs souhaitées, il faut indiquer à R d'exclure les valeur
 
 La température moyenne est donc de 55.3 degrés Farenheit et l'écart-type vaut 17.8 degrés Farenheit.
 
-\hypertarget{interet-de-la-fonction-group_by}{%
-\subsubsection{\texorpdfstring{Intérêt de la fonction \texttt{group\_by()}}{Intérêt de la fonction group\_by()}}\label{interet-de-la-fonction-group_by}}
+\hypertarget{intuxe9ruxeat-de-la-fonction-group_by}{%
+\subsubsection{\texorpdfstring{Intérêt de la fonction \texttt{group\_by()}}{Intérêt de la fonction group\_by()}}\label{intuxe9ruxeat-de-la-fonction-group_by}}
 
 La fonction devient particulièrement puissante lorsqu'elle est combinée avec la fonction \texttt{group\_by()} :
 
@@ -5569,9 +5559,13 @@ Pour revenir à l'exemple des températures, imaginons que nous souhaitions calc
 \end{Shaded}
 
 \begin{verbatim}
+`summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
 # A tibble: 12 x 3
    month moyenne ecart_type
-   <dbl>   <dbl>      <dbl>
+   <int>   <dbl>      <dbl>
  1     1    35.6      10.2 
  2     2    34.3       6.98
  3     3    39.9       6.25
@@ -5613,6 +5607,15 @@ avec \(s\), l'écart-type de l'échantillon et \(n\), la taille de l'échantillo
             \DataTypeTok{ecart_type =} \KeywordTok{sd}\NormalTok{(temp, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
             \DataTypeTok{nb_obs =} \KeywordTok{n}\NormalTok{(),}
             \DataTypeTok{erreur_std =}\NormalTok{ ecart_type }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(nb_obs))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{monthly_temp}
 \end{Highlighting}
 \end{Shaded}
@@ -5620,7 +5623,7 @@ avec \(s\), l'écart-type de l'échantillon et \(n\), la taille de l'échantillo
 \begin{verbatim}
 # A tibble: 12 x 5
    month moyenne ecart_type nb_obs erreur_std
-   <dbl>   <dbl>      <dbl>  <int>      <dbl>
+   <int>   <dbl>      <dbl>  <int>      <dbl>
  1     1    35.6      10.2    2226      0.217
  2     2    34.3       6.98   2010      0.156
  3     3    39.9       6.25   2227      0.132
@@ -5725,6 +5728,15 @@ Jusqu'ici, nous avons groupé les données de température par mois. Il est tout
             \DataTypeTok{ecart_type =} \KeywordTok{sd}\NormalTok{(temp, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
             \DataTypeTok{nb_obs =} \KeywordTok{n}\NormalTok{(),}
             \DataTypeTok{erreur_std =}\NormalTok{ ecart_type }\OperatorTok{/}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(nb_obs))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+`summarise()` regrouping output by 'origin' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{monthly_orig_temp}
 \end{Highlighting}
 \end{Shaded}
@@ -5733,7 +5745,7 @@ Jusqu'ici, nous avons groupé les données de température par mois. Il est tout
 # A tibble: 36 x 6
 # Groups:   origin [3]
    origin month moyenne ecart_type nb_obs erreur_std
-   <chr>  <dbl>   <dbl>      <dbl>  <int>      <dbl>
+   <chr>  <int>   <dbl>      <dbl>  <int>      <dbl>
  1 EWR        1    35.6      10.8     742      0.396
  2 EWR        2    34.3       7.28    669      0.282
  3 EWR        3    40.1       6.72    743      0.247
@@ -5814,9 +5826,13 @@ Enfin, lorsque nous groupons par plusieurs variables, il peut être utile de pr�
 \end{Shaded}
 
 \begin{verbatim}
+`summarise()` regrouping output by 'origin' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
 # A tibble: 12 x 4
    month   EWR   JFK   LGA
-   <dbl> <dbl> <dbl> <dbl>
+   <int> <dbl> <dbl> <dbl>
  1     1  35.6  35.4  36.0
  2     2  34.3  34.2  34.4
  3     3  40.1  39.5  40.0
@@ -5849,9 +5865,13 @@ Ce code :
 \end{Shaded}
 
 \begin{verbatim}
+`summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
 # A tibble: 12 x 2
    month     n
-   <dbl> <int>
+   <int> <int>
  1     1  2226
  2     2  2010
  3     3  2227
@@ -5878,7 +5898,7 @@ est équivalent à celui-ci :
 \begin{verbatim}
 # A tibble: 12 x 2
    month     n
-   <dbl> <int>
+   <int> <int>
  1     1  2226
  2     2  2010
  3     3  2227
@@ -5898,26 +5918,24 @@ Comme avec \texttt{group\_by()}, il est bien sûr possible d'utiliser \texttt{co
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{weather }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{group_by}\NormalTok{(origin, month) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{nombre =} \KeywordTok{n}\NormalTok{())}
+\StringTok{  }\KeywordTok{count}\NormalTok{(origin, month)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 # A tibble: 36 x 3
-# Groups:   origin [3]
-   origin month nombre
-   <chr>  <dbl>  <int>
- 1 EWR        1    742
- 2 EWR        2    669
- 3 EWR        3    743
- 4 EWR        4    720
- 5 EWR        5    744
- 6 EWR        6    720
- 7 EWR        7    741
- 8 EWR        8    740
- 9 EWR        9    719
-10 EWR       10    736
+   origin month     n
+   <chr>  <int> <int>
+ 1 EWR        1   742
+ 2 EWR        2   669
+ 3 EWR        3   743
+ 4 EWR        4   720
+ 5 EWR        5   744
+ 6 EWR        6   720
+ 7 EWR        7   741
+ 8 EWR        8   740
+ 9 EWR        9   719
+10 EWR       10   736
 # ... with 26 more rows
 \end{verbatim}
 
@@ -5930,6 +5948,10 @@ Comme avec \texttt{group\_by()}, il est bien sûr possible d'utiliser \texttt{co
 \item
   Faites un tableau indiquant combien de vols ont été annulés après le décollage, pour chaque compagnie aérienne. Vous devriez obtenir le tableau suivant :
 \end{enumerate}
+
+\begin{verbatim}
+`summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
 
 \begin{verbatim}
 # A tibble: 13 x 2
@@ -5959,10 +5981,14 @@ Comme avec \texttt{group\_by()}, il est bien sûr possible d'utiliser \texttt{co
 \end{enumerate}
 
 \begin{verbatim}
+`summarise()` regrouping output by 'origin' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
 # A tibble: 36 x 5
 # Groups:   origin [3]
    origin month max_wind min_wind moy_wind
-   <chr>  <dbl>    <dbl>    <dbl>    <dbl>
+   <chr>  <int>    <dbl>    <dbl>    <dbl>
  1 EWR        1     42.6        0     9.87
  2 EWR        2   1048.         0    12.2 
  3 EWR        3     29.9        0    11.6 
@@ -5985,10 +6011,14 @@ Comme avec \texttt{group\_by()}, il est bien sûr possible d'utiliser \texttt{co
 \end{enumerate}
 
 \begin{verbatim}
+`summarise()` regrouping output by 'origin' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
 # A tibble: 36 x 5
 # Groups:   origin [3]
    origin month max_wind min_wind moy_wind
-   <chr>  <dbl>    <dbl>    <dbl>    <dbl>
+   <chr>  <int>    <dbl>    <dbl>    <dbl>
  1 EWR        1     42.6        0     9.87
  2 EWR        2     31.1        0    10.7 
  3 EWR        3     29.9        0    11.6 
@@ -6043,10 +6073,10 @@ Sachant qu'en divisant des mph par 1.151 on obtient des vitesses en nœuds, que 
 [31]  31.993884  32.993692  33.993501  34.993310  36.992928 910.825873
 \end{verbatim}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{selectionner-des-variables-avec-select}{%
-\subsection{\texorpdfstring{Sélectionner des variables avec \texttt{select()}}{Sélectionner des variables avec select()}}\label{selectionner-des-variables-avec-select}}
+\hypertarget{suxe9lectionner-des-variables-avec-select}{%
+\subsection{\texorpdfstring{Sélectionner des variables avec \texttt{select()}}{Sélectionner des variables avec select()}}\label{suxe9lectionner-des-variables-avec-select}}
 
 \begin{figure}[htpb]
 
@@ -6252,10 +6282,10 @@ Il est donc généralement préférable d'utiliser \texttt{rename()} pour renomm
 #   time_hour <dttm>
 \end{verbatim}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{creer-de-nouvelles-variables-avec-mutate}{%
-\subsection{\texorpdfstring{Créer de nouvelles variables avec \texttt{mutate()}}{Créer de nouvelles variables avec mutate()}}\label{creer-de-nouvelles-variables-avec-mutate}}
+\hypertarget{cruxe9er-de-nouvelles-variables-avec-mutate}{%
+\subsection{\texorpdfstring{Créer de nouvelles variables avec \texttt{mutate()}}{Créer de nouvelles variables avec mutate()}}\label{cruxe9er-de-nouvelles-variables-avec-mutate}}
 
 \hypertarget{principe-1}{%
 \subsubsection{Principe}\label{principe-1}}
@@ -6391,6 +6421,10 @@ Et comme toujours, pour pouvoir réutiliser ces données, on leur donne un nom :
   Faîtes un graphique présentant la relation entre la cylindrée en litres et la consommation sur autoroute exprimée en nombre de litres pour 100 kilomètres. Vous excluerez les véhicules dont la \texttt{class}e est \texttt{2seater} de ce graphique (il s'agit de voitures de sports très compactes qu'il est difficile de mesurer aux autres). Sur votre graphique, la couleur devrait représenter le type de véhicule. Vous ajouterez une droite de régression en utilisant \texttt{geom\_smooth(method\ =\ "lm")}. Votre graphique devrait ressembler à ceci :
 \end{enumerate}
 
+\begin{verbatim}
+`geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
 \begin{figure}[htpb]
 
 {\centering \includegraphics[width=0.9\linewidth]{figure/consommation-1} 
@@ -6408,6 +6442,10 @@ Et comme toujours, pour pouvoir réutiliser ces données, on leur donne un nom :
   Ce graphique présente-t'il correctement l'ensemble des données de ces 2 variables ? Pourquoi ? Comparez le graphique \ref{fig:consommation} de la question 3 ci-dessus et le graphique \ref{fig:consommation2} présenté ci-dessous. Selon vous, quels arguments et/ou fonctions ont été modifiés pour arriver à ce nouveau graphique ? Quels sont les avantages et les inconvénients de ce graphique par rapport au précédent ?
 \end{enumerate}
 
+\begin{verbatim}
+`geom_smooth()` using formula 'y ~ x'
+\end{verbatim}
+
 \begin{figure}[htpb]
 
 {\centering \includegraphics[width=0.9\linewidth]{figure/consommation2-1} 
@@ -6417,7 +6455,7 @@ Et comme toujours, pour pouvoir réutiliser ces données, on leur donne un nom :
 \caption{Consommation en fonction de la cylindrée}\label{fig:consommation2}
 \end{figure}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{arrange}{%
 \subsection{\texorpdfstring{Trier des lignes avec \texttt{arrange()}}{Trier des lignes avec arrange()}}\label{arrange}}
@@ -6565,7 +6603,7 @@ Cela est particulièrement utile après l'obtention de résumés groupés pour c
 
 Nous voyons ici que les aéroports \texttt{ORD} et \texttt{ATL} sont les 2 destinations les plus fréquentes, avec plus de 17000 vols par an.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{associer-plusieurs-tableaux-avec-left_join-et-inner_join}{%
 \subsection{\texorpdfstring{Associer plusieurs tableaux avec \texttt{left\_join()} et \texttt{inner\_join()}}{Associer plusieurs tableaux avec left\_join() et inner\_join()}}\label{associer-plusieurs-tableaux-avec-left_join-et-inner_join}}
@@ -6640,7 +6678,7 @@ La fonction \texttt{inner\_join()} permet de relier des tableaux en ne conservan
 \begin{verbatim}
 # A tibble: 101 x 9
    dest      n name             lat    lon   alt    tz dst   tzone    
-   <chr> <int> <chr>          <dbl>  <dbl> <int> <dbl> <chr> <chr>    
+   <chr> <int> <chr>          <dbl>  <dbl> <dbl> <dbl> <chr> <chr>    
  1 ORD   17283 Chicago Ohare~  42.0  -87.9   668    -6 A     America/~
  2 ATL   17215 Hartsfield Ja~  33.6  -84.4  1026    -5 A     America/~
  3 LAX   16174 Los Angeles I~  33.9 -118.    126    -8 A     America/~
@@ -6828,7 +6866,7 @@ Il y aurait bien plus à dire sur les jointures :
 \begin{itemize}
 \tightlist
 \item
-  Quelles sont les autres possibilités de jointures (\texttt{right\_join()}, \texttt{outer\_join()}, \texttt{full\_join()}, etc\ldots{}) ?
+  Quelles sont les autres possibilités de jointures (\texttt{right\_join()}, \texttt{outer\_join()}, \texttt{full\_join()}, etc\ldots) ?
 \item
   Que se passe-t'il si les colonnes communes des 2 tableaux contiennent des élements dupliqués ?
 \item
@@ -6841,7 +6879,7 @@ Pour avoir la réponse à toutes ces questions, je vous conseille de lire \href{
 
 Néanmoins, avec les deux fonctions \texttt{inner\_join()} et \texttt{left\_join()} décrite ici devraient vous permettre de couvrir l'essentiel de vos besoins.
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{exercices-11}{%
 \subsection{Exercices}\label{exercices-11}}
@@ -6902,10 +6940,9 @@ Néanmoins, avec les deux fonctions \texttt{inner\_join()} et \texttt{left\_join
 
 \hypertarget{refs}{}
 \leavevmode\hypertarget{ref-R-ggplot2}{}%
-\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \ldots{} Yutani H}. (2019). \emph{Ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
+\textsc{Wickham H, Chang W, Henry L, Pedersen TL, Takahashi K, Wilke C, \ldots{} Dunnington D}. (2020). \emph{Ggplot2: Create elegant data visualisations using the grammar of graphics}. Retrieved from \url{https://CRAN.R-project.org/package=ggplot2}
 
 \leavevmode\hypertarget{ref-wilkinson2005}{}%
 \textsc{Wilkinson L}. (2005). \emph{The grammar of graphics} (2nd ed.). New-York: Springer-Verlag. Retrieved from \url{https://www.springer.com/us/book/9780387245447}
-
 
 \end{document}

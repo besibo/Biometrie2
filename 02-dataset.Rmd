@@ -148,11 +148,9 @@ install.packages("rlang")
 
 Si l'installation de `skimr` s'est bien passée, vous pouvez maintenant taper ceci :
 
-```{r size='tiny', echo = 2:3}
-options(width = 120)
+```{r eval=FALSE}
 library(skimr)
 skim(flights)
-options(width = 70)
 ```
 
 
