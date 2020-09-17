@@ -15,6 +15,7 @@ output:
         all: no
       toc:
         collapse: subsection
+      download: "pdf"
   bookdown::pdf_book:
     keep_tex: yes
 url: 'https\://besibo.github.io/Biometrie2/'

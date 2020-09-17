@@ -42,7 +42,7 @@ mean(diamonds$price >= 15000)
 1656/53940
 nrow(diamants_chers) / nrow(diamonds)
 
-# Tri du tableau diamants-chers par ordre de prix décroissant
+# Tri du tableau diamants_chers par ordre de prix décroissant
 permut <- order(diamants_chers$price, decreasing = TRUE)
 diams_tri <- diamants_chers[ permut , ]
 
