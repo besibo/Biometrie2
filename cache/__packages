@@ -1,4 +1,6 @@
 base
+usethis
+devtools
 knitr
 tidyverse
 ggplot2
@@ -11,12 +13,6 @@ stringr
 forcats
 nycflights13
 gapminder
-bindrcpp
 gridExtra
 readxl
-devtools
 EDAWR
-bookdown
-extrafont
-usethis
-skimr
