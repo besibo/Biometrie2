@@ -134,7 +134,7 @@
 
 \title{Travaux Pratiques de Biométrie 2}
 \author{Benoît Simon-Bouhet}
-\date{2020-09-17}
+\date{2020-10-06}
 
 \begin{document}
 \maketitle
@@ -480,7 +480,7 @@ Si j'exécute ce script dans la console de RStudio (en sélectionnant toutes les
 \end{verbatim}
 
 \begin{verbatim}
-'data.frame':   153 obs. of  6 variables:
+'data.frame':	153 obs. of  6 variables:
  $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
  $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
  $ Wind   : num  7.4 8 12.6 11.5 14.3 14.9 8.6 13.8 20.1 8.6 ...
@@ -1368,8 +1368,8 @@ Prenez le temps d'examiner le fichier d'aide du jeu de données \texttt{flights}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{exercices-1}{%
-\subsection{Exercices}\label{exercices-1}}
+\hypertarget{exercices}{%
+\subsection{Exercices}\label{exercices}}
 
 Consultez l'aide du jeu de données \texttt{diamonds} du package \texttt{ggplot2}.
 
@@ -1720,8 +1720,8 @@ Quelques remarques concernant les couches :
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercices-2}{%
-\subsubsection{Exercices}\label{exercices-2}}
+\hypertarget{exercices}{%
+\subsubsection{Exercices}\label{exercices}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2009,8 +2009,8 @@ Enfin un conseil : évitez de trop surcharger vos graphiques. En combinant l'ens
 \caption{Sometimes, less is more!}\label{fig:badplot}
 \end{figure}
 
-\hypertarget{exercices-3}{%
-\subsubsection{Exercices}\label{exercices-3}}
+\hypertarget{exercices-1}{%
+\subsubsection{Exercices}\label{exercices-1}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2615,8 +2615,8 @@ Ici, nous avons utilisé la variable \texttt{month} (transformée en facteur) et
 
 Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé et en ajoutant des couches une à une sur un graphique, il est posible d'obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des structures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc.).
 
-\hypertarget{exercices-4}{%
-\subsubsection{Exercices}\label{exercices-4}}
+\hypertarget{exercices-2}{%
+\subsubsection{Exercices}\label{exercices-2}}
 
 Examinez la figure \ref{fig:grid}.
 
@@ -3007,8 +3007,8 @@ Pour parvenir à nos fins, il faut cette fois avoir recours à la fonction \text
 
 Vous voyez donc que selon le type de données dont vous disposez (soit un tableau comme \texttt{flights}, avec toutes les observations, soit un tableau beaucoup plus compact comme \texttt{carrier\_table}), la démarche permettant de produire un diagramme bâtons, dans lequel les catégories seront triées, sera différente.
 
-\hypertarget{exercices-5}{%
-\subsubsection{Exercices}\label{exercices-5}}
+\hypertarget{exercices-3}{%
+\subsubsection{Exercices}\label{exercices-3}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3923,8 +3923,8 @@ Vous devriez donc maintenant être bien armés pour produire 95\% des graphiques
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{exercices-6}{%
-\subsection{Exercices}\label{exercices-6}}
+\hypertarget{exercices-4}{%
+\subsection{Exercices}\label{exercices-4}}
 
 Commencez par créer un nouveau jeu de données en exécutant ces commandes :
 
@@ -4485,7 +4485,7 @@ D'autres arguments existent. \textbf{Je vous encourage vivement} à consulter l'
 \hypertarget{les-fonctions-separate-et-unite}{%
 \subsubsection{\texorpdfstring{Les fonctions \texttt{separate()} et \texttt{unite()}}{Les fonctions separate() et unite()}}\label{les-fonctions-separate-et-unite}}
 
-Ces fonctions sont complémentaires : tout comme \texttt{gather()} et \texttt{spread()}, elles effectuent 2 opérations opposées. Reprenons le jeu de données \texttt{cases\_tidy} (que nous transformons au préalable en tibble pour mieux voir ce qui se passe) :
+Ces fonctions sont complémentaires : tout comme \texttt{pivot\_longer()} et \texttt{pivot\_wider()}, elles effectuent 2 opérations opposées. Reprenons le jeu de données \texttt{cases\_tidy} (que nous transformons au préalable en tibble pour mieux voir ce qui se passe) :
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4618,8 +4618,8 @@ La colonne \texttt{new} a été créée par la fusion des colonnes \texttt{centu
 9 US      2013    13000
 \end{verbatim}
 
-\hypertarget{exercices-7}{%
-\subsubsection{Exercices}\label{exercices-7}}
+\hypertarget{exercices}{%
+\subsubsection{Exercices}\label{exercices}}
 
 Examinez les tableaux \texttt{rates}, \texttt{storms} et \texttt{population} du package \texttt{EDAWR}.
 
@@ -5000,8 +5000,8 @@ Taper \texttt{dauphin2} dans la console devrait maintenant produire une erreur :
 Error in eval(expr, envir, enclos): objet 'dauphin2' introuvable
 \end{verbatim}
 
-\hypertarget{exercices-8}{%
-\subsubsection{Exercices}\label{exercices-8}}
+\hypertarget{exercices-1}{%
+\subsubsection{Exercices}\label{exercices-1}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5020,7 +5020,7 @@ Error in eval(expr, envir, enclos): objet 'dauphin2' introuvable
 
 Indice : les droites de régression avec les intervalles de confiance sont ajoutés grâce à la fonction \texttt{geom\_smooth(method\ =\ "lm")}
 3. Importez dans R le jeu de données \href{data/whoTB.csv}{whoTB.csv}. Ce jeu de données contient les cas de tuberculose (TB) rapportés par l'Organisation Mondiale de la Santé (OMS, ou WHO en anglais : World Health Organization). Les cas sont répertoriés par année, pays, âge, sexe, type de tuberculose et méthode de diagnostique. Selon vous, ce jeu de données est-il ``rangé'' ? Pourquoi ?
-4. Si ce jeu de données n'est pas rangé, rangez-le en utilisant les fonctions du packages \texttt{tidyr} que nous avons découvertes dans ce chapitre : \texttt{gather()}, \texttt{spread()}, \texttt{separate()} et \texttt{unite()} (vous n'aurez pas nécessairement besoin d'utiliser ces 4 fonctions, et à l'inverse, certaines devront peut-être être utilisées plusieurs fois).
+4. Si ce jeu de données n'est pas rangé, rangez-le en utilisant les fonctions du packages \texttt{tidyr} que nous avons découvertes dans ce chapitre : \texttt{pivot\_longer()}, \texttt{pivot\_wider()}, \texttt{separate()} et \texttt{unite()} (vous n'aurez pas nécessairement besoin d'utiliser ces 4 fonctions, et à l'inverse, certaines devront peut-être être utilisées plusieurs fois).
 
 Pour vous aider, l'OMS donne la signification des codes utilisés en guise de noms pour la plupart des colonnes. Ainsi :
 
@@ -5229,8 +5229,8 @@ Dans les 2 cas, la première ligne de code nous permet :
 
 Le premier argument de la fonction \texttt{filter()} doit être le nom d'un \texttt{data.frame} ou d'un \texttt{tibble}. Ici, puisque nous utilisons le pipe, il est inutile de spécifier cet argument : c'est ce qui est placé à gauche du pipe qui est utilisé comme premier argument de la fonction \texttt{filter()}. Les arguments suivants constituent la ou les conditions qui doivent être respectées par les lignes du tableau de départ afin d'être intégrées au nouveau tableau de données.
 
-\hypertarget{exercice-1}{%
-\subsubsection{Exercice}\label{exercice-1}}
+\hypertarget{exercice}{%
+\subsubsection{Exercice}\label{exercice}}
 
 Dans la section \ref{View}, nous avons utilisé la fonction \texttt{View} et l'application manuelle de filtres pour déterminer combien de vols avaient quitté l'aéroport JFK le 12 février 2013. En utilisant la fonction \texttt{filter()}, créez un objet nommé \texttt{JFK\_12fev} qui contiendra les données de ces vols.
 
@@ -5814,14 +5814,15 @@ Notez que j'utilise maintenant \texttt{group\ =\ origin} et non plus \texttt{gro
 \caption{Évolution des températures moyenne dans 3 aéroports de New York en 2013}\label{fig:errorbars4}
 \end{figure}
 
-Enfin, lorsque nous groupons par plusieurs variables, il peut être utile de présenter les résultats sous la forme d'un tableau large (grâce à la fonction \texttt{spread()}, voir section \ref{spread}) pour l'intégration dans un rapport par exemple :
+Enfin, lorsque nous groupons par plusieurs variables, il peut être utile de présenter les résultats sous la forme d'un tableau large (grâce à la fonction \texttt{pivot\_wider()}, voir section \ref{spread}) pour l'intégration dans un rapport par exemple :
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{weather }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{group_by}\NormalTok{(origin, month) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{moyenne =} \KeywordTok{mean}\NormalTok{(temp, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{spread}\NormalTok{(origin, moyenne)}
+\StringTok{  }\KeywordTok{pivot_wider}\NormalTok{(}\DataTypeTok{names_from =}\NormalTok{ origin,}
+              \DataTypeTok{values_from =}\NormalTok{ moyenne)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5939,8 +5940,8 @@ Comme avec \texttt{group\_by()}, il est bien sûr possible d'utiliser \texttt{co
 # ... with 26 more rows
 \end{verbatim}
 
-\hypertarget{exercices-9}{%
-\subsubsection{Exercices}\label{exercices-9}}
+\hypertarget{exercices}{%
+\subsubsection{Exercices}\label{exercices}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6408,8 +6409,8 @@ Et comme toujours, pour pouvoir réutiliser ces données, on leur donne un nom :
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{exercices-10}{%
-\subsubsection{Exercices}\label{exercices-10}}
+\hypertarget{exercices-1}{%
+\subsubsection{Exercices}\label{exercices-1}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6881,8 +6882,8 @@ Néanmoins, avec les deux fonctions \texttt{inner\_join()} et \texttt{left\_join
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{exercices-11}{%
-\subsection{Exercices}\label{exercices-11}}
+\hypertarget{exercices-2}{%
+\subsection{Exercices}\label{exercices-2}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}

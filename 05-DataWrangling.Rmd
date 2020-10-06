@@ -412,13 +412,14 @@ monthly_orig_temp %>%
 ```
 
 
-Enfin, lorsque nous groupons par plusieurs variables, il peut être utile de présenter les résultats sous la forme d'un tableau large (grâce à la fonction `spread()`, voir section \@ref(spread)) pour l'intégration dans un rapport par exemple :
+Enfin, lorsque nous groupons par plusieurs variables, il peut être utile de présenter les résultats sous la forme d'un tableau large (grâce à la fonction `pivot_wider()`, voir section \@ref(spread)) pour l'intégration dans un rapport par exemple :
 
 ```{r, tidy = FALSE}
 weather %>% 
   group_by(origin, month) %>% 
   summarise(moyenne = mean(temp, na.rm = TRUE)) %>% 
-  spread(origin, moyenne)
+  pivot_wider(names_from = origin,
+              values_from = moyenne)
 ```
 
 Sous cette forme, les données ne sont plus "rangées", nous n'avons plus des "tidy data", mais nous avons un tableau plus synthétique, facile à inclure dans un rapport.

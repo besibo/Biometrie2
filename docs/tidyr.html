@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 (Ar)ranger des données avec tidyr | Travaux Pratiques de Biométrie 2</title>
   <meta name="description" content="Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 (Ar)ranger des données avec tidyr | Travaux Pratiques de Biométrie 2" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2020-09-17" />
+<meta name="date" content="2020-10-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,6 +50,7 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -167,7 +168,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.3.4" data-path="dataset.html"><a href="dataset.html#skim"><i class="fa fa-check"></i><b>3.3.4</b> <code>skim()</code></a></li>
 <li class="chapter" data-level="3.3.5" data-path="dataset.html"><a href="dataset.html#les-fichiers-daide"><i class="fa fa-check"></i><b>3.3.5</b> Les fichiers d’aide</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="dataset.html"><a href="dataset.html#exercices-1"><i class="fa fa-check"></i><b>3.4</b> Exercices</a></li>
+<li class="chapter" data-level="3.4" data-path="bases.html"><a href="bases.html#exercices"><i class="fa fa-check"></i><b>3.4</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="viz.html"><a href="viz.html"><i class="fa fa-check"></i><b>4</b> Visualiser des données avec <code>ggplot2</code></a><ul>
 <li class="chapter" data-level="4.1" data-path="viz.html"><a href="viz.html#prérequis"><i class="fa fa-check"></i><b>4.1</b> Prérequis</a></li>
@@ -180,10 +181,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="4.3" data-path="viz.html"><a href="viz.html#clouds"><i class="fa fa-check"></i><b>4.3</b> Les nuages de points</a><ul>
 <li class="chapter" data-level="4.3.1" data-path="viz.html"><a href="viz.html#la-couche-de-base-la-fonction-ggplot"><i class="fa fa-check"></i><b>4.3.1</b> La couche de base : la fonction <code>ggplot()</code></a></li>
 <li class="chapter" data-level="4.3.2" data-path="viz.html"><a href="viz.html#ajout-dune-couche-supplémentaire-lobjet-géométrique"><i class="fa fa-check"></i><b>4.3.2</b> Ajout d’une couche supplémentaire : l’objet géométrique</a></li>
-<li class="chapter" data-level="4.3.3" data-path="viz.html"><a href="viz.html#exercices-2"><i class="fa fa-check"></i><b>4.3.3</b> Exercices</a></li>
+<li class="chapter" data-level="4.3.3" data-path="bases.html"><a href="bases.html#exercices"><i class="fa fa-check"></i><b>4.3.3</b> Exercices</a></li>
 <li class="chapter" data-level="4.3.4" data-path="viz.html"><a href="viz.html#over-plotting"><i class="fa fa-check"></i><b>4.3.4</b> Over-plotting</a></li>
 <li class="chapter" data-level="4.3.5" data-path="viz.html"><a href="viz.html#couleur-taille-et-forme"><i class="fa fa-check"></i><b>4.3.5</b> Couleur, taille et forme</a></li>
-<li class="chapter" data-level="4.3.6" data-path="viz.html"><a href="viz.html#exercices-3"><i class="fa fa-check"></i><b>4.3.6</b> Exercices</a></li>
+<li class="chapter" data-level="4.3.6" data-path="viz.html"><a href="viz.html#exercices-1"><i class="fa fa-check"></i><b>4.3.6</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="viz.html"><a href="viz.html#les-graphiques-en-lignes"><i class="fa fa-check"></i><b>4.4</b> Les graphiques en lignes</a><ul>
 <li class="chapter" data-level="4.4.1" data-path="viz.html"><a href="viz.html#un-nouveau-jeu-de-données"><i class="fa fa-check"></i><b>4.4.1</b> Un nouveau jeu de données</a></li>
@@ -198,7 +199,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="4.6" data-path="viz.html"><a href="viz.html#facets"><i class="fa fa-check"></i><b>4.6</b> Les <code>facet</code>s</a><ul>
 <li class="chapter" data-level="4.6.1" data-path="viz.html"><a href="viz.html#facet_wrap"><i class="fa fa-check"></i><b>4.6.1</b> <code>facet_wrap()</code></a></li>
 <li class="chapter" data-level="4.6.2" data-path="viz.html"><a href="viz.html#facet_grid"><i class="fa fa-check"></i><b>4.6.2</b> <code>facet_grid()</code></a></li>
-<li class="chapter" data-level="4.6.3" data-path="viz.html"><a href="viz.html#exercices-4"><i class="fa fa-check"></i><b>4.6.3</b> Exercices</a></li>
+<li class="chapter" data-level="4.6.3" data-path="viz.html"><a href="viz.html#exercices-2"><i class="fa fa-check"></i><b>4.6.3</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="4.7" data-path="viz.html"><a href="viz.html#les-boîtes-à-moustaches-ou-boxplots"><i class="fa fa-check"></i><b>4.7</b> Les boîtes à moustaches ou boxplots</a><ul>
 <li class="chapter" data-level="4.7.1" data-path="viz.html"><a href="viz.html#création-de-boxplots-et-informations-apportées"><i class="fa fa-check"></i><b>4.7.1</b> Création de boxplots et informations apportées</a></li>
@@ -209,7 +210,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="4.8" data-path="viz.html"><a href="viz.html#les-diagrammes-bâtons"><i class="fa fa-check"></i><b>4.8</b> Les diagrammes bâtons</a><ul>
 <li class="chapter" data-level="4.8.1" data-path="viz.html"><a href="viz.html#représentation-graphique-avec-geom_bar-et-geom_col"><i class="fa fa-check"></i><b>4.8.1</b> Représentation graphique avec <code>geom_bar</code> et <code>geom_col</code></a></li>
 <li class="chapter" data-level="4.8.2" data-path="viz.html"><a href="viz.html#un-exemple-concret"><i class="fa fa-check"></i><b>4.8.2</b> Un exemple concret</a></li>
-<li class="chapter" data-level="4.8.3" data-path="viz.html"><a href="viz.html#exercices-5"><i class="fa fa-check"></i><b>4.8.3</b> Exercices</a></li>
+<li class="chapter" data-level="4.8.3" data-path="viz.html"><a href="viz.html#exercices-3"><i class="fa fa-check"></i><b>4.8.3</b> Exercices</a></li>
 <li class="chapter" data-level="4.8.4" data-path="viz.html"><a href="viz.html#éviter-à-tout-prix-les-diagrammes-circulaires"><i class="fa fa-check"></i><b>4.8.4</b> Éviter à tout prix les diagrammes circulaires</a></li>
 <li class="chapter" data-level="4.8.5" data-path="viz.html"><a href="viz.html#comparer-2-variables-catégorielles-avec-un-diagramme-bâton"><i class="fa fa-check"></i><b>4.8.5</b> Comparer 2 variables catégorielles avec un diagramme bâton</a></li>
 </ul></li>
@@ -218,7 +219,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="4.9.2" data-path="viz.html"><a href="viz.html#les-échelles"><i class="fa fa-check"></i><b>4.9.2</b> Les échelles</a></li>
 <li class="chapter" data-level="4.9.3" data-path="viz.html"><a href="viz.html#les-thèmes"><i class="fa fa-check"></i><b>4.9.3</b> Les thèmes</a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="viz.html"><a href="viz.html#exercices-6"><i class="fa fa-check"></i><b>4.10</b> Exercices</a></li>
+<li class="chapter" data-level="4.10" data-path="viz.html"><a href="viz.html#exercices-4"><i class="fa fa-check"></i><b>4.10</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a><ul>
 <li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#prerek"><i class="fa fa-check"></i><b>5.1</b> Prérequis</a></li>
@@ -226,13 +227,13 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="5.2.1" data-path="tidyr.html"><a href="tidyr.html#la-fonction-pivot_longer"><i class="fa fa-check"></i><b>5.2.1</b> La fonction <code>pivot_longer()</code></a></li>
 <li class="chapter" data-level="5.2.2" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> La fonction <code>pivot_wider()</code></a></li>
 <li class="chapter" data-level="5.2.3" data-path="tidyr.html"><a href="tidyr.html#les-fonctions-separate-et-unite"><i class="fa fa-check"></i><b>5.2.3</b> Les fonctions <code>separate()</code> et <code>unite()</code></a></li>
-<li class="chapter" data-level="5.2.4" data-path="tidyr.html"><a href="tidyr.html#exercices-7"><i class="fa fa-check"></i><b>5.2.4</b> Exercices</a></li>
+<li class="chapter" data-level="5.2.4" data-path="bases.html"><a href="bases.html#exercices"><i class="fa fa-check"></i><b>5.2.4</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#importer-des-données-depuis-un-tableur"><i class="fa fa-check"></i><b>5.3</b> Importer des données depuis un tableur</a><ul>
 <li class="chapter" data-level="5.3.1" data-path="tidyr.html"><a href="tidyr.html#les-règles-de-base"><i class="fa fa-check"></i><b>5.3.1</b> Les règles de base</a></li>
 <li class="chapter" data-level="5.3.2" data-path="tidyr.html"><a href="tidyr.html#tableur"><i class="fa fa-check"></i><b>5.3.2</b> Fichiers au format tableur (.xls ou .xlsx)</a></li>
 <li class="chapter" data-level="5.3.3" data-path="tidyr.html"><a href="tidyr.html#fichiers-au-format-texte-brut-.csv"><i class="fa fa-check"></i><b>5.3.3</b> Fichiers au format texte brut (.csv)</a></li>
-<li class="chapter" data-level="5.3.4" data-path="tidyr.html"><a href="tidyr.html#exercices-8"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
+<li class="chapter" data-level="5.3.4" data-path="viz.html"><a href="viz.html#exercices-1"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a><ul>
@@ -241,7 +242,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.3" data-path="wrangling.html"><a href="wrangling.html#les-verbes-du-tripatouillage-de-données"><i class="fa fa-check"></i><b>6.3</b> Les verbes du tripatouillage de données</a></li>
 <li class="chapter" data-level="6.4" data-path="wrangling.html"><a href="wrangling.html#filtrer-des-lignes-avec-filter"><i class="fa fa-check"></i><b>6.4</b> Filtrer des lignes avec <code>filter()</code></a><ul>
 <li class="chapter" data-level="6.4.1" data-path="wrangling.html"><a href="wrangling.html#principe"><i class="fa fa-check"></i><b>6.4.1</b> Principe</a></li>
-<li class="chapter" data-level="6.4.2" data-path="wrangling.html"><a href="wrangling.html#exercice-1"><i class="fa fa-check"></i><b>6.4.2</b> Exercice</a></li>
+<li class="chapter" data-level="6.4.2" data-path="viz.html"><a href="viz.html#exercice"><i class="fa fa-check"></i><b>6.4.2</b> Exercice</a></li>
 <li class="chapter" data-level="6.4.3" data-path="wrangling.html"><a href="wrangling.html#les-conditions-logiques"><i class="fa fa-check"></i><b>6.4.3</b> Les conditions logiques</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="wrangling.html"><a href="wrangling.html#créer-des-résumés-avec-summarise-et-group_by"><i class="fa fa-check"></i><b>6.5</b> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></a><ul>
@@ -250,12 +251,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.5.3" data-path="wrangling.html"><a href="wrangling.html#ajouter-des-barres-derreurs-sur-un-graphique"><i class="fa fa-check"></i><b>6.5.3</b> Ajouter des barres d’erreurs sur un graphique</a></li>
 <li class="chapter" data-level="6.5.4" data-path="wrangling.html"><a href="wrangling.html#grouper-par-plus-dune-variable"><i class="fa fa-check"></i><b>6.5.4</b> Grouper par plus d’une variable</a></li>
 <li class="chapter" data-level="6.5.5" data-path="wrangling.html"><a href="wrangling.html#un-raccourci-pratique-pour-compter-des-effectifs"><i class="fa fa-check"></i><b>6.5.5</b> Un raccourci pratique pour compter des effectifs</a></li>
-<li class="chapter" data-level="6.5.6" data-path="wrangling.html"><a href="wrangling.html#exercices-9"><i class="fa fa-check"></i><b>6.5.6</b> Exercices</a></li>
+<li class="chapter" data-level="6.5.6" data-path="bases.html"><a href="bases.html#exercices"><i class="fa fa-check"></i><b>6.5.6</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="6.6" data-path="wrangling.html"><a href="wrangling.html#sélectionner-des-variables-avec-select"><i class="fa fa-check"></i><b>6.6</b> Sélectionner des variables avec <code>select()</code></a></li>
 <li class="chapter" data-level="6.7" data-path="wrangling.html"><a href="wrangling.html#créer-de-nouvelles-variables-avec-mutate"><i class="fa fa-check"></i><b>6.7</b> Créer de nouvelles variables avec <code>mutate()</code></a><ul>
 <li class="chapter" data-level="6.7.1" data-path="wrangling.html"><a href="wrangling.html#principe-1"><i class="fa fa-check"></i><b>6.7.1</b> Principe</a></li>
-<li class="chapter" data-level="6.7.2" data-path="wrangling.html"><a href="wrangling.html#exercices-10"><i class="fa fa-check"></i><b>6.7.2</b> Exercices</a></li>
+<li class="chapter" data-level="6.7.2" data-path="viz.html"><a href="viz.html#exercices-1"><i class="fa fa-check"></i><b>6.7.2</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#arrange"><i class="fa fa-check"></i><b>6.8</b> Trier des lignes avec <code>arrange()</code></a></li>
 <li class="chapter" data-level="6.9" data-path="wrangling.html"><a href="wrangling.html#associer-plusieurs-tableaux-avec-left_join-et-inner_join"><i class="fa fa-check"></i><b>6.9</b> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></a><ul>
@@ -263,7 +264,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="6.9.2" data-path="wrangling.html"><a href="wrangling.html#inner_join"><i class="fa fa-check"></i><b>6.9.2</b> <code>inner_join()</code></a></li>
 <li class="chapter" data-level="6.9.3" data-path="wrangling.html"><a href="wrangling.html#left_join"><i class="fa fa-check"></i><b>6.9.3</b> <code>left_join()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6.10" data-path="wrangling.html"><a href="wrangling.html#exercices-11"><i class="fa fa-check"></i><b>6.10</b> Exercices</a></li>
+<li class="chapter" data-level="6.10" data-path="viz.html"><a href="viz.html#exercices-2"><i class="fa fa-check"></i><b>6.10</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
 <li class="divider"></li>
@@ -578,7 +579,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 </div>
 <div id="les-fonctions-separate-et-unite" class="section level3">
 <h3><span class="header-section-number">5.2.3</span> Les fonctions <code>separate()</code> et <code>unite()</code></h3>
-<p>Ces fonctions sont complémentaires : tout comme <code>gather()</code> et <code>spread()</code>, elles effectuent 2 opérations opposées. Reprenons le jeu de données <code>cases_tidy</code> (que nous transformons au préalable en tibble pour mieux voir ce qui se passe) :</p>
+<p>Ces fonctions sont complémentaires : tout comme <code>pivot_longer()</code> et <code>pivot_wider()</code>, elles effectuent 2 opérations opposées. Reprenons le jeu de données <code>cases_tidy</code> (que nous transformons au préalable en tibble pour mieux voir ce qui se passe) :</p>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="tidyr.html#cb196-1"></a>cases_tidy &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(cases_tidy)</span>
 <span id="cb196-2"><a href="tidyr.html#cb196-2"></a>cases_tidy</span></code></pre></div>
 <pre><code># A tibble: 9 x 3
@@ -659,7 +660,7 @@ Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2
 8 US      2012    14000
 9 US      2013    13000</code></pre>
 </div>
-<div id="exercices-7" class="section level3">
+<div id="exercices" class="section level3">
 <h3><span class="header-section-number">5.2.4</span> Exercices</h3>
 <p>Examinez les tableaux <code>rates</code>, <code>storms</code> et <code>population</code> du package <code>EDAWR</code>.</p>
 <ol style="list-style-type: decimal">
@@ -876,7 +877,7 @@ cols(
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="tidyr.html#cb218-1"></a>dauphin2</span></code></pre></div>
 <pre><code>Error in eval(expr, envir, enclos): objet &#39;dauphin2&#39; introuvable</code></pre>
 </div>
-<div id="exercices-8" class="section level3">
+<div id="exercices-1" class="section level3">
 <h3><span class="header-section-number">5.3.4</span> Exercices</h3>
 <ol style="list-style-type: decimal">
 <li>L’objet <code>dauphin</code> est-il “tidy” (autrement dit, s’agit-il de “données rangées”) ? Justifiez.</li>
@@ -886,7 +887,7 @@ cols(
 <p><img src="figure/exercicedauphin-1.png" width="90%" style="display: block; margin: auto;" />
 Indice : les droites de régression avec les intervalles de confiance sont ajoutés grâce à la fonction <code>geom_smooth(method = "lm")</code>
 3. Importez dans R le jeu de données <a href="data/whoTB.csv">whoTB.csv</a>. Ce jeu de données contient les cas de tuberculose (TB) rapportés par l’Organisation Mondiale de la Santé (OMS, ou WHO en anglais : World Health Organization). Les cas sont répertoriés par année, pays, âge, sexe, type de tuberculose et méthode de diagnostique. Selon vous, ce jeu de données est-il “rangé” ? Pourquoi ?
-4. Si ce jeu de données n’est pas rangé, rangez-le en utilisant les fonctions du packages <code>tidyr</code> que nous avons découvertes dans ce chapitre : <code>gather()</code>, <code>spread()</code>, <code>separate()</code> et <code>unite()</code> (vous n’aurez pas nécessairement besoin d’utiliser ces 4 fonctions, et à l’inverse, certaines devront peut-être être utilisées plusieurs fois).</p>
+4. Si ce jeu de données n’est pas rangé, rangez-le en utilisant les fonctions du packages <code>tidyr</code> que nous avons découvertes dans ce chapitre : <code>pivot_longer()</code>, <code>pivot_wider()</code>, <code>separate()</code> et <code>unite()</code> (vous n’aurez pas nécessairement besoin d’utiliser ces 4 fonctions, et à l’inverse, certaines devront peut-être être utilisées plusieurs fois).</p>
 <p>Pour vous aider, l’OMS donne la signification des codes utilisés en guise de noms pour la plupart des colonnes. Ainsi :</p>
 <ul>
 <li><code>new</code> indique des nouveaux cas, <code>old</code> des anciens (ici, seuls les nouveaux cas sont rapportés)</li>

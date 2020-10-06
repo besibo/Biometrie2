@@ -249,7 +249,7 @@ D'autres arguments existent. **Je vous encourage vivement** à consulter l'aide 
 
 ### Les fonctions `separate()` et `unite()`
 
-Ces fonctions sont complémentaires : tout comme `gather()` et `spread()`, elles effectuent 2 opérations opposées. Reprenons le jeu de données `cases_tidy` (que nous transformons au préalable en tibble pour mieux voir ce qui se passe) :
+Ces fonctions sont complémentaires : tout comme `pivot_longer()` et `pivot_wider()`, elles effectuent 2 opérations opposées. Reprenons le jeu de données `cases_tidy` (que nous transformons au préalable en tibble pour mieux voir ce qui se passe) :
 
 ```{r}
 cases_tidy <- as_tibble(cases_tidy)
@@ -483,7 +483,7 @@ dauphin %>%
 ```
 Indice : les droites de régression avec les intervalles de confiance sont ajoutés grâce à la fonction `geom_smooth(method = "lm")`
 3. Importez dans R le jeu de données [whoTB.csv](data/whoTB.csv). Ce jeu de données contient les cas de tuberculose (TB) rapportés par l'Organisation Mondiale de la Santé (OMS, ou WHO en anglais : World Health Organization). Les cas sont répertoriés par année, pays, âge, sexe, type de tuberculose et méthode de diagnostique. Selon vous, ce jeu de données est-il "rangé" ? Pourquoi ?
-4. Si ce jeu de données n'est pas rangé, rangez-le en utilisant les fonctions du packages `tidyr` que nous avons découvertes dans ce chapitre : `gather()`, `spread()`, `separate()` et `unite()` (vous n'aurez pas nécessairement besoin d'utiliser ces 4 fonctions, et à l'inverse, certaines devront peut-être être utilisées plusieurs fois). 
+4. Si ce jeu de données n'est pas rangé, rangez-le en utilisant les fonctions du packages `tidyr` que nous avons découvertes dans ce chapitre : `pivot_longer()`, `pivot_wider()`, `separate()` et `unite()` (vous n'aurez pas nécessairement besoin d'utiliser ces 4 fonctions, et à l'inverse, certaines devront peut-être être utilisées plusieurs fois). 
 
 Pour vous aider, l'OMS donne la signification des codes utilisés en guise de noms pour la plupart des colonnes. Ainsi :
 
