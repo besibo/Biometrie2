@@ -198,7 +198,7 @@ ggplot(alaska_flights, aes(x = dep_delay, y = arr_delay)) +
 ```
 
 
-### Exercices
+### Exercices {#Exo-3}
 
 1. Donnez une raison pratique expliquant pourquoi les variables `dep_delay` et `arr_delay` ont une relation positive
 2. Quelles variables (pas nécessairement dans le tableau `alaska_flights`) pourraient avoir une corrélation négative (relation négative) avec `dep_delay` ? Pourquoi ? Rappelez-vous que nous étudions ici des variables numériques.
@@ -330,7 +330,7 @@ ggplot(data = alaska_flights,
 ```
 
 
-### Exercices
+### Exercices  {#Exo-4}
 
 1. À quoi sert l'argument `stroke` ?
 
@@ -621,7 +621,7 @@ Ici, nous avons utilisé la variable `month` (transformée en facteur) et la var
 Vous devriez maintenant être convaincus de la puissance de la grammaire des graphiques. En utilisant un langage standardisé et en ajoutant des couches une à une sur un graphique, il est posible d'obtenir rapidement des visualisations très complexes et néanmoins très claires, qui font apparaître des structures intéressantes dans nos données (des tendances, des groupes, des similitudes, des liaisons, des différences, etc.).
 
 
-### Exercices
+### Exercices {#Exo-5}
 
 Examinez la figure \@ref(fig:grid).
 
@@ -820,7 +820,7 @@ ggplot(carrier_table, aes(x = fct_reorder(carrier, nombre, .desc = TRUE),
 Vous voyez donc que selon le type de données dont vous disposez (soit un tableau comme `flights`, avec toutes les observations, soit un tableau beaucoup plus compact comme `carrier_table`), la démarche permettant de produire un diagramme bâtons, dans lequel les catégories seront triées, sera différente.
 
 
-### Exercices
+### Exercices {#Exo-6}
 
 1. Quelle est la différence entre un histogramme et un diagramme bâtons ?
 2. Pourquoi les histogrammes sont-ils inadaptés pour visualiser des données catégorielles ?
@@ -1157,7 +1157,7 @@ Vous devriez donc maintenant être bien armés pour produire 95% des graphiques 
 
 ----
 
-## Exercices
+## Exercices  {#Exo-7}
 
 Commencez par créer un nouveau jeu de données en exécutant ces commandes :
 

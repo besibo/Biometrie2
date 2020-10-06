@@ -452,7 +452,7 @@ weather %>%
 ```
 
 
-### Exercices
+### Exercices {#Exo-10}
 
 1. Faites un tableau indiquant combien de vols ont été annulés après le décollage, pour chaque compagnie aérienne. Vous devriez obtenir le tableau suivant :
 
@@ -645,7 +645,7 @@ gain_speed <- flights_sml %>%
 ```
 
 
-### Exercices
+### Exercices {#Exo-11}
 
 1. Dans `ggplot2` le jeu de données `mpg` contient des informations sur 234 modèles de voitures. Examinez ce jeu de données avec la fonction `View()` et consultez l'aide de ce jeu de données pour savoir à quoi correspondent les différentes variables. Quelle(s) variable(s) nous renseignent sur la consommation des véhicules ? À quoi correspond la variable `disp` ?
 
@@ -847,7 +847,7 @@ Néanmoins, avec les deux fonctions `inner_join()` et `left_join()` décrite ici
 
 ----
 
-## Exercices
+## Exercices {#Exo-12}
 
 1. Créez un tableau `delayed` indiquant, pour chaque compagnie aérienne et chaque mois de l'année, le nombre de vols ayant eu un retard supérieur à 30 minutes à l'arrivée à destination. Ce tableau devrait contenir uniquement 3 colonnes :
 

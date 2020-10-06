@@ -172,7 +172,7 @@ Prenez le temps d'examiner le fichier d'aide du jeu de données `flights`. Avant
 
 ----
 
-## Exercices
+## Exercices {#Exo-2}
 
 Consultez l'aide du jeu de données `diamonds` du package `ggplot2`.
 

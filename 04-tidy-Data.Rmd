@@ -293,7 +293,7 @@ unite(cases_split, new, century, year, sep = "")
 ```
 
 
-### Exercices
+### Exercices {#Exo-8}
 
 Examinez les tableaux `rates`, `storms` et `population` du package `EDAWR`.
 
@@ -464,7 +464,7 @@ Taper `dauphin2` dans la console devrait maintenant produire une erreur :
 dauphin2
 ```
 
-### Exercices
+### Exercices {#Exo-9}
 
 1. L'objet `dauphin` est-il "tidy" (autrement dit, s'agit-il de "données rangées") ? Justifiez.
 2. Produisez le graphique ci-dessous :
@@ -482,6 +482,7 @@ dauphin %>%
     theme_bw()
 ```
 Indice : les droites de régression avec les intervalles de confiance sont ajoutés grâce à la fonction `geom_smooth(method = "lm")`
+
 3. Importez dans R le jeu de données [whoTB.csv](data/whoTB.csv). Ce jeu de données contient les cas de tuberculose (TB) rapportés par l'Organisation Mondiale de la Santé (OMS, ou WHO en anglais : World Health Organization). Les cas sont répertoriés par année, pays, âge, sexe, type de tuberculose et méthode de diagnostique. Selon vous, ce jeu de données est-il "rangé" ? Pourquoi ?
 4. Si ce jeu de données n'est pas rangé, rangez-le en utilisant les fonctions du packages `tidyr` que nous avons découvertes dans ce chapitre : `pivot_longer()`, `pivot_wider()`, `separate()` et `unite()` (vous n'aurez pas nécessairement besoin d'utiliser ces 4 fonctions, et à l'inverse, certaines devront peut-être être utilisées plusieurs fois). 
 

@@ -439,7 +439,7 @@ rappelez-vous que c'est probablement parce que vous tentez d'utiliser une foncti
 
 ---
 
-## Exercices
+## Exercices {#Exo-1}
 
 Créez un nouveau script que vous nommerez `VotreNomDeFamille.R`. Vous prendrez soin d'ajouter autant de commentaires que nécessaire dans votre script afin de le structurer correctement.
 
