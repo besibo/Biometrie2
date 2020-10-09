@@ -18,7 +18,7 @@ library(tidyr)
 library(dplyr)
 library(nycflights13)
 library(ggplot2)
-library(readxl)
+library(readxl)  # la dernière lettre est un "L" minuscule, pas le chiffre 1...
 library(readr)
 ```
 
