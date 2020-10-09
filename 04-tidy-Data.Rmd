@@ -26,14 +26,14 @@ Comme d'habitude, si vous recevez des messages d'erreur, c'est probablement parc
 
 Outre ces packages classiques, nous aurons aussi besoin du package `EDAWR` qui n'est pas disponible sur les serveurs habituels de R. Pour l'installer, on procède de la façon suivante : 
 
-1. Installez et chargez en mémoire le package `devtools` :
+1. Installez et chargez en mémoire le package `remotes` :
 
 ```{r eval = FALSE}
-install.packages("devtools")
-library(devtools)
+install.packages("remotes")
+library(remotes)
 ```
 
-2. Installez le package `EDAWR` grâce à la fonction `install_github()` du package `devtools` :
+2. Installez le package `EDAWR` grâce à la fonction `install_github()` du package `remotes` :
 
 ```{r eval = FALSE}
 install_github("rstudio/EDAWR")
@@ -47,10 +47,10 @@ library(EDAWR)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-if (!("devtools" %in% installed.packages())) {
-  install.packages("devtools")
+if (!("remotes" %in% installed.packages())) {
+  install.packages("remotes")
 }
-library(devtools)
+library(remotes)
 if (!("EDAWR" %in% installed.packages())) {
   install_github("rstudio/EDAWR")
 }
