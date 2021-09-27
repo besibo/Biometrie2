@@ -47,14 +47,19 @@ library(EDAWR)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-if (!("remotes" %in% installed.packages())) {
-  install.packages("remotes")
-}
-library(remotes)
-if (!("EDAWR" %in% installed.packages())) {
-  install_github("rstudio/EDAWR")
-}
-library(EDAWR)
+# if (!("remotes" %in% installed.packages())) {
+#   install.packages("remotes")
+# }
+# library(remotes)
+# if (!("EDAWR" %in% installed.packages())) {
+#   install_github("rstudio/EDAWR")
+# }
+# library(EDAWR)
+
+load("data/cases.rdata")
+load("data/population.rdata")
+load("data/rates.rdata")
+load("data/storms.rdata")
 ```
 
 Le package `EDAWR` contient plusieurs jeux de données dont nous allons nous servir pour illustrer les questions liées au format des tableaux de données. Pour en avoir la liste, vous pouvez taper :
