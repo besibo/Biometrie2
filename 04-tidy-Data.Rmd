@@ -154,7 +154,7 @@ Il nous est maintenant plus facile de manipuler ces données pour en tirer de l'
 ggplot(cases_tidy, aes(x = country, y = n_cases, fill = year)) +
   geom_col(position = "dodge", color = "black") +
   scale_fill_brewer(palette = "Accent") +
-  theme_minimal(base_family = "Futura LT Book") +
+  theme_minimal() +
   labs(x = "Pays",
        y = "Nombre de cas",
        fill = "Année",
