@@ -664,7 +664,7 @@ mpg %>%
        y = "Consommation (litres pour 100 kilomètres)",
        color = "Type de\nvéhicule",
        title = "Relation positive entre cylindrée et consommation") +
-  theme_minimal(base_family = "Futura LT Book")
+  theme_minimal(base_family = "Gill Sans")
 ```
 
 4. Ce graphique présente-t'il correctement l'ensemble des données de ces 2 variables ? Pourquoi ? Comparez le graphique \@ref(fig:consommation) de la question 3 ci-dessus et le graphique \@ref(fig:consommation2) présenté ci-dessous. Selon vous, quels arguments et/ou fonctions ont été modifiés pour arriver à ce nouveau graphique ? Quels sont les avantages et les inconvénients de ce graphique par rapport au précédent ?
@@ -680,7 +680,7 @@ mpg %>%
        y = "Consommation (litres pour 100 kilomètres)",
        fill = "Type de\nvéhicule",
        title = "Relation positive entre cylindrée et consommation") +
-  theme_minimal(base_family = "Futura LT Book")
+  theme_minimal(base_family = "Gill Sans")
 ```
 
 ----
