@@ -592,7 +592,7 @@ flights %>%
 
 ----
 
-## Créer de nouvelles variables avec `mutate()`
+## Créer de nouvelles variables avec `mutate()` {#mutate}
 
 ### Principe
 

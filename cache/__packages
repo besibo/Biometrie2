@@ -1,0 +1,16 @@
+base
+remotes
+knitr
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+nycflights13
+gapminder
+gridExtra
+readxl

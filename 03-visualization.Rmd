@@ -993,9 +993,9 @@ ggplot(flights, aes(x = fct_infreq(carrier), fill = origin)) +
   scale_fill_grey()
 ```
 
-Le package `RColorBrewer` propose une large gamme de palettes de couleurs (figure \@ref(fig:brew) :
+Le package `RColorBrewer` propose une large gamme de palettes de couleurs (figure \@ref(fig:brew)) :
 
-```{r, brew, RcolorbrewerPalettes, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Toutes les palettes de couleur du package `RColorBrewer`."}
+```{r, brew, echo = FALSE, out.width='50%', fig.align='center', fig.cap="Toutes les palettes de couleur du package `RColorBrewer`."}
 knitr::include_graphics('images/brewer.png')
 ```
 
