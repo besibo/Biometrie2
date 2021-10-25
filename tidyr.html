@@ -24,7 +24,7 @@
 <meta name="author" content="Benoît Simon-Bouhet" />
 
 
-<meta name="date" content="2021-09-27" />
+<meta name="date" content="2021-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -305,7 +305,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <span id="cb165-4"><a href="tidyr.html#cb165-4"></a><span class="kw">library</span>(ggplot2)</span>
 <span id="cb165-5"><a href="tidyr.html#cb165-5"></a><span class="kw">library</span>(readxl)  <span class="co"># la dernière lettre est un &quot;L&quot; minuscule, pas le chiffre 1...</span></span>
 <span id="cb165-6"><a href="tidyr.html#cb165-6"></a><span class="kw">library</span>(readr)</span></code></pre></div>
-<p>Comme d’habitude, si vous recevez des messages d’erreur, c’est probablement parce que le package que vous essayez de charger en mémoire n’a pas été installé au préalable. Consultez la section <a href="bases.html#packages">2.3</a> si vous ne savez plus comment procéder.</p>
+<p>Comme d’habitude, si vous recevez des messages d’erreur, c’est probablement car le package que vous essayez de charger en mémoire n’a pas été installé au préalable. Consultez la section <a href="bases.html#packages">2.3</a> si vous ne savez plus comment procéder.</p>
 <p>Outre ces packages classiques, nous aurons aussi besoin du package <code>EDAWR</code> qui n’est pas disponible sur les serveurs habituels de R. Pour l’installer, on procède de la façon suivante :</p>
 <ol style="list-style-type: decimal">
 <li>Installez et chargez en mémoire le package <code>remotes</code> :</li>
@@ -745,18 +745,18 @@ Figure 5.6: Les bons réglages pour ce fichier
 <p>La commande <code>library(readxl)</code> est inutile puisque nous l’avons déjà saisie au début de ce chapitre. Nous disposons maintenant d’un nouvel objet nommé <code>dauphin</code>. Il est stocké sous la forme d’un <code>tibble</code> :</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="tidyr.html#cb205-1"></a>dauphin</span></code></pre></div>
 <pre><code># A tibble: 93 × 9
-   `N°`      Sexe  `Statut reproducteur` `Taille en cm` `Age en années`
-   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;           &lt;dbl&gt;
- 1 Numéro 1  f     imm                              315               3
- 2 Numéro 2  f     imm                              357               4
- 3 Numéro 3  f     pnl                              439              34
- 4 Numéro 4  f     imm                              316               4
- 5 Numéro 5  f     l                                435              26
- 6 Numéro 6  f     pnl                              388               6
- 7 Numéro 7  f     mat                              410              NA
- 8 Numéro 8  m     imm                              355              NA
- 9 Numéro 9  m     imm                              222              NA
-10 Numéro 10 m     imm                              412               9
+   `N°`      Sexe  `Statut reproducteu… `Taille en cm` `Age en années`
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                         &lt;dbl&gt;           &lt;dbl&gt;
+ 1 Numéro 1  f     imm                             315               3
+ 2 Numéro 2  f     imm                             357               4
+ 3 Numéro 3  f     pnl                             439              34
+ 4 Numéro 4  f     imm                             316               4
+ 5 Numéro 5  f     l                               435              26
+ 6 Numéro 6  f     pnl                             388               6
+ 7 Numéro 7  f     mat                             410              NA
+ 8 Numéro 8  m     imm                             355              NA
+ 9 Numéro 9  m     imm                             222              NA
+10 Numéro 10 m     imm                             412               9
 # … with 83 more rows, and 4 more variables: Cd (mg.kg-1) &lt;dbl&gt;,
 #   Cu (mg.kg-1) &lt;dbl&gt;, Hg (mg.kg-1) &lt;dbl&gt;, Organe &lt;chr&gt;</code></pre>
 <p>Notez toutefois que les noms de colonnes complexes sont toujours présents. Avec de tels noms, les variables ne seront pas faciles à manipuler et les risques d’erreurs de frappes seront nombreux. Nous avons tout intérêt à les modifier à l’aide de la fonction <code>names()</code> :</p>
