@@ -22,7 +22,7 @@ library(readxl)  # la dernière lettre est un "L" minuscule, pas le chiffre 1...
 library(readr)
 ```
 
-Comme d'habitude, si vous recevez des messages d'erreur, c'est probablement parce que le package que vous essayez de charger en mémoire n'a pas été installé au préalable. Consultez la section \@ref(packages) si vous ne savez plus comment procéder.
+Comme d'habitude, si vous recevez des messages d'erreur, c'est probablement car le package que vous essayez de charger en mémoire n'a pas été installé au préalable. Consultez la section \@ref(packages) si vous ne savez plus comment procéder.
 
 Outre ces packages classiques, nous aurons aussi besoin du package `EDAWR` qui n'est pas disponible sur les serveurs habituels de R. Pour l'installer, on procède de la façon suivante : 
 
