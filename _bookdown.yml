@@ -1,6 +1,7 @@
 book_filename: "Biometrie2"
 delete_merged_file: true
 output_dir: _docs
+rmd_files: ["index.Rmd", "01-R-basics.Rmd", "02-dataset.Rmd", "03-visualization.Rmd", "04-tidy-Data.Rmd", "05-DataWrangling.Rmd", "06-references.Rmd"]
 language:
   ui:
     chapter_name: ""

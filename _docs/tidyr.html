@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 (Ar)ranger des données avec tidyr | Travaux Pratiques de Biométrie 2</title>
+  <meta name="description" content="Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 (Ar)ranger des données avec tidyr | Travaux Pratiques de Biométrie 2" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://besibo.github.io/Biometrie2/" />
+  
+  <meta property="og:description" content="Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2." />
+  <meta name="github-repo" content="besibo/Biometrie2" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 (Ar)ranger des données avec tidyr | Travaux Pratiques de Biométrie 2" />
+  
+  <meta name="twitter:description" content="Ce livre est un document permettant de prendre en main les logiciels R et RStudio afin de réaliser des représentations graphiques et des statistiques descriptives simples dans le cadre des travaux pratiques de Biométrie 2." />
+  
+
+<meta name="author" content="Benoît Simon-Bouhet" />
+
+
+<meta name="date" content="2021-11-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="viz.html"/>
+<link rel="next" href="wrangling.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">TP de Biométrie 2</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#objectifs"><i class="fa fa-check"></i><b>1.1</b> Objectifs</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#organisation"><i class="fa fa-check"></i><b>1.2</b> Organisation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="bases.html"><a href="bases.html"><i class="fa fa-check"></i><b>2</b> R et RStudio : les bases</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="bases.html"><a href="bases.html#que-sont-r-et-rstudio"><i class="fa fa-check"></i><b>2.1</b> Que sont R et RStudio</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="bases.html"><a href="bases.html#installation-de-r-et-rstudio"><i class="fa fa-check"></i><b>2.1.1</b> Installation de R et RStudio</a></li>
+<li class="chapter" data-level="2.1.2" data-path="bases.html"><a href="bases.html#utiliser-r-depuis-rstudio"><i class="fa fa-check"></i><b>2.1.2</b> Utiliser R depuis RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="bases.html"><a href="bases.html#code"><i class="fa fa-check"></i><b>2.2</b> Comment exécuter du code R ?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="bases.html"><a href="bases.html#la-console"><i class="fa fa-check"></i><b>2.2.1</b> La console</a></li>
+<li class="chapter" data-level="2.2.2" data-path="bases.html"><a href="bases.html#le-répertoire-de-travail"><i class="fa fa-check"></i><b>2.2.2</b> Le répertoire de travail</a></li>
+<li class="chapter" data-level="2.2.3" data-path="bases.html"><a href="bases.html#les-scripts"><i class="fa fa-check"></i><b>2.2.3</b> Les scripts</a></li>
+<li class="chapter" data-level="2.2.4" data-path="bases.html"><a href="bases.html#concepts-de-base-en-programmation-et-terminologie"><i class="fa fa-check"></i><b>2.2.4</b> Concepts de base en programmation et terminologie</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="bases.html"><a href="bases.html#packages"><i class="fa fa-check"></i><b>2.3</b> Les packages additionels</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="bases.html"><a href="bases.html#installation-dun-package"><i class="fa fa-check"></i><b>2.3.1</b> Installation d’un package</a></li>
+<li class="chapter" data-level="2.3.2" data-path="bases.html"><a href="bases.html#charger-un-package-en-mémoire"><i class="fa fa-check"></i><b>2.3.2</b> Charger un package en mémoire</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="bases.html"><a href="bases.html#Exo-1"><i class="fa fa-check"></i><b>2.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="dataset.html"><a href="dataset.html"><i class="fa fa-check"></i><b>3</b> Explorez votre premier jeu de données</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="dataset.html"><a href="dataset.html#le-package-nycflights13"><i class="fa fa-check"></i><b>3.1</b> Le package <code>nycflights13</code></a></li>
+<li class="chapter" data-level="3.2" data-path="dataset.html"><a href="dataset.html#le-data-frame-flights"><i class="fa fa-check"></i><b>3.2</b> Le data frame <code>flights</code></a></li>
+<li class="chapter" data-level="3.3" data-path="dataset.html"><a href="dataset.html#explorer-un-data.frame"><i class="fa fa-check"></i><b>3.3</b> Explorer un <code>data.frame</code></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="dataset.html"><a href="dataset.html#View"><i class="fa fa-check"></i><b>3.3.1</b> <code>View()</code></a></li>
+<li class="chapter" data-level="3.3.2" data-path="dataset.html"><a href="dataset.html#glimpse"><i class="fa fa-check"></i><b>3.3.2</b> <code>glimpse()</code></a></li>
+<li class="chapter" data-level="3.3.3" data-path="dataset.html"><a href="dataset.html#lopérateur"><i class="fa fa-check"></i><b>3.3.3</b> L’opérateur <code>$</code></a></li>
+<li class="chapter" data-level="3.3.4" data-path="dataset.html"><a href="dataset.html#skim"><i class="fa fa-check"></i><b>3.3.4</b> <code>skim()</code></a></li>
+<li class="chapter" data-level="3.3.5" data-path="dataset.html"><a href="dataset.html#les-fichiers-daide"><i class="fa fa-check"></i><b>3.3.5</b> Les fichiers d’aide</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="dataset.html"><a href="dataset.html#Exo-2"><i class="fa fa-check"></i><b>3.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="viz.html"><a href="viz.html"><i class="fa fa-check"></i><b>4</b> Visualiser des données avec <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="viz.html"><a href="viz.html#prérequis"><i class="fa fa-check"></i><b>4.1</b> Prérequis</a></li>
+<li class="chapter" data-level="4.2" data-path="viz.html"><a href="viz.html#gggraph"><i class="fa fa-check"></i><b>4.2</b> La grammaire des graphiques</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="viz.html"><a href="viz.html#éléments-de-la-grammaire"><i class="fa fa-check"></i><b>4.2.1</b> Éléments de la grammaire</a></li>
+<li class="chapter" data-level="4.2.2" data-path="viz.html"><a href="viz.html#gapminder"><i class="fa fa-check"></i><b>4.2.2</b> Gapminder</a></li>
+<li class="chapter" data-level="4.2.3" data-path="viz.html"><a href="viz.html#autres-éléments-de-la-grammaire-des-graphiques"><i class="fa fa-check"></i><b>4.2.3</b> Autres éléments de la grammaire des graphiques</a></li>
+<li class="chapter" data-level="4.2.4" data-path="viz.html"><a href="viz.html#le-package-ggplot2"><i class="fa fa-check"></i><b>4.2.4</b> Le package <code>ggplot2</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="viz.html"><a href="viz.html#clouds"><i class="fa fa-check"></i><b>4.3</b> Les nuages de points</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="viz.html"><a href="viz.html#la-couche-de-base-la-fonction-ggplot"><i class="fa fa-check"></i><b>4.3.1</b> La couche de base : la fonction <code>ggplot()</code></a></li>
+<li class="chapter" data-level="4.3.2" data-path="viz.html"><a href="viz.html#ajout-dune-couche-supplémentaire-lobjet-géométrique"><i class="fa fa-check"></i><b>4.3.2</b> Ajout d’une couche supplémentaire : l’objet géométrique</a></li>
+<li class="chapter" data-level="4.3.3" data-path="viz.html"><a href="viz.html#Exo-3"><i class="fa fa-check"></i><b>4.3.3</b> Exercices</a></li>
+<li class="chapter" data-level="4.3.4" data-path="viz.html"><a href="viz.html#over-plotting"><i class="fa fa-check"></i><b>4.3.4</b> Over-plotting</a></li>
+<li class="chapter" data-level="4.3.5" data-path="viz.html"><a href="viz.html#couleur-taille-et-forme"><i class="fa fa-check"></i><b>4.3.5</b> Couleur, taille et forme</a></li>
+<li class="chapter" data-level="4.3.6" data-path="viz.html"><a href="viz.html#Exo-4"><i class="fa fa-check"></i><b>4.3.6</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="viz.html"><a href="viz.html#les-graphiques-en-lignes"><i class="fa fa-check"></i><b>4.4</b> Les graphiques en lignes</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="viz.html"><a href="viz.html#un-nouveau-jeu-de-données"><i class="fa fa-check"></i><b>4.4.1</b> Un nouveau jeu de données</a></li>
+<li class="chapter" data-level="4.4.2" data-path="viz.html"><a href="viz.html#exercice"><i class="fa fa-check"></i><b>4.4.2</b> Exercice</a></li>
+<li class="chapter" data-level="4.4.3" data-path="viz.html"><a href="viz.html#la-fonction-geom_line"><i class="fa fa-check"></i><b>4.4.3</b> La fonction <code>geom_line()</code></a></li>
+<li class="chapter" data-level="4.4.4" data-path="viz.html"><a href="viz.html#à-quel-endroit-placer-aes-et-les-arguments-color-size-etc."><i class="fa fa-check"></i><b>4.4.4</b> À quel endroit placer <code>aes()</code> et les arguments <code>color</code>, <code>size</code>, etc. ?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="viz.html"><a href="viz.html#histogram"><i class="fa fa-check"></i><b>4.5</b> Les histogrammes</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="viz.html"><a href="viz.html#lobjet-geom_histogram"><i class="fa fa-check"></i><b>4.5.1</b> L’objet <code>geom_histogram()</code></a></li>
+<li class="chapter" data-level="4.5.2" data-path="viz.html"><a href="viz.html#la-taille-des-classes"><i class="fa fa-check"></i><b>4.5.2</b> La taille des classes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="viz.html"><a href="viz.html#facets"><i class="fa fa-check"></i><b>4.6</b> Les <code>facet</code>s</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="viz.html"><a href="viz.html#facet_wrap"><i class="fa fa-check"></i><b>4.6.1</b> <code>facet_wrap()</code></a></li>
+<li class="chapter" data-level="4.6.2" data-path="viz.html"><a href="viz.html#facet_grid"><i class="fa fa-check"></i><b>4.6.2</b> <code>facet_grid()</code></a></li>
+<li class="chapter" data-level="4.6.3" data-path="viz.html"><a href="viz.html#Exo-5"><i class="fa fa-check"></i><b>4.6.3</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="viz.html"><a href="viz.html#les-boîtes-à-moustaches-ou-boxplots"><i class="fa fa-check"></i><b>4.7</b> Les boîtes à moustaches ou boxplots</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="viz.html"><a href="viz.html#création-de-boxplots-et-informations-apportées"><i class="fa fa-check"></i><b>4.7.1</b> Création de boxplots et informations apportées</a></li>
+<li class="chapter" data-level="4.7.2" data-path="viz.html"><a href="viz.html#lintervalle-de-confiance-à-95-de-la-médiane"><i class="fa fa-check"></i><b>4.7.2</b> L’intervalle de confiance à 95% de la médiane</a></li>
+<li class="chapter" data-level="4.7.3" data-path="viz.html"><a href="viz.html#une-autre-façon-dexaminer-des-distributions"><i class="fa fa-check"></i><b>4.7.3</b> Une autre façon d’examiner des distributions</a></li>
+<li class="chapter" data-level="4.7.4" data-path="viz.html"><a href="viz.html#pour-conclure"><i class="fa fa-check"></i><b>4.7.4</b> Pour conclure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="viz.html"><a href="viz.html#les-diagrammes-bâtons"><i class="fa fa-check"></i><b>4.8</b> Les diagrammes bâtons</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="viz.html"><a href="viz.html#représentation-graphique-avec-geom_bar-et-geom_col"><i class="fa fa-check"></i><b>4.8.1</b> Représentation graphique avec <code>geom_bar</code> et <code>geom_col</code></a></li>
+<li class="chapter" data-level="4.8.2" data-path="viz.html"><a href="viz.html#un-exemple-concret"><i class="fa fa-check"></i><b>4.8.2</b> Un exemple concret</a></li>
+<li class="chapter" data-level="4.8.3" data-path="viz.html"><a href="viz.html#Exo-6"><i class="fa fa-check"></i><b>4.8.3</b> Exercices</a></li>
+<li class="chapter" data-level="4.8.4" data-path="viz.html"><a href="viz.html#éviter-à-tout-prix-les-diagrammes-circulaires"><i class="fa fa-check"></i><b>4.8.4</b> Éviter à tout prix les diagrammes circulaires</a></li>
+<li class="chapter" data-level="4.8.5" data-path="viz.html"><a href="viz.html#comparer-2-variables-catégorielles-avec-un-diagramme-bâton"><i class="fa fa-check"></i><b>4.8.5</b> Comparer 2 variables catégorielles avec un diagramme bâton</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="viz.html"><a href="viz.html#de-lexploration-à-lexposition"><i class="fa fa-check"></i><b>4.9</b> De l’exploration à l’exposition</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="viz.html"><a href="viz.html#les-labels"><i class="fa fa-check"></i><b>4.9.1</b> Les labels</a></li>
+<li class="chapter" data-level="4.9.2" data-path="viz.html"><a href="viz.html#les-échelles"><i class="fa fa-check"></i><b>4.9.2</b> Les échelles</a></li>
+<li class="chapter" data-level="4.9.3" data-path="viz.html"><a href="viz.html#les-thèmes"><i class="fa fa-check"></i><b>4.9.3</b> Les thèmes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="viz.html"><a href="viz.html#Exo-7"><i class="fa fa-check"></i><b>4.10</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> (Ar)ranger des données avec <code>tidyr</code></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#prerek"><i class="fa fa-check"></i><b>5.1</b> Prérequis</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#cest-quoi-des-tidy-data"><i class="fa fa-check"></i><b>5.2</b> C’est quoi des “tidy data” ?</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="tidyr.html"><a href="tidyr.html#la-fonction-pivot_longer"><i class="fa fa-check"></i><b>5.2.1</b> La fonction <code>pivot_longer()</code></a></li>
+<li class="chapter" data-level="5.2.2" data-path="tidyr.html"><a href="tidyr.html#spread"><i class="fa fa-check"></i><b>5.2.2</b> La fonction <code>pivot_wider()</code></a></li>
+<li class="chapter" data-level="5.2.3" data-path="tidyr.html"><a href="tidyr.html#les-fonctions-separate-et-unite"><i class="fa fa-check"></i><b>5.2.3</b> Les fonctions <code>separate()</code> et <code>unite()</code></a></li>
+<li class="chapter" data-level="5.2.4" data-path="tidyr.html"><a href="tidyr.html#Exo-8"><i class="fa fa-check"></i><b>5.2.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#importer-des-données-depuis-un-tableur"><i class="fa fa-check"></i><b>5.3</b> Importer des données depuis un tableur</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="tidyr.html"><a href="tidyr.html#les-règles-de-base"><i class="fa fa-check"></i><b>5.3.1</b> Les règles de base</a></li>
+<li class="chapter" data-level="5.3.2" data-path="tidyr.html"><a href="tidyr.html#tableur"><i class="fa fa-check"></i><b>5.3.2</b> Fichiers au format tableur (.xls ou .xlsx)</a></li>
+<li class="chapter" data-level="5.3.3" data-path="tidyr.html"><a href="tidyr.html#fichiers-au-format-texte-brut-.csv"><i class="fa fa-check"></i><b>5.3.3</b> Fichiers au format texte brut (.csv)</a></li>
+<li class="chapter" data-level="5.3.4" data-path="tidyr.html"><a href="tidyr.html#Exo-9"><i class="fa fa-check"></i><b>5.3.4</b> Exercices</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>6</b> Tripatouiller les données avec <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="wrangling.html"><a href="wrangling.html#pré-requis"><i class="fa fa-check"></i><b>6.1</b> Pré-requis</a></li>
+<li class="chapter" data-level="6.2" data-path="wrangling.html"><a href="wrangling.html#le-pipe"><i class="fa fa-check"></i><b>6.2</b> Le pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="6.3" data-path="wrangling.html"><a href="wrangling.html#les-verbes-du-tripatouillage-de-données"><i class="fa fa-check"></i><b>6.3</b> Les verbes du tripatouillage de données</a></li>
+<li class="chapter" data-level="6.4" data-path="wrangling.html"><a href="wrangling.html#filtrer-des-lignes-avec-filter"><i class="fa fa-check"></i><b>6.4</b> Filtrer des lignes avec <code>filter()</code></a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="wrangling.html"><a href="wrangling.html#principe"><i class="fa fa-check"></i><b>6.4.1</b> Principe</a></li>
+<li class="chapter" data-level="6.4.2" data-path="wrangling.html"><a href="wrangling.html#exercice-1"><i class="fa fa-check"></i><b>6.4.2</b> Exercice</a></li>
+<li class="chapter" data-level="6.4.3" data-path="wrangling.html"><a href="wrangling.html#les-conditions-logiques"><i class="fa fa-check"></i><b>6.4.3</b> Les conditions logiques</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="wrangling.html"><a href="wrangling.html#créer-des-résumés-avec-summarise-et-group_by"><i class="fa fa-check"></i><b>6.5</b> Créer des résumés avec <code>summarise()</code> et <code>group_by()</code></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="wrangling.html"><a href="wrangling.html#principe-de-la-fonction-summarise"><i class="fa fa-check"></i><b>6.5.1</b> Principe de la fonction <code>summarise()</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="wrangling.html"><a href="wrangling.html#intérêt-de-la-fonction-group_by"><i class="fa fa-check"></i><b>6.5.2</b> Intérêt de la fonction <code>group_by()</code></a></li>
+<li class="chapter" data-level="6.5.3" data-path="wrangling.html"><a href="wrangling.html#ajouter-des-barres-derreurs-sur-un-graphique"><i class="fa fa-check"></i><b>6.5.3</b> Ajouter des barres d’erreurs sur un graphique</a></li>
+<li class="chapter" data-level="6.5.4" data-path="wrangling.html"><a href="wrangling.html#grouper-par-plus-dune-variable"><i class="fa fa-check"></i><b>6.5.4</b> Grouper par plus d’une variable</a></li>
+<li class="chapter" data-level="6.5.5" data-path="wrangling.html"><a href="wrangling.html#un-raccourci-pratique-pour-compter-des-effectifs"><i class="fa fa-check"></i><b>6.5.5</b> Un raccourci pratique pour compter des effectifs</a></li>
+<li class="chapter" data-level="6.5.6" data-path="wrangling.html"><a href="wrangling.html#Exo-10"><i class="fa fa-check"></i><b>6.5.6</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="wrangling.html"><a href="wrangling.html#sélectionner-des-variables-avec-select"><i class="fa fa-check"></i><b>6.6</b> Sélectionner des variables avec <code>select()</code></a></li>
+<li class="chapter" data-level="6.7" data-path="wrangling.html"><a href="wrangling.html#mutate"><i class="fa fa-check"></i><b>6.7</b> Créer de nouvelles variables avec <code>mutate()</code></a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="wrangling.html"><a href="wrangling.html#principe-1"><i class="fa fa-check"></i><b>6.7.1</b> Principe</a></li>
+<li class="chapter" data-level="6.7.2" data-path="wrangling.html"><a href="wrangling.html#Exo-11"><i class="fa fa-check"></i><b>6.7.2</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="wrangling.html"><a href="wrangling.html#arrange"><i class="fa fa-check"></i><b>6.8</b> Trier des lignes avec <code>arrange()</code></a></li>
+<li class="chapter" data-level="6.9" data-path="wrangling.html"><a href="wrangling.html#associer-plusieurs-tableaux-avec-left_join-et-inner_join"><i class="fa fa-check"></i><b>6.9</b> Associer plusieurs tableaux avec <code>left_join()</code> et <code>inner_join()</code></a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="wrangling.html"><a href="wrangling.html#principe-2"><i class="fa fa-check"></i><b>6.9.1</b> Principe</a></li>
+<li class="chapter" data-level="6.9.2" data-path="wrangling.html"><a href="wrangling.html#inner_join"><i class="fa fa-check"></i><b>6.9.2</b> <code>inner_join()</code></a></li>
+<li class="chapter" data-level="6.9.3" data-path="wrangling.html"><a href="wrangling.html#left_join"><i class="fa fa-check"></i><b>6.9.3</b> <code>left_join()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="wrangling.html"><a href="wrangling.html#Exo-12"><i class="fa fa-check"></i><b>6.10</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="références.html"><a href="références.html"><i class="fa fa-check"></i>Références</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publié avec bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Travaux Pratiques de Biométrie 2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidyr" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> (Ar)ranger des données avec <code>tidyr</code></h1>
+<p>Dans la section <a href="bases.html#objects">2.2.4.1</a>, nous avons introduit le concept de tableaux de données ou <code>data.frame</code> dans R. Il s’agit d’une représentation rectangulaire des données, à la manière d’un tableur, dans laquelle les lignes correspondent aux observations et les colonnes correspondent à des variables décrivant chaque observation.</p>
+<p>Dans ce chapitre, nous allons aller plus loin en présentant le concept de “tidy data,” ou “données nettes/rangées/soignées/ordonnées.” Vous verrez que l’idée d’avoir des données stockées dans un format “net” va plus loin que la simple définition usuelle que le terme “rangé” peut avoir lorsque les données sont simplement bien organisées dans un tableur. Nous définirons le terme “tidy data” de manière plus rigoureuse, en établissant un ensemble de règles permettant de stocker les données correctement afin de rendre plus aisées les analyses statistiques et les représentations graphiques.</p>
+<p>Jusqu’à maintenant, vous avez utilisé des données qui étaient déjà dans ce format (c’est le cas des données contenues dans <code>flights</code> ou dans <code>diamonds</code> par exemple). Pourtant, la plupart du temps, les données que vous manipulerez dans R seront importées depuis un tableur dans lequel vous ou vos collaborateurs en aurez fait la saisie. S’assurer que les données importées manuellement dans R sont correctement “nettoyées” et mises en forme de “tidy data” est indispensable pour éviter les problèmes lors de la réalisation de graphiques (voir chapitre <a href="viz.html#viz">4</a>) comme lors de la manipulation des données pour en tirer de l’information statistique pertinente (ce que nous verrons au chapitre <a href="wrangling.html#wrangling">6</a>).</p>
+<hr />
+<div id="prerek" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Prérequis</h2>
+<p>Dans ce chapitre, nous aurons besoin des packages suivants :</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="tidyr.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb165-2"><a href="tidyr.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb165-3"><a href="tidyr.html#cb165-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb165-4"><a href="tidyr.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb165-5"><a href="tidyr.html#cb165-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)  <span class="co"># la dernière lettre est un &#39;L&#39; minuscule, pas le chiffre 1...</span></span>
+<span id="cb165-6"><a href="tidyr.html#cb165-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<p>Comme d’habitude, si vous recevez des messages d’erreur, c’est probablement parce que le package que vous essayez de charger en mémoire n’a pas été installé au préalable. Consultez la section <a href="bases.html#packages">2.3</a> si vous ne savez plus comment procéder.</p>
+<p>Outre ces packages classiques, nous aurons aussi besoin du package <code>EDAWR</code> qui n’est pas disponible sur les serveurs habituels de R. Pour l’installer, on procède de la façon suivante :</p>
+<ol style="list-style-type: decimal">
+<li>Installez et chargez en mémoire le package <code>remotes</code> :</li>
+</ol>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="tidyr.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;remotes&quot;</span>)</span>
+<span id="cb166-2"><a href="tidyr.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Installez le package <code>EDAWR</code> grâce à la fonction <code>install_github()</code> du package <code>remotes</code> :</li>
+</ol>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="tidyr.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install_github</span>(<span class="st">&quot;rstudio/EDAWR&quot;</span>)</span></code></pre></div>
+<p>Attention, sur les ordinateurs de l’université cette procédure ne fonctionne pas toujours. Si vous rencontrez des difficultés, suivez les instructions décrites à la fin de cette section <a href="tidyr.html#prerek">5.1</a></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Chargez le package <code>EDAWR</code> de la façon habituelle :</li>
+</ol>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="tidyr.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EDAWR)</span></code></pre></div>
+<p>Le package <code>EDAWR</code> contient plusieurs jeux de données dont nous allons nous servir pour illustrer les questions liées au format des tableaux de données. Pour en avoir la liste, vous pouvez taper :</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="tidyr.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">&quot;EDAWR&quot;</span>)</span></code></pre></div>
+<p><strong>En cas de problème pour installer le package <code>EDAWR</code> sur les ordinateurs de l’université.</strong></p>
+<p>Vous pouvez télécharger manuellement les 4 jeux de données dont nous aurons besoin grâce à ces 4 liens :</p>
+<ul>
+<li><a href="https://github.com/besibo/Biometrie2/raw/master/data/cases.rdata">cases</a></li>
+<li><a href="https://github.com/besibo/Biometrie2/raw/master/data/population.rdata">population</a></li>
+<li><a href="https://github.com/besibo/Biometrie2/raw/master/data/rates.rdata">rates</a></li>
+<li><a href="https://github.com/besibo/Biometrie2/raw/master/data/storms.rdata">storms</a></li>
+</ul>
+<p>Une fois téléchargés, les données contenues dans ces 4 fichiers peuvent être importées dans RStudio en cliquant sur <code>File &gt; Open File...</code>, puis en sélectionnant un à un chacun des fichiers. Pour chaque fichier un nouvel objet doit apparaître dans votre environnement de travail (onglet <code>Environnement</code>, dans le panneau en haut à droite de RStudio). L’inconvénient de cette méthode est que les fichiers d’aide de ces jeux de données ne seront pas disponibles dans RStudio. Vous pouvez toutefois en consulter une version brute (non mise en forme) <a href="https://github.com/rstudio/EDAWR/tree/master/man">en cliquant ici</a>.</p>
+<hr />
+</div>
+<div id="cest-quoi-des-tidy-data" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> C’est quoi des “tidy data” ?</h2>
+<p>Les “tidy data” (nous les appellerons “données rangées” dans la suite de ce livre), sont des données qui respectent un format standardisé. En particulier :</p>
+<ul>
+<li>chaque variable est dans une colonne unique</li>
+<li>chaque colonne contient une unique variable</li>
+<li>chaque ligne correspond à une observation pour chaque variable</li>
+<li>les cellules du tableau représentent les valeurs de chaque observation pour chaque variable.</li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:tidyschema"></span>
+<img src="images/tidy.png" alt="La définition des 'données rangées', d'après http://r4ds.had.co.nz/tidy-data.html" width="90%" />
+<p class="caption">
+Figure 5.1: La définition des ‘données rangées,’ d’après <a href="http://r4ds.had.co.nz/tidy-data.html" class="uri">http://r4ds.had.co.nz/tidy-data.html</a>
+</p>
+</div>
+<p>Malheureusement, les données peuvent être présentées sous de nombreux formats qui ne respectent pas ces règles de base. La modification des tableaux est donc souvent un préambule nécessaire à toute analyse statistique ou représentation graphique.</p>
+<p>Par exemple, examinez le tableau <code>cases</code> du package <code>EDAWR</code>, qui présente le nombre de cas de tuberculose dans 3 pays en 2011, 2012 et 2013.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="tidyr.html#cb170-1" aria-hidden="true" tabindex="-1"></a>cases</span></code></pre></div>
+<pre><code>  country  2011  2012  2013
+1      FR  7000  6900  7000
+2      DE  5800  6000  6200
+3      US 15000 14000 13000</code></pre>
+<p>Dans ce tableau, essayez d’identifier quelles sont les variables en présence. Indice, vous devriez en trouver 3.</p>
+<p>Essayez d’identifier également où se trouvent ces variables.</p>
+<p>Pour ma part, je compte les 3 variables suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>country : qui indique les pays dans lesquels les cas de tuberculose ont été dénombrés. Cette variable occupe la première colonne du tableau.</li>
+<li>la seconde variable est l’année, qui peut prendre les valeurs 2011, 2012 ou 2013. Cette variable occupe la ligne des titres des 3 colonnes de droite du tableau.</li>
+<li>et enfin, la troisième variable est le nombre de cas de tuberculose observés dans chaque pays et chaque année. Cette troisième variable occupe 3 lignes et 3 colonnes du tableau.</li>
+</ol>
+<p>Autrement dit, les variables peuvent être visualisées de la façon suivante :</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gather"></span>
+<img src="images/gather.png" alt="Position des variables dans le tableau `cases` du package `EDAWR`" width="50%" />
+<p class="caption">
+Figure 5.2: Position des variables dans le tableau <code>cases</code> du package <code>EDAWR</code>
+</p>
+</div>
+<p>Donc même si nous disposons ici d’un tableau rectangulaire classique, nous sommes bien loin du format des données rangées.</p>
+<div id="la-fonction-pivot_longer" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> La fonction <code>pivot_longer()</code></h3>
+<p>Afin de transformer les données non rangées du tableau <code>cases</code> en données rangées, nous allons utiliser la fonction <code>pivot_longer()</code> du package <code>tidyr</code>. Avant d’aller plus loin, essayez d’imaginer à quoi le tableau rangé devrait ressembler.</p>
+<p>La fonction <code>pivot_longer()</code> prend 4 arguments :</p>
+<ol style="list-style-type: decimal">
+<li><code>data</code> : le nom du tableau de données que l’on souhaite “ranger.”</li>
+<li><code>cols</code> : La liste des colonnes du tableau initial que l’on souhaite rassembler en 2 nouvelles variables. Ici, les colonnes 2, 3 et 4 (on pourra les noter <code>2:4</code> ou, en utilisant leur nom, <code>"2011":"2013"</code>).</li>
+<li><code>names_to</code> : le nom d’une nouvelle variable qui contiendra les en-têtes des colonnes qui constituent la seconde variable. Ici, nous nommerons cette seconde variable <code>year</code> car elle devra contenir les années 2011, 2012 et 2013.</li>
+<li><code>values_to</code> : le nom d’une nouvelle variable qui contiendra les informations correspondant à la troisième variable identifiée plus haut. Nous appelerons cette variables <code>n_cases</code> car elle contiendra les nombres de cas de tuberculose (7000, 5800, 15000, etc).</li>
+</ol>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="tidyr.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> cases, </span>
+<span id="cb172-2"><a href="tidyr.html#cb172-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> <span class="st">`</span><span class="at">2011</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2013</span><span class="st">`</span>, </span>
+<span id="cb172-3"><a href="tidyr.html#cb172-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, </span>
+<span id="cb172-4"><a href="tidyr.html#cb172-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">values_to =</span> <span class="st">&quot;n_cases&quot;</span>)</span></code></pre></div>
+<pre><code># A tibble: 9 × 3
+  country year  n_cases
+  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+1 FR      2011     7000
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
+5 DE      2012     6000
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
+9 US      2013    13000</code></pre>
+<p>Nous avons bien transformé le tableau de départ en un “tableau rangé” : chacune de nos 3 variables se trouve dans une unique colone, et chaque ligne correspond à une observation pour chacune de ces 3 variables. Comme d’habitude, si nous souhaitons pouvoir utiliser ce nouveau tableau, il faut lui donner un nom :</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="tidyr.html#cb174-1" aria-hidden="true" tabindex="-1"></a>cases_tidy <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(<span class="at">data =</span> cases, </span>
+<span id="cb174-2"><a href="tidyr.html#cb174-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">cols =</span> <span class="st">`</span><span class="at">2011</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2013</span><span class="st">`</span>, </span>
+<span id="cb174-3"><a href="tidyr.html#cb174-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, </span>
+<span id="cb174-4"><a href="tidyr.html#cb174-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">values_to =</span> <span class="st">&quot;n_cases&quot;</span>)</span></code></pre></div>
+<p>Il nous est maintenant plus facile de manipuler ces données pour en tirer de l’information, grâce à des analyses statistiques ou des représentations graphiques :</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="tidyr.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cases_tidy, <span class="fu">aes</span>(<span class="at">x =</span> country, <span class="at">y =</span> n_cases, <span class="at">fill =</span> year)) <span class="sc">+</span></span>
+<span id="cb175-2"><a href="tidyr.html#cb175-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb175-3"><a href="tidyr.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Accent&quot;</span>) <span class="sc">+</span></span>
+<span id="cb175-4"><a href="tidyr.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb175-5"><a href="tidyr.html#cb175-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Pays&quot;</span>,</span>
+<span id="cb175-6"><a href="tidyr.html#cb175-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Nombre de cas&quot;</span>,</span>
+<span id="cb175-7"><a href="tidyr.html#cb175-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Année&quot;</span>,</span>
+<span id="cb175-8"><a href="tidyr.html#cb175-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Évolution du nombre de cas de tuberculose entre 2011 et 2013&quot;</span>,</span>
+<span id="cb175-9"><a href="tidyr.html#cb175-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;DE : Allemagne, FR : France, US : États-Unis&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:casesbarplot"></span>
+<img src="figure/casesbarplot-1.png" alt="Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2013." width="90%" />
+<p class="caption">
+Figure 5.3: Évolution du nombre de cas de tuberculose dans 3 pays, de 2011 à 2013.
+</p>
+</div>
+<p>On constate ici qu’entre 2011 et 2013, le nombre de cas de tuberculose a légèrement augmenté en Allemagne, est resté stable en France, et a diminué aux États-Unis.</p>
+<p>Notez ici que la variable <code>year</code> de notre nouveau tableau est considérée comme une variable de type “chaîne de caractères” et non comme une variable numérique. On peut le voir en affichant notre tableau en tapant son nom, ou en utilisant la fonction <code>str()</code> déjà décrite plus tôt :</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="tidyr.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(cases_tidy)</span></code></pre></div>
+<pre><code>tibble [9 × 3] (S3: tbl_df/tbl/data.frame)
+ $ country: chr [1:9] &quot;FR&quot; &quot;FR&quot; &quot;FR&quot; &quot;DE&quot; ...
+ $ year   : chr [1:9] &quot;2011&quot; &quot;2012&quot; &quot;2013&quot; &quot;2011&quot; ...
+ $ n_cases: num [1:9] 7000 6900 7000 5800 6000 6200 15000 14000 13000</code></pre>
+<p>C’est le comportement par défaut de la fonction <code>pivot_longer()</code> : les anciens titres de colonnes sont convertis en chaînes de caractères. Si ce comportement n’est pas souhaitable, il y a 2 alternatives possibles :</p>
+<ol style="list-style-type: decimal">
+<li>utiliser les arguments <code>names_transform</code> et/ou <code>values_transform</code> de la fonction <code>pivot_longer()</code>. Cela permet de spécifier comment transformer les variables nouvellement créées au moment de leur création.</li>
+<li>utiliser les fonctions <code>mutate()</code> et <code>as.numeric()</code> ou <code>as.integer()</code> après avoir modifié le tableau de départ avec <code>pivot_longer()</code>. Cette façon de faire sera décrite dans la partie <a href="wrangling.html#mutate">6.7</a>.</li>
+</ol>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="tidyr.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On commence par afficher `cases`</span></span>
+<span id="cb178-2"><a href="tidyr.html#cb178-2" aria-hidden="true" tabindex="-1"></a>cases </span></code></pre></div>
+<pre><code>  country  2011  2012  2013
+1      FR  7000  6900  7000
+2      DE  5800  6000  6200
+3      US 15000 14000 13000</code></pre>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="tidyr.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On utilise ensuite pivot_longer avec l&#39;argument </span></span>
+<span id="cb180-2"><a href="tidyr.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="co"># names_transform pour transformer year en facteur</span></span>
+<span id="cb180-3"><a href="tidyr.html#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> cases, </span>
+<span id="cb180-4"><a href="tidyr.html#cb180-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> <span class="st">`</span><span class="at">2011</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2013</span><span class="st">`</span>, </span>
+<span id="cb180-5"><a href="tidyr.html#cb180-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, </span>
+<span id="cb180-6"><a href="tidyr.html#cb180-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">values_to =</span> <span class="st">&quot;n_cases&quot;</span>,</span>
+<span id="cb180-7"><a href="tidyr.html#cb180-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">year =</span> as.integer))</span></code></pre></div>
+<pre><code># A tibble: 9 × 3
+  country  year n_cases
+  &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;
+1 FR       2011    7000
+2 FR       2012    6900
+3 FR       2013    7000
+4 DE       2011    5800
+5 DE       2012    6000
+6 DE       2013    6200
+7 US       2011   15000
+8 US       2012   14000
+9 US       2013   13000</code></pre>
+<p>On voit ici que la variable <code>year</code> est maintenant une colonne numérique (<code>&lt;int&gt;</code> : nombres entiers), et non plus une variable de type “character.” En utilisant <code>as.numeric()</code> au lieu de <code>as.integer()</code>, on aurait transformé la variable <code>year</code> en <code>&lt;dbl&gt;</code> (nombre réel au lieu de nombre entier), ce qui ici, reviendrait exactement au même.</p>
+<p>De la même façon, on peut avoir besoin de presenter la colonne <code>year</code> sous la forme d’un facteur :</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="tidyr.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(<span class="at">data =</span> cases, </span>
+<span id="cb182-2"><a href="tidyr.html#cb182-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> <span class="st">`</span><span class="at">2011</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2013</span><span class="st">`</span>, </span>
+<span id="cb182-3"><a href="tidyr.html#cb182-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>, </span>
+<span id="cb182-4"><a href="tidyr.html#cb182-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">values_to =</span> <span class="st">&quot;n_cases&quot;</span>,</span>
+<span id="cb182-5"><a href="tidyr.html#cb182-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">year =</span> as.factor))</span></code></pre></div>
+<pre><code># A tibble: 9 × 3
+  country year  n_cases
+  &lt;chr&gt;   &lt;fct&gt;   &lt;dbl&gt;
+1 FR      2011     7000
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
+5 DE      2012     6000
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
+9 US      2013    13000</code></pre>
+</div>
+<div id="spread" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> La fonction <code>pivot_wider()</code></h3>
+<p>La fonction <code>pivot_wider()</code> permet de réaliser l’opération inverse de <code>pivot_longer()</code>. Elle “disperse” une unique colonne catégorielle en plusieurs colonnes, le tableau obtenue est donc plus large (“wider”) que le tableau de départ.</p>
+<p>Reprenons par exemple notre tableau <code>cases_tidy</code> :</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="tidyr.html#cb184-1" aria-hidden="true" tabindex="-1"></a>cases_tidy</span></code></pre></div>
+<pre><code># A tibble: 9 × 3
+  country year  n_cases
+  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+1 FR      2011     7000
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
+5 DE      2012     6000
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
+9 US      2013    13000</code></pre>
+<p>La fonction <code>pivot_wider()</code> prend 3 arguments :</p>
+<ol style="list-style-type: decimal">
+<li>Le nom du tableau contenant les données (ici, <code>cases_tidy</code>).</li>
+<li><code>names_from</code> : le nom de la variable contenant les catégories qui devront être transformées en colonnes (ici, <code>year</code>).</li>
+<li><code>values_from</code> : le nom de la variable contenant les valeurs qui devront remplir les nouvelles colonnes (ici, <code>n_cases</code>).</li>
+</ol>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="tidyr.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">data =</span> cases_tidy, </span>
+<span id="cb186-2"><a href="tidyr.html#cb186-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> year, </span>
+<span id="cb186-3"><a href="tidyr.html#cb186-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> n_cases)</span></code></pre></div>
+<pre><code># A tibble: 3 × 4
+  country `2011` `2012` `2013`
+  &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 FR        7000   6900   7000
+2 DE        5800   6000   6200
+3 US       15000  14000  13000</code></pre>
+<p>Cette fonction sera donc rarement utilisée puisqu’elle ne permet pas d’obtenir des “tableaux rangés.” Toutefois, elle pourra vous être utile pour présenter des résultats sous forme synthétique. Prenons un exemple avec le jeu de données <code>flights</code>. Imaginons que vous deviez créer un tableau <code>n_vols</code> présentant, pour chacun des 3 aéroports de New York, le nombre de vols affrétés par chaque compagnie aérienne en 2013. Une possibilité serait de taper ceci :</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="tidyr.html#cb188-1" aria-hidden="true" tabindex="-1"></a>n_vols <span class="ot">&lt;-</span> flights <span class="sc">%&gt;%</span> </span>
+<span id="cb188-2"><a href="tidyr.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(origin, carrier) <span class="sc">%&gt;%</span> </span>
+<span id="cb188-3"><a href="tidyr.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span>
+<span id="cb188-4"><a href="tidyr.html#cb188-4" aria-hidden="true" tabindex="-1"></a>n_vols</span></code></pre></div>
+<pre><code># A tibble: 35 × 3
+# Groups:   origin, carrier [35]
+   origin carrier     n
+   &lt;chr&gt;  &lt;chr&gt;   &lt;int&gt;
+ 1 EWR    9E       1268
+ 2 EWR    AA       3487
+ 3 EWR    AS        714
+ 4 EWR    B6       6557
+ 5 EWR    DL       4342
+ 6 EWR    EV      43939
+ 7 EWR    MQ       2276
+ 8 EWR    OO          6
+ 9 EWR    UA      46087
+10 EWR    US       4405
+# … with 25 more rows</code></pre>
+<p>Les commandes permettant de produire ce tableau seront expliquées dans le chapitre <a href="wrangling.html#wrangling">6</a>. On peut cependant constater ici que ce tableau contient 35 lignes et 3 colonnes. Il s’agit bien d’un “tableau rangé” parfaitement adapté pour faire des statistiques et des visualisations graphiques, mais son format n’est pas terrible si notre objectif est de le faire figurer dans un rapport. La solution : utiliser <code>pivot_wider()</code> :</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="tidyr.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(n_vols, </span>
+<span id="cb190-2"><a href="tidyr.html#cb190-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> origin, </span>
+<span id="cb190-3"><a href="tidyr.html#cb190-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> n)</span></code></pre></div>
+<pre><code># A tibble: 16 × 4
+# Groups:   carrier [16]
+   carrier   EWR   JFK   LGA
+   &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+ 1 9E       1268 14651  2541
+ 2 AA       3487 13783 15459
+ 3 AS        714    NA    NA
+ 4 B6       6557 42076  6002
+ 5 DL       4342 20701 23067
+ 6 EV      43939  1408  8826
+ 7 MQ       2276  7193 16928
+ 8 OO          6    NA    26
+ 9 UA      46087  4534  8044
+10 US       4405  2995 13136
+11 VX       1566  3596    NA
+12 WN       6188    NA  6087
+13 HA         NA   342    NA
+14 F9         NA    NA   685
+15 FL         NA    NA  3260
+16 YV         NA    NA   601</code></pre>
+<p>Ce nouveau tableau contient maintenant 16 lignes (une par compagnie aérienne), et 4 colonnes : une pour la variable <code>carrier</code>, et 3 pour la variable <code>origin</code>, soit une colonne pour chacun des 3 aéroports de New York. On parle de tableau au format large (par opposition au “tableau rangé,” dit “format long”). Cela rend la présentation dans un rapport plus aisée.</p>
+<p>Notez également que certaines compagnies aériennes ne desservent pas tous les aéroports. Par exemple, la compagnie Alaska Airlines (<code>AS</code>) ne dessert ni JFK, ni La Guardia. Pour ces catégories, notre nouveau tableau au format large indique <code>NA</code>. Or, <code>NA</code> signifie “Not Available,” autrement dit : données manquantes. Ici, il ne s’agit pas du tout de données manquantes. Cela signifie simplement qu’aucun vol d’Alaska Airline n’a décollé de ces 2 aéroports. Nous pouvons donc indiquer à R quelle valeur utiliser pour les catégories qui ne sont pas représentées dans le tableau de départ grâce à l’argument <code>values_fill</code> :</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="tidyr.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(n_vols, </span>
+<span id="cb192-2"><a href="tidyr.html#cb192-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> origin, </span>
+<span id="cb192-3"><a href="tidyr.html#cb192-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> n, </span>
+<span id="cb192-4"><a href="tidyr.html#cb192-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code># A tibble: 16 × 4
+# Groups:   carrier [16]
+   carrier   EWR   JFK   LGA
+   &lt;chr&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+ 1 9E       1268 14651  2541
+ 2 AA       3487 13783 15459
+ 3 AS        714     0     0
+ 4 B6       6557 42076  6002
+ 5 DL       4342 20701 23067
+ 6 EV      43939  1408  8826
+ 7 MQ       2276  7193 16928
+ 8 OO          6     0    26
+ 9 UA      46087  4534  8044
+10 US       4405  2995 13136
+11 VX       1566  3596     0
+12 WN       6188     0  6087
+13 HA          0   342     0
+14 F9          0     0   685
+15 FL          0     0  3260
+16 YV          0     0   601</code></pre>
+<p>D’autres arguments existent. <strong>Je vous encourage vivement</strong> à consulter l’aide des fonctions <code>pivot_longer()</code> et <code>pivot_wider()</code> et à faire des essais.</p>
+</div>
+<div id="les-fonctions-separate-et-unite" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Les fonctions <code>separate()</code> et <code>unite()</code></h3>
+<p>Ces fonctions sont complémentaires : tout comme <code>pivot_longer()</code> et <code>pivot_wider()</code>, elles effectuent 2 opérations opposées. Reprenons le jeu de données <code>cases_tidy</code> (que nous transformons au préalable en tibble pour mieux voir ce qui se passe) :</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="tidyr.html#cb194-1" aria-hidden="true" tabindex="-1"></a>cases_tidy <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(cases_tidy)</span>
+<span id="cb194-2"><a href="tidyr.html#cb194-2" aria-hidden="true" tabindex="-1"></a>cases_tidy</span></code></pre></div>
+<pre><code># A tibble: 9 × 3
+  country year  n_cases
+  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+1 FR      2011     7000
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
+5 DE      2012     6000
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
+9 US      2013    13000</code></pre>
+<p>Imaginons que nous ayons besoin de séparer les données de la colonne <code>year</code> en 2 variables : le siècle d’une part, et l’année d’autre part. La fonction <code>separate()</code> permet de faire exactement cela :</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="tidyr.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">separate</span>(cases_tidy, year, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>), <span class="at">sep =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code># A tibble: 9 × 4
+  country century year  n_cases
+  &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+1 FR      20      11       7000
+2 FR      20      12       6900
+3 FR      20      13       7000
+4 DE      20      11       5800
+5 DE      20      12       6000
+6 DE      20      13       6200
+7 US      20      11      15000
+8 US      20      12      14000
+9 US      20      13      13000</code></pre>
+<ol style="list-style-type: decimal">
+<li>Le premier argument est le nom du tableau de données</li>
+<li>le second argument est la variable que l’on souhaite scinder en plusieurs morceaux</li>
+<li><code>into</code> est un vecteur qui contient le nom des nouvelles colonnes à créer</li>
+<li><code>sep</code> peut prendre plusieurs formes. Lorsqu’on utilise un nombre, ce nombre correspond à la position de la coupure dans la variable d’origine. Ici, la variable d’origine a été coupée après le second caractère. Il est aussi possible d’utiliser un symbole. Par exemple, certaines variables contiennent des tirets <code>-</code> ou des slash <code>\</code>. Utiliser ces caractères en guise de séparateur permet de couper les variables à ce niveau là. Nous en verrons un exemple plus tard.</li>
+</ol>
+<p>Notez ici que les 2 nouvelles variables sont de type <code>&lt;chr&gt;</code>. Si nous souhaitons que ces variables soient considérées comme numériques, nous devons ajouter un argument lorsque nous utilisons <code>separate()</code> :</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="tidyr.html#cb198-1" aria-hidden="true" tabindex="-1"></a>cases_split <span class="ot">&lt;-</span> <span class="fu">separate</span>(cases_tidy, year, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;century&quot;</span>, <span class="st">&quot;year&quot;</span>),</span>
+<span id="cb198-2"><a href="tidyr.html#cb198-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="dv">2</span>, <span class="at">convert =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb198-3"><a href="tidyr.html#cb198-3" aria-hidden="true" tabindex="-1"></a>cases_split</span></code></pre></div>
+<pre><code># A tibble: 9 × 4
+  country century  year n_cases
+  &lt;chr&gt;     &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;
+1 FR           20    11    7000
+2 FR           20    12    6900
+3 FR           20    13    7000
+4 DE           20    11    5800
+5 DE           20    12    6000
+6 DE           20    13    6200
+7 US           20    11   15000
+8 US           20    12   14000
+9 US           20    13   13000</code></pre>
+<p>Notre nouvel objet <code>cases_split</code> contient maintenant 2 nouvelles colonnes de nombres entiers, l’une contenant le siècle, l’autre contenant l’année</p>
+<p>La fonction <code>unite()</code> fait exactement le contraire : elle fusionne 2 colonnes existantes en accolant leurs contenus (et en ajoutant un séparateur) :</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="tidyr.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unite</span>(cases_split, new, century, year)</span></code></pre></div>
+<pre><code># A tibble: 9 × 3
+  country new   n_cases
+  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+1 FR      20_11    7000
+2 FR      20_12    6900
+3 FR      20_13    7000
+4 DE      20_11    5800
+5 DE      20_12    6000
+6 DE      20_13    6200
+7 US      20_11   15000
+8 US      20_12   14000
+9 US      20_13   13000</code></pre>
+<p>La colonne <code>new</code> a été créée par la fusion des colonnes <code>century</code> et <code>year</code> du tableau <code>cases_split</code>. Si l’on souhaite supprimer le tiret, il nous faut le spécifier explicitement :</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="tidyr.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unite</span>(cases_split, new, century, year, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code># A tibble: 9 × 3
+  country new   n_cases
+  &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;
+1 FR      2011     7000
+2 FR      2012     6900
+3 FR      2013     7000
+4 DE      2011     5800
+5 DE      2012     6000
+6 DE      2013     6200
+7 US      2011    15000
+8 US      2012    14000
+9 US      2013    13000</code></pre>
+</div>
+<div id="Exo-8" class="section level3" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Exercices</h3>
+<p>Examinez les tableaux <code>rates</code>, <code>storms</code> et <code>population</code> du package <code>EDAWR</code>.</p>
+<ol style="list-style-type: decimal">
+<li>Ces tableaux sont-ils des “tableaux rangés” (tidy data) ?</li>
+<li>Si oui, quelles sont les variables représentées ?</li>
+<li>Si non, transformez-les en “tableaux rangés.”</li>
+</ol>
+<hr />
+</div>
+</div>
+<div id="importer-des-données-depuis-un-tableur" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Importer des données depuis un tableur</h2>
+<div id="les-règles-de-base" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Les règles de base</h3>
+<p>Jusqu’à maintenant, nous avons travaillé exclusivement avec des jeux de données déjà disponibles dans R. La plupart du temps, les données sur lesquelles vous devrez travailler devront au préalable être importées dans R, à partir de fichiers issus de tableurs. De tels fichiers se présentent généralement sous l’un des 2 formats suivants :</p>
+<ol style="list-style-type: decimal">
+<li>fichiers au format “.csv” : il s’agit d’un format de fichier dit “texte brut,” c’est à dire qu’il peut être ouvert avec n’importe quel éditeur de texte, y compris le bloc notes de Windows. L’extension “.csv” est l’abbréviation de Comma Separated Values, autrement dit, dans ce type de fichiers, les colonnes sont séparées par des virgules. Cela peut poser problème en France puisque le symbole des décimales est souvent aussi la virgule (et non le point comme dans les pays anglo-saxons). Le séparateur de colonnes utilisé en France dans les fichiers <code>.csv</code> est alors souvent le point-virgule. Il est possible de créer des fichiers <code>.csv</code> à partir de n’importe quel tableur en choisissant <code>Fichier &gt; Exporter...</code> ou <code>Fichier &gt; Enregistrer sous...</code> puis en sélectionnant le format approprié (les dénomminations sont variables selon les logiciels : format texte brut, format csv, plain text, etc…).</li>
+<li>fichiers au format tableur : <code>.xls</code> ou <code>.xlsx</code> pour Excel, <code>.calc</code> pour Open Office.</li>
+</ol>
+<p>Dans les 2 cas, pour que R puisse importer les données contenues dans ces fichiers, un certain nombre de règles doivent être respectées :</p>
+<ol style="list-style-type: decimal">
+<li>La première chose à laquelle il faut veiller est la présentation des données. Les variables doivent être en colonnes et les observations en lignes. Dans l’idéal, les données doivent donc être “rangées.”</li>
+<li>Les cases vides qui correspondent à des données manquantes doivent contenir les lettres <code>NA</code> en majuscule. Il est important de bien faire la distinction entre les vrais zéros (<em>i.e.</em> les grandeurs mesurées pour lesquelles un zéro a été obtenu), et les valeurs manquantes, c’est à dire pour lesquelles aucune valeur n’a pu être obtenue (<em>e.g.</em> variable non mesurée pour un individu donné ou à une station donnée).</li>
+<li>Il est généralement conseillé d’utiliser la première ligne du tableau Excel pour stocker le nom des variables et la première colonne pour stocker le nom des observations (identifiant des individus, des échantillons ou des stations par exemple).</li>
+<li>Ne jamais utiliser de caractères spéciaux tels que #, $, %, ^, &amp;, *, (, ), {, }, [, ], des accents, des cédilles des guillemets ou des apostrophes… Cela pourrait causer des erreurs dans R. Si votre fichier en contient, faites une recherche (<em>via</em> le menu <code>Edition &gt; Rechercher et remplacer...</code>) pour remplacer chaque instance par un caractère qui ne posera pas de problème.</li>
+<li>Évitez les espaces dans vos noms de variables, d’observations ou de catégories et remplacez-les par des points ou des <code>_</code>.</li>
+<li>Si des noms de lignes sont présents dans votre tableau, chaque ligne doit avoir un nom unique (il ne faut pas que plusieurs lignes portent le même nom).</li>
+<li>Des noms courts pour les variables sont généralement plus faciles à manipuler par la suite.</li>
+<li>La première valeur de votre tableau derait toujours se trouver dans la cellule A1 du tableur. Autrement dit, il ne devrait jamais y avoir de lignes incomplètes ou de lignes de commentaires au-dessus des données, ou de colonne vide à gauche de votre tableau. D’ailleurs, il ne devrait jamais y avoir de commentaires à droite ou en-dessous de vos données non plus.</li>
+</ol>
+</div>
+<div id="tableur" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Fichiers au format tableur (.xls ou .xlsx)</h3>
+<p>À titre d’exemple, téléchargez le fichier <a href="data/dauphin.xls">dauphin.xls</a> et placez-le dans votre répertoire de travail. Ce jeu de données contient des résultats de dosage de différents métaux lourds (cadmium, cuivre et mercure) dans différents organes (foie et rein) de plusieurs dauphins communs <em>Delphinus delphis</em>. Les informations de taille, d’âge et de statut reproducteur sont également précisées. Ouvrez ce fichier dans un tableur. Vous constaterez que son format ne permet pas de l’importer tel quel dans R :</p>
+<ul>
+<li>Il contient des lignes vides inutiles au-dessus des données</li>
+<li>Il contient des commentaires inutiles au-dessus des données</li>
+<li>Les titres de colonnes sont complexes et contiennent des caractères spéciaux</li>
+<li>Dans le tableau, les données manquantes sont représentées soit par des “<code>*</code>,” soit par des cellules vides</li>
+</ul>
+<p>Importer un tel jeu de données dans R par les méthodes classiques (c’est-à-dire sans utiliser RStudio et uniquement grâce aux fonctions de base de R) demanderait donc un gros travail de mise en forme préalable. Heureusement, RStudio et le package <code>readxl</code> facilitent grandement le processus.</p>
+<p>Dans RStudio, localisez l’onglet <code>Files</code> situé dans le panneau en bas à droite de l’interface du logiciel. Dans ce panneau, naviguez jusqu’à votre répertoire de travail, qui doit maintenant contenir le fichier daupin.xls que vous avez téléchargé. Cliquez sur son nom, puis, dans le menu qui s’affiche, choisissez <code>Import Dataset...</code> :</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:import"></span>
+<img src="images/import.png" alt="L'option `Import Dataset...` dans la fenêtre `Files` de RStudio" width="70%" />
+<p class="caption">
+Figure 5.4: L’option <code>Import Dataset...</code> dans la fenêtre <code>Files</code> de RStudio
+</p>
+</div>
+<p>La nouvelle fenêtre qui s’ouvre est un “assistant d’importation” :</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:import2"></span>
+<img src="images/import2.png" alt="L'assistant d'importation de RStudio" width="100%" />
+<p class="caption">
+Figure 5.5: L’assistant d’importation de RStudio
+</p>
+</div>
+<p>Cette fenêtre contient plusieurs zones importantes :</p>
+<ol style="list-style-type: decimal">
+<li><code>File/URL</code> (en haut) : lien vers le fichier contenant les données, sur votre ordinateur ou en ligne</li>
+<li><code>Data Preview</code> : zone principale affichant les 50 premières lignes du fichier que l’on souhaite importer.</li>
+<li><code>Import Options</code> (en bas à gauche) : zone dans laquelle des options permettant d’importer les données correctement peuvent être spécifiées</li>
+<li><code>Code Preview</code> (en bas à droite) : les lignes de codes que vous pourrez copier-coller dans votre script une fois les réglages corrects effectués.</li>
+</ol>
+<p>Ici, nous constatons que les données ne sont pas au bon format. La première chose que nous pouvons faire est d’indiquer à R que nous souhaitons ignorer les 9 premières lignes du fichier. Ensuite, nous précisons à RStudio que l’étoile “<code>*</code>” a été utilisée pour indiquer des données manquantes :</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:import3"></span>
+<img src="images/import3.png" alt="Les bons réglages pour ce fichier" width="100%" />
+<p class="caption">
+Figure 5.6: Les bons réglages pour ce fichier
+</p>
+</div>
+<p>Notez qu’à chaque fois que vous modifiez une valeur dans la zone <code>Import Options</code>, 2 choses se produisent simultanément :</p>
+<ol style="list-style-type: decimal">
+<li>La zone <code>Data Preview</code> est mise à jour. Cela permet de s’assurer que les changements effectués ont bien les effets escomptés</li>
+<li>La zone <code>Code Preview</code> est mise à jour. Cela permet de copier-coller dans un script les commandes permettant d’importer correctement les données. Ici, voilà le code que nous devons ajouter à notre script :</li>
+</ol>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="tidyr.html#cb204-1" aria-hidden="true" tabindex="-1"></a>dauphin <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/dauphin.xls&quot;</span>, <span class="at">na =</span> <span class="st">&quot;*&quot;</span>, <span class="at">skip =</span> <span class="dv">9</span>)</span></code></pre></div>
+<p>La commande <code>library(readxl)</code> est inutile puisque nous l’avons déjà saisie au début de ce chapitre. Nous disposons maintenant d’un nouvel objet nommé <code>dauphin</code>. Il est stocké sous la forme d’un <code>tibble</code> :</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="tidyr.html#cb205-1" aria-hidden="true" tabindex="-1"></a>dauphin</span></code></pre></div>
+<pre><code># A tibble: 93 × 9
+   `N°`      Sexe  `Statut reproducteu… `Taille en cm` `Age en années`
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                         &lt;dbl&gt;           &lt;dbl&gt;
+ 1 Numéro 1  f     imm                             315               3
+ 2 Numéro 2  f     imm                             357               4
+ 3 Numéro 3  f     pnl                             439              34
+ 4 Numéro 4  f     imm                             316               4
+ 5 Numéro 5  f     l                               435              26
+ 6 Numéro 6  f     pnl                             388               6
+ 7 Numéro 7  f     mat                             410              NA
+ 8 Numéro 8  m     imm                             355              NA
+ 9 Numéro 9  m     imm                             222              NA
+10 Numéro 10 m     imm                             412               9
+# … with 83 more rows, and 4 more variables: Cd (mg.kg-1) &lt;dbl&gt;,
+#   Cu (mg.kg-1) &lt;dbl&gt;, Hg (mg.kg-1) &lt;dbl&gt;, Organe &lt;chr&gt;</code></pre>
+<p>Notez toutefois que les noms de colonnes complexes sont toujours présents. Avec de tels noms, les variables ne seront pas faciles à manipuler et les risques d’erreurs de frappes seront nombreux. Nous avons tout intérêt à les modifier à l’aide de la fonction <code>names()</code> :</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="tidyr.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dauphin) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;Sexe&quot;</span>, <span class="st">&quot;Statut&quot;</span>, <span class="st">&quot;Taille&quot;</span>, <span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Cd&quot;</span>, <span class="st">&quot;Cu&quot;</span>,</span>
+<span id="cb207-2"><a href="tidyr.html#cb207-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Hg&quot;</span>, <span class="st">&quot;Organe&quot;</span>)</span>
+<span id="cb207-3"><a href="tidyr.html#cb207-3" aria-hidden="true" tabindex="-1"></a>dauphin</span></code></pre></div>
+<pre><code># A tibble: 93 × 9
+   ID        Sexe  Statut Taille   Age     Cd    Cu    Hg Organe
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1 Numéro 1  f     imm       315     3  29.6   3.24 NA    rein  
+ 2 Numéro 2  f     imm       357     4  55.1   4.42 NA    rein  
+ 3 Numéro 3  f     pnl       439    34 129.    5.01  9.02 rein  
+ 4 Numéro 4  f     imm       316     4  71.2   4.33 NA    rein  
+ 5 Numéro 5  f     l         435    26 192     5.15 NA    rein  
+ 6 Numéro 6  f     pnl       388     6  NA     4.12  4.53 rein  
+ 7 Numéro 7  f     mat       410    NA  76     5.1  33.9  foie  
+ 8 Numéro 8  m     imm       355    NA  74.4   4.72 13.3  foie  
+ 9 Numéro 9  m     imm       222    NA   0.09  9.5   2.89 foie  
+10 Numéro 10 m     imm       412     9  85.6   5.42 NA    rein  
+# … with 83 more rows</code></pre>
+<p>Enfin, vous pouvez égalememnt noter que certaines variables devraient être modifiées :</p>
+<ul>
+<li>les variables <code>Sexe</code>, <code>Statut</code> (qui contient l’information de statut reproducteur des dauphins) et <code>Organe</code> (qui indique dans quel organe les métaux ont été dosés) sont de type <code>&lt;chr&gt;</code>. L’idéal serait de disposer de facteurs puisqu’ils s’agit de variables catégorielles.</li>
+<li>la variable <code>ID</code> est totalement inutile puisqu’elle est parfaitement redondante avec le numéro de ligne. Nous pourrions donc la supprimer.</li>
+<li>certaines catégories (ou niveaux) de la variable <code>Statut</code> devraient être ordonnées puisqu’elles reflètent une progression logique : <code>imm</code> (immature), <code>mat</code> (mature), <code>pnl</code> (pregnant non lactating), <code>pl</code> (pregnant lactating), <code>l</code> (lactating), <code>repos</code> (repos somatique)</li>
+</ul>
+<p>Nous verrons dans la partie <a href="wrangling.html#wrangling">6</a> comment effectuer simplement ces différentes opérations</p>
+</div>
+<div id="fichiers-au-format-texte-brut-.csv" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Fichiers au format texte brut (.csv)</h3>
+<p>Nous allons utiliser les mêmes données que précédemment, mais cette fois-ci, elles sont contenues dans un fichier au format <code>.csv</code>. Téléchargez le fichier <a href="data/dauphin.csv">dauphin.csv</a> (pour cela, faites un clic droit sur le lien et choisissez <code>Enregistrez la cible du lien sous...</code> ou une mention équivalente), placez-le dans votre répertoire de travail, et ouvrez-le avec le bloc notes Windows ou tout autre éditeur de texte brut disponible sur votre ordinateur. <strong>Attention</strong> : Microsoft Word n’est pas un éditeur de texte brut. Un fichier au format <code>.doc</code> ou <code>.docx</code> est illisible dans un éditeur de texte brut car outre le texte, ces formats de documents contiennent toutes les informations concernant la mise en forme du texte (polices de caractères, tailles, couleurs et autres attributs, présence de figures, de tableaux dans le document, etc.).</p>
+<p>À l’inverse, les fichiers au format <code>.txt</code>, <code>.csv</code> et même <code>.R</code> (vos scripts !) sont des fichiers au format texte brut. Vous pouvez d’ailleurs essayer d’ouvrir <code>dauphin.csv</code> depuis RStudio, en allant dans la fenêtre <code>Files</code> puis en cliquant sur le nom du fichier et en choisissant <code>View File</code>. RStudio ouvre un nouvel onglet à côté de votre script vous permettant d’inspecter le contenu de ce fichier. Par rapport au fichier excel, vous pouvez noter un certain nombre de différences :</p>
+<ol style="list-style-type: decimal">
+<li>les colonnes sont séparées par des tabulations</li>
+<li>les nombres décimaux utilisent la virgule (et non le point comme dans les pays anglo-saxons)</li>
+<li>les noms de colonne ont déjà été corrigés/simplifiés par rapport au tableau d’origine</li>
+<li>les valeurs manquantes sont toutes codées par des <code>NA</code>s</li>
+</ol>
+<p>Attention, à ce stade, vous avez ouvert un fichier au format texte brut dans RStudio, mais les données contenues dans ce fichier n’ont pas été importées dans R pour autant. Pour les importer, on procède comme pour les fichiers au format tableur (voir section <a href="tidyr.html#tableur">5.3.2</a> ci-dessus).</p>
+<p>On commence par cliquer sur <code>dauphin.csv</code> dans l’onglet <code>Files</code> de RStudio. On sélectionne ensuite <code>Import Dataset...</code> :</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:importcsv1"></span>
+<img src="images/importcsv1.png" alt="Importer un fichier `.csv` depuis l'onglet `Files` de RStudio" width="80%" />
+<p class="caption">
+Figure 5.7: Importer un fichier <code>.csv</code> depuis l’onglet <code>Files</code> de RStudio
+</p>
+</div>
+<p>La fenêtre qui s’ouvre est en tous points identique à celle obtenue pour l’importation de fichiers tableurs :</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:importcsv2"></span>
+<img src="images/importcsv2.png" alt="Importer un fichier `.csv` depuis l'onglet `Files` de RStudio" width="100%" />
+<p class="caption">
+Figure 5.8: Importer un fichier <code>.csv</code> depuis l’onglet <code>Files</code> de RStudio
+</p>
+</div>
+<p>Nous voyons ici que par défaut, RStudio considère qu’une unique colonne est présente. En effet, les fichiers <code>.csv</code> utilisent généralement la virgule pour séparer les colonnes. Ce n’est pas le cas ici. Il nous faut donc sélectionner, dans le champ <code>Delimiter</code>, l’option <code>Tab</code> (tabulation) et non <code>Comma</code> (virgule).</p>
+<p>À ce stade, chaque variable est maintenant reconnue comme telle, chaque variable occupe donc une colonne distincte. Mais les colonnes <code>Cd</code>, <code>Cu</code> et <code>Hg</code> ne contiennent pas les bonnes valeurs (vous pouvez le vérifier en consultant l’onglet <code>dauphin.csv</code> que vous avez ouvert un peu plus tôt à côté de votre script). La cause est simple : R s’attend à ce que les nombres décimaux utilisent le point en guise de symbole des décimales. Or, notre fichier <code>.csv</code> utilise la virgule. C’est une convention qui dépend du pays dans lequel vous vous trouvez, et de la langue de votre système d’exploitation (en langage technique, on parle de <code>Locale</code>). Le fichier <code>dauphin.csv</code> ayant été créé sur un ordinateur français, la virgule a été utilisée en guise de symbole des décimales. Pour l’indiquer à R, cliquez sur <code>Locale &gt; Configure...</code>, changez le <code>.</code> en <code>,</code> dans le champ <code>Decimal Mark</code> et validez en cliquant sur <code>Configure</code> :</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:importcsv3"></span>
+<img src="images/importcsv3.png" alt="Changement du symbole utilisé pour les décimales" width="50%" />
+<p class="caption">
+Figure 5.9: Changement du symbole utilisé pour les décimales
+</p>
+</div>
+<p>Les données sont naintenant au bon format, prêtes à être importées dans RStudio. Afin de ne pas écraser l’objet <code>dauphin</code> que nous avons créé à partir du fichier tableur un peu plus tôt, nous stockerons ces nouvelles données dans un objet nommé <code>dauphin2</code>. Pour cela, ajoutez un <code>2</code> au nom <code>dauphin</code> dans le champ <code>Name</code> en bas à gauche :</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:importcsv4"></span>
+<img src="images/importcsv4.png" alt="Les données, dans un format correct, permettant l'importation" width="100%" />
+<p class="caption">
+Figure 5.10: Les données, dans un format correct, permettant l’importation
+</p>
+</div>
+<p>Nous n’avons plus qu’à copier-coller dans notre script le code généré automatiquement en bas à droite de la fenêtre (comme précédemment, la ligne <code>library(readr)</code> est inutile : nous avons déjà chargé ce package en début de chapitre).</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="tidyr.html#cb209-1" aria-hidden="true" tabindex="-1"></a>dauphin2 <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;data/dauphin.csv&quot;</span>, <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">escape_double =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb209-2"><a href="tidyr.html#cb209-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">&quot;,&quot;</span>), <span class="at">trim_ws =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>Rows: 93 Columns: 9</code></pre>
+<pre><code>── Column specification ──────────────────────────────────────────────
+Delimiter: &quot;\t&quot;
+chr (3): Sexe, Statut, Organe
+dbl (6): Id, Taille, Age, Cd, Cu, Hg</code></pre>
+<pre><code>
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>Notez que :</p>
+<ol style="list-style-type: decimal">
+<li>c’est le package <code>readr</code> et non plus <code>readxl</code> qui est utilisé.</li>
+<li>la fonction <code>read_delim()</code> a remplacé la fonction <code>read_excel()</code>. Il existe beaucoup d’autres fonctions selon le format de vos données (par exemple <code>read_csv()</code> et <code>read_csv2()</code>). Il est inutile de toutes les connaître dans la mesure où généralement, RStudio vous propose automatiquement la plus appropriée.</li>
+<li>R indique de quelle façon les colonnes ont été “parsées,” autrement dit, R indique quelles fonctions ont été utilisées pour reconnaître le type des données présentes dans chaque colonne.</li>
+</ol>
+<p>Toutes les fonctions permettant d’importer des données n’ont pas nécessairement le même comportement. Ainsi, si l’on compare les objets importés depuis le fichier tableur (<code>dauphin</code>) et depuis le fichier texte brut (<code>dauphin2</code>), le type de certaines variables est différent :</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="tidyr.html#cb213-1" aria-hidden="true" tabindex="-1"></a>dauphin</span></code></pre></div>
+<pre><code># A tibble: 93 × 9
+   ID        Sexe  Statut Taille   Age     Cd    Cu    Hg Organe
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1 Numéro 1  f     imm       315     3  29.6   3.24 NA    rein  
+ 2 Numéro 2  f     imm       357     4  55.1   4.42 NA    rein  
+ 3 Numéro 3  f     pnl       439    34 129.    5.01  9.02 rein  
+ 4 Numéro 4  f     imm       316     4  71.2   4.33 NA    rein  
+ 5 Numéro 5  f     l         435    26 192     5.15 NA    rein  
+ 6 Numéro 6  f     pnl       388     6  NA     4.12  4.53 rein  
+ 7 Numéro 7  f     mat       410    NA  76     5.1  33.9  foie  
+ 8 Numéro 8  m     imm       355    NA  74.4   4.72 13.3  foie  
+ 9 Numéro 9  m     imm       222    NA   0.09  9.5   2.89 foie  
+10 Numéro 10 m     imm       412     9  85.6   5.42 NA    rein  
+# … with 83 more rows</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="tidyr.html#cb215-1" aria-hidden="true" tabindex="-1"></a>dauphin2</span></code></pre></div>
+<pre><code># A tibble: 93 × 9
+      Id Sexe  Statut Taille   Age     Cd    Cu    Hg Organe
+   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
+ 1     1 f     imm       315     3  29.6   3.24 NA    rein  
+ 2     2 f     imm       357     4  55.1   4.42 NA    rein  
+ 3     3 f     pnl       439    34 129.    5.01  9.02 rein  
+ 4     4 f     imm       316     4  71.2   4.33 NA    rein  
+ 5     5 f     l         435    26 192     5.15 NA    rein  
+ 6     6 f     pnl       388     6  NA     4.12  4.53 rein  
+ 7     7 f     mat       410    NA  76     5.1  33.9  foie  
+ 8     8 m     imm       355    NA  74.4   4.72 13.3  foie  
+ 9     9 m     imm       222    NA   0.09  9.5   2.89 foie  
+10    10 m     imm       412     9  85.6   5.42 NA    rein  
+# … with 83 more rows</code></pre>
+<p>En particulier les variables <code>Taille</code> et <code>Age</code> sont considérées comme réelles dans <code>dauphin</code> mais comme entières (ce qui semble plus logique) dans <code>dauphin2</code>. Afin d’éviter les confusions dans la suite du document, nous allons supprimer <code>dauphin2</code> en tapant :</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="tidyr.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(dauphin2)</span></code></pre></div>
+<p>Taper <code>dauphin2</code> dans la console devrait maintenant produire une erreur :</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="tidyr.html#cb218-1" aria-hidden="true" tabindex="-1"></a>dauphin2</span></code></pre></div>
+<pre><code>Error in eval(expr, envir, enclos): objet &#39;dauphin2&#39; introuvable</code></pre>
+</div>
+<div id="Exo-9" class="section level3" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Exercices</h3>
+<ol style="list-style-type: decimal">
+<li>L’objet <code>dauphin</code> est-il “tidy” (autrement dit, s’agit-il de “données rangées”) ? Justifiez.</li>
+<li>Produisez le graphique ci-dessous :</li>
+</ol>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="figure/exercicedauphin-1.png" width="90%" style="display: block; margin: auto;" />
+Indice : les droites de régression avec les intervalles de confiance sont ajoutés grâce à la fonction <code>geom_smooth(method = "lm")</code></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Importez dans R le jeu de données <a href="data/whoTB.csv">whoTB.csv</a>. Ce jeu de données contient les cas de tuberculose (TB) rapportés par l’Organisation Mondiale de la Santé (OMS, ou WHO en anglais : World Health Organization). Les cas sont répertoriés par année, pays, âge, sexe, type de tuberculose et méthode de diagnostique. Selon vous, ce jeu de données est-il “rangé” ? Pourquoi ?</li>
+<li>Si ce jeu de données n’est pas rangé, rangez-le en utilisant les fonctions du packages <code>tidyr</code> que nous avons découvertes dans ce chapitre : <code>pivot_longer()</code>, <code>pivot_wider()</code>, <code>separate()</code> et <code>unite()</code> (vous n’aurez pas nécessairement besoin d’utiliser ces 4 fonctions, et à l’inverse, certaines devront peut-être être utilisées plusieurs fois).</li>
+</ol>
+<p>Pour vous aider, l’OMS donne la signification des codes utilisés en guise de noms pour la plupart des colonnes. Ainsi :</p>
+<ul>
+<li><code>new</code> indique des nouveaux cas, <code>old</code> des anciens (ici, seuls les nouveaux cas sont rapportés)</li>
+<li>le type de cas est précisé ensuite :
+<ul>
+<li><code>sp</code> signifie “Smear Positive” (tuberculose pulmonaire à frottis positif)</li>
+<li><code>sn</code> signifie “Smear Negative” (tuberculose pulmonaire à frottis négatif)</li>
+<li><code>rel</code> signifie “relapse” (rechute)</li>
+<li><code>ep</code> signifie “Extra Pulmonary” (tuberculose extra-pulmonaire)</li>
+</ul></li>
+<li>le sexe est codé par <code>m</code> (male) ou <code>f</code> (female)</li>
+<li>enfin, les chiffres correspondent à des tranches d’âges : 014 signifie “de 0 à 14 ans,” “1524” signifie “de 15 à 24 ans,” etc.</li>
+</ul>
+<p>Dans ces colonnes aux noms composés, les nombres de cas de tuberculose sont rapportés.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="viz.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="wrangling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Biometrie2.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
