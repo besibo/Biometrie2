@@ -134,7 +134,7 @@
 
 \title{Travaux Pratiques de Biométrie 2}
 \author{Benoît Simon-Bouhet}
-\date{2021-11-06}
+\date{2022-01-26}
 
 \begin{document}
 \maketitle
@@ -4768,7 +4768,7 @@ La commande \texttt{library(readxl)} est inutile puisque nous l'avons déjà sai
 
 \begin{verbatim}
 # A tibble: 93 x 9
-   `N°`      Sexe  `Statut reproducteu~ `Taille en cm` `Age en années`
+   `N°`      Sexe  `Statut reproducte~` `Taille en cm` `Age en années`
    <chr>     <chr> <chr>                         <dbl>           <dbl>
  1 Numéro 1  f     imm                             315               3
  2 Numéro 2  f     imm                             357               4
@@ -4780,8 +4780,8 @@ La commande \texttt{library(readxl)} est inutile puisque nous l'avons déjà sai
  8 Numéro 8  m     imm                             355              NA
  9 Numéro 9  m     imm                             222              NA
 10 Numéro 10 m     imm                             412               9
-# ... with 83 more rows, and 4 more variables: Cd (mg.kg-1) <dbl>,
-#   Cu (mg.kg-1) <dbl>, Hg (mg.kg-1) <dbl>, Organe <chr>
+# ... with 83 more rows, and 4 more variables: `Cd (mg.kg-1)` <dbl>,
+#   `Cu (mg.kg-1)` <dbl>, `Hg (mg.kg-1)` <dbl>, Organe <chr>
 \end{verbatim}
 
 Notez toutefois que les noms de colonnes complexes sont toujours présents. Avec de tels noms, les variables ne seront pas faciles à manipuler et les risques d'erreurs de frappes seront nombreux. Nous avons tout intérêt à les modifier à l'aide de la fonction \texttt{names()} :
@@ -6664,18 +6664,18 @@ La fonction \texttt{inner\_join()} permet de relier des tableaux en ne conservan
 
 \begin{verbatim}
 # A tibble: 101 x 9
-   dest      n name             lat    lon   alt    tz dst   tzone    
-   <chr> <int> <chr>          <dbl>  <dbl> <dbl> <dbl> <chr> <chr>    
- 1 ORD   17283 Chicago Ohare~  42.0  -87.9   668    -6 A     America/~
- 2 ATL   17215 Hartsfield Ja~  33.6  -84.4  1026    -5 A     America/~
- 3 LAX   16174 Los Angeles I~  33.9 -118.    126    -8 A     America/~
- 4 BOS   15508 General Edwar~  42.4  -71.0    19    -5 A     America/~
- 5 MCO   14082 Orlando Intl    28.4  -81.3    96    -5 A     America/~
- 6 CLT   14064 Charlotte Dou~  35.2  -80.9   748    -5 A     America/~
- 7 SFO   13331 San Francisco~  37.6 -122.     13    -8 A     America/~
- 8 FLL   12055 Fort Lauderda~  26.1  -80.2     9    -5 A     America/~
- 9 MIA   11728 Miami Intl      25.8  -80.3     8    -5 A     America/~
-10 DCA    9705 Ronald Reagan~  38.9  -77.0    15    -5 A     America/~
+   dest      n name                 lat    lon   alt    tz dst   tzone
+   <chr> <int> <chr>              <dbl>  <dbl> <dbl> <dbl> <chr> <chr>
+ 1 ORD   17283 Chicago Ohare Intl  42.0  -87.9   668    -6 A     Amer~
+ 2 ATL   17215 Hartsfield Jackso~  33.6  -84.4  1026    -5 A     Amer~
+ 3 LAX   16174 Los Angeles Intl    33.9 -118.    126    -8 A     Amer~
+ 4 BOS   15508 General Edward La~  42.4  -71.0    19    -5 A     Amer~
+ 5 MCO   14082 Orlando Intl        28.4  -81.3    96    -5 A     Amer~
+ 6 CLT   14064 Charlotte Douglas~  35.2  -80.9   748    -5 A     Amer~
+ 7 SFO   13331 San Francisco Intl  37.6 -122.     13    -8 A     Amer~
+ 8 FLL   12055 Fort Lauderdale H~  26.1  -80.2     9    -5 A     Amer~
+ 9 MIA   11728 Miami Intl          25.8  -80.3     8    -5 A     Amer~
+10 DCA    9705 Ronald Reagan Was~  38.9  -77.0    15    -5 A     Amer~
 # ... with 91 more rows
 \end{verbatim}
 
