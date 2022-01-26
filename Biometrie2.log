@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.9.14)  27 SEP 2021 12:12
+This is XeTeX, Version 3.141592653-2.6-0.999993 (TeX Live 2021) (preloaded format=xelatex 2021.9.14)  6 NOV 2021 16:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1747,7 +1747,13 @@ File: images/importcsv3.png Graphic file (type bmp)
 File: images/importcsv4.png Graphic file (type bmp)
 <images/importcsv4.png>
 [115]
-Underfull \hbox (badness 1221) in paragraph at lines 4945--4947
+Overfull \hbox (16.91641pt too wide) in paragraph at lines 4936--4936
+[]\TU/FiraCode-Regular.ttf(0)/b/n/10 i Specify the column types or set []show_c
+ol_types = FALSE[] to quiet this message.[] 
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 4946--4948
 \TU/GillSans(0)/m/sc/10 d’autres fonctions selon le format de vos données (par 
 exemple \TU/FiraCode-Regular.ttf(0)/b/n/10 read_csv() \TU/GillSans(0)/m/sc/10 e
 t
@@ -1769,7 +1775,7 @@ File: images/summarizearrow.png Graphic file (type bmp)
 File: images/summarize.png Graphic file (type bmp)
 <images/summarize.png>
 [127]
-Underfull \hbox (badness 1019) in paragraph at lines 5560--5561
+Underfull \hbox (badness 1019) in paragraph at lines 5561--5562
 []\TU/GillSans(0)/m/sc/10 La fonction devient particulièrement puissante lorsqu
 ’elle est combinée avec la fonction
  []
@@ -1783,7 +1789,7 @@ File: figure/errorbars-1.pdf Graphic file (type pdf)
 File: figure/errorbars2-1.pdf Graphic file (type pdf)
 <use figure/errorbars2-1.pdf>
 [131]
-Overfull \hbox (76.19884pt too wide) in paragraph at lines 5748--5748
+Overfull \hbox (76.19884pt too wide) in paragraph at lines 5749--5749
 [][]\TU/FiraCode-Regular.ttf(0)/b/n/10 summarise()[] has grouped output by []or
 igin[]. You can override using the [].groups[] argument.[] 
  []
@@ -1792,26 +1798,26 @@ igin[]. You can override using the [].groups[] argument.[]
 File: figure/errorbars3-1.pdf Graphic file (type pdf)
 <use figure/errorbars3-1.pdf>
 
-Overfull \vbox (0.89902pt too high) detected at line 5818
+Overfull \vbox (0.89902pt too high) detected at line 5819
  []
 
 [133]
 File: figure/errorbars4-1.pdf Graphic file (type pdf)
 <use figure/errorbars4-1.pdf>
 
-Overfull \hbox (76.19884pt too wide) in paragraph at lines 5843--5843
+Overfull \hbox (76.19884pt too wide) in paragraph at lines 5844--5844
 [][]\TU/FiraCode-Regular.ttf(0)/b/n/10 summarise()[] has grouped output by []or
 igin[]. You can override using the [].groups[] argument.[] 
  []
 
 [134] [135] [136]
-Overfull \hbox (76.19884pt too wide) in paragraph at lines 5990--5990
+Overfull \hbox (76.19884pt too wide) in paragraph at lines 5991--5991
 [][]\TU/FiraCode-Regular.ttf(0)/b/n/10 summarise()[] has grouped output by []or
 igin[]. You can override using the [].groups[] argument.[] 
  []
 
 
-Overfull \hbox (76.19884pt too wide) in paragraph at lines 6020--6020
+Overfull \hbox (76.19884pt too wide) in paragraph at lines 6021--6021
 [][]\TU/FiraCode-Regular.ttf(0)/b/n/10 summarise()[] has grouped output by []or
 igin[]. You can override using the [].groups[] argument.[] 
  []
@@ -1832,7 +1838,7 @@ File: figure/consommation2-1.pdf Graphic file (type pdf)
 File: images/arrange.png Graphic file (type bmp)
 <images/arrange.png>
 [145] [146] [147] [148]
-Underfull \hbox (badness 7814) in paragraph at lines 6614--6614
+Underfull \hbox (badness 7814) in paragraph at lines 6615--6615
 []\TU/GillSans(0)/b/n/12 Associer plusieurs tableaux avec \TU/FiraCode-Regular.
 ttf(0)/b/n/12 left_join() \TU/GillSans(0)/b/n/12 et \TU/FiraCode-Regular.ttf(0)
 /b/n/12 in-
@@ -1845,7 +1851,7 @@ File: images/innerjoin.png Graphic file (type bmp)
 File: images/leftjoin.png Graphic file (type bmp)
 <images/leftjoin.png>
 [151] [152]
-Underfull \hbox (badness 2119) in paragraph at lines 6874--6876
+Underfull \hbox (badness 2119) in paragraph at lines 6875--6877
 []\TU/GillSans(0)/m/sc/10 Quelles sont les autres possibilités de jointures (\T
 U/FiraCode-Regular.ttf(0)/b/n/10 right_join()\TU/GillSans(0)/m/sc/10 , \TU/Fira
 Code-Regular.ttf(0)/b/n/10 outer_join()\TU/GillSans(0)/m/sc/10 ,
@@ -1863,7 +1869,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  24622 strings out of 476533
  447052 string characters out of 5818000
- 991083 words of memory out of 5000000
+ 990083 words of memory out of 5000000
  44508 multiletter control sequences out of 15000+600000
  409985 words of font info for 93 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
